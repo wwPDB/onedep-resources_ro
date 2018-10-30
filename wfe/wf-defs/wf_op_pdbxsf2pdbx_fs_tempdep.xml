@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.51" author="jdw" date="07-20-2015" id="PDBXSF2PDBX_TDEP" name="wf_op_pdbxsf2pdbx_fs_tempdep.xml"/>
+        <wf:description>
+            <wf:short>Convert PDBx SF to PDBx SF (deposit)</wf:short>
+            <wf:subtext>Deposition system file conversion workflow</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D1" name="pdbxsffile" type="string" container="list" mutable="true" >
+                <wf:description>PDBx format structure factor data file (latest version)</wf:description>
+                <wf:location where="tempdep" content="structure-factors" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D2" name="pdbxfile" type="string" container="list" mutable="true" >
+                <wf:description>PDBx format model data file (latest version)</wf:description>
+                <wf:location where="tempdep" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+             <wf:dataObject dataID="D3" name="pdbxsffile" type="string" container="list" mutable="true" >
+                <wf:description>PDBx format structure factor data file (next version)</wf:description>
+                <wf:location where="tempdep" content="structure-factors" format="pdbx"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D4" name="rptpdbxfile" type="string" container="list" mutable="true" >
+                <wf:description>Structure factor report </wf:description>
+                <wf:location where="tempdep" content="sf-convert-report" format="pdbx"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D5" name="rpttxtfile" type="string" container="list" mutable="true" >
+                <wf:description>Structure factor report</wf:description>
+                <wf:location where="tempdep" content="sf-convert-report" format="txt"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D6" name="statusValue" type="string" container="value" mutable="true">
+                <wf:description>Run time variable to status value</wf:description>
+                <wf:location where="constant" content="latest" format="string"  version="" select=""/>
+            </wf:dataObject>
+
+
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="T2" breakpoint="false">
+                <wf:description>Process entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+                <wf:task taskID="T2" name="pdbxsf2pdbx" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="pdbxsf2pdbx">
+                    <wf:description>PDBx SF to PDBx SF task</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:30:00">
+                        <wf:detail name="pdbxsf2pdbx" action="pdbxsf2pdbx-alt" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                            <wf:location dataID="D2" type="input"/>
+                            <wf:location dataID="D3" type="output"/>
+                            <wf:location dataID="D4" type="output"/>
+                            <wf:location dataID="D5" type="output"/>
+                            <wf:location dataID="D6" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+                <!-- Final task -->
+                <wf:task taskID="T8" name="Finish" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="Finish">
+                   <wf:description>Mark the WF as completed</wf:description>
+                   <wf:process runTime="00:00:01" failTime="00:00:20">
+                      <wf:detail name="finished" action="finished" where="wfe"/>
+                   </wf:process>
+                </wf:task>
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false" reference="exit">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+        </wf:flow>
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>

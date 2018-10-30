@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.51" author="tjo jdw" date="09-04-2015" id="popDB" name="PopulateDB.xml"/>
+        <wf:description>
+            <wf:short>Populate DB workflow</wf:short>
+            <wf:subtext>Workflow to extract information from the domain data and populate the statuDB</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D1" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Data to read to populate the status DB</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D22" name="externalData" type="string" container="value" mutable="false">
+                <wf:description>External data reference to import into Data model from PDB</wf:description>
+                <wf:location where="path(pdbe)" content="model" format="pdb"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D2" name="externalData" type="string" container="value" mutable="false">
+                <wf:description>External data reference to import into Data model from CIF</wf:description>
+                <wf:location where="path(rcsb)" content="model" format="cif"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D3" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Import output in the archive</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="next" />
+            </wf:dataObject>
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="TP2" breakpoint="false">
+                <wf:description>Process Path entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+                <wf:task taskID="TP2" name="MakeDirectory" nextTask="TP3" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Make the archive data directory </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:20">
+                        <wf:detail name="makeArchiveDir" action="mkdir" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+                <wf:task taskID="TP3" name="ImportConvertCIF" nextTask="TP1" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Workflow import of the PDBe domain data into the data model and convert format to pdbx from CIF</wf:description>
+                    <wf:process runTime="00:00:40" failTime="00:05:20">
+                        <wf:detail name="importDataModel" action="pdb2pdbx" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D22" type="input"/>
+                            <wf:location dataID="D3" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+                <wf:task taskID="TP4" name="ImportConvertPDB" nextTask="TP1" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Workflow import of the domain data into the data model and convert format to pdbx from CIF</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:20">
+                        <wf:detail name="importDataModel" action="pdb2pdbx" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D22" type="input"/>
+                            <wf:location dataID="D3" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+                <wf:task taskID="TP1" name="Populate" nextTask="TP8" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Workflow intialistation from the domain data- to populate the statusDB</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:20">
+                        <wf:detail name="populateDB" action="initDB" where="wfe"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+                <wf:task taskID="TP8" name="resetDB" nextTask="T9" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Task to reset the instance ID to start annotation</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:20">
+                        <wf:detail name="resetDB" action="resetStatus" where="wfe"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+
+        </wf:flow>
+
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>

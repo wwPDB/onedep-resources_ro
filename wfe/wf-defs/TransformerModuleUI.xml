@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.51" author="T Oldfield" date="18-03-2013" id="TransMod" name="TransformerModuleUI.xml"/>
+        <wf:description>
+            <wf:short>Transformer annotation module</wf:short>
+            <wf:subtext>checks and validates the mmCIF core structure - I think : FORCED UI</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+<!-- Note that all data objects are state objects and NOT passed objects from task to task
+     They are defined as point in time objects that are read/written -->
+        <wf:dataObjects>
+            <wf:dataObject dataID="D1" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Original (latest) copy of the archive model data</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D2" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D3" name="instanceDataR" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the instance(latest-read) model data</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D4" name="prdSummaryDataW" type="string" container="list" mutable="true" >
+                <wf:description>Output data from prd search (next)</wf:description>
+                <wf:location where="wf-instance" content="prd-search" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D14" name="prdSummaryDataW" type="string" container="list" mutable="true" >
+                <wf:description>Output data from prd search (latest to test)</wf:description>
+                <wf:location where="wf-instance" content="prd-search" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D44" name="fileExists" type="string" container="value" mutable="true">
+                <wf:description>Run time variable to hold if file exists</wf:description>
+                <wf:location where="constant" content="latest" format="string"  version="" select=""/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D11" name="instanceDataR" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance(latest-read) with new assignment</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D20" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Final (next) copy of the archive model data</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="next" />
+            </wf:dataObject>
+
+        </wf:dataObjects>
+
+        <wf:flow>
+<!-- entry point -->
+            <wf:entryPoint taskID="T1" name="Start" nextTask="TP1" breakpoint="false">
+                <wf:description>Process Path entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+<!-- make the relevant directory to work in : no change needed-->
+                <wf:task taskID="TP1" name="MakeDirectory" nextTask="TP2" breakpoint="false" exceptionID="EX0" reference="mkdir">
+                    <wf:description>Make a directory for the instance data</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:20">
+                        <wf:detail name="makeDirectory" action="mkdir" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D2" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+<!-- Copy a pdbx model data file into this working directory -->
+<!-- If you need other data objects then you will need another task and data object declarations -->
+                <wf:task taskID="TP2" name="copyArchive" nextTask="TP3" breakpoint="false" exceptionID="EX0" reference="copy">
+                    <wf:description>copy PDBx data from archive to instance </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="copyToInstance" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                            <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+<!-- Here is your prd-search action event -->
+<!-- Input is D3 which is the latest PDBx model data file -->
+<!-- look at the D4 declaration for the output file - it will need changing -->
+<!-- notice the time constraints - change as requied : note : the WF will through a fatal error on failTime-->
+                <wf:task taskID="TP3" name="PrdSearch" nextTask="TM6" breakpoint="false" exceptionID="EX0" reference="prd-search">
+                    <wf:description>Do the linkage calculation</wf:description>
+                    <wf:process runTime="00:00:10" failTime="01:15:20">
+                        <wf:detail name="PrdSearch" action="prd-search" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D4" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+<!-- Here is the UI module
+     All other UI ignore the data objects, but you can define them if you require.
+     The only think you might change is add another return state, only 1 is defined here
+     -->
+                <wf:task taskID="TM6" name="TransformerUI" nextTask="TP8" breakpoint="false" exceptionID="EX0" reference="TransformerUI">
+                    <wf:description>manual wrapper for Ligand module interface</wf:description>
+                    <wf:manual application = "TransformModule">
+                        <wf:parameter name="Option">
+                            <wf:write title="Ask a question" question="Choose one of the following options">
+                                <wf:comment>The iterator is  </wf:comment>
+                                <wf:objects>
+                                    <wf:object ID="D1" format="string"/>
+                                </wf:objects>
+                            </wf:write>
+                        </wf:parameter>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP8" label = "done"/>
+                        </wf:nextTasks>
+                    </wf:manual>
+                </wf:task>
+
+
+<!-- What happens after you close the UI
+     copy the data back to the archive -->
+                <wf:task taskID="TP8" name="copyModelToArchive" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="copy">
+                    <wf:description>Put the model data back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:05:20">
+                        <wf:detail name="copyModelToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D11" type="input"/>
+                            <wf:location dataID="D20" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+            </wf:tasks>
+
+<!-- exit point -->
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+<!-- exception manager
+    This is the minimal exception manager - it just marks the annotation WFM as failed and STOPS
+    There are many types of exception and you can declare handlers to do different things based
+    on the different exception codes.
+-->
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+
+        </wf:flow>
+
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>

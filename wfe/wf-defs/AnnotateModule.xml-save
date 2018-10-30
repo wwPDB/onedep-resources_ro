@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.51" author="tjo jdw" date="09-04-2015" id="AnnMod" name="AnnotateModule.xml"/>
+        <wf:description>
+            <wf:short>Added Annotation module</wf:short>
+            <wf:subtext>This is the added annotation module and runs: secondary structure, pisa, water</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D1" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Original (latest) copy of the archive model data</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D2" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D4" name="instanceReportW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
+                <wf:location where="wf-instance" content="dict-check-report" format="txt"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D5" name="instanceReportR" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
+                <wf:location where="wf-instance" content="dict-check-report" format="txt"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D6" name="archiveReportW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
+                <wf:location where="archive" content="dict-check-report" format="txt"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D10" name="waitTime" type="integer" container="value" mutable="true">
+                <wf:description>Wait time for the monitor in seconds</wf:description>
+                <wf:location where="constant" value="10"  version="latest" select=""/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D19" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D20" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Final (next) copy of the archive model data</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D22" name="instanceSS" type="string" container="list" mutable="false">
+                <wf:description>secondary structure topology file</wf:description>
+                <wf:location where="wf-instance" content="secondary-structure-topology" format="text"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D28" name="instanceReport" type="string" container="list" mutable="true">
+                <wf:description>Pisa XML report</wf:description>
+                <wf:location where="wf-instance" content="assembly-report" format="xml" version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D30" name="iterator" type="string" container="list" mutable="true">
+                <wf:description>Value for the loop : list of results from Pisa</wf:description>
+                <wf:location where="wf-instance" value="undefined" version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D31" name="value" type="string" container="value" mutable="true">
+                <wf:description>container for the loop iterator</wf:description>
+                <wf:location where="workflow" value="undefined" version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D40" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Needs to be absolute file name from pisa</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="latest" partitionNumber="$D31"/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D41" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Needs to be absolute file name from pisa</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="next" partitionNumber="$D31"/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D50" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive pdb in instance(next-write) data area</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdb"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D51" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Final (next) copy of the pdb archive model data</wf:description>
+                <wf:location where="archive" content="model" format="pdb"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D53" name="instanceCorrespond" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the Correspondence letter in instance(next-write) data area</wf:description>
+                <wf:location where="wf-instance" content="correspondence-to-depositor" format="txt"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D54" name="archiveCorrespond" type="string" container="list" mutable="false">
+                <wf:description>Final (next) copy of the Correspondene letter archive model data</wf:description>
+                <wf:location where="archive" content="correspondence-to-depositor" format="txt"  version="next" />
+            </wf:dataObject>
+
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="TP1" breakpoint="false">
+                <wf:description>Process Path entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+                <wf:task taskID="TP1" name="MakeDirectory" nextTask="TP2" breakpoint="false" exceptionID="EX0" reference="mkdir">
+                    <wf:description>Make a directory for the instance data</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:20">
+                        <wf:detail name="makeDirectory" action="mkdir" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D2" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP2" name="copyArchive" nextTask="TP3" breakpoint="false" exceptionID="EX0" reference="copy">
+                    <wf:description>copy PDBx data from archive to instance </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="copyToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                            <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP3" name="solvent-position-add-derived" nextTask="TP4" breakpoint="true" exceptionID="EX0" reference="solvent-position-add-derived">
+                    <wf:description>Re position the waters</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:55:20">
+                        <wf:detail name="SolventPosition" action="solvent-position-add-derived" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D19" type="input"/>
+                               <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP4" name="nucleic-acid-geometry" nextTask="TP5" breakpoint="true" exceptionID="EX0" reference="nucleic-acid-geometry">
+                    <wf:description>Calculate and annotate nucleic acid geometry</wf:description>
+                    <wf:process runTime="00:00:10" failTime="01:20:20">
+                        <wf:detail name="nucleicAcidGeometry" action="nucleic-acid-geometry" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D19" type="input"/>
+                               <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP5" name="linkages" nextTask="TP6" breakpoint="true" exceptionID="EX0" reference = "linkages">
+                    <wf:description>Calculate the linkage data</wf:description>
+                    <wf:process runTime="00:00:10" failTime="01:55:20">
+                        <wf:detail name="Linkages" action="linkages" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D19" type="input"/>
+                               <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP6" name="cis-peptide" nextTask="TP7" breakpoint="true" exceptionID="EX0" reference="cis-peptide">
+                    <wf:description>Detect the cis peptides</wf:description>
+                    <wf:process runTime="00:00:10" failTime="01:55:20">
+                        <wf:detail name="CisPeptideeptide" action="cis-peptide" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D19" type="input"/>
+                               <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP7" name="secondary-structure" nextTask="TP8" breakpoint="true" exceptionID="EX0" reference="secondary-structure">
+                    <wf:description>Calculate Secondary structure</wf:description>
+                    <wf:process runTime="00:00:10" failTime="01:55:20">
+                        <wf:detail name="SecondaryStructure" action="secondary-structure" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D19" type="input"/>
+                               <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP8" name="site-environment" nextTask="TP9" breakpoint="true" exceptionID="EX0" reference="site-environment">
+                    <wf:description>Site record </wf:description>
+                    <wf:process runTime="00:00:10" failTime="01:55:20">
+                        <wf:detail name="SiteEnvironment" action="site-environment" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D19" type="input"/>
+                               <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP9" name="pdbx-dict-check" nextTask="TP10" breakpoint="true" exceptionID="EX0" reference="pdbx-dict-check">
+                    <wf:description>Dictionary Check</wf:description>
+                        <wf:process runTime="00:00:10" failTime="01:55:20">
+                        <wf:detail name="pdbx-dict-check" action="pdbx-dict-check" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D19" type="input"/>
+                               <wf:location dataID="D4" type="output"/>
+                        </wf:dataObjectsLocation>
+                     </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP10" name="assembly-report-and-models" nextTask="TM6" breakpoint="true" exceptionID="EX0" reference="assembly-report-and-models">
+                    <wf:description>Assembly report and models </wf:description>
+                    <wf:process runTime="00:25:00" failTime="02:55:20">
+                        <wf:detail name="assembly-report-and-models" action="assembly-report-and-models" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D19" type="input"/>
+                               <wf:location dataID="D28" type="output1"/>
+                               <wf:location dataID="D30" type="output2"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TM6" name="AnnotationInteface" nextTask="TL1" breakpoint="false" exceptionID="EX0" reference="AnnotationInteface">
+                    <wf:description>manual wrapper for annotation module</wf:description>
+                    <wf:manual application = "AnnModule">
+                        <wf:parameter name="Option">
+                            <wf:write title="Ask a question" question="Choose one of the following options">
+                                <wf:comment>The iterator is  </wf:comment>
+                                <wf:objects>
+                                    <wf:object ID="D1" format="string"/>
+                                </wf:objects>
+                            </wf:write>
+                        </wf:parameter>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP88" label = "done"/>
+                        </wf:nextTasks>
+                    </wf:manual>
+                </wf:task>
+
+                <wf:task taskID="TP88" name="wait" nextTask="TL1" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Wait 5 seconds</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:00:20">
+                        <wf:detail name="wait" action="wait" where="wfe"/>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TL1" name="Loop" nextTask="TP31" breakpoint="false" exceptionID="EX1" reference="Loop">
+                    <wf:description>Loop over iterator</wf:description>
+                    <wf:loop iterator="D30" value = "D31" exitTask="TP20" parameter = "index"/>
+                </wf:task>
+
+                <wf:task taskID="TP31" name="copyPisaDataToArchive" nextTask="TL1" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Put the model data back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:10:20">
+                        <wf:detail name="copyPisaDataToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D40" type="input"/>
+                            <wf:location dataID="D41" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP20" name="copyModelToArchive" nextTask="TP29" breakpoint="false" exceptionID="EX0" reference="copy">
+                    <wf:description>Put the model data back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:10:20">
+                        <wf:detail name="copyModelToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D19" type="input"/>
+                            <wf:location dataID="D20" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP29" name="copyLetterToArchive" nextTask="TP19" breakpoint="false" exceptionID="EX4" reference="copy">
+                    <wf:description>Put the correspondence letter back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:05:20">
+                        <wf:detail name="copyLetterToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D53" type="input"/>
+                            <wf:location dataID="D54" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP19" name="copyPDBToArchive" nextTask="TP21" breakpoint="false" exceptionID="EX3" reference="copy">
+                    <wf:description>Put the model data back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:05:20">
+                        <wf:detail name="copyPDBToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D50" type="input"/>
+                            <wf:location dataID="D51" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+                <wf:task taskID="TP21" name="copyReportToArchive" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="copy">
+                     <wf:description>Put the model data back to archive</wf:description>
+                     <wf:process runTime="00:00:04" failTime="00:05:20">
+                         <wf:detail name="copyReportToArchive" action="copy" where="api"/>
+                         <wf:dataObjectsLocation>
+                               <wf:location dataID="D5" type="input"/>
+                               <wf:location dataID="D6" type="output"/>
+                         </wf:dataObjectsLocation>
+                     </wf:process>
+                </wf:task>
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+            <wf:exception taskID="EX3" name="Exception handler" >
+                <wf:description>PDB copy exception keep going</wf:description>
+                <wf:handler warning="There was no PDB data - continue" nextTask="TP21" select="rest"/>
+            </wf:exception>
+
+            <wf:exception taskID="EX4" name="Exception handler" >
+                <wf:description>Letter copy exception keep going</wf:description>
+                <wf:handler warning="There was no letter - continue" nextTask="TP19" select="rest"/>
+            </wf:exception>
+
+            <wf:exception taskID="EX1" name="Exception handler" >
+                <wf:description>Loop - exception.</wf:description>
+                <wf:handler warning="There was no Pisa data - continue" nextTask="TP20" select="loopX"/>
+                <wf:handler warning="There was no Pisa data - continue" nextTask="TP20" select="rest"/>
+            </wf:exception>
+
+
+
+        </wf:flow>
+
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>

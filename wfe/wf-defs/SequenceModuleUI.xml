@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.51" author="tjo jdw" date="09-04-2015" id="SeqMod" name="SequenceModuleUI.xml"/>
+        <wf:description>
+            <wf:short>Sequence module workflow</wf:short>
+            <wf:subtext>Sequence database search for all polymer entities followed by UI review</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D1" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Original (latest) copy of the archive model data</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D2" name="instanceData1" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance and writable version of model data</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D3" name="instanceInput" type="string" container="list" mutable="true" >
+                <wf:description>Input data for the match-all</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D4" name="instanceOutput" type="string" container="list" mutable="true" >
+                <wf:description>Output data for the match-all</wf:description>
+                <wf:location where="wf-instance" content="seqdb-match" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D11" name="value" type="string" container="value" mutable="true">
+                <wf:description>container for the loop iterator -here as a reference for the UI</wf:description>
+                <wf:location where="workflow" value="undefined" version="latest" />
+            </wf:dataObject>
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="TP1" breakpoint="false">
+                <wf:description>Process Path entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+                <wf:task taskID="TP1" name="MakeDirectory" nextTask="TP2" breakpoint="false" exceptionID="EX0" reference="mkdir">
+                    <wf:description>Make a directory for the instance data</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:20">
+                        <wf:detail name="makeDirectory" action="mkdir" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D2" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP2" name="copyArchive" nextTask="TP3A" breakpoint="false" exceptionID="EX0" reference="copy">
+                    <wf:description>copy PDBx data from archive to instance </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="copyToInstance" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                            <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP3A" name="update-geometry-validation" nextTask="TP3B" breakpoint="true" exceptionID="EX0" reference="update-geometry-validation">
+                    <wf:description>Update geometry validation and consolidate redundant polymer entities</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:55:20">
+                        <wf:detail name="update-geometry-validation" action="update-geometry-validation" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D3" type="input"/>
+                               <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+                <wf:task taskID="TP3B" name="Prepare Alignment for UI" nextTask="TM6" breakpoint="false" exceptionID="EX0" reference="match-all">
+                    <wf:description>Do alignment for all chains for the seqUI</wf:description>
+                    <wf:process runTime="00:05:04" failTime="15:55:20">
+                        <wf:detail name="match-all" action="match-all" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D4" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TM6" name="TestInteface" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="TestInteface">
+                    <wf:description>manual wrapper for sequence module</wf:description>
+                    <wf:manual application = "SeqModule">
+                        <wf:parameter name="Option">
+                            <wf:write title="Ask a question" question="Choose one of the following options">
+                                <wf:comment>The iterator is  </wf:comment>
+                                <wf:objects>
+                                    <wf:object ID="D11" format="string"/>
+                                </wf:objects>
+                            </wf:write>
+                        </wf:parameter>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D11" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="T9" label = "done"/>
+                        </wf:nextTasks>
+                    </wf:manual>
+                </wf:task>
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+
+	    <wf:exception taskID="EX3" name="Exception handler" >
+                <wf:description>Default handled exception -  exception.</wf:description>
+                <wf:handler warning="Process request to STOP : continue to T9" nextTask="T9" select="stopX"/>
+                <wf:handler warning="Process Crashed : die immediately" nextTask="die" select="crashedX"/>
+                <wf:handler warning="Manual UI Problem : die immediately" nextTask="die" select="manualX"/>
+                <wf:handler warning="Auto-decision problem : die immediately" nextTask="die" select="decisionX"/>
+                <wf:handler warning="workflow Crashed : die immediately" nextTask="die" select="workflowX"/>
+                <wf:handler warning="Process ran out of time : continue to end" nextTask="T9" select="timeoutX"/>
+                <wf:handler warning="Process never started : die immediately" nextTask="die" select="startX"/>
+                <wf:handler warning="Generic Exception : die immediately" nextTask="die" select="exception"/>
+                <wf:handler warning="Everything else : die immediately" nextTask="die" select="rest"/>
+            </wf:exception>
+
+        </wf:flow>
+
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>

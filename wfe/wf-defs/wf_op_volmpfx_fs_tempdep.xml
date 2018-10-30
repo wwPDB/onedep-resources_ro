@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.51" author="jdw" date="10-02-2015" id="VOLMPFX_TDEP" name="wf_op_volmpfx_fs_tempdep.xml"/>
+        <wf:description>
+            <wf:short>Mapfix for primary volume (upload->tempdep)</wf:short>
+            <wf:subtext>Mapfix for primary volume (upload->tempdep)</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D1" name="ipvolcfgfile" type="string" container="list" mutable="true" >
+                <wf:description>Primary volume configuration file</wf:description>
+                <wf:location where="tempdep" content="em-volume-wfcfg" format="json"  version="latest" />
+            </wf:dataObject>
+
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="T2" breakpoint="false">
+                <wf:description>Process entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+                <wf:task taskID="T2" name="mapfixop" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="mapfixop">
+                    <wf:description>Mapfix operation</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:30:00">
+                        <wf:detail name="mapfixop" action="mapfix-in-place-cfg" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+                <!-- Final task -->
+                <wf:task taskID="T8" name="Finish" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="Finish">
+                   <wf:description>Mark the WF as completed</wf:description>
+                   <wf:process runTime="00:00:01" failTime="00:00:20">
+                      <wf:detail name="finished" action="finished" where="wfe"/>
+                   </wf:process>
+                </wf:task>
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false" reference="exit">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+        </wf:flow>
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.51" author="tjo jdw" date="09-04-2015" id="popDB" name="PopulateDB.xml"/>
+        <wf:description>
+            <wf:short>Populate DB workflow</wf:short>
+            <wf:subtext>Workflow to extract information from the domain data and populate the statuDB</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D1" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Data to read to populate the status DB</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="TP1" breakpoint="false">
+                <wf:description>Process Path entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+                <wf:task taskID="TP1" name="Populate" nextTask="TP8" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Workflow intialistation from the domain data- to populate the statusDB</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:20">
+                        <wf:detail name="populateDB" action="initDB" where="wfe"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+                <wf:task taskID="TP8" name="resetDB" nextTask="T9" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Task to reset the instance ID to start annotation</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:20">
+                        <wf:detail name="resetDB" action="resetStatus" where="wfe"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+
+        </wf:flow>
+
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>

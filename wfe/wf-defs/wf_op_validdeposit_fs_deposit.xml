@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.52" author="jdw" date="2015-09-16" id="DepVal" name="wf_op_validdeposit_fs_deposit.xml"/>
+        <wf:description>
+            <wf:short>Validation module</wf:short>
+            <wf:subtext>Deposition workflow to create wwPDB validation reports for all methods.</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D22" name="depositdata" type="string" container="list" mutable="true" >
+                <wf:description>Latest model in deposit area </wf:description>
+                <wf:location where="deposit" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D23" name="sessiondata" type="string" container="list" mutable="true" >
+                <wf:description>Next model in session area </wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D24" name="sessiondata" type="string" container="list" mutable="true" >
+                <wf:description>Latest model in session area </wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D33" name="fileExists" type="string" container="value" mutable="true">
+                <wf:description>Run time variable to hold if file exists</wf:description>
+                <wf:location where="constant" content="latest" format="string"  version="" select=""/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D44" name="depositSF" type="string" container="list" mutable="true" >
+                <wf:description>Latest SF data in deposit area</wf:description>
+                <wf:location where="deposit" content="structure-factors" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D61" name="depositCS" type="string" container="list" mutable="true" >
+                <wf:description>Latest chemical shift data in deposit area</wf:description>
+                <wf:location where="deposit" content="nmr-chemical-shifts" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D71" name="depositVOL" type="string" container="list" mutable="true" >
+                <wf:description>Latest em volume in deposit area</wf:description>
+                <wf:location where="deposit" content="em-volume" format="map"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D6" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation report</wf:description>
+                <wf:location where="deposit" content="validation-report" format="pdf"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D7" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation data</wf:description>
+                <wf:location where="deposit" content="validation-data" format="xml"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D8" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation full report</wf:description>
+                <wf:location where="deposit" content="validation-report-full" format="pdf"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D9" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation imagery</wf:description>
+                <wf:location where="deposit" content="validation-report-slider" format="png"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D10" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation imagery</wf:description>
+                <wf:location where="deposit" content="validation-report-slider" format="svg"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D66" name="reportPDF" type="string" container="list" mutable="true" >
+                <wf:description>Validation report</wf:description>
+                <wf:location where="deposit" content="validation-report" format="pdf"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="C1" name="corresinfofile" type="string" container="list" mutable="true" >
+                <wf:description>correspondance info file</wf:description>
+                <wf:location where="deposit" content="correspondence-info" format="pdbx"  version="next" />
+            </wf:dataObject>
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="TP1" breakpoint="false">
+                <wf:description>Process Path entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+                <wf:task taskID="TP1" name="MakeDirectory" nextTask="TP2" breakpoint="false" exceptionID="EX0" reference="mkdir">
+                    <wf:description>Make a directory for the instance data</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:20">
+                        <wf:detail name="makeDirectory" action="mkdir" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D23" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP2" name="copyArchive" nextTask="TP61" breakpoint="false" exceptionID="EX0" reference="copy">
+                    <wf:description>copy PDBx data from archive to instance </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="copyToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D22" type="input"/>
+                            <wf:location dataID="D23" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+	            <wf:task taskID="TP61" name="linkages" nextTask="T5" breakpoint="false" exceptionID="EX0" reference="linkages">
+                    <wf:description>Calculate the linkage data</wf:description>
+                    <wf:process runTime="00:00:10" failTime="01:55:20">
+                        <wf:detail name="Linkages" action="linkages" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D24" type="input"/>
+                               <wf:location dataID="D23" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="T5" name="corresinfo" nextTask="TP6" breakpoint="false" exceptionID="EX0" reference="corresinfo">
+                    <wf:description>get correspondance info for the model</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:15:20">
+                        <wf:detail name="corresinfo" action="get-corres-info" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D24" type="input"/>
+                            <wf:location dataID="C1" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+               <!-- wf:task taskID="TP6" name="validation-report-2" nextTask="TP31" breakpoint="true" exceptionID="EX0" -->
+               <wf:task taskID="TP6" name="val-report-all-dep" nextTask="TP31" breakpoint="true" exceptionID="EX0">
+                  <wf:description>Validation Report</wf:description>
+                  <wf:process runTime="00:55:10" failTime="02:00:00">
+                     <wf:detail name="val-report-all-dep" action="val-report-all-dep" where="api" parameter="in_annotation:no"/>
+                     <wf:dataObjectsLocation>
+                         <wf:location dataID="D24" type="input1"/>
+                         <wf:location dataID="D44" type="input2"/>
+                         <wf:location dataID="D61" type="input3"/>
+                         <wf:location dataID="D71" type="input4"/>
+                         <wf:location dataID="D6"  type="output1"/>
+                         <wf:location dataID="D7"  type="output2"/>
+                         <wf:location dataID="D8"  type="output3"/>
+                         <wf:location dataID="D9"  type="output4"/>
+                         <wf:location dataID="D10" type="output5"/>
+                     </wf:dataObjectsLocation>
+                 </wf:process>
+               </wf:task>
+
+                <wf:task taskID="TP31" name="pdfExist" nextTask="TA32" breakpoint="false" exceptionID="EX0" reference="fileExist">
+                    <wf:description>Does pdf file exist - test for </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="summaryFileExist" action="fileExist" where="wfe"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D66" type="input"/>
+                            <wf:location dataID="D33" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TA32" name="testFile" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="testFile">
+                    <wf:description>File existance test</wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D33" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP5">
+                                <wf:function dataID="D33" string="true" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP8">
+                                <wf:function dataID="D33" string="false" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+                <wf:task taskID="TP5" name="Email" nextTask="TP88" breakpoint="false" exceptionID="EX0">
+                    <wf:description>noreply@wwpdb.org|wwPDB Validation run, $DEPID is complete for your deposition|Dear wwPDB Depositor,$LINEFEED $LINEFEEDThank you for using the new wwPDB Deposition and Annotation deposition system. The wwPDB validation software pipeline for your deposition $DEPID has completed. Please return to $DEPURL and log in to check the results on the Validation reports page.$LINEFEED $LINEFEEDTo learn more about wwPDB Validation Reports visit http://www.wwpdb.org/validation/validation-reports. $LINEFEED $LINEFEEDFeedback from our user community helps us to constantly improve our features and services. Please review your validation PDF report and send your comments to validation@mail.wwpdb.org. $LINEFEED $LINEFEEDWe would like to know your initial impressions of the new reports and which validation report features are most important or useful to you. Please also let us know if any of the metrics we report need clarification. Be as specific as possible and mention specific sections as appropriate. $LINEFEED $LINEFEEDIf you need help with deposition issues, please contact us via the communication interface within the deposition system.$LINEFEED $LINEFEEDBest regards,$LINEFEED $LINEFEEDwwPDB Depositions</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:00:20">
+                        <wf:detail name="email" action="sendDepEmail" where="wfe"/>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP9" name="Email" nextTask="EX1" breakpoint="false" exceptionID="EX1">
+                    <wf:description>noreply@wwpdb.org|wwPDB validation run, $DEPID ran out of time|Dear wwPDB depositor,$LINEFEED $LINEFEEDThe run of the wwPDB validation software pipeline for your deposition $DEPID has unfortunately exceeded the time allowed. This problem has been reported to the validation team and will be reviewed. $LINEFEED $LINEFEEDIf you have  or any further queries, please contact us via the communication interface within the deposition system. $LINEFEED $LINEFEEDBest regards,$LINEFEEDwwPDB Depositions</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:00:20">
+                        <wf:detail name="email" action="sendDepEmail" where="wfe"/>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP8" name="Email" nextTask="EX1" breakpoint="false" exceptionID="EX1">
+                    <wf:description>noreply@wwpdb.org|wwPDB validation run, $DEPID did not complete|Dear wwPDB depositor,$LINEFEED $LINEFEEDThe run of the wwPDB validation software pipeline for your deposition $DEPID unfortunately did not succeed and no PDF report was generated. Please contact us via the communication interface within the deposition system.$LINEFEED $LINEFEEDBest regards,$LINEFEEDwwPDB Depositions</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:00:20">
+                        <wf:detail name="email" action="sendDepEmail" where="wfe"/>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP88" name="Finish" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="Finish">
+                   <wf:description>Mark the WF as completed : MUST BE DONE FOR immediate WF</wf:description>
+                   <wf:process runTime="00:00:01" failTime="00:00:20">
+                      <wf:detail name="finished" action="finished" where="wfe"/>
+                   </wf:process>
+                </wf:task>
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false" reference="exit">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Managed exception - will mark instance data with exception.</wf:description>
+                <wf:handler warning="Process ran out of time : continue to TP9" nextTask="TP9" select="timeoutX"/>
+                <wf:handler warning="Everything else : Throw exit" nextTask="TP88" select="rest"/>
+            </wf:exception>
+
+            <wf:exception taskID="EX1" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+        </wf:flow>
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>

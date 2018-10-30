@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.51" author="tjo jdw" date="09-04-2015" id="monDB" name="MonitorDB.xml"/>
+        <wf:description>
+            <wf:short>Annotation flow monitor (of DB) workflow</wf:short>
+            <wf:subtext>Watch the DB for events.  This is the level 2 workflow that reviews the status of each of the modules</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D10" name="waitTime" type="integer" container="value" mutable="true">
+                <wf:description>Wait time for the monitor in seconds</wf:description>
+                <wf:location where="constant" value="5"  version="latest" select=""/>
+            </wf:dataObject>
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="TP1" breakpoint="false">
+                <wf:description>Process Path entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+                <wf:task taskID="TP1" name="Watch" nextTask="TP9" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Task to just watch the state of the system</wf:description>
+                    <wf:process runTime="00:00:00" failTime="00:00:00">
+                        <wf:detail name="watchDB" action="watchDB" where="wfe"/>
+                    </wf:process>
+                </wf:task>
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+
+        </wf:flow>
+
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>

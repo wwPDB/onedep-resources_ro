@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="2.11" author="E. Peisach" date="02-01-2017" id="ReportMod" name="ReportsModuleUI.xml"/>
+        <wf:description>
+            <wf:short>Report module workflow</wf:short>
+            <wf:subtext>Workflow to run jobs for the report module</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D10" name="waitTime" type="integer" container="value" mutable="true">
+                <wf:description>Wait time for the monitor in seconds</wf:description>
+                <wf:location where="constant" value="5"  version="latest" select=""/>
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D3" name="archivemodel" type="string" container="list" mutable="true" >
+                <wf:description>The archive model data</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D3C" name="archivemodelW" type="string" container="list" mutable="false">
+                <wf:description>Latest archive model - with attribute details - </wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="latest"
+                    selectCategory="pdbx_database_status" selectAttribute="status_code" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="L1" name="tempList" type="string" container="list" mutable="true">
+                <wf:description>Run time list of string variable</wf:description>
+                <wf:location where="inline" content="undefined" format="string"  version="" select=""/>
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D4" name="archivesf" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive sf data</wf:description>
+                <wf:location where="archive" content="structure-factors" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D5" name="dictreport" type="string" container="list" mutable="true" >
+                <wf:description>Dictionary check report</wf:description>
+                <wf:location where="archive" content="dict-check-report" format="txt"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D6" name="formatcheck" type="string" container="list" mutable="true" >
+                <wf:description>Format check report</wf:description>
+                <wf:location where="archive" content="format-check-report" format="txt"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D7" name="miscreport" type="string" container="list" mutable="true" >
+                <wf:description>Micelaneous check report</wf:description>
+                <wf:location where="archive" content="misc-check-report" format="txt"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D8" name="dccreport1" type="string" container="list" mutable="true" >
+                <wf:description>dcc  check report pdbx</wf:description>
+                <wf:location where="archive" content="dcc-report" format="pdbx"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D9" name="dccreport2" type="string" container="list" mutable="true" >
+                <wf:description>dcc  check report txt</wf:description>
+                <wf:location where="archive" content="dcc-report" format="txt"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D13" name="geometrycheck" type="string" container="list" mutable="true" >
+                <wf:description>Geometry check report</wf:description>
+                <wf:location where="archive" content="geometry-check-report" format="pdbx"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D14" name="specialpositioncheck" type="string" container="list" mutable="true" >
+                <wf:description>Special position check report</wf:description>
+                <wf:location where="archive" content="special-position-report" format="txt"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D15" name="pdbData" type="string" container="list" mutable="true">
+                <wf:description>PDB format data file </wf:description>
+                <wf:location where="archive" content="model" format="pdb"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D16" name="archivemodelW" type="string" container="list" mutable="true">
+                <wf:description>Updated archive of model file </wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D17" name="archivCCDI" type="string" container="list" mutable="true" >
+                <wf:description>The archive chem-comp-depositor data</wf:description>
+                <wf:location where="archive" content="chem-comp-depositor-info" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D18" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>wf instance data area (next)</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D19" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance(next-write) data area (latest)</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="TP2a" breakpoint="false">
+                <wf:description>Process Path entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+                <wf:task taskID="TP2a" name="fetch-accession-attributes" nextTask="TD2" breakpoint="false" exceptionID="EX0" reference="fetch attribute">
+                    <wf:description>Fetch accessions </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="fetch" action="fetch" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3C" type="input"/>
+                            <wf:location dataID="L1" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TD2" name="string-compare" nextTask="TP3" breakpoint="false" exceptionID="EX0" reference="string compare">
+                    <wf:description>String compare - status code test - </wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="L1" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP2B">
+                                <wf:function dataID="L1" inList="PROC" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP2B">
+                                <wf:function dataID="L1" inList="REFI" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP3">
+                                <wf:function dataID="L1" inList="AUTH" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP3">
+                                <wf:function dataID="L1" inList="REPL" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP3">
+                                <wf:function dataID="L1" inList="WAIT" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP3">
+                                <wf:function dataID="L1" inList="REL" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP3">
+                                <wf:function dataID="L1" inList="HOLD" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP3">
+                                <wf:function dataID="L1" inList="HPUB" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP3">
+                                <wf:function dataID="L1" inList="OBS" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP3">
+                                <wf:function dataID="L1" inList="WDRN" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP3">
+                                <wf:function dataID="L1" inList="POLC" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP3">
+                                <wf:function dataID="L1" inList="AUCO" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP3">
+                                <wf:function dataID="L1" inList="TRSF" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+
+                <wf:task taskID="TP2B" name="MakeDirectory" nextTask="TP2C" breakpoint="false" exceptionID="EX0" reference="mkdir">
+                    <wf:description>Make a directory for the instance data</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:20">
+                        <wf:detail name="makeDirectory" action="mkdir" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D18" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP2C" name="copyArchive" nextTask="TP2D" breakpoint="false" exceptionID="EX0" reference="copy">
+                    <wf:description>copy PDBx data from archive to instance </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="copyToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D18" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+                <wf:task taskID="TP2D" name="assembly-depoinfo-update" nextTask="TP2E" breakpoint="false" exceptionID="EX0" reference="assembly-depinfo-update">
+                    <wf:description>Update pdbx_struct_assembly_gen_depositor_info</wf:description>
+                    <wf:process runTime="00:00:50" failTime="00:30:20">
+                        <wf:detail name="assembly-auth-depinfo" action="assembly-auth-depinfo" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D19" type="input"/>
+                            <wf:location dataID="D18" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP2E" name="combine-ligand-of-interest" nextTask="TP2F" breakpoint="false" exceptionID="EX0" reference="combine-ligand-of-interest">
+                    <wf:description>Copy ligand-of-interest</wf:description>
+                    <wf:process runTime="00:00:50" failTime="00:30:20">
+                        <wf:detail name="combine-ligand-of-interest" action="combine-ligand-of-interest" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D19" type="input1"/>
+                            <wf:location dataID="D17" type="input2"/>
+                            <wf:location dataID="D18" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+                <wf:task taskID="TP2F" name="copyModelToArchive" nextTask="TP3" breakpoint="false" exceptionID="EX0" reference="copy">
+                    <wf:description>Put the model data back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:10:20">
+                        <wf:detail name="copyModelToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D19" type="input"/>
+                            <wf:location dataID="D16" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP3" name="pdbx-dict-check" nextTask="TP4" breakpoint="false" exceptionID="EX0" reference="pdbx-dict-check">
+                    <wf:description>Do the dictionary check calculation</wf:description>
+                    <wf:process runTime="00:00:50" failTime="00:30:20">
+                        <wf:detail name="pdbx-dict-check" action="pdbx-dict-check" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D5" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP4" name="pdbx-format-check" nextTask="TP5" breakpoint="false" exceptionID="EX0" reference="pdbx-format-check">
+                    <wf:description>Do a format check calculation</wf:description>
+                    <wf:process runTime="00:00:50" failTime="00:30:20">
+                        <wf:detail name="pdbx-format-check" action="pdbx-format-check" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D6" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP5" name="misc-check-report" nextTask="TP6" breakpoint="false" exceptionID="EX0" reference="misc-check-report">
+                    <wf:description>Do the misc-check report</wf:description>
+                    <wf:process runTime="00:00:50" failTime="00:30:20">
+                        <wf:detail name="misc-check-report" action="misc-check-report" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D7" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP6" name="dcc-report" nextTask="TP8" breakpoint="false" exceptionID="EX0" reference="dcc-report">
+                    <wf:description>Do the sf-check calculation</wf:description>
+                    <wf:process runTime="00:20:50" failTime="00:59:20">
+                        <wf:detail name="dcc-report" action="dcc-report" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input1"/>
+                            <wf:location dataID="D4" type="input2"/>
+                            <wf:location dataID="D8" type="output1"/>
+                            <wf:location dataID="D9" type="output2"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP8" name="pdbx-geometry-check" nextTask="TP9" breakpoint="false" exceptionID="EX0" reference="pdbx-geometry-check">
+                    <wf:description>Do the geometry check calculation</wf:description>
+                    <wf:process runTime="00:00:50" failTime="00:30:20">
+                        <wf:detail name="pdbx-geometry-check" action="pdbx-geometry-check" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D13" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP9" name="special-position-check" nextTask="TP10" breakpoint="false" exceptionID="EX0" reference="special-position-check">
+                    <wf:description>Do special position check calculation</wf:description>
+                    <wf:process runTime="00:00:50" failTime="00:30:20">
+                        <wf:detail name="special-position-check" action="special-position-check" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D14" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP10" name="pdbx2pdb" nextTask="T10" breakpoint="false" exceptionID="EX0" reference="pdbx2pdb">
+                    <wf:description>Create PDB format file</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:00:20">
+                        <wf:detail name="pdbx2pdb" action="pdbx2pdb" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D15" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T10" name="End" breakpoint="false" reference="exit">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+                <wf:handler warning="Process ran out of time : continue to T10" nextTask="T10" select="timeoutX"/>
+                <wf:handler warning="Everything else : Throw exit" nextTask="die" select="rest"/>
+            </wf:exception>
+
+        </wf:flow>
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>

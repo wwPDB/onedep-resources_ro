@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.52" author="jdw" date="2015-09-16" id="Annotate" name="Annotation.xml"/>
+        <wf:description>
+            <wf:short>Top-level annotation worflow (multi-method) </wf:short>
+            <wf:subtext>Top-level annotation worflow (wf_op_annot-main_fs_archive.xml)</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D10" name="waitTime" type="integer" container="value" mutable="true">
+                <wf:description>Wait time for the monitor in seconds</wf:description>
+                <wf:location where="constant" value="5"  version="latest" content="none" format="any"/>
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D1" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Data to read to populate the status DB</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D1E" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Latest model in the archive file system - with attribute details - </wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="latest"
+                    selectCategory="pdbx_depui_entry_details" selectAttribute="requested_accession_types" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D1C" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Latest model in the archive file system - with attribute details - </wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="latest"
+                    selectCategory="database_2" selectAttribute="database_id" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="L1" name="tempList" type="string" container="list" mutable="true">
+                <wf:description>Run time list of string variable</wf:description>
+                <wf:location where="inline" content="undefined" format="string"  version="" select=""/>
+            </wf:dataObject>
+
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="TP7" breakpoint="false" reference="entry">
+                <wf:description>Process Path entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+                <wf:task taskID="TP7" name="ReportMod" nextTask="TT4" breakpoint="true" exceptionID="EX0" reference="ReportsModule">
+                    <wf:description>Report module</wf:description>
+                    <wf:workflow runTime="00:00:00" failTime="00:00:00" file="ReportsModule.xml" classID="ReportMod"/>
+
+                </wf:task>
+
+                <wf:task taskID="TT4" name="fetch-accession-attributes" nextTask="TD4" breakpoint="false" exceptionID="EX0" reference="fetch attribute">
+                    <wf:description>Fetch accessions </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="fetch" action="fetch" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1C" type="input"/>
+                            <wf:location dataID="L1" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+                <wf:task taskID="TD4" name="string-compare" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="string compare">
+                    <wf:description>String compare - accession code test - </wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="L1" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP8">
+                                <wf:function dataID="L1" inList="PDB" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP12">
+                                <wf:function dataID="L1" inList="EMDB" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+
+                <wf:task taskID="TP8" name="TransMod" nextTask="TP10" breakpoint="true" exceptionID="EX0" reference="TransformerModule">
+                    <wf:description>Transformer module</wf:description>
+                    <wf:workflow runTime="00:00:00" failTime="00:00:00" file="TransformerModule.xml" classID="TransMod"/>
+
+                </wf:task>
+
+                <wf:task taskID="TP10" name="LigMod" nextTask="TP11" breakpoint="true" exceptionID="EX0" reference="LigandModule">
+                    <wf:description>Ligand module</wf:description>
+                    <wf:workflow runTime="00:00:00" failTime="00:00:00" file="LigandModule.xml" classID="LigMod"/>
+
+                </wf:task>
+
+                <wf:task taskID="TP11" name="SeqMod" nextTask="TP12" breakpoint="true" exceptionID="EX0" reference="SequenceModule">
+                    <wf:description>Sequence module</wf:description>
+                    <wf:workflow runTime="00:00:00" failTime="00:00:00" file="SequenceModule.xml" classID="SeqMod"/>
+
+                </wf:task>
+
+                <wf:task taskID="TP12" name="AnnMod" nextTask="TP18" breakpoint="true" exceptionID="EX0" reference="AnnotateModule">
+                    <wf:description>Added Annotation module</wf:description>
+                    <wf:workflow runTime="00:00:00" failTime="00:00:00" file="AnnotateModule.xml" classID="AnnMod"/>
+                </wf:task>
+
+                <wf:task taskID="TT5" name="fetch-accession-attributes" nextTask="TD5" breakpoint="false" exceptionID="EX0" reference="fetch attribute">
+                    <wf:description>Fetch accessions </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="fetch" action="fetch" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1C" type="input"/>
+                            <wf:location dataID="L1" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TD5" name="string-compare" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="string compare">
+                    <wf:description>String compare - accession code test - </wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="L1" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP18">
+                                <wf:function dataID="L1" inList="PDB" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP20">
+                                <wf:function dataID="L1" inList="EMDB" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+
+                <wf:task taskID="TP18" name="ValMod" nextTask="TP20" breakpoint="true" exceptionID="EX0" reference="ValidModule">
+                    <wf:description>Structure validation module (all methods)</wf:description>
+                    <wf:workflow runTime="00:00:00" failTime="00:00:00" file="wf_op_validannot_fs_archive.xml" classID="ValMod"/>
+                </wf:task>
+
+                <wf:task taskID="TP20" name="StatMod" nextTask="T9" breakpoint="true" exceptionID="EX0" reference="StatusModule">
+                    <wf:description>Manage Status changes module</wf:description>
+                    <wf:workflow runTime="00:00:00" failTime="00:00:00" file="StatusModule.xml" classID="StatMod"/>
+
+                </wf:task>
+
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false" reference="exit">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+
+        </wf:flow>
+
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>

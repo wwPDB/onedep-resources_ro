@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.52" author="jdw" date="2015-09-16" id="ValMod" name="wf_op_validannot_fs_archive.xml"/>
+        <wf:description>
+            <wf:short>Validation module</wf:short>
+            <wf:subtext>Annotation workflow to create wwPDB validation reports for all methods.</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D1" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Latest model in archive area</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D2" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance(next-write)</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D5" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance(next-write)</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D3" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Latest SF data in archive</wf:description>
+                <wf:location where="archive" content="structure-factors" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D4" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance(next-write)</wf:description>
+                <wf:location where="wf-instance" content="structure-factors" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D44" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance</wf:description>
+                <wf:location where="wf-instance" content="structure-factors" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D61" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Latest chemical shifts in PDBx format in archive</wf:description>
+                <wf:location where="archive" content="nmr-chemical-shifts" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D62" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance next</wf:description>
+                <wf:location where="wf-instance" content="nmr-chemical-shifts" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D63" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance latest</wf:description>
+                <wf:location where="wf-instance" content="nmr-chemical-shifts" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D71" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Latest em volume in archive</wf:description>
+                <wf:location where="archive" content="em-volume" format="map"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D6" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation report</wf:description>
+                <wf:location where="wf-instance" content="validation-report" format="pdf"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D7" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation data</wf:description>
+                <wf:location where="wf-instance" content="validation-data" format="xml"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D8" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation full report</wf:description>
+                <wf:location where="wf-instance" content="validation-report-full" format="pdf"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D9" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation imagery</wf:description>
+                <wf:location where="wf-instance" content="validation-report-slider" format="png"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D10" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation imagery</wf:description>
+                <wf:location where="wf-instance" content="validation-report-slider" format="svg"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D12" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation report</wf:description>
+                <wf:location where="wf-instance" content="validation-report" format="pdf"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D13" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation data</wf:description>
+                <wf:location where="wf-instance" content="validation-data" format="xml"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D14" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation report</wf:description>
+                <wf:location where="archive" content="validation-report" format="pdf"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D15" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation data</wf:description>
+                <wf:location where="archive" content="validation-data" format="xml"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D53" name="instanceCorrespond" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the Correspondence letter in instance(next-write) data area</wf:description>
+                <wf:location where="wf-instance" content="correspondence-to-depositor" format="txt"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D16" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation full report</wf:description>
+                <wf:location where="wf-instance" content="validation-report-full" format="pdf"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D17" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation full report</wf:description>
+                <wf:location where="archive" content="validation-report-full" format="pdf"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D18" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation data</wf:description>
+                <wf:location where="wf-instance" content="validation-data" format="xml"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D19" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation data</wf:description>
+                <wf:location where="archive" content="validation-data" format="xml"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D20" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation data write</wf:description>
+                <wf:location where="wf-instance" content="validation-report-slider" format="svg"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D21" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation imagery</wf:description>
+                <wf:location where="archive" content="validation-report-slider" format="svg"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D22" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation imagery</wf:description>
+                <wf:location where="wf-instance" content="validation-report-slider" format="png"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D23" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation imagery</wf:description>
+                <wf:location where="archive" content="validation-report-slider" format="png"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D54" name="archiveCorrespond" type="string" container="list" mutable="false">
+                <wf:description>Final (next) copy of the Correspondene letter archive model data</wf:description>
+                <wf:location where="archive" content="correspondence-to-depositor" format="txt"  version="next" />
+            </wf:dataObject>
+
+
+
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="TP1" breakpoint="false">
+                <wf:description>Process Path entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+                <wf:task taskID="TP1" name="MakeDirectory" nextTask="TP2" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Make a directory for the instance data</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:20">
+                        <wf:detail name="makeDirectory" action="mkdir" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D2" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP2" name="copyArchive" nextTask="TP3" breakpoint="false" exceptionID="EX0">
+                    <wf:description>copy PDBx data from archive to instance </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="copyToInstance" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                            <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP3" name="copySFArchive" nextTask="TP3A" breakpoint="false" exceptionID="EX0">
+                    <wf:description>copy PDBx data from archive to instance </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="copySFArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D4" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP3A" name="copyShiftsArchive" nextTask="TP7" breakpoint="false" exceptionID="EX0">
+                    <wf:description>copy chemical shifts data from archive to instance </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="copyShiftsArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D61" type="input"/>
+                            <wf:location dataID="D62" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+
+
+                <wf:task taskID="TP7" name="val-report-all-ann" nextTask="TM6" breakpoint="true" exceptionID="EX0">
+                    <wf:description>Validation Report</wf:description>
+                    <wf:process runTime="00:01:10" failTime="04:55:20">
+                        <wf:detail name="val-report-all-ann" action="val-report-all-ann" where="api" parameter="in_annotation:yes"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D5" type="input1"/>
+                               <wf:location dataID="D44" type="input2"/>
+                               <wf:location dataID="D63" type="input3"/>
+                               <wf:location dataID="D71" type="input4"/>
+                               <wf:location dataID="D6" type="output1"/>
+                               <wf:location dataID="D7" type="output2"/>
+                               <wf:location dataID="D8" type="output3"/>
+                               <wf:location dataID="D9" type="output4"/>
+                               <wf:location dataID="D10" type="output5"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TM6" name="ValidationInteface" nextTask="TP8" breakpoint="false" exceptionID="EX0">
+                    <wf:description>manual wrapper for validation module</wf:description>
+                    <wf:manual application = "ValModule">
+                        <wf:parameter name="Option">
+                            <wf:write title="Ask a question" question="Choose one of the following options">
+                                <wf:comment>The iterator is  </wf:comment>
+                                <wf:objects>
+                                    <wf:object ID="D1" format="string"/>
+                                </wf:objects>
+                            </wf:write>
+                        </wf:parameter>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP88" label = "done"/>
+                        </wf:nextTasks>
+                    </wf:manual>
+                </wf:task>
+
+                <wf:task taskID="TP88" name="wait" nextTask="TP8" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Wait 5 seconds</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:00:20">
+                        <wf:detail name="wait" action="wait" where="wfe"/>
+                    </wf:process>
+                </wf:task>
+
+
+                <wf:task taskID="TP8" name="copyPDFDataToArchive" nextTask="TP29" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Put the model data back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:05:20">
+                        <wf:detail name="copyPDFDataToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D12" type="input"/>
+                            <wf:location dataID="D14" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP29" name="copyLetterToArchive" nextTask="TP9" breakpoint="false" exceptionID="EX4" reference="copy">
+                    <wf:description>Put the correspondence letter back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:05:20">
+                        <wf:detail name="copyLetterToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D53" type="input"/>
+                            <wf:location dataID="D54" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP9" name="copyXMLToArchive" nextTask="TP91" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Put the model data back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:05:20">
+                        <wf:detail name="copyXMLToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D13" type="input"/>
+                            <wf:location dataID="D15" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+                <wf:task taskID="TP91" name="copyPDFFullToArchive" nextTask="TP92" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Put the model data back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:05:20">
+                        <wf:detail name="copyPDFFullToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D16" type="input"/>
+                            <wf:location dataID="D17" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+                <wf:task taskID="TP92" name="copyXMLToArchive" nextTask="TP93" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Put the model data back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:05:20">
+                        <wf:detail name="copyPDFToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D18" type="input"/>
+                            <wf:location dataID="D19" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+                <wf:task taskID="TP93" name="copySVGToArchive" nextTask="TP94" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Put the model data back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:05:20">
+                        <wf:detail name="copySVGToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D20" type="input"/>
+                            <wf:location dataID="D21" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+                <wf:task taskID="TP94" name="copyPNGToArchive" nextTask="T9" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Put the model data back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:05:20">
+                        <wf:detail name="copyPDFToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D22" type="input"/>
+                            <wf:location dataID="D23" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+            <wf:exception taskID="EX4" name="Exception handler" >
+                <wf:description>Letter copy exception keep going</wf:description>
+                <wf:handler warning="There was no letter - continue" nextTask="TP9" select="rest"/>
+            </wf:exception>
+
+        </wf:flow>
+
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.51" author="jdw" date="08-05-2015" id="PDBXFMCK_DEP" name="wf_op_pdbxfmck_fs_deposit.xml"/>
+        <wf:description>
+            <wf:short>PDBx Format check (deposit)</wf:short>
+            <wf:subtext>PDBx Format check workflow</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D1" name="pdbxmodelfile" type="string" container="list" mutable="true" >
+                <wf:description>PDBx format model data file (latest version)</wf:description>
+                <wf:location where="deposit" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D2" name="ckeckreport" type="string" container="list" mutable="true" >
+                <wf:description>PDBx format check report (next version)</wf:description>
+                <wf:location where="deposit" content="format-check-report" format="txt"  version="next" />
+            </wf:dataObject>
+
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="T2" breakpoint="false">
+                <wf:description>Process entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+                <wf:task taskID="T2" name="pdbxformatchecktask" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="pdbxformatchecktask">
+                    <wf:description>PDBx format check task</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                        <wf:detail name="pdbxformatcheck" action="pdbx-format-check" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                            <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+                <!-- Final task -->
+                <wf:task taskID="T8" name="Finish" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="Finish">
+                   <wf:description>Mark the WF as completed</wf:description>
+                   <wf:process runTime="00:00:01" failTime="00:00:20">
+                      <wf:detail name="finished" action="finished" where="wfe"/>
+                   </wf:process>
+                </wf:task>
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false" reference="exit">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+        </wf:flow>
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.51" author="tjo jdw" date="09-04-2015" id="LigMod" name="LigandModuleUI.xml"/>
+        <wf:description>
+            <wf:short>Ligand annotation module</wf:short>
+            <wf:subtext>This is the ligand module that looks for cross references : FORCED UI</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D1" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Original (latest) copy of the archive model data</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D2" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D3" name="instanceDataR" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the instance(latest-read) model data</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D4" name="chemCompDataW" type="string" container="list" mutable="true" >
+                <wf:description>Chemical Component linkage data(next)</wf:description>
+                <wf:location where="wf-instance" content="chem-comp-link" format="pdbx"  version="next" reference="cc-link"/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D44" name="fileExists" type="string" container="value" mutable="true">
+                <wf:description>Run time variable to hold if file exists</wf:description>
+                <wf:location where="constant" content="latest" format="string"  version="" select=""/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D5" name="chemCompDataR" type="string" container="list" mutable="true" >
+                <wf:description>Chemical Component linkage data(lastest)</wf:description>
+                <wf:location where="wf-instance" content="chem-comp-link" format="pdbx"  version="latest" reference="cc-link"/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D6" name="chemCompAssignW" type="string" container="list" mutable="true" >
+                <wf:description>Chemical Component assignment data(next)</wf:description>
+                <wf:location where="wf-instance" content="chem-comp-assign" format="pdbx"  version="next" reference="cc-assign"/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D7" name="chemCompAssignR" type="string" container="value" mutable="true" >
+                <wf:description>Chemical Component assignment status selection data(latest)</wf:description>
+                <wf:location where="wf-instance" content="chem-comp-assign" format="pdbx"  version="latest" selectCategory="pdbx_entry_info" selectAttribute="status" reference="cc-assign"/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D8" name="ligandOK" type="string" container="value" mutable="true">
+                <wf:description>Is ligand assignment OK</wf:description>
+                <wf:location where="wf-instance" value="undefined" version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D9" name="chemCompAssignR" type="string" container="list" mutable="true" >
+                <wf:description>Chemical Component assignment data(latest)</wf:description>
+                <wf:location where="wf-instance" content="chem-comp-assign" format="pdbx"  version="latest" reference="cc-assign"/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D10" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance(next-write) with new assignment</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D11" name="instanceDataR" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance(latest-read) with new assignment</wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D20" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Final (next) copy of the archive model data</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="next" />
+            </wf:dataObject>
+
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="TP1" breakpoint="false">
+                <wf:description>Process Path entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+                <wf:task taskID="TP1" name="MakeDirectory" nextTask="TP2" breakpoint="false" exceptionID="EX0" reference="mkdir">
+                    <wf:description>Make a directory for the instance data</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:20">
+                        <wf:detail name="makeDirectory" action="mkdir" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D2" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP2" name="copyArchive" nextTask="TP3" breakpoint="false" exceptionID="EX0" reference="copy">
+                    <wf:description>copy PDBx data from archive to instance </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="copyToInstance" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                            <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP3" name="ChemCompLinkCalc" nextTask="TP31" breakpoint="false" exceptionID="EX0" reference="chem-comp-link">
+                    <wf:description>Do the linkage calculation</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                        <wf:detail name="ChemCompLinkCalc" action="chem-comp-link" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D4" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP31" name="linkExist" nextTask="TA32" breakpoint="false" exceptionID="EX0" reference="fileExist">
+                    <wf:description>Does file exist</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="linkFileExist" action="fileExist" where="wfe"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D5" type="input"/>
+                            <wf:location dataID="D44" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TA32" name="testFile" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="testFile">
+                    <wf:description>File link existance test</wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D44" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP4">
+                                <wf:function dataID="D44" string="true" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP44">
+                                <wf:function dataID="D44" string="false" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+                <wf:task taskID="TP4" name="ChemCompAssign" nextTask="TP5" breakpoint="false" exceptionID="EX0" reference="chem-comp-assign">
+                    <wf:description>Get the Chemical assignment from dictionary</wf:description>
+                    <wf:process runTime="00:00:10" failTime="04:55:20">
+                        <wf:detail name="ChemCompAssign" action="chem-comp-assign" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input1"/>
+                            <wf:location dataID="D5" type="input2"/>
+                            <wf:location dataID="D6" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP44" name="ChemCompAssignNL" nextTask="TP5" breakpoint="false" exceptionID="EX0" reference="chem-comp-assign-nl">
+                    <wf:description>Get the Chemical assignment from dictionary without linkage</wf:description>
+                    <wf:process runTime="00:00:10" failTime="04:55:20">
+                        <wf:detail name="ChemCompAssignNL" action="chem-comp-assign-nl" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D6" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP5" name="ChemCompFetch" nextTask="TM6" breakpoint="false" exceptionID="EX0" reference="fetch-assign">
+                    <wf:description>Fetch whether the match was found</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                        <wf:detail name="ChemCompAssign" action="fetch-assign" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D7" type="input"/>
+                            <wf:location dataID="D8" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TA6" name="LigandOK" nextTask="T9" breakpoint="false" exceptionID="EX1" reference="ligandOk">
+                    <wf:description>Split path based on good/bad ligand assignment</wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D8" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP7">
+                                <wf:function dataID="D8" string="ok" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TM6">
+                                <wf:function dataID="D8" string="?" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="T9">
+                                <wf:function dataID="D8" string="No ligand found"/>
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TM6">
+                                <wf:function dataID="D8" string="None"/>
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+                <wf:task taskID="TM6" name="TestInteface" nextTask="TL1" breakpoint="false" exceptionID="EX0" reference="testInterface">
+                    <wf:description>manual wrapper for Ligand module interface</wf:description>
+                    <wf:manual application = "LigModule">
+                        <wf:parameter name="Option">
+                            <wf:write title="Ask a question" question="Choose one of the following options">
+                                <wf:comment>The iterator is  </wf:comment>
+                                <wf:objects>
+                                    <wf:object ID="D1" format="string"/>
+                                </wf:objects>
+                            </wf:write>
+                        </wf:parameter>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP8" label = "done"/>
+                        </wf:nextTasks>
+                    </wf:manual>
+                </wf:task>
+
+                <wf:task taskID="TP7" name="ChemCompUpdate" nextTask="TP8" breakpoint="false" exceptionID="EX0" reference="chem-comp-instance-update">
+                    <wf:description>Update the instance data for match - DONE BY UI</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                        <wf:detail name="ChemCompUpdate" action="chem-comp-instance-update" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input1"/>
+                            <wf:location dataID="D9" type="input2"/>
+                            <wf:location dataID="D10" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP8" name="copyModelToArchive" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="copy">
+                    <wf:description>Put the model data back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:05:20">
+                        <wf:detail name="copyModelToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D11" type="input"/>
+                            <wf:location dataID="D20" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX1" name="Exception handler" >
+                <wf:description>Did not recogise return code of Ligand status so open the UI</wf:description>
+                <wf:handler warning="Did not recogise return code of Ligand status" nextTask="TM6" select="decisionX"/>
+                <wf:handler warning="Everything else" nextTask="die" select="rest"/>
+            </wf:exception>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+                <wf:handler warning="Everything else : Throw exit" nextTask="die" select="rest"/>
+            </wf:exception>
+
+
+        </wf:flow>
+
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>

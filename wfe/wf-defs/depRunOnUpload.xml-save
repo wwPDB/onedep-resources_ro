@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.51" author="T. Oldfield" date="09-04-2015" id="uploadMod" name="depRunOnUpload.xml"/>
+        <wf:description>
+            <wf:short>Deposition upload</wf:short>
+            <wf:subtext>Workflow to run jobs on file upload in depostion</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D10" name="waitTime" type="integer" container="value" mutable="true">
+                <wf:description>Wait time for the monitor in seconds</wf:description>
+                <wf:location where="constant" value="5"  version="latest" select=""/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D3" name="instanceDataR" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the instance(latest-read) model data</wf:description>
+                <wf:location where="deposit" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D4" name="chemCompDataW" type="string" container="list" mutable="true" >
+                <wf:description>Chemical Component linkage data(next)</wf:description>
+                <wf:location where="deposit" content="chem-comp-link" format="pdbx"  version="next" reference="cc-link"/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D44" name="fileExists" type="string" container="value" mutable="true">
+                <wf:description>Run time variable to hold if file exists</wf:description>
+                <wf:location where="constant" content="latest" format="string"  version="" select=""/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D5" name="chemCompDataR" type="string" container="list" mutable="true" >
+                <wf:description>Chemical Component linkage data(lastest)</wf:description>
+                <wf:location where="deposit" content="chem-comp-link" format="pdbx"  version="latest" reference="cc-link"/>
+            </wf:dataObject>
+            <wf:dataObject dataID="D6" name="chemCompAssignW" type="string" container="list" mutable="true" >
+               <wf:description>Chemical Component assignment data(next)</wf:description>
+               <wf:location where="deposit" content="chem-comp-assign" format="pdbx"  version="next" reference="cc-assign"/>
+            </wf:dataObject>
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="TP3" breakpoint="false">
+                <wf:description>Process Path entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+                <wf:task taskID="TP1" name="wait" nextTask="TP88" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Wait 5 seconds</wf:description>
+                    <wf:process runTime="00:00:05" failTime="00:00:20">
+                        <wf:detail name="wait" action="wait" where="wfe"/>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP3" name="ChemCompLinkCalc" nextTask="TP31" breakpoint="false" exceptionID="EX0" reference="chem-comp-link">
+                    <wf:description>Do the linkage calculation</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                        <wf:detail name="ChemCompLinkCalc" action="chem-comp-link" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D4" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP31" name="linkExist" nextTask="TA32" breakpoint="false" exceptionID="EX0" reference="fileExist">
+                    <wf:description>Does file exist</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="linkFileExist" action="fileExist" where="wfe"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D4" type="input"/>
+                            <wf:location dataID="D44" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TA32" name="testFile" nextTask="TP88" breakpoint="false" exceptionID="EX0" reference="testFile">
+                    <wf:description>File link existance test</wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D44" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP4">
+                                <wf:function dataID="D44" string="true" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP5">
+                                <wf:function dataID="D44" string="false" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+
+                <wf:task taskID="TP4" name="ChemCompAssign" nextTask="TP10" breakpoint="false" exceptionID="EX0" reference="chem-comp-assign-exact">
+                    <wf:description>Get the Chemical assignment from dictionary</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:55:20">
+                       <wf:detail name="ChemCompAssign" action="chem-comp-assign-exact" where="api"/>
+                       <wf:dataObjectsLocation>
+                          <wf:location dataID="D3" type="input1"/>
+                          <wf:location dataID="D5" type="input2"/>
+                          <wf:location dataID="D6" type="output"/>
+                       </wf:dataObjectsLocation>
+                   </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP5" name="ChemCompAssignNL" nextTask="TP10" breakpoint="false" exceptionID="EX0" reference="chem-comp-assign-exact-nl">
+                    <wf:description>Get the Chemical assignment from dictionary</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:55:20">
+                       <wf:detail name="ChemCompAssign" action="chem-comp-assign-exact-nl" where="api"/>
+                       <wf:dataObjectsLocation>
+                          <wf:location dataID="D3" type="input"/>
+                          <wf:location dataID="D6" type="output"/>
+                       </wf:dataObjectsLocation>
+                   </wf:process>
+                </wf:task>
+
+                <!--  Skipping this next step for now   -->
+                <wf:task taskID="TP7" name="StatusLoad" nextTask="TP10" breakpoint="false" exceptionID="EX0" reference="status-load">
+                    <wf:description>Status load</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                        <wf:detail name="StatusLoad" action="pdbx-status-load" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP10" name="ValMod" nextTask="TP88" breakpoint="true" exceptionID="EX0" reference="ValidModule">
+                    <wf:description>Validation module</wf:description>
+                    <wf:workflow runTime="00:00:00" failTime="00:00:00" file="DepValModule.xml" classID="ValMod"/>
+                </wf:task>
+
+                <wf:task taskID="TP88" name="Finish" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="Finish">
+                   <wf:description>Mark the WF as completed : MUST BE DONE FOR immediate WF</wf:description>
+                   <wf:process runTime="00:00:01" failTime="00:00:20">
+                      <wf:detail name="finished" action="finished" where="wfe"/>
+                   </wf:process>
+                </wf:task>
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false" reference="exit">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+        </wf:flow>
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>
