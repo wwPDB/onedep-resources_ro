@@ -767,17 +767,17 @@ diffrn_radiation                      '_diffrn_radiation.monochromator'         
 diffrn_radiation                      '_diffrn_radiation.pdbx_diffrn_protocol'                               'Diffraction protocol'                      N 
 diffrn_radiation_wavelength           '_diffrn_radiation_wavelength.wavelength'                              Wavelength                                  N 
 diffrn_radiation_wavelength           '_diffrn_radiation_wavelength.wt'                                      'Wavelength weight'                         Y 
-serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.diffrn_id'                   'Diffrn ID'                                 N
-serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.pulse_energy'                'Pulse Energy'                              N
-serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.pulse_duration'              'Pulse Duration'                            N
-serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.xfel_pulse_repetition_rate'  'XFEL Rep Rate'                             N
-serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.pulse_photon_energy'         'Pulse Photon Energy'                       N
-serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.photons_per_pulse'           'Photons/Pulse'                             N
-serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.source_size'                 'Source size'                               N
-serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.source_distance'             'Source dist'                               N
-serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.focal_spot_size'             'Focal spot sz'                             N
-serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.collimation'                 'Collimation'                               N
-serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.collection_time_total'       'Collection Time'                           N
+#serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.diffrn_id'                   'Diffrn ID'                                 N
+#serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.pulse_energy'                'Pulse Energy'                              N
+#serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.pulse_duration'              'Pulse Duration'                            N
+#serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.xfel_pulse_repetition_rate'  'XFEL Rep Rate'                             N
+#serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.pulse_photon_energy'         'Pulse Photon Energy'                       N
+#serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.photons_per_pulse'           'Photons/Pulse'                             N
+#serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.source_size'                 'Source size'                               N
+#serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.source_distance'             'Source dist'                               N
+#serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.focal_spot_size'             'Focal spot sz'                             N
+#serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.collimation'                 'Collimation'                               N
+#serial_crystallography_measurement    '_pdbx_serial_crystallography_measurement.collection_time_total'       'Collection Time'                           N
 
 data_XRAY2
 loop_
