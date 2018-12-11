@@ -18,6 +18,10 @@
                 <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
                 <wf:location where="wf-instance" content="model" format="pdbx"  version="next" />
             </wf:dataObject>
+            <wf:dataObject dataID="D3" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Original (latest) copy of the archive model data</wf:description>
+                <wf:location where="archive" content="nmr-chemical-shifts" format="pdbx"  version="latest" />
+            </wf:dataObject>
             <wf:dataObject dataID="D4" name="instanceReportW" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
                 <wf:location where="wf-instance" content="dict-check-report" format="txt"  version="next" />
@@ -29,6 +33,42 @@
             <wf:dataObject dataID="D6" name="archiveReportW" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
                 <wf:location where="archive" content="dict-check-report" format="txt"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D7" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance next</wf:description>
+                <wf:location where="wf-instance" content="nmr-chemical-shifts" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D8" name="instanceDataR" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance latest</wf:description>
+                <wf:location where="wf-instance" content="nmr-chemical-shifts" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D11" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation report</wf:description>
+                <wf:location where="wf-instance" content="validation-report" format="pdf"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D12" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation data</wf:description>
+                <wf:location where="wf-instance" content="validation-data" format="xml"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D13" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation full report</wf:description>
+                <wf:location where="wf-instance" content="validation-report-full" format="pdf"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D14" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation imagery</wf:description>
+                <wf:location where="wf-instance" content="validation-report-slider" format="png"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D15" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation imagery</wf:description>
+                <wf:location where="wf-instance" content="validation-report-slider" format="svg"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D16" name="instanceDataW" type="string" container="list" mutable="true">
+                <wf:description>Chemical shifts procrss report file</wf:description>
+                <wf:location where="wf-instance" content="nmr-shift-error-report" format="json" version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D44" name="fileExists" type="string" container="value" mutable="true">
+                <wf:description>Run time variable to hold if file exists</wf:description>
+                <wf:location where="constant" content="latest" format="string"  version="" select=""/>
             </wf:dataObject>
             <wf:dataObject dataID="D10" name="waitTime" type="integer" container="value" mutable="true">
                 <wf:description>Wait time for the monitor in seconds</wf:description>
@@ -129,7 +169,65 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP2A" name="pdbx-dict-check" nextTask="TT1" breakpoint="true" exceptionID="EX0" reference="pdbx-dict-check">
+                <wf:task taskID="TP2A" name="copyShiftsArchive" nextTask="TP2B" breakpoint="false" exceptionID="EX0" reference="copy">
+                    <wf:description>copy PDBx data from archive to instance </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="copyToArchive" action="copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D7" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP2B" name="shiftExist" nextTask="TA2C" breakpoint="false" exceptionID="EX0" reference="fileExist">
+                    <wf:description>Does file exist</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="shiftFileExist" action="fileExist" where="wfe"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D8" type="input"/>
+                            <wf:location dataID="D44" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TA2C" name="testFile" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="testFile">
+                    <wf:description>File shift existance test</wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D44" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP2D">
+                                <wf:function dataID="D44" string="true" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP2F">
+                                <wf:function dataID="D44" string="false" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+                <wf:task taskID="TP2D" name="nmr-cs-processing" nextTask="TP2F" breakpoint="false" exceptionID="EX0" reference="nmr-cs-processing">
+                    <wf:description>Chemical shifts atom name check task</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:15:20">
+                        <wf:detail name="nmr-cs-processing" action="nmr-cs-processing" where="api" />
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D19" type="input1" />
+                            <wf:location dataID="D8"  type="input2" />
+                            <wf:location dataID="D2"  type="output1"/>
+                            <wf:location dataID="D7"  type="output2" />
+                            <wf:location dataID="D11" type="output3"/>
+                            <wf:location dataID="D12" type="output4" />
+                            <wf:location dataID="D13" type="output5"/>
+                            <wf:location dataID="D14" type="output6" />
+                            <wf:location dataID="D15" type="output7"/>
+                            <wf:location dataID="D16" type="output8" />
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP2F" name="pdbx-dict-check" nextTask="TT1" breakpoint="true" exceptionID="EX0" reference="pdbx-dict-check">
                     <wf:description>Dictionary Check</wf:description>
                         <wf:process runTime="00:00:10" failTime="01:55:20">
                         <wf:detail name="pdbx-dict-check" action="pdbx-dict-check" where="api"/>

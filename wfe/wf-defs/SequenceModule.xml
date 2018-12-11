@@ -27,7 +27,7 @@
 
             <wf:dataObject dataID="D4" name="instanceOutput" type="string" container="list" mutable="true" >
                 <wf:description>Output data for the match-all</wf:description>
-                <wf:location where="wf-instance" content="seqdb-match" format="pdbx"  version="next" />
+                <wf:location where="wf-instance" content="seqdb-match" format="pic"  version="next" />
             </wf:dataObject>
 
             <wf:dataObject dataID="D11" name="value" type="string" container="value" mutable="true">
@@ -76,10 +76,10 @@
                 </wf:task>
 
 
-                <wf:task taskID="TP3B" name="Prepare Alignment for UI" nextTask="TM6" breakpoint="false" exceptionID="EX0" reference="match-all">
+                <wf:task taskID="TP3B" name="Prepare Alignment for UI" nextTask="TM6" breakpoint="false" exceptionID="EX0" reference="match-all-new">
                     <wf:description>Do alignment for all chains for the seqUI</wf:description>
                     <wf:process runTime="00:05:04" failTime="15:55:20">
-                        <wf:detail name="match-all" action="match-all" where="api"/>
+                        <wf:detail name="match-all-new" action="match-all-new" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
                             <wf:location dataID="D4" type="output"/>
