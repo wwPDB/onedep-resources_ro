@@ -24,7 +24,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.1.2"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.1.3"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -356,7 +356,7 @@
         <xs:union memberTypes="author_enums">
             <xs:simpleType>
                 <xs:restriction base="xs:token">
-                    <xs:pattern value="([A-Za-z' \-]+ (Jr.?|II|III)?) ?([A-Za-z\-]*)"/>
+                    <xs:pattern value="([A-Za-z' \-]+ (Jr.?|II|III|3rd|4th)?) ?([A-Za-z\-]*)"/>
                 </xs:restriction>
             </xs:simpleType>
         </xs:union>
@@ -1211,7 +1211,7 @@
                     <xs:element name="ec_number" minOccurs="0" maxOccurs="unbounded">
                         <xs:simpleType>
                             <xs:restriction base="xs:token">
-                                <xs:pattern value="([1-6]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-)))(([ ]*,[ ]*)([1-6]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-))))*"/>
+                                <xs:pattern value="([1-7]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-)))(([ ]*,[ ]*)([1-6]((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?)|(.-))((.[1-9][0-9]?[0-9]?)|(.-))))*"/>
                             </xs:restriction>
                         </xs:simpleType>
                     </xs:element>
@@ -3067,7 +3067,7 @@
     </xs:complexType>
     <xs:simpleType name="chain_pdb_id">
         <xs:restriction base="xs:token">
-            <xs:pattern value="\d|[A-Za-z]"/>
+            <xs:pattern value="\d|[A-Za-z]{1,2}"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="ctf_correction_type">
