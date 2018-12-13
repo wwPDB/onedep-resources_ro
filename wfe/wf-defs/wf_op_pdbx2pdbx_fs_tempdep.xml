@@ -39,10 +39,21 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="T6" name="validate" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="validate">
+                <wf:task taskID="T6" name="validate" nextTask="T7" breakpoint="false" exceptionID="EX0" reference="validate">
                     <wf:description>Update geometry of the model</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:15:20">
                         <wf:detail name="validate" action="update-geometry-validation" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                            <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="T7" name="solventAnalysis" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="solventAnalysis">
+                    <wf:description>Analyse distant solvent of the model</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:15:20">
+                        <wf:detail name="solventAnalysis" action="solvent-position-analysis" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="output"/>
