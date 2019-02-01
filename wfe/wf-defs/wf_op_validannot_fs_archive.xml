@@ -165,7 +165,7 @@
 
                 <wf:task taskID="TP3" name="copySFArchive" nextTask="TP3A" breakpoint="false" exceptionID="EX0">
                     <wf:description>copy PDBx data from archive to instance </wf:description>
-                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                    <wf:process runTime="00:00:04" failTime="00:03:01">
                         <wf:detail name="copySFArchive" action="copy" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
