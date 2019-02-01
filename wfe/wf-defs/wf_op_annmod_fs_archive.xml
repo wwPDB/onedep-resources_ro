@@ -210,7 +210,7 @@
 
                 <wf:task taskID="TP2D" name="nmr-cs-processing" nextTask="TP2F" breakpoint="false" exceptionID="EX0" reference="nmr-cs-processing">
                     <wf:description>Chemical shifts atom name check task</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:15:20">
+                    <wf:process runTime="00:00:10" failTime="01:15:20">
                         <wf:detail name="nmr-cs-processing" action="nmr-cs-processing" where="api" />
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D19" type="input1" />
