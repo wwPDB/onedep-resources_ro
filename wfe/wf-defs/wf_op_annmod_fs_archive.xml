@@ -335,7 +335,7 @@
 
                 <wf:task taskID="TP10" name="assembly-report-and-models" nextTask="TP11" breakpoint="true" exceptionID="EX0" reference="assembly-report-and-models">
                     <wf:description>Assembly report and models </wf:description>
-                    <wf:process runTime="00:25:00" failTime="02:55:20">
+                    <wf:process runTime="00:25:00" failTime="12:55:20">
                         <wf:detail name="assembly-report-and-models" action="assembly-report-and-models" where="api"/>
                         <wf:dataObjectsLocation>
                                <wf:location dataID="D19" type="input"/>
