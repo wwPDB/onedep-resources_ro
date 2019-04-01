@@ -24,7 +24,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.1.3"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.1.4"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -2453,6 +2453,8 @@
             <xs:enumeration value="GATAN K2 IS (4k x 4k)"/>
             <xs:enumeration value="GATAN K2 QUANTUM (4k x 4k)"/>
             <xs:enumeration value="GATAN K2 SUMMIT (4k x 4k)"/>
+            <xs:enumeration value="GATAN K3 (6k x 4k)"/>
+            <xs:enumeration value="GATAN K3 BIOQUANTUM (6k x 4k)"/>
             <xs:enumeration value="GATAN MULTISCAN"/>
             <xs:enumeration value="GATAN ORIUS SC1000 (4k x 2.7k)"/>
             <xs:enumeration value="GATAN ORIUS SC200 (2k x 2k)"/>
