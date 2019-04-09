@@ -1,0 +1,84 @@
+data_rcsb_schema
+# 
+_rcsb_table_abbrev.table_name     cell 
+_rcsb_table_abbrev.table_abbrev   cell1 
+# 
+loop_
+_rcsb_attribute_abbrev.table_name 
+_rcsb_attribute_abbrev.attribute_name 
+_rcsb_attribute_abbrev.attribute_abbrev 
+diffrn_source             take-off_angle take_off_angle 
+pdbx_audit_revision_group group          content_group  
+# 
+_rcsb_table.table_name        pdbx_database_status_history
+_rcsb_table.table_type        0
+_rcsb_table.group_name        'STATUS INFORMATION'
+_rcsb_table.www_select        1
+_rcsb_table.www_report 	      1				
+
+# 
+loop_
+_rcsb_attribute_def.table_name 
+_rcsb_attribute_def.attribute_name 
+_rcsb_attribute_def.data_type 
+_rcsb_attribute_def.index_flag 
+_rcsb_attribute_def.null_flag 
+_rcsb_attribute_def.width 
+_rcsb_attribute_def.precision 
+_rcsb_attribute_def.populated 
+pdbx_database_status_history                  entry_id                 char        1 1 36    0 Y 
+pdbx_database_status_history                  ordinal                  int         1 1 10    0 Y 
+pdbx_database_status_history                  pdb_id                   char        0 0 10    0 Y 
+pdbx_database_status_history                  date_begin               datetime    0 0 19    0 Y 
+pdbx_database_status_history                  date_end                 datetime    0 0 19    0 Y 
+pdbx_database_status_history                  status_code_begin        char        0 0 24    0 Y 
+pdbx_database_status_history                  status_code_end          char        0 0 24    0 Y 
+pdbx_database_status_history                  annotator                char        0 0 10    0 Y 
+pdbx_database_status_history                  details                  char        0 0 80    0 Y 
+pdbx_database_status_history                  delta_days               float       0 0 10    0 Y 
+# 
+loop_
+_rcsb_attribute_view.table_name 
+_rcsb_attribute_view.attribute_name 
+_rcsb_attribute_view.format_type 
+_rcsb_attribute_view.www_select 
+_rcsb_attribute_view.www_report
+pdbx_database_status_history                  entry_id                          3 1 1 
+pdbx_database_status_history                  ordinal                           1 1 1 
+pdbx_database_status_history                  pdb_id                            3 1 1 
+pdbx_database_status_history                  date_begin                        7 1 1
+pdbx_database_status_history                  date_end                          7 1 1
+pdbx_database_status_history                  status_code_begin                 3 1 1
+pdbx_database_status_history                  status_code_end                   3 1 1
+pdbx_database_status_history                  annotator                         3 1 1 
+pdbx_database_status_history                  details                           5 1 1 
+pdbx_database_status_history                  delta_days                        2 1 1 
+#
+
+data_rcsb_schema_map
+# 
+loop_
+_rcsb_map_condition.condition_id 
+_rcsb_map_condition.attribute_name 
+_rcsb_map_condition.attribute_value 
+C1 entry_id    'datablockid()'            
+C2 database_id PDB                        
+C5 id          'valueof(entity_id)'       
+# 
+loop_
+_rcsb_attribute_map.target_table_name 
+_rcsb_attribute_map.target_attribute_name 
+_rcsb_attribute_map.source_item_name 
+_rcsb_attribute_map.condition_id 
+_rcsb_attribute_map.function_id 
+pdbx_database_status_history                  entry_id               '_pdbx_database_status_history.entry_id'    ?  C1 
+pdbx_database_status_history                  ordinal                '_pdbx_database_status_history.ordinal'     ?  ?
+pdbx_database_status_history                  pdb_id                 '_pdbx_database_status_history.pdb_id'    ?  ?
+pdbx_database_status_history                  date_begin             '_pdbx_database_status_history.date_begin'  ?  ?
+pdbx_database_status_history                  date_end               '_pdbx_database_status_history.date_end'    ?  ?
+pdbx_database_status_history                  status_code_begin      '_pdbx_database_status_history.status_code_begin' ?  ?
+pdbx_database_status_history                  status_code_end        '_pdbx_database_status_history.status_code_end'   ?  ?
+pdbx_database_status_history                  annotator              '_pdbx_database_status_history.annotator'   ?  ?
+pdbx_database_status_history                  details                '_pdbx_database_status_history.details'     ?  ?
+pdbx_database_status_history                  delta_days             '_pdbx_database_status_history.delta_days'  ?  ?
+#
