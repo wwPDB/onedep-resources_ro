@@ -376,5 +376,44 @@
             }
         }, 
         "type": "rdbms"
+    },
+    "report-summary-emdb-release-status": {
+        "content": {
+            "database_2": [
+                "Structure_ID",
+                "database_id",
+                "database_code"
+            ],
+        "em_admin": [
+            "entry_id",
+            "structure_id",
+            "map_release_date",
+            "last_update",
+            "header_release_date",
+            "obsolete_date",
+            "current_status",
+            "title",
+            "title"],
+    },
+        "type": "rdbms",
+        "resource": {
+            "em_admin": [
+                "da_internal",
+                "da_internal"
+            ],
+            "database_2": [
+                "da_internal",
+                "da_internal"
+            ],
+        },
+        "conditions": {
+            "database_2": {
+                "database_id": [
+                    "EMDB",
+                    "char",
+                    "LIKE"
+                ],
+            }
+        },
     }
 }
