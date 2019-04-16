@@ -384,17 +384,17 @@
                 "database_id",
                 "database_code"
             ],
-        "em_admin": [
-            "entry_id",
-            "structure_id",
-            "map_release_date",
-            "last_update",
-            "header_release_date",
-            "obsolete_date",
-            "current_status",
-            "title",
-            "title"],
-    },
+            "em_admin": [
+                "entry_id",
+                "structure_id",
+                "map_release_date",
+                "last_update",
+                "header_release_date",
+                "obsolete_date",
+                "current_status",
+                "title",
+            ],
+        },
         "type": "rdbms",
         "resource": {
             "em_admin": [
