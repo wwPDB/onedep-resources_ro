@@ -386,14 +386,14 @@
             ],
             "em_admin": [
                 "entry_id",
-                "structure_id",
+                "Structure_id",
                 "map_release_date",
                 "last_update",
                 "header_release_date",
                 "obsolete_date",
                 "current_status",
-                "title",
-            ],
+                "title"
+            ]
         },
         "type": "rdbms",
         "resource": {
@@ -404,7 +404,7 @@
             "database_2": [
                 "da_internal",
                 "da_internal"
-            ],
+            ]
         },
         "conditions": {
             "database_2": {
@@ -412,8 +412,8 @@
                     "EMDB",
                     "char",
                     "LIKE"
-                ],
+                ]
             }
-        },
+        }
     }
 }
