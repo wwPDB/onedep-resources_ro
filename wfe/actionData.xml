@@ -20,9 +20,9 @@
                20-Oct-2016  es   add emmtzsf2pdbx for EC SF file conversion
                20-Jan-2017  ep   add assembly-auth-depinfo for depositor author assembly processing
 	       15-Feb-2017  ep   add combine-ligand-of-interest for binding assay processing
-               25-Apr-2019  my   add nmr-res-nef-format-check, nmr-res-star-format-check,
-                                     nmr-res-nef-model-check, nmr-res-star-model-check,
-                                     nmr-res-nef2star-deposit, nmr-res-star2star-deposit for DepUI supporting NEF/NMR-STAR V3.2
+               26-Apr-2019  my   add nmr-nef-format-check, nmr-star-format-check,
+                                     nmr-nef-model-check, nmr-star-model-check,
+                                     nmr-nef2star-deposit, nmr-star2star-deposit for DepUI for NEF/NMR-STAR V3.2
   -->
 <actionList version="0.01">
   <action name="copy">
@@ -2663,13 +2663,13 @@
      <methodName>formatCheckCsXyzOp</methodName>
   </action>
 
-  <!-- DepUI supporting NEF: format check -->
-  <action name="nmr-res-nef-format-check">
+  <!-- DepUI for NEF: format check -->
+  <action name="nmr-nef-format-check">
      <inputList>
          <wfDataObject name="src">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-restraint</contentType>
-            <fileFormat>nef</fileFormat>
+            <contentType>nmr-unified-data</contentType>
+            <fileFormat>nmr-nef</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
@@ -2687,15 +2687,15 @@
      <userParameters/>
      <internalParameters/>
      <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
-     <methodName>formatCheckNEFOp</methodName>
+     <methodName>formatCheckNefOp</methodName>
   </action>
 
-  <!-- DepUI supporting NMR-STAR V3.2: format check -->
-  <action name="nmr-res-star-format-check">
+  <!-- DepUI for NMR-STAR V3.2: format check -->
+  <action name="nmr-star-format-check">
      <inputList>
          <wfDataObject name="src">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-restraint</contentType>
+            <contentType>nmr-unified-data</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2717,13 +2717,13 @@
      <methodName>formatCheckStarOp</methodName>
   </action>
 
-  <!-- DepUI supporting NEF: consistency check with model -->
-  <action name="nmr-res-nef-model-check">
+  <!-- DepUI for NEF: consistency check with model -->
+  <action name="nmr-nef-model-check">
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-restraint</contentType>
-            <fileFormat>nef</fileFormat>
+            <contentType>nmr-unified-data</contentType>
+            <fileFormat>nmr-nef</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
@@ -2748,15 +2748,15 @@
      <userParameters/>
      <internalParameters/>
      <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
-     <methodName>consistencyCheckNEFOp</methodName>
+     <methodName>consistencyCheckNefOp</methodName>
   </action>
 
-  <!-- DepUI supporting NMR-STAR V3.2: consistency check with model -->
-  <action name="nmr-res-star-model-check">
+  <!-- DepUI for NMR-STAR V3.2: consistency check with model -->
+  <action name="nmr-star-model-check">
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-restraint</contentType>
+            <contentType>nmr-unified-data</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2785,13 +2785,13 @@
      <methodName>consistencyCheckStarOp</methodName>
   </action>
 
-  <!-- DepUI supporting NEF: NEF -> NMR-STAR V3.2 conversion and validation -->
-  <action name="nmr-res-nef2star-deposit">
+  <!-- DepUI for NEF: NEF -> NMR-STAR V3.2 conversion and validation -->
+  <action name="nmr-nef2star-deposit">
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-restraint</contentType>
-            <fileFormat>nef</fileFormat>
+            <contentType>nmr-unified-data</contentType>
+            <fileFormat>nmr-nef</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
@@ -2807,14 +2807,14 @@
      <outputList>
          <wfDataObject name="dst1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-restraint</contentType>
-            <fileFormat>nef</fileFormat>
+            <contentType>nmr-unified-data</contentType>
+            <fileFormat>nmr-nef</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="dst2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-restraint</contentType>
+            <contentType>nmr-unified-data</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2833,12 +2833,12 @@
      <methodName>nef2starDepositOp</methodName>
   </action>
 
-  <!-- DepUI supporting NMR-STAR V3.2: copying NMR-STAR V3.2 and validation -->
-  <action name="nmr-res-star2star-deposit">
+  <!-- DepUI for NMR-STAR V3.2: copying NMR-STAR V3.2 and validation -->
+  <action name="nmr-star2star-deposit">
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-restraint</contentType>
+            <contentType>nmr-unified-data</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2855,7 +2855,7 @@
      <outputList>
          <wfDataObject name="dst1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-restraint</contentType>
+            <contentType>nmr-unified-data</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
