@@ -1620,13 +1620,10 @@
             <selectorType></selectorType>
          </wfDataObject>
      </outputList>
-     <userParameters>
-           <parameter name="categories">pdbx_binding_assay,pdbx_entity_instance_feature</parameter>
-     </userParameters>
      <internalParameters>
      </internalParameters>
-     <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
-     <methodName>combineCifFilesOp</methodName>
+     <moduleName>wwpdb.utils.wf.plugins.ReportUtils</moduleName>
+     <methodName>combineLigandInfoOp</methodName>
   </action>
 
   <action name="get-corres-info">
