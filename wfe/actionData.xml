@@ -5,13 +5,13 @@
                11-Sep-2014  jdw  add add nmr_flag user parameter to pdb-format-check and pdbx-format-check
                12-Sep-2014  jdw  add actions cs-atom-name-check and cs-upload-check
                21-Sep-2014  jdw  update action name="validation-report-test with CS input file
-               26-Sep-2014  jdw  add  "pdbx2nmrstar-annot" to handle chemical shift format conversion
-               14-May-2015  jdw  add  pdbx-status-load
+               26-Sep-2014  jdw  add "pdbx2nmrstar-annot" to handle chemical shift format conversion
+               14-May-2015  jdw  add pdbx-status-load
                20-Jul-2015  jdw  add cnv-em2emd, cnv-emd2em, merge-pdb-xyz-dep, merge-pdbx-xyz-dep
                 4-Aug-2015  jdw  add pdbx-format-check-nmr, pdb-format-check-nmr,
                                      cs-atom-name-check-alt, and cs-upload-check-alt
                31-Aug-2015  jdw  add mapfix-in-place-alt mask-mapfix-in-place-alt half-mapfix-in-place-alt
-                                  additional-mapfix-in-place-alt
+                                     additional-mapfix-in-place-alt
                15-Sep-2015  jdw  add replace validation-report-test with vavalidation-report-all to provide support for all supported methods
                 2-Oct-2015  jdw  add [additonal,half,mask]-mapfix-in-place-cfg workflow actions
                14-Jul-2016  jdw  add definition for new standalone validation server "val-report-all-srv"
@@ -20,9 +20,9 @@
                20-Oct-2016  es   add emmtzsf2pdbx for EC SF file conversion
                20-Jan-2017  ep   add assembly-auth-depinfo for depositor author assembly processing
 	       15-Feb-2017  ep   add combine-ligand-of-interest for binding assay processing
-               26-Apr-2019  my   add nmr-nef-format-check, nmr-star-format-check,
+                7-May-2019  my   add nmr-nef-parser-check, nmr-star-parser-check,
                                      nmr-nef-model-check, nmr-star-model-check,
-                                     nmr-nef2star-deposit, nmr-star2star-deposit for DepUI for NEF/NMR-STAR V3.2
+                                     nmr-nef2star-deposit, nmr-star2star-deposit for DepUI for NMR unified data (NEF/NMR-STAR V3.2)
   -->
 <actionList version="0.01">
   <action name="copy">
@@ -2663,8 +2663,8 @@
      <methodName>formatCheckCsXyzOp</methodName>
   </action>
 
-  <!-- DepUI for NEF: format check -->
-  <action name="nmr-nef-format-check">
+  <!-- DepUI for NMR unified data: NEF parser check -->
+  <action name="nmr-nef-parser-check">
      <inputList>
          <wfDataObject name="src">
             <dataReferenceType>file</dataReferenceType>
@@ -2687,11 +2687,11 @@
      <userParameters/>
      <internalParameters/>
      <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
-     <methodName>formatCheckNefOp</methodName>
+     <methodName>parserCheckNefOp</methodName>
   </action>
 
-  <!-- DepUI for NMR-STAR V3.2: format check -->
-  <action name="nmr-star-format-check">
+  <!-- DepUI for NMR unified data: NMR-STAR V3.2 parser check -->
+  <action name="nmr-star-parser-check">
      <inputList>
          <wfDataObject name="src">
             <dataReferenceType>file</dataReferenceType>
@@ -2714,10 +2714,10 @@
      <userParameters/>
      <internalParameters/>
      <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
-     <methodName>formatCheckStarOp</methodName>
+     <methodName>parserCheckStarOp</methodName>
   </action>
 
-  <!-- DepUI for NEF: consistency check with model -->
+  <!-- DepUI for NMR unified data: NEF consistency check with model -->
   <action name="nmr-nef-model-check">
      <inputList>
          <wfDataObject name="src1">
@@ -2739,7 +2739,7 @@
      <outputList>
          <wfDataObject name="dst">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nef-model-consistency-log</contentType>
+            <contentType>nef-consistency-log</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2751,7 +2751,7 @@
      <methodName>consistencyCheckNefOp</methodName>
   </action>
 
-  <!-- DepUI for NMR-STAR V3.2: consistency check with model -->
+  <!-- DepUI for NMR unified data: NMR-STAR V3.2 consistency check with model -->
   <action name="nmr-star-model-check">
      <inputList>
          <wfDataObject name="src1">
@@ -2773,7 +2773,7 @@
      <outputList>
          <wfDataObject name="dst">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>star-model-consistency-log</contentType>
+            <contentType>star-consistency-log</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2785,7 +2785,7 @@
      <methodName>consistencyCheckStarOp</methodName>
   </action>
 
-  <!-- DepUI for NEF: NEF -> NMR-STAR V3.2 conversion and validation -->
+  <!-- DepUI for NMR unified data: NEF -> NMR-STAR V3.2 conversion and deposition -->
   <action name="nmr-nef2star-deposit">
      <inputList>
          <wfDataObject name="src1">
@@ -2821,7 +2821,7 @@
          </wfDataObject>
          <wfDataObject name="dst3">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nef-validation-log</contentType>
+            <contentType>nef-deposit-log</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2833,7 +2833,7 @@
      <methodName>nef2starDepositOp</methodName>
   </action>
 
-  <!-- DepUI for NMR-STAR V3.2: copying NMR-STAR V3.2 and validation -->
+  <!-- DepUI for NMR unified data: copying NMR-STAR V3.2 and deposition -->
   <action name="nmr-star2star-deposit">
      <inputList>
          <wfDataObject name="src1">
@@ -2862,7 +2862,7 @@
          </wfDataObject>
          <wfDataObject name="dst2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>star-validation-log</contentType>
+            <contentType>star-deposit-log</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>

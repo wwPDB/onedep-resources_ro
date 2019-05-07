@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.0" author="my" date="05-07-2019" id="NEF2STAR_TDEP" name="wf_op_nef2star_fs_tempdep.xml"/>
+        <wf:description>
+            <wf:short>Convert NEF to NMR-STAR V3.2 (tempdep)</wf:short>
+            <wf:subtext>Deposition system file conversion workflow</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D1" name="nmr-unified-data-file" type="string" container="list" mutable="true" >
+                <wf:description>NMR unified data file: NEF (latest version)</wf:description>
+                <wf:location where="tempdep" content="nmr-unified-data" format="nmr-nef"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D2" name="parser-log" type="string" container="list" mutable="true" >
+                <wf:description>NEF parser log (next version)</wf:description>
+                <wf:location where="tempdep" content="nef-parser-log" format="json"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D3" name="pdbxmodelfile" type="string" container="list" mutable="true" >
+                <wf:description>PDBx format model data file (latest version)</wf:description>
+                <wf:location where="tempdep" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D4" name="consistency-log" type="string" container="list" mutable="true" >
+                <wf:description>NEF consistency log (next version)</wf:description>
+                <wf:location where="tempdep" content="nef-consistency-log" format="json"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D5" name="nmr-unified-data-file" type="string" container="list" mutable="true" >
+                <wf:description>NMR unified data file: NEF (next version)</wf:description>
+                <wf:location where="tempdep" content="nmr-unified-data" format="nmr-nef"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D6" name="nmr-unified-data-file" type="string" container="list" mutable="true" >
+                <wf:description>NMR unified data file: NMR-STAR V3.2 (next version)</wf:description>
+                <wf:location where="tempdep" content="nmr-unified-data" format="nmr-star"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D7" name="deposit-log" type="string" container="list" mutable="true" >
+                <wf:description>NEF deposit log (next version)</wf:description>
+                <wf:location where="tempdep" content="nef-deposit-log" format="json"  version="next" />
+            </wf:dataObject>
+
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="T2" breakpoint="false">
+                <wf:description>Process entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+                <wf:task taskID="T2" name="parser-check" nextTask="T6" breakpoint="false" exceptionID="EX0" reference="parser-check">
+                    <wf:description>NEF parser check</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:15:20">
+                        <wf:detail name="parser-check" action="nmr-nef-parser-check" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                            <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="T6" name="consistency-check" nextTask="T7" breakpoint="false" exceptionID="EX0" reference="consistency-check">
+                    <wf:description>NEF consistency check with model</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:15:20">
+                        <wf:detail name="consistency-check" action="nmr-nef-model-check" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D4" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="T7" name="nmr2star-conversion" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nef2star-conversion">
+                    <wf:description>NEF -> NMR-STAR V3.2 conversion and deposition</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:15:20">
+                        <wf:detail name="nef2star-conversion" action="nmr-nef2star-deposit" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D5" type="output"/>
+                            <wf:location dataID="D6" type="output"/>
+                            <wf:location dataID="D7" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <!-- Final task -->
+                <wf:task taskID="T8" name="Finish" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="Finish">
+                   <wf:description>Mark the WF as completed</wf:description>
+                   <wf:process runTime="00:00:01" failTime="00:00:20">
+                      <wf:detail name="finished" action="finished" where="wfe"/>
+                   </wf:process>
+                </wf:task>
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T9" name="End" breakpoint="false" reference="exit">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+        </wf:flow>
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>
