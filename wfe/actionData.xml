@@ -21,7 +21,7 @@
                20-Jan-2017  ep   add assembly-auth-depinfo for depositor author assembly processing
 	       15-Feb-2017  ep   add combine-ligand-of-interest for binding assay processing
                 8-May-2019  my   add nmr-nef-parser-check, nmr-star-parser-check,
-                                     nmr-nef-model-check, nmr-star-model-check,
+                                     nmr-nef-consistency-check, nmr-star-consistency-check,
                                      nmr-nef2star-deposit, nmr-star2star-deposit for DepUI for NMR unified data (NEF/NMR-STAR V3.2)
   -->
 <actionList version="0.01">
@@ -2718,7 +2718,7 @@
   </action>
 
   <!-- DepUI for NMR unified data: NEF consistency check with model -->
-  <action name="nmr-nef-model-check">
+  <action name="nmr-nef-consistency-check">
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
@@ -2752,7 +2752,7 @@
   </action>
 
   <!-- DepUI for NMR unified data: NMR-STAR V3.2 consistency check with model -->
-  <action name="nmr-star-model-check">
+  <action name="nmr-star-consistency-check">
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>

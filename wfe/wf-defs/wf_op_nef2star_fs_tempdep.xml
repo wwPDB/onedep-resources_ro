@@ -48,10 +48,10 @@
 
             <wf:tasks>
 
-                <wf:task taskID="T2" name="parser-check" nextTask="T6" breakpoint="false" exceptionID="EX0" reference="parser-check">
+                <wf:task taskID="T2" name="nef-parser-check" nextTask="T6" breakpoint="false" exceptionID="EX0" reference="nef-parser-check">
                     <wf:description>NEF parser check</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:15:20">
-                        <wf:detail name="parser-check" action="nmr-nef-parser-check" where="api"/>
+                        <wf:detail name="nef-parser-check" action="nmr-nef-parser-check" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="output"/>
@@ -59,10 +59,10 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="T6" name="consistency-check" nextTask="T7" breakpoint="false" exceptionID="EX0" reference="consistency-check">
+                <wf:task taskID="T6" name="nef-consistency-check" nextTask="T7" breakpoint="false" exceptionID="EX0" reference="nef-consistency-check">
                     <wf:description>NEF consistency check with model</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:15:20">
-                        <wf:detail name="consistency-check" action="nmr-nef-model-check" where="api"/>
+                        <wf:detail name="nef-consistency-check" action="nmr-nef-consistency-check" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D3" type="input"/>
@@ -71,7 +71,7 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="T7" name="nmr2star-conversion" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nef2star-conversion">
+                <wf:task taskID="T7" name="nef2star-conversion" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nef2star-conversion">
                     <wf:description>NEF -> NMR-STAR V3.2 conversion and deposition</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:15:20">
                         <wf:detail name="nef2star-conversion" action="nmr-nef2star-deposit" where="api"/>
