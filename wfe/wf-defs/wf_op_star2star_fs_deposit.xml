@@ -16,7 +16,7 @@
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="star-parser-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR-STAR V3.2 parser log (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-parser-log" format="json"  version="next" />
+                <wf:location where="deposit" content="nmr-unified-data-parser-log" format="json"  version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version)</wf:description>
@@ -24,7 +24,7 @@
             </wf:dataObject>
             <wf:dataObject dataID="D4" name="star-consistency-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR-STAR V3.2 consistency log (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-consistency-log" format="json"  version="next" />
+                <wf:location where="deposit" content="nmr-unified-data-consistency-log" format="json"  version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D5" name="nmr-unified-data-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR unified data file: NMR-STAR V3.2 (next version)</wf:description>
@@ -32,7 +32,7 @@
             </wf:dataObject>
             <wf:dataObject dataID="D6" name="star-deposit-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR-STAR V3.2 deposit log (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-deposit-log" format="json"  version="next" />
+                <wf:location where="deposit" content="nmr-unified-data-deposit-log" format="json"  version="next" />
             </wf:dataObject>
 
         </wf:dataObjects>
