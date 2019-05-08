@@ -20,7 +20,7 @@
                20-Oct-2016  es   add emmtzsf2pdbx for EC SF file conversion
                20-Jan-2017  ep   add assembly-auth-depinfo for depositor author assembly processing
 	       15-Feb-2017  ep   add combine-ligand-of-interest for binding assay processing
-                7-May-2019  my   add nmr-nef-parser-check, nmr-star-parser-check,
+                8-May-2019  my   add nmr-nef-parser-check, nmr-star-parser-check,
                                      nmr-nef-model-check, nmr-star-model-check,
                                      nmr-nef2star-deposit, nmr-star2star-deposit for DepUI for NMR unified data (NEF/NMR-STAR V3.2)
   -->
@@ -2678,7 +2678,7 @@
      <outputList>
          <wfDataObject name="dst">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nef-parser-log</contentType>
+            <contentType>nmr-parser-log</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2705,7 +2705,7 @@
      <outputList>
          <wfDataObject name="dst">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>star-parser-log</contentType>
+            <contentType>nmr-parser-log</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2739,7 +2739,7 @@
      <outputList>
          <wfDataObject name="dst">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nef-consistency-log</contentType>
+            <contentType>nmr-consistency-log</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2773,7 +2773,7 @@
      <outputList>
          <wfDataObject name="dst">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>star-consistency-log</contentType>
+            <contentType>nmr-consistency-log</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2821,7 +2821,7 @@
          </wfDataObject>
          <wfDataObject name="dst3">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nef-deposit-log</contentType>
+            <contentType>nmr-deposit-log</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2862,7 +2862,7 @@
          </wfDataObject>
          <wfDataObject name="dst2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>star-deposit-log</contentType>
+            <contentType>nmr-deposit-log</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
