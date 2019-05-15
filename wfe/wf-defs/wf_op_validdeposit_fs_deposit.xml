@@ -61,6 +61,14 @@
                 <wf:description>Validation imagery</wf:description>
                 <wf:location where="deposit" content="validation-report-slider" format="svg"  version="next" />
             </wf:dataObject>
+            <wf:dataObject dataID="D11" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation edmap fo coef</wf:description>
+                <wf:location where="deposit" content="validation-report-fo-map-coef" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D12" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation edmap 2fo coef</wf:description>
+                <wf:location where="deposit" content="validation-report-2fo-map-coef" format="pdbx"  version="next" />
+            </wf:dataObject>
             <wf:dataObject dataID="D66" name="reportPDF" type="string" container="list" mutable="true" >
                 <wf:description>Validation report</wf:description>
                 <wf:location where="deposit" content="validation-report" format="pdf"  version="latest" />
@@ -121,11 +129,10 @@
                     </wf:process>
                 </wf:task>
 
-               <!-- wf:task taskID="TP6" name="validation-report-2" nextTask="TP31" breakpoint="true" exceptionID="EX0" -->
                <wf:task taskID="TP6" name="val-report-all-dep" nextTask="TP31" breakpoint="true" exceptionID="EX0">
                   <wf:description>Validation Report</wf:description>
                   <wf:process runTime="00:55:10" failTime="02:00:00">
-                     <wf:detail name="val-report-all-dep" action="val-report-all-dep" where="api" parameter="in_annotation:no"/>
+                     <wf:detail name="val-report-all-dep" action="val-report-all-dep-v2" where="api" parameter="in_annotation:no"/>
                      <wf:dataObjectsLocation>
                          <wf:location dataID="D24" type="input1"/>
                          <wf:location dataID="D44" type="input2"/>
@@ -136,6 +143,8 @@
                          <wf:location dataID="D8"  type="output3"/>
                          <wf:location dataID="D9"  type="output4"/>
                          <wf:location dataID="D10" type="output5"/>
+                         <wf:location dataID="D11" type="output6"/>
+                         <wf:location dataID="D12" type="output7"/>			 
                      </wf:dataObjectsLocation>
                  </wf:process>
                </wf:task>
