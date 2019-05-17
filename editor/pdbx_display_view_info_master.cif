@@ -347,6 +347,7 @@ _pdbx_display_view_category_info.category_group_display_name
 _pdbx_display_view_category_info.category_display_name 
 _pdbx_display_view_category_info.category_cardinality 
 'EM Admin'           pdbx_database_status                'EM Admin'            'Suppress status'                  unit  
+'EM Admin'           pdbx_audit_support                  'EM Admin'            Funding                            multi
 
 loop_
 _pdbx_display_view_item_info.category_display_name 
@@ -355,6 +356,10 @@ _pdbx_display_view_item_info.item_display_name
 _pdbx_display_view_item_info.read_only_flag 
 'Suppress status'                  '_pdbx_database_status.entry_id'                              'Entry Id'                                       Y 
 'Suppress status'                  '_pdbx_database_status.title_suppression'                     'Suppress Title?'                                N 
+Funding                            '_pdbx_audit_support.ordinal'                                 Ordinal                                          Y
+Funding                            '_pdbx_audit_support.funding_organization'                    'Funding Organization'                           N
+Funding                            '_pdbx_audit_support.grant_number'                            'Grant Number'                                   N
+Funding                            '_pdbx_audit_support.country'                                 Country                                          N
 
 data_EM1C
 loop_
