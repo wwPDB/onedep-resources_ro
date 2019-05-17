@@ -20,6 +20,7 @@
                20-Oct-2016  es   add emmtzsf2pdbx for EC SF file conversion
                20-Jan-2017  ep   add assembly-auth-depinfo for depositor author assembly processing
 	       15-Feb-2017  ep   add combine-ligand-of-interest for binding assay processing
+               10-May-2018  ep   add val-report-all-annv2
   -->
 <actionList version="0.01">
   <action name="copy">
@@ -1620,13 +1621,10 @@
             <selectorType></selectorType>
          </wfDataObject>
      </outputList>
-     <userParameters>
-           <parameter name="categories">pdbx_binding_assay,pdbx_entity_instance_feature</parameter>
-     </userParameters>
      <internalParameters>
      </internalParameters>
-     <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
-     <methodName>combineCifFilesOp</methodName>
+     <moduleName>wwpdb.utils.wf.plugins.ReportUtils</moduleName>
+     <methodName>combineLigandInfoOp</methodName>
   </action>
 
   <action name="get-corres-info">
@@ -1654,162 +1652,6 @@
     </internalParameters>
     <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
     <methodName>getCorresInfoOp</methodName>
-  </action>
-
-  <action name="validation-report-1">
-     <inputList>
-         <wfDataObject name="src1">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>model</contentType>
-            <fileFormat>pdbx</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="src2">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>structure-factors</contentType>
-            <fileFormat>pdbx</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-     </inputList>
-
-     <outputList>
-         <wfDataObject name="dst1">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>validation-report</contentType>
-            <fileFormat>pdf</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="dst2">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>validation-data</contentType>
-            <fileFormat>xml</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-     </outputList>
-
-     <userParameters>
-     </userParameters>
-     <internalParameters>
-     </internalParameters>
-     <moduleName>wwpdb.utils.wf.plugins.ValidationUtils</moduleName>
-     <methodName>validationReportV2Op</methodName>
-  </action>
-
-  <action name="validation-report-2">
-     <inputList>
-         <wfDataObject name="src1">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>model</contentType>
-            <fileFormat>pdbx</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="src2">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>structure-factors</contentType>
-            <fileFormat>pdbx</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-     </inputList>
-
-     <outputList>
-         <wfDataObject name="dst1">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>validation-report</contentType>
-            <fileFormat>pdf</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="dst2">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>validation-data</contentType>
-            <fileFormat>xml</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-     </outputList>
-
-     <userParameters>
-       <parameter name="in_annotation">default</parameter>
-     </userParameters>
-     <internalParameters>
-     </internalParameters>
-     <moduleName>wwpdb.utils.wf.plugins.ValidationUtils</moduleName>
-     <methodName>validationReportV2Op</methodName>
-  </action>
-
-  <action name="validation-report-alt">
-     <inputList>
-         <wfDataObject name="src1">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>model</contentType>
-            <fileFormat>pdbx</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="src2">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>structure-factors</contentType>
-            <fileFormat>pdbx</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-     </inputList>
-
-     <outputList>
-         <wfDataObject name="dst1">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>validation-report</contentType>
-            <fileFormat>pdf</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="dst2">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>validation-data</contentType>
-            <fileFormat>xml</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-
-         <wfDataObject name="dst3">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>validation-report-full</contentType>
-            <fileFormat>pdf</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-
-         <wfDataObject name="dst4">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>validation-report-slider</contentType>
-            <fileFormat>png</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-
-         <wfDataObject name="dst5">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>validation-report-slider</contentType>
-            <fileFormat>svg</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-
-     </outputList>
-
-     <userParameters>
-       <parameter name="in_annotation">default</parameter>
-     </userParameters>
-     <internalParameters>
-     </internalParameters>
-     <moduleName>wwpdb.utils.wf.plugins.ValidationUtils</moduleName>
-     <methodName>validationReportAltOp</methodName>
   </action>
 
   <action name="val-report-all-dep">
@@ -1898,6 +1740,108 @@
      <methodName>validationReportAllOp</methodName>
   </action>
 
+  <action name="val-report-all-dep-v2">
+     <inputList>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>structure-factors</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-chemical-shifts</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+        <wfDataObject name="src4">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>em-volume</contentType>
+            <fileFormat>map</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report</contentType>
+            <fileFormat>pdf</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-data</contentType>
+            <fileFormat>xml</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-full</contentType>
+            <fileFormat>pdf</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst4">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-slider</contentType>
+            <fileFormat>png</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst5">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-slider</contentType>
+            <fileFormat>svg</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst6">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-fo-map-coef</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst7">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-2fo-map-coef</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+     </outputList>
+
+     <userParameters>
+       <parameter name="in_annotation">no</parameter>
+       <parameter name="validation_mode">deposit</parameter>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.ValidationUtils</moduleName>
+     <methodName>validationReportAllOpV2</methodName>
+  </action>
+  
 <action name="val-report-all-ann">
      <inputList>
          <wfDataObject name="src1">
@@ -1984,6 +1928,108 @@
      <methodName>validationReportAllOp</methodName>
   </action>
 
+<action name="val-report-all-ann-v2">
+     <inputList>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>structure-factors</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-chemical-shifts</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+        <wfDataObject name="src4">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>em-volume</contentType>
+            <fileFormat>map</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report</contentType>
+            <fileFormat>pdf</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-data</contentType>
+            <fileFormat>xml</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-full</contentType>
+            <fileFormat>pdf</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst4">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-slider</contentType>
+            <fileFormat>png</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst5">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-slider</contentType>
+            <fileFormat>svg</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst6">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-fo-map-coef</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst7">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-2fo-map-coef</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+     </outputList>
+
+     <userParameters>
+       <parameter name="in_annotation">yes</parameter>
+       <parameter name="validation_mode">annotate</parameter>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.ValidationUtils</moduleName>
+     <methodName>validationReportAllOpV2</methodName>
+  </action>
+
 <action name="val-report-all-srv">
      <inputList>
          <wfDataObject name="src1">
@@ -2068,6 +2114,108 @@
      </internalParameters>
      <moduleName>wwpdb.utils.wf.plugins.ValidationUtils</moduleName>
      <methodName>validationReportAllOp</methodName>
+  </action>
+
+<action name="val-report-all-srv-v2">
+     <inputList>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>structure-factors</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-chemical-shifts</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+        <wfDataObject name="src4">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>em-volume</contentType>
+            <fileFormat>map</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report</contentType>
+            <fileFormat>pdf</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-data</contentType>
+            <fileFormat>xml</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-full</contentType>
+            <fileFormat>pdf</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst4">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-slider</contentType>
+            <fileFormat>png</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst5">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-slider</contentType>
+            <fileFormat>svg</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst6">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-fo-map-coef</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst7">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-report-2fo-map-coef</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+     </outputList>
+
+     <userParameters>
+       <parameter name="in_annotation">no</parameter>
+       <parameter name="validation_mode">server</parameter>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.ValidationUtils</moduleName>
+     <methodName>validationReportAllOpV2</methodName>
   </action>
 
   <action name="prd-search">

@@ -132,13 +132,13 @@
                             <wf:nextTask taskID="TP3">
                                 <wf:function dataID="L1" inList="AUTH" />
                             </wf:nextTask>
-                            <wf:nextTask taskID="TP3">
+                            <wf:nextTask taskID="TP2B">
                                 <wf:function dataID="L1" inList="REPL" />
                             </wf:nextTask>
                             <wf:nextTask taskID="TP3">
                                 <wf:function dataID="L1" inList="WAIT" />
                             </wf:nextTask>
-                            <wf:nextTask taskID="TP3">
+                            <wf:nextTask taskID="TP2B">
                                 <wf:function dataID="L1" inList="REL" />
                             </wf:nextTask>
                             <wf:nextTask taskID="TP3">
@@ -156,7 +156,7 @@
                             <wf:nextTask taskID="TP3">
                                 <wf:function dataID="L1" inList="POLC" />
                             </wf:nextTask>
-                            <wf:nextTask taskID="TP3">
+                            <wf:nextTask taskID="TP2B">
                                 <wf:function dataID="L1" inList="AUCO" />
                             </wf:nextTask>
                             <wf:nextTask taskID="TP3">
