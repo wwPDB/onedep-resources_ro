@@ -5,13 +5,13 @@
                11-Sep-2014  jdw  add add nmr_flag user parameter to pdb-format-check and pdbx-format-check
                12-Sep-2014  jdw  add actions cs-atom-name-check and cs-upload-check
                21-Sep-2014  jdw  update action name="validation-report-test with CS input file
-               26-Sep-2014  jdw  add "pdbx2nmrstar-annot" to handle chemical shift format conversion
-               14-May-2015  jdw  add pdbx-status-load
+               26-Sep-2014  jdw  add  "pdbx2nmrstar-annot" to handle chemical shift format conversion
+               14-May-2015  jdw  add  pdbx-status-load
                20-Jul-2015  jdw  add cnv-em2emd, cnv-emd2em, merge-pdb-xyz-dep, merge-pdbx-xyz-dep
                 4-Aug-2015  jdw  add pdbx-format-check-nmr, pdb-format-check-nmr,
                                      cs-atom-name-check-alt, and cs-upload-check-alt
                31-Aug-2015  jdw  add mapfix-in-place-alt mask-mapfix-in-place-alt half-mapfix-in-place-alt
-                                     additional-mapfix-in-place-alt
+                                  additional-mapfix-in-place-alt
                15-Sep-2015  jdw  add replace validation-report-test with vavalidation-report-all to provide support for all supported methods
                 2-Oct-2015  jdw  add [additonal,half,mask]-mapfix-in-place-cfg workflow actions
                14-Jul-2016  jdw  add definition for new standalone validation server "val-report-all-srv"
@@ -21,9 +21,9 @@
                20-Jan-2017  ep   add assembly-auth-depinfo for depositor author assembly processing
 	       15-Feb-2017  ep   add combine-ligand-of-interest for binding assay processing
                10-May-2018  ep   add val-report-all-annv2
-               15-May-2019  my   add nmr-nef-parser-check, nmr-star-parser-check,
+               21-May-2019  my   add nmr-nef-parser-check, nmr-star-parser-check,
                                      nmr-nef-consistency-check, nmr-star-consistency-check,
-                                     nmr-nef2star-deposit, nmr-star2star-deposit for DepUI for NMR unified data (NEF/NMR-STAR V3.2)
+                                     nmr-nef2star-deposit, nmr-star2star-deposit
   -->
 <actionList version="0.01">
   <action name="copy">
@@ -54,6 +54,7 @@
      <methodName>copyOp</methodName>
   </action>
 
+
   <action name="copy-if-exists">
      <inputList>
          <wfDataObject name="src">
@@ -81,6 +82,7 @@
      <moduleName>wwpdb.utils.wf.plugins.FileUtils</moduleName>
      <methodName>copyIfExistsOp</methodName>
   </action>
+
 
   <action name="mkdir">
      <inputList>
@@ -128,6 +130,7 @@
      <methodName>sizeOfOp</methodName>
   </action>
 
+
   <action name="mtime">
      <inputList>
          <wfDataObject name="src">
@@ -171,7 +174,7 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-     </inputList>
+    </inputList>
 
      <outputList>
          <wfDataObject name="dst">
@@ -276,6 +279,7 @@
      <moduleName>wwpdb.utils.wf.plugins.PdbxUtils</moduleName>
      <methodName>fetchOp</methodName>
   </action>
+
 
   <action name="pdbx2pdb">
      <inputList>
@@ -385,6 +389,7 @@
      <methodName>rcsb2pdbxOp</methodName>
   </action>
 
+
   <action name="pdbx2pdbx-deposit">
      <inputList>
          <wfDataObject name="src">
@@ -438,6 +443,7 @@
      <moduleName>wwpdb.utils.wf.plugins.FormatUtils</moduleName>
      <methodName>rcsb2pdbxOp</methodName>
   </action>
+
 
   <action name="poly-link-dist">
      <inputList>
@@ -494,6 +500,7 @@
      <moduleName>wwpdb.utils.wf.plugins.PdbxUtils</moduleName>
      <methodName>statusOp</methodName>
   </action>
+
 
   <action name="match-all">
      <inputList>
@@ -579,6 +586,8 @@
      <moduleName>wwpdb.utils.wf.plugins.SeqdbUtils</moduleName>
      <methodName>matchEntityOp</methodName>
   </action>
+
+
 
   <action name="seq-data-prep">
      <inputList>
@@ -723,6 +732,7 @@
      <methodName>updateModelSequenceAssignOp</methodName>
   </action>
 
+
   <action name="chem-comp-link">
      <inputList>
          <wfDataObject name="src">
@@ -749,6 +759,7 @@
      <moduleName>wwpdb.utils.wf.plugins.ChemCompUtils</moduleName>
      <methodName>chemCompLinkOp</methodName>
   </action>
+
 
   <action name="chem-comp-assign">
      <inputList>
@@ -1339,6 +1350,7 @@
      <methodName>consolidatedTasksOp</methodName>
   </action>
 
+
   <action name="site-environment">
      <inputList>
          <wfDataObject name="src">
@@ -1475,7 +1487,7 @@
      <methodName>formatCheckPdbxOp</methodName>
   </action>
 
-  <action name="pdbx-format-check-nmr">
+<action name="pdbx-format-check-nmr">
      <inputList>
          <wfDataObject name="src">
             <dataReferenceType>file</dataReferenceType>
@@ -2441,6 +2453,7 @@
             <selectorType></selectorType>
          </wfDataObject>
 
+
      </outputList>
 
      <userParameters>
@@ -2460,6 +2473,7 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+
 
      </inputList>
 
@@ -2482,7 +2496,6 @@
      <methodName>miscCheckReportOp</methodName>
   </action>
 
-  <!-- Harvest file (CCPN project), type:nm-ccp, Not used -->
   <action name="ccpn-extract">
      <inputList>
          <wfDataObject name="src">
@@ -2493,6 +2506,7 @@
             <selectorType></selectorType>
          </wfDataObject>
      </inputList>
+
 
      <outputList>
          <wfDataObject name="dst1">
@@ -2521,7 +2535,7 @@
      <methodName>ccpnExtractOp</methodName>
   </action>
 
-  <!-- Harvest file (NMR-STAR V3.1), type:nm-str, Not used -->
+
   <action name="nmrstar2pdbx">
      <inputList>
          <wfDataObject name="src">
@@ -2532,6 +2546,7 @@
             <selectorType></selectorType>
          </wfDataObject>
      </inputList>
+
 
      <outputList>
          <wfDataObject name="dst">
@@ -2566,6 +2581,7 @@
          </wfDataObject>
      </inputList>
 
+
      <outputList>
          <wfDataObject name="dst">
             <dataReferenceType>file</dataReferenceType>
@@ -2598,6 +2614,7 @@
          </wfDataObject>
      </inputList>
 
+
      <outputList>
          <wfDataObject name="dst">
             <dataReferenceType>file</dataReferenceType>
@@ -2619,7 +2636,7 @@
      <methodName>pdbx2nmrstarAnnotOp</methodName>
   </action>
 
-  <action name="nmr-cs-processing">
+<action name="nmr-cs-processing">
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
@@ -2705,7 +2722,7 @@
      <methodName>autoChemShiftProcessOp</methodName>
   </action>
 
-  <!-- Harvest file (NMR-STAR V3.1), type:nm-str, Not used -->
+
   <action name="cs-format-check2">
      <inputList>
          <wfDataObject name="src">
@@ -2740,7 +2757,6 @@
      <methodName>formatCheckCsOp</methodName>
   </action>
 
-  <!-- Harvest file (CCPN project), type:nm-ccp, Not used -->
   <action name="cs-format-check">
      <inputList>
          <wfDataObject name="src">
@@ -2775,7 +2791,6 @@
      <methodName>formatCheckCsOp</methodName>
   </action>
 
-  <!-- Legacy code, Not used -->
   <action name="cs-xyz-format-check">
      <inputList>
          <wfDataObject name="src1">
@@ -2811,13 +2826,12 @@
      <methodName>formatCheckCsXyzOp</methodName>
   </action>
 
-  <!-- DepUI for NMR unified data: NEF parser check -->
   <action name="nmr-nef-parser-check">
      <inputList>
          <wfDataObject name="src">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-unified-data</contentType>
-            <fileFormat>nmr-nef</fileFormat>
+            <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
@@ -2838,7 +2852,6 @@
      <methodName>parserCheckNefOp</methodName>
   </action>
 
-  <!-- DepUI for NMR unified data: NMR-STAR V3.2 parser check -->
   <action name="nmr-star-parser-check">
      <inputList>
          <wfDataObject name="src">
@@ -2865,13 +2878,12 @@
      <methodName>parserCheckStarOp</methodName>
   </action>
 
-  <!-- DepUI for NMR unified data: NEF consistency check with model -->
   <action name="nmr-nef-consistency-check">
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-unified-data</contentType>
-            <fileFormat>nmr-nef</fileFormat>
+            <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
@@ -2879,6 +2891,13 @@
             <dataReferenceType>file</dataReferenceType>
             <contentType>model</contentType>
             <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-report</contentType>
+            <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
@@ -2899,7 +2918,6 @@
      <methodName>consistencyCheckNefOp</methodName>
   </action>
 
-  <!-- DepUI for NMR unified data: NMR-STAR V3.2 consistency check with model -->
   <action name="nmr-star-consistency-check">
      <inputList>
          <wfDataObject name="src1">
@@ -2913,6 +2931,13 @@
             <dataReferenceType>file</dataReferenceType>
             <contentType>model</contentType>
             <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-report</contentType>
+            <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
@@ -2933,13 +2958,12 @@
      <methodName>consistencyCheckStarOp</methodName>
   </action>
 
-  <!-- DepUI for NMR unified data: NEF -> NMR-STAR V3.2 conversion and deposition -->
   <action name="nmr-nef2star-deposit">
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-unified-data</contentType>
-            <fileFormat>nmr-nef</fileFormat>
+            <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
@@ -2950,13 +2974,20 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
      </inputList>
 
      <outputList>
          <wfDataObject name="dst1">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-unified-data</contentType>
-            <fileFormat>nmr-nef</fileFormat>
+            <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
@@ -2981,7 +3012,6 @@
      <methodName>nef2starDepositOp</methodName>
   </action>
 
-  <!-- DepUI for NMR unified data: copying NMR-STAR V3.2 and deposition -->
   <action name="nmr-star2star-deposit">
      <inputList>
          <wfDataObject name="src1">
@@ -2995,6 +3025,13 @@
             <dataReferenceType>file</dataReferenceType>
             <contentType>model</contentType>
             <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-report</contentType>
+            <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
@@ -3462,7 +3499,7 @@
      <methodName>mergeXyzOp</methodName>
   </action>
 
-  <action name="merge-pdbx-xyz-dep">
+<action name="merge-pdbx-xyz-dep">
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
@@ -3631,6 +3668,7 @@
             <selectorType></selectorType>
          </wfDataObject>
 
+
      </outputList>
      <userParameters>
            <parameter name="timeout">0</parameter>
@@ -3692,6 +3730,8 @@
             <valueType>string</valueType>
             <selectorType></selectorType>
          </wfDataObject>
+
+
 
      </outputList>
      <userParameters>
@@ -3781,7 +3821,7 @@
      <methodName>uploadChemicalShiftOp</methodName>
   </action>
 
-  <!-- upload chemical shift report  (alternate file based version) -->
+ <!-- upload chemical shift report  (alternate file based version) -->
   <action name="cs-upload-check-alt">
      <inputList>
          <!-- text file containing input CS  full path list -->
@@ -3906,7 +3946,7 @@
      <methodName>atomNameCheckCsXyzOp</methodName>
   </action>
 
-  <!-- atom name chemical shift check (alternate file only version)  -->
+<!-- atom name chemical shift check (alternate file only version)  -->
   <action name="cs-atom-name-check-alt">
      <inputList>
          <!-- input CS  full path list -->
@@ -4001,6 +4041,7 @@
       <methodName>statusLoadOp</methodName>
    </action>
 
+
   <action name="cnv-em2emd">
      <inputList>
          <wfDataObject name="src">
@@ -4055,7 +4096,11 @@
      <methodName>emd2emOp</methodName>
   </action>
 
-   <!-- EM wf defs -->
+  <!--  EM wf defs
+
+    -->
+
+
    <action name="mapfix-in-place-alt">
      <inputList>
          <wfDataObject name="src1">
@@ -4260,8 +4305,11 @@
      <methodName>mapFixInPlaceAltOp</methodName>
   </action>
 
-  <!-- Deposition map workflow definitions - using configuration file input - -->
-  <action name="mapfix-in-place-cfg">
+
+<!--
+     Deposition map workflow definitions - using configuration file input -
+ -->
+<action name="mapfix-in-place-cfg">
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
@@ -4297,6 +4345,7 @@
      </inputList>
 
      <outputList>
+
      </outputList>
 
      <userParameters>
@@ -4320,6 +4369,7 @@
      </inputList>
 
      <outputList>
+
      </outputList>
 
      <userParameters>
@@ -4343,6 +4393,7 @@
      </inputList>
 
      <outputList>
+
      </outputList>
 
      <userParameters>
@@ -4354,3 +4405,5 @@
   </action>
   <!-- comment  -->
 </actionList>
+
+
