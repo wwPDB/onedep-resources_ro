@@ -24,6 +24,7 @@
                21-May-2019  my   add nmr-nef-parser-check, nmr-star-parser-check,
                                      nmr-nef-consistency-check, nmr-star-consistency-check,
                                      nmr-nef2star-deposit, nmr-star2star-deposit
+               11-Jun-2019 my    add nmr-model-diamag-check
   -->
 <actionList version="0.01">
   <action name="copy">
@@ -2826,13 +2827,48 @@
      <methodName>formatCheckCsXyzOp</methodName>
   </action>
 
-  <action name="nmr-nef-parser-check">
+  <action name="nmr-model-diamag-check">
      <inputList>
          <wfDataObject name="src">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data</contentType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType></dataReferenceType>
+            <contentType></contentType>
+            <fileFormat></fileFormat>
+            <containerType>value</containerType>
+            <valueType>string</valueType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters/>
+     <internalParameters/>
+     <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
+     <methodName>diamagCheckOp</methodName>
+  </action>
+
+  <action name="nmr-nef-parser-check">
+     <inputList>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-nef</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType></dataReferenceType>
+            <contentType></contentType>
+            <fileFormat></fileFormat>
+            <containerType>value</containerType>
+            <valueType>string</valueType>
             <selectorType></selectorType>
          </wfDataObject>
      </inputList>
@@ -2854,11 +2890,19 @@
 
   <action name="nmr-star-parser-check">
      <inputList>
-         <wfDataObject name="src">
+         <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data</contentType>
+            <contentType>nmr-unified-data-str</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType></dataReferenceType>
+            <contentType></contentType>
+            <fileFormat></fileFormat>
+            <containerType>value</containerType>
+            <valueType>string</valueType>
             <selectorType></selectorType>
          </wfDataObject>
      </inputList>
@@ -2882,7 +2926,7 @@
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data</contentType>
+            <contentType>nmr-unified-data-nef</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2922,7 +2966,7 @@
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data</contentType>
+            <contentType>nmr-unified-data-str</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2962,7 +3006,7 @@
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data</contentType>
+            <contentType>nmr-unified-data-nef</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2986,14 +3030,14 @@
      <outputList>
          <wfDataObject name="dst1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data</contentType>
+            <contentType>nmr-unified-data-nef</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="dst2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data</contentType>
+            <contentType>nmr-unified-data-str</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -3016,7 +3060,7 @@
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data</contentType>
+            <contentType>nmr-unified-data-str</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -3040,7 +3084,7 @@
      <outputList>
          <wfDataObject name="dst1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data</contentType>
+            <contentType>nmr-unified-data-str</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
