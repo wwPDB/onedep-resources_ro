@@ -555,6 +555,12 @@ _pdbx_dict_item_substitution.tag
 "_citation.pdbx_database_id_PubMed"    ?                 post_src_to_dst    prereleasetitle
 "_citation_author.name"                'Suppressed, X.'  post_src_to_dst    prereleasetitle
 #
+# Grant information
+"_pdbx_audit_support.country"          'Suppressed'      post_src_to_dst    prereleasetitle
+"_pdbx_audit_support.details"          'Suppressed'      post_src_to_dst    prereleasetitle
+"_pdbx_audit_support.funding_organization" 'Suppressed'  post_src_to_dst    prereleasetitle
+"_pdbx_audit_support.grant_number"     'Suppressed'      post_src_to_dst    prereleasetitle
+#
 # Molecule names, ec & weights
 "_entity.formula_weight"               1                 post_src_to_dst    prereleasetitle
 "_entity.pdbx_description"             Suppressed        post_src_to_dst    prereleasetitle

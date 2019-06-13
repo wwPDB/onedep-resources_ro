@@ -111,6 +111,9 @@ rcsb_status                  recvd_nmr_constraints          char     0 0 1     0
 rcsb_status                  recvd_chemical_shifts          char     0 0 1     0 Y 
 rcsb_status                  methods_development_category   char     0 0 20    0 Y 
 rcsb_status                  pdb_format_compatible          char     0 0 2     0 Y 
+rcsb_status                  post_rel_status                char     0 0 10    0 Y 
+rcsb_status                  post_rel_recvd_coord           char     0 0 1     0 Y 
+rcsb_status                  post_rel_recvd_coord_date      date     0 0 19    0 Y 
 pdbx_contact_author          Structure_ID                   char     1 1 15    0 Y 
 pdbx_contact_author          name_salutation                char     0 0 15    0 Y 
 pdbx_contact_author          name_first                     char     0 0 60    0 Y 
@@ -404,6 +407,9 @@ rcsb_status                  recvd_nmr_constraints          3 1 1
 rcsb_status                  recvd_chemical_shifts          3 1 1 
 rcsb_status                  methods_development_category   3 1 1 
 rcsb_status                  pdb_format_compatible          3 1 1 
+rcsb_status                  post_rel_status                3 1 1 
+rcsb_status                  post_rel_recvd_coord           3 1 1
+rcsb_status                  post_rel_recvd_coord_date      7 1 1 
 pdbx_contact_author          Structure_ID                   3 1 1 
 pdbx_contact_author          name_salutation                3 1 1 
 pdbx_contact_author          name_first                     5 1 1 
@@ -712,6 +718,10 @@ rcsb_status                  recvd_nmr_constraints          '_pdbx_database_stat
 rcsb_status                  recvd_chemical_shifts          '_pdbx_database_status.recvd_chemical_shifts'          ?  ?                       
 rcsb_status                  methods_development_category   '_pdbx_database_status.methods_development_category'   ?  ?                       
 rcsb_status                  pdb_format_compatible          '_pdbx_database_status.pdb_format_compatible'          ?  ?                       
+rcsb_status                  post_rel_status                '_pdbx_database_status.post_rel_status'                 ?  ?
+rcsb_status                  post_rel_recvd_coord           '_pdbx_database_status.post_rel_recvd_coord'              ?  ?
+rcsb_status                  post_rel_recvd_coord_date      '_pdbx_database_status.post_rel_recvd_coord_date'      ?  'datecnv(sybase)'
+
 pdbx_contact_author          Structure_ID                   ?                                                      ?  'datablockid()'         
 pdbx_contact_author          name_salutation                '_pdbx_contact_author.name_salutation'                 ?  ?                       
 pdbx_contact_author          name_first                     '_pdbx_contact_author.name_first'                      ?  ?                       
