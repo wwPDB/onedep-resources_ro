@@ -16,6 +16,7 @@ _pdbx_dict_item_mapping.item_name_dst
 _pdbx_dict_item_mapping.map_target
 _pdbx_dict_item_mapping.map_type
 "_entry.id"                                                  "_entry.id"                                                               src_to_dst  as_item
+"_entry.pdbx_DOI"                                            "_entry.pdbx_DOI"                                                         src_to_dst  as_item
 "_em_3d_fitting_list.3d_fitting_id"                          "_emd_modelling_initial_model.emd_modelling_id"                           src_to_dst  as_key
 "_em_3d_fitting_list.id"                                     "_emd_modelling_initial_model.id"                                         src_to_dst  as_key
 "_em_3d_fitting_list.details"                                "_emd_modelling_initial_model.details"                                    src_to_dst  as_item
