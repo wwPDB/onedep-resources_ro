@@ -15,13 +15,15 @@ _pdbx_dict_item_mapping.item_name_src
 _pdbx_dict_item_mapping.item_name_dst
 _pdbx_dict_item_mapping.map_target
 _pdbx_dict_item_mapping.map_type
+"_entry.id"                                                  "_entry.id"                                                               src_to_dst  as_item
+"_entry.pdbx_DOI"                                            "_entry.pdbx_DOI"                                                         src_to_dst  as_item
 "_em_3d_fitting_list.3d_fitting_id"                          "_emd_modelling_initial_model.emd_modelling_id"                           src_to_dst  as_key
 "_em_3d_fitting_list.id"                                     "_emd_modelling_initial_model.id"                                         src_to_dst  as_key
 "_em_3d_fitting_list.details"                                "_emd_modelling_initial_model.details"                                    src_to_dst  as_item
 "_em_3d_fitting_list.pdb_chain_id"                           "_emd_modelling_initial_model.pdb_chain_id"                               src_to_dst  as_item
 "_em_3d_fitting_list.pdb_chain_residue_range"                "_emd_modelling_initial_model.pdb_chain_residue_range"                    src_to_dst  as_item
 "_em_3d_fitting_list.pdb_entry_id"                           "_emd_modelling_initial_model.pdb_id"                                     src_to_dst  as_item
-"_em_3d_fitting.entry_id"                                    "_entry.id"                                                               src_to_src  from_parent
+"_em_3d_fitting.entry_id"                                    "_entry.id"                                                               src_to_dst  as_item
 "_em_3d_fitting.id"                                          "_emd_modelling.id"                                                       src_to_dst  as_key
 "_em_3d_fitting.details"                                     "_emd_modelling.details"                                                  src_to_dst  as_item
 "_em_3d_fitting.overall_b_value"                             "_emd_modelling.overall_b_value"                                           src_to_dst  as_item
@@ -30,7 +32,7 @@ _pdbx_dict_item_mapping.map_type
 "_em_3d_fitting.ref_space"                                   "_emd_modelling.ref_space"                                                src_to_dst  as_item
 "_em_3d_fitting.software_name"                                ?                                                                         src_to_dst  as_item
 "_em_3d_fitting.target_criteria"                             "_emd_modelling.target_criteria"                                           src_to_dst  as_item
-"_em_3d_reconstruction.entry_id"                             "_entry.id"                                                               src_to_src  from_parent
+"_em_3d_reconstruction.entry_id"                             "_entry.id"                                                               src_to_dst  as_item
 "_em_3d_reconstruction.id"                                   "_emd_final_reconstruction.id"                                            src_to_dst  as_key
 "_em_3d_reconstruction.algorithm"                            "_emd_final_reconstruction.algorithm"                                     src_to_dst  as_item
 "_em_3d_reconstruction.details"                              "_emd_final_reconstruction.details"                                       src_to_dst  as_item
@@ -79,7 +81,7 @@ _pdbx_dict_item_mapping.map_type
 "_em_entity_assembly.oligomeric_details"                      ?                                                                         src_to_dst  as_item
 "_em_entity_assembly.synonym"                                 ?                                                                         src_to_dst  as_item
 "_em_entity_assembly.entity_id_list"                         "_emd_supramolecule.entity_id_list"                                       src_to_dst  as_item
-"_em_experiment.entry_id"                                    "_entry.id"                                                               src_to_src  from_parent
+"_em_experiment.entry_id"                                    "_entry.id"                                                               src_to_dst  as_item
 "_em_experiment.id"                                          "_emd_structure_determination.id"                                         src_to_dst  as_key
 "_em_experiment.aggregation_state"                           "_emd_structure_determination.aggregation_state"                          src_to_dst  as_item
 "_em_experiment.reconstruction_method"                       "_emd_structure_determination.method"                                     src_to_dst  as_item
@@ -94,7 +96,7 @@ _pdbx_dict_item_mapping.map_type
 "_em_helical_entity.axial_symmetry"                          "_emd_helical_parameters.axial_symmetry"                                  src_to_dst  as_item
 "_em_helical_entity.details"                                  ?                                                                         src_to_dst  as_item
 "_em_helical_entity.hand"                                     ?                                                                         src_to_dst  as_item
-"_em_image_scans.entry_id"                                   "_entry.id"                                                               src_to_src  from_parent
+"_em_image_scans.entry_id"                                   "_entry.id"                                                               src_to_dst  as_item
 "_em_image_scans.id"                                         "_emd_image_digitization.id"                                              src_to_dst  as_keys
 "_em_image_scans.dimension_height"                           "_emd_image_digitization.dimension_height"                                src_to_dst  as_item
 "_em_image_scans.dimension_width"                            "_emd_image_digitization.dimension_width"                                 src_to_dst  as_item
@@ -109,7 +111,7 @@ _pdbx_dict_item_mapping.map_type
 "_em_image_scans.od_range"                                    ?                                                                         src_to_dst  as_item
 "_em_image_scans.quant_bit_size"                              ?                                                                         src_to_dst  as_item
 "_em_imaging.id"                                             "_emd_microscopy.id"                                                      src_to_dst  as_key
-"_em_imaging.entry_id"                                       "_entry.id"                                                               src_to_src  from_parent
+"_em_imaging.entry_id"                                       "_entry.id"                                                               src_to_dst  as_item
 "_em_imaging.accelerating_voltage"                           "_emd_microscopy.acceleration_voltage"                                    src_to_dst  as_item
 "_em_imaging.alignment_procedure"                            "_emd_microscopy.alignment_procedure"                                     src_to_dst  as_item
 "_em_imaging.c2_aperture_diameter"                           "_emd_microscopy.c2_aperture_diameter"                                    src_to_dst  as_item
@@ -157,7 +159,7 @@ _pdbx_dict_item_mapping.map_type
 "_em_sample_support.film_material"                            ?                                                                         src_to_dst  as_item
 "_em_sample_support.method"                                   ?                                                                         src_to_dst  as_item
 "_em_sample_support.pretreatment"                             ?                                                                         src_to_dst  as_item
-"_em_single_particle_entity.entry_id"                        "_entry.id"                                                               src_to_src  from_parent
+"_em_single_particle_entity.entry_id"                        "_entry.id"                                                               src_to_dst  as_item
 "_em_single_particle_entity.id"                              "_emd_symmetry_point.id"                                                  src_to_dst  as_key
 "_em_single_particle_entity.image_processing_id"             "_emd_symmetry_point.emd_image_processing_id"                             src_to_dst  as_item
 "_em_single_particle_entity.point_symmetry"                  "_emd_symmetry_point.group"                                               src_to_dst  as_item
@@ -180,7 +182,7 @@ _pdbx_dict_item_mapping.map_type
 "_em_vitrification.humidity"                                 "_emd_vitrification.chamber_humidity"                                     src_to_dst  as_item
 "_em_vitrification.instrument"                               "_emd_vitrification.instrument"                                           src_to_dst  as_item
 "_em_vitrification.citation_id"                               ?                                                                         src_to_dst  as_item
-"_em_vitrification.entry_id"                                 "_entry.id"                                                               src_to_src  from_parent
+"_em_vitrification.entry_id"                                 "_entry.id"                                                               src_to_dst  as_item
 "_em_vitrification.method"                                    ?                                                                         src_to_dst  as_item
 "_em_vitrification.sample_preparation_id"                     ?                                                                         src_to_dst  as_item
 "_em_vitrification.temp"                                      ?                                                                         src_to_dst  as_item
@@ -275,7 +277,7 @@ _pdbx_dict_item_mapping.map_type
 "_em_imaging_optics.energyfilter_slit_width"                 "_emd_specialist_optics.energyfilter_slit_width"                          src_to_dst  as_item
 "_em_imaging_optics.phase_plate"                             "_emd_specialist_optics.phase_plate"                                      src_to_dst  as_item
 "_em_imaging_optics.sph_aberration_corrector"                "_emd_specialist_optics.sph_aberration_corrector"                         src_to_dst  as_item
-"_em_map.entry_id"                                           "_entry.id"                                                               src_to_src  from_parent
+"_em_map.entry_id"                                           "_entry.id"                                                               src_to_dst  as_item
 "_em_map.id"                                                 "_emd_map.id"                                                             src_to_dst  as_key
 "_em_map.annotation_details"                                 "_emd_map.annotation_details"                                             src_to_dst  as_item
 "_em_map.axis_order_fast"                                    "_emd_map.axis_order_fast"                                                src_to_dst  as_item
