@@ -2905,6 +2905,13 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-str</contentType>
+            <fileFormat>nmr-star</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
      </inputList>
 
      <outputList>
@@ -2949,6 +2956,13 @@
             <dataReferenceType>file</dataReferenceType>
             <contentType>model</contentType>
             <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-str</contentType>
+            <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
