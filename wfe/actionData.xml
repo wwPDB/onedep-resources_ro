@@ -21,6 +21,7 @@
                20-Jan-2017  ep   add assembly-auth-depinfo for depositor author assembly processing
 	       15-Feb-2017  ep   add combine-ligand-of-interest for binding assay processing
                10-May-2018  ep   add val-report-all-annv2
+	       19-Jun-2018  ep   add auto-mapfix
   -->
 <actionList version="0.01">
   <action name="copy">
@@ -4166,6 +4167,41 @@
      </internalParameters>
      <moduleName>wwpdb.utils.wf.plugins.EmUtils</moduleName>
      <methodName>mapFixInPlaceCfgOp</methodName>
+  </action>
+ 
+  <!-- This is an unsual WF - it updates model/map in place if needed  -->
+  <action name="auto-mapfix">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="sessdir">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType></contentType>
+            <fileFormat></fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
+     <methodName>em3dAutoMapFixOp</methodName>
   </action>
   <!-- comment  -->
 </actionList>
