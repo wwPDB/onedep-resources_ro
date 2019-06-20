@@ -2937,6 +2937,13 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+        <wfDataObject name="dst4">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
      </outputList>
      <userParameters/>
      <internalParameters/>
