@@ -35,11 +35,11 @@
                 <wf:description>NMR unified data file: NMR-STAR V3.2 (next version)</wf:description>
                 <wf:location where="deposit" content="nmr-unified-data-str" format="nmr-star" version="next" />
             </wf:dataObject>
-            <wf:dataObject dataID="D7" name="nef-deposit-log" type="string" container="list" mutable="true" >
+            <wf:dataObject dataID="D7" name="nmr-nef-deposit-log" type="string" container="list" mutable="true" >
                 <wf:description>NEF deposit log (next version)</wf:description>
                 <wf:location where="deposit" content="nmr-unified-data-report" format="json" version="next" />
             </wf:dataObject>
-            <wf:dataObject dataID="D8" name="str-deposit-log" type="string" container="list" mutable="true" >
+            <wf:dataObject dataID="D8" name="nmr-str-deposit-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR-STAR V3.2 deposit log (next version)</wf:description>
                 <wf:location where="deposit" content="nmr-unified-data-report" format="json" version="next" />
             </wf:dataObject>
