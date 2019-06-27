@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.0" author="my" date="06-20-2019" id="NMR_STR2STR_TDEP" name="wf_op_nmr_str2str_fs_tempdep.xml"/>
+        <wf:version major="1.0" author="my" date="06-27-2019" id="NMR_STR2STR_TDEP" name="wf_op_nmr_str2str_fs_tempdep.xml"/>
         <wf:description>
             <wf:short>Convert NMR-STAR V3.2 to NMR-STAR V3.2 (tempdep)</wf:short>
             <wf:subtext>Deposition system file conversion workflow</wf:subtext>
@@ -20,12 +20,12 @@
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="nmr-str-consistency-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR-STAR V3.2 consistency log (next version)</wf:description>
-                <wf:location where="tempdep" content="nmr-unified-data-report" format="json" version="next" />
+                <wf:location where="tempdep" content="nmr-unified-data-str-report" format="json" version="next" />
             </wf:dataObject>
 
             <wf:dataObject dataID="D4" name="nmr-str-consistency-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR-STAR V3.2 consistency log (latest version)</wf:description>
-                <wf:location where="tempdep" content="nmr-unified-data-report" format="json" version="latest" />
+                <wf:location where="tempdep" content="nmr-unified-data-str-report" format="json" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D5" name="nmr-unified-data-str-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR unified data file: NMR-STAR V3.2 (next version)</wf:description>
@@ -33,7 +33,7 @@
             </wf:dataObject>
             <wf:dataObject dataID="D6" name="nmr-str-deposit-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR-STAR V3.2 deposit log (next version)</wf:description>
-                <wf:location where="tempdep" content="nmr-unified-data-report" format="json" version="next" />
+                <wf:location where="tempdep" content="nmr-unified-data-str-report" format="json" version="next" />
             </wf:dataObject>
 
         </wf:dataObjects>

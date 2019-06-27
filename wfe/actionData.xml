@@ -2845,7 +2845,7 @@
      <outputList>
          <wfDataObject name="dst">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-report</contentType>
+            <contentType>nmr-unified-data-nef-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2878,7 +2878,7 @@
      <outputList>
          <wfDataObject name="dst">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-report</contentType>
+            <contentType>nmr-unified-data-str-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2908,8 +2908,8 @@
          </wfDataObject>
          <wfDataObject name="src3">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str</contentType>
-            <fileFormat>nmr-star</fileFormat>
+            <contentType>nmr-unified-data-nef-report</contentType>
+            <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
@@ -2932,14 +2932,14 @@
          </wfDataObject>
          <wfDataObject name="dst3">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-report</contentType>
+            <contentType>nmr-unified-data-nef-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
         <wfDataObject name="dst4">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-report</contentType>
+            <contentType>nmr-unified-data-str-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2969,8 +2969,8 @@
          </wfDataObject>
          <wfDataObject name="src3">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str</contentType>
-            <fileFormat>nmr-star</fileFormat>
+            <contentType>nmr-unified-data-str-report</contentType>
+            <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
@@ -2986,7 +2986,7 @@
          </wfDataObject>
          <wfDataObject name="dst2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-report</contentType>
+            <contentType>nmr-unified-data-str-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
