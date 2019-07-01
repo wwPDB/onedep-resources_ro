@@ -16,7 +16,7 @@
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version)</wf:description>
-                <wf:location where="tempdep" content="model" format="pdbx" version="latest" />
+                <wf:location where="deposit" content="model" format="pdbx" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="nmr-str-consistency-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR-STAR V3.2 consistency log (next version)</wf:description>
