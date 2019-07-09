@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.0" author="my" date="06-27-2019" id="NMR_NEF2STR_TDEP" name="wf_op_nmr_nef2str_fs_tempdep.xml"/>
+        <wf:version major="1.0" author="my" date="07-09-2019" id="NMR_NEF2STR_TDEP" name="wf_op_nmr_nef2str_fs_tempdep.xml"/>
         <wf:description>
             <wf:short>Convert NEF to NMR-STAR V3.2 (tempdep)</wf:short>
             <wf:subtext>Deposition system file conversion workflow</wf:subtext>
@@ -18,6 +18,10 @@
                 <wf:description>PDBx format model data file (latest version)</wf:description>
                 <wf:location where="tempdep" content="model" format="pdbx" version="latest" />
             </wf:dataObject>
+            <wf:dataObject dataID="P2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
+                <wf:description>PDBx format model data file (latest version - deposit storage)</wf:description>
+                <wf:location where="deposit" content="model" format="pdbx" version="latest" />
+            </wf:dataObject>            
             <wf:dataObject dataID="D3" name="nmr-nef-consistency-log" type="string" container="list" mutable="true" >
                 <wf:description>NEF consistency log (next version)</wf:description>
                 <wf:location where="tempdep" content="nmr-unified-data-nef-report" format="json" version="next" />
@@ -60,6 +64,7 @@
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="input"/>
+                            <wf:location dataID="P2" type="input"/>
                             <wf:location dataID="D3" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
@@ -72,6 +77,7 @@
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="input"/>
+                            <wf:location dataID="P2" type="input"/>
                             <wf:location dataID="D4" type="input"/>
                             <wf:location dataID="D5" type="output"/>
                             <wf:location dataID="D6" type="output"/>

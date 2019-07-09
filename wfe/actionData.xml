@@ -2840,6 +2840,13 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <wfDataObject name="prc2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
      </inputList>
 
      <outputList>
@@ -2873,6 +2880,13 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <wfDataObject name="prc2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
      </inputList>
 
      <outputList>
@@ -2900,6 +2914,13 @@
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="prc2">
             <dataReferenceType>file</dataReferenceType>
             <contentType>model</contentType>
             <fileFormat>pdbx</fileFormat>
@@ -2961,6 +2982,13 @@
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="prc2">
             <dataReferenceType>file</dataReferenceType>
             <contentType>model</contentType>
             <fileFormat>pdbx</fileFormat>
