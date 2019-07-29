@@ -47,15 +47,9 @@
                 <wf:description>Copy of the archive data in instance latest</wf:description>
                 <wf:location where="wf-instance" content="nmr-chemical-shifts" format="pdbx"  version="latest" />
             </wf:dataObject>
-
             <wf:dataObject dataID="D71" name="archiveData" type="string" container="list" mutable="false">
                 <wf:description>Latest em volume in archive</wf:description>
                 <wf:location where="archive" content="em-volume" format="map"  version="latest" />
-            </wf:dataObject>
-
-            <wf:dataObject dataID="D100" name="EMInformationJSON" type="string" container="value" mutable="true">
-                <wf:description>Json containing the path to the primary map if model only, the contour level and a list of masks</wf:description>
-                <wf:location where="archive" content="em-validation-input-json" format="json" version="next"/>
             </wf:dataObject>
             <wf:dataObject dataID="D104" name="authorFSC" type="string" container="list" mutable="true">
                 <wf:description>The author provided FSC file</wf:description>
@@ -214,7 +208,7 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP3A" name="copyShiftsArchive" nextTask="TP50" breakpoint="false" exceptionID="EX0">
+                <wf:task taskID="TP3A" name="copyShiftsArchive" nextTask="TP7" breakpoint="false" exceptionID="EX0">
                     <wf:description>copy chemical shifts data from archive to instance </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
                         <wf:detail name="copyShiftsArchive" action="copy" where="api"/>

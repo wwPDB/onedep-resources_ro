@@ -40,10 +40,6 @@
                 <wf:description>Latest em volume in deposit area</wf:description>
                 <wf:location where="deposit" content="em-volume" format="map"  version="latest" />
             </wf:dataObject>
-            <wf:dataObject dataID="D100" name="EMInformationJSON" type="string" container="value" mutable="true">
-                <wf:description>Json containing the path to the primary map if model only, the contour level and a list of masks</wf:description>
-                <wf:location where="wf-instance" content="em-info-json" format="json" version="next"/>
-            </wf:dataObject>
             <wf:dataObject dataID="D104" name="authorFSC" type="string" container="list" mutable="true">
                 <wf:description>The author provided FSC file</wf:description>
                 <wf:location where="deposit" content="fsc-xml" format="xml" version="latest" partitionNumber="1"/>
@@ -147,7 +143,8 @@
                          <wf:location dataID="D24" type="input1"/>
                          <wf:location dataID="D44" type="input2"/>
                          <wf:location dataID="D61" type="input3"/>
-                         <wf:location dataID="D104" type="input4"/>
+                         <wf:location dataID="D71" type="input4"/>
+                         <wf:location dataID="D104" type="input5"/>
 
                          <wf:location dataID="D6"  type="output1"/>
                          <wf:location dataID="D7"  type="output2"/>
