@@ -1765,7 +1765,7 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-
+<!--
         <wfDataObject name="src4">
             <dataReferenceType>file</dataReferenceType>
             <contentType>em-volume</contentType>
@@ -1773,6 +1773,44 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+
+         <wfDataObject name="src5" description="contour_level">
+             <contentType></contentType>
+             <selectorType></selectorType>
+             <containerType>value</containerType>
+             <selectorType>string</selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="src6">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>em-half-volume</contentType>
+             <fileFormat>map</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="src7">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>em-half-volume</contentType>
+             <fileFormat>map</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src8">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>em-mask-volume</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src9">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>fsc</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
+         </wfDataObject>
+-->
      </inputList>
 
      <outputList>
@@ -1961,6 +1999,14 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <wfDataObject name="src5">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>fsc</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
+         </wfDataObject>
+
      </inputList>
 
      <outputList>
