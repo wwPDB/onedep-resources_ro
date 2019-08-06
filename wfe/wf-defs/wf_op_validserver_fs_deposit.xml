@@ -42,7 +42,7 @@
             </wf:dataObject>
             <wf:dataObject dataID="D104" name="authorFSC" type="string" container="list" mutable="true">
                 <wf:description>The author provided FSC file</wf:description>
-                <wf:location where="deposit" content="fsc-xml" format="xml" version="latest" partitionNumber="1"/>
+                <wf:location where="deposit" content="fsc" format="xml" version="latest" partitionNumber="1"/>
             </wf:dataObject>
 
             <wf:dataObject dataID="D6" name="instanceDataW" type="string" container="list" mutable="true" >
