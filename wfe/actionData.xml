@@ -2826,6 +2826,13 @@
 
   <action name="nmr-nef-consistency-check">
      <inputList>
+         <wfDataObject name="src0">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-config</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-unified-data-nef</contentType>
@@ -2866,6 +2873,13 @@
 
   <action name="nmr-str-consistency-check">
      <inputList>
+         <wfDataObject name="src0">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-config</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-unified-data-str</contentType>
@@ -2906,6 +2920,13 @@
 
   <action name="nmr-nef2str-deposit">
      <inputList>
+         <wfDataObject name="src0">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-config</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-unified-data-nef</contentType>
@@ -2974,6 +2995,13 @@
 
   <action name="nmr-str2str-deposit">
      <inputList>
+         <wfDataObject name="src0">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-config</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-unified-data-str</contentType>

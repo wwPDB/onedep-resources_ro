@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.0" author="my" date="07-09-2019" id="NMR_NEF2STR_DEP" name="wf_op_nmr_nef2str_fs_deposit.xml"/>
+        <wf:version major="1.0" author="my" date="08-23-2019" id="NMR_NEF2STR_DEP" name="wf_op_nmr_nef2str_fs_deposit.xml"/>
         <wf:description>
             <wf:short>Convert NEF to NMR-STAR V3.2 (deposit)</wf:short>
             <wf:subtext>Deposition system file conversion workflow</wf:subtext>
@@ -10,6 +10,10 @@
 
     <wf:workflow>
         <wf:dataObjects>
+        	<wf:dataObject dataID="C1" name="nmr-unified-data-config-file" type="string" container="list" mutable="true" >
+                <wf:description>NMR unified data configuration file</wf:description>
+                <wf:location where="tempdep" content="nmr-unified-data-config" format="json" version="latest" />
+            </wf:dataObject>
             <wf:dataObject dataID="D1" name="nmr-unified-data-nef-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR unified data file: NEF (latest version)</wf:description>
                 <wf:location where="deposit" content="nmr-unified-data-nef" format="nmr-star" version="latest" />
@@ -58,6 +62,7 @@
                     <wf:process runTime="00:00:10" failTime="00:05:20">
                         <wf:detail name="nmr-nef-consistency-check" action="nmr-nef-consistency-check" where="api"/>
                         <wf:dataObjectsLocation>
+                        	<wf:location dataID="C1" type="input"/>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="input"/>
                             <wf:location dataID="D2" type="input"/> <!-- dummy for compatibility -->
@@ -71,6 +76,7 @@
                     <wf:process runTime="00:00:10" failTime="00:05:20">
                         <wf:detail name="nmr-nef2str-deposit" action="nmr-nef2str-deposit" where="api"/>
                         <wf:dataObjectsLocation>
+                        	<wf:location dataID="C1" type="input"/>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="input"/>
                             <wf:location dataID="D2" type="input"/> <!-- dummy for compatibility -->
