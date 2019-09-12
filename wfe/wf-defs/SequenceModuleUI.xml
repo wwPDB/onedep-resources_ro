@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.51" author="tjo jdw" date="09-04-2015" id="SeqMod" name="SequenceModuleUI.xml"/>
+        <wf:version major="1.51" author="tjo jdw" date="09-04-2015" id="SeqModUI" name="SequenceModuleUI.xml"/>
         <wf:description>
             <wf:short>Sequence Module Workflow</wf:short>
             <wf:subtext>Sequence database search for all polymer entities followed by UI review</wf:subtext>
