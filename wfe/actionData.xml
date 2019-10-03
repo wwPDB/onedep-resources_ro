@@ -2600,40 +2600,6 @@
      <methodName>nmrstar2pdbxOp</methodName>
   </action>
 
-  <action name="pdbx2nmrstar">
-    <!--  obsolete  -->
-     <inputList>
-         <wfDataObject name="src">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-bmrb-entry</contentType>
-            <fileFormat>pdbx</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-     </inputList>
-
-
-     <outputList>
-         <wfDataObject name="dst">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>model</contentType>
-            <fileFormat>nmr-star</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-
-     </outputList>
-
-     <userParameters>
-           <parameter name="data_set_id">UNASSIGNED</parameter>
-     </userParameters>
-
-     <internalParameters>
-     </internalParameters>
-     <moduleName>wwpdb.utils.wf.plugins.FormatUtils</moduleName>
-     <methodName>pdbx2nmrstarOp</methodName>
-  </action>
-
   <action name="pdbx2nmrstar-annot">
      <inputList>
          <wfDataObject name="src">
@@ -2753,41 +2719,6 @@
      <methodName>autoChemShiftProcessOp</methodName>
   </action>
 
-
-  <action name="cs-format-check2">
-     <inputList>
-         <wfDataObject name="src">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-bmrb-entry</contentType>
-            <fileFormat>nmr-star</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-     </inputList>
-     <outputList>
-         <wfDataObject name="dst1">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-cs-check-report</contentType>
-            <fileFormat>html</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="dst2">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-chemical-shifts</contentType>
-            <fileFormat>nmr-star</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-     </outputList>
-     <userParameters>
-     </userParameters>
-     <internalParameters>
-     </internalParameters>
-     <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
-     <methodName>formatCheckCsOp</methodName>
-  </action>
-
   <action name="cs-format-check">
      <inputList>
          <wfDataObject name="src">
@@ -2820,41 +2751,6 @@
      </internalParameters>
      <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
      <methodName>formatCheckCsOp</methodName>
-  </action>
-
-  <action name="cs-xyz-format-check">
-     <inputList>
-         <wfDataObject name="src1">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-chemical-shifts</contentType>
-            <fileFormat>nmr-star</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-
-         <wfDataObject name="src2">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>model</contentType>
-            <fileFormat>pdbx</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-     </inputList>
-     <outputList>
-         <wfDataObject name="dst">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-cs-xyz-check-report</contentType>
-            <fileFormat>html</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-     </outputList>
-     <userParameters>
-     </userParameters>
-     <internalParameters>
-     </internalParameters>
-     <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
-     <methodName>formatCheckCsXyzOp</methodName>
   </action>
 
   <action name="nmr-nef-consistency-check">
