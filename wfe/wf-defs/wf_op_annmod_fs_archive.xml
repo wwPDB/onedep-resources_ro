@@ -211,7 +211,7 @@
                 <wf:task taskID="TP2" name="copyArchive" nextTask="TP2A" breakpoint="false" exceptionID="EX0" reference="copy">
                     <wf:description>copy PDBx data from archive to instance </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
-                        <wf:detail name="copyToArchive" action="copy" where="api"/>
+                        <wf:detail name="copyToArchive" action="copy-if-exists" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="output"/>
@@ -222,7 +222,7 @@
                 <wf:task taskID="TP2A" name="copyShiftsArchive" nextTask="TP2B" breakpoint="false" exceptionID="EX0" reference="copy">
                     <wf:description>copy PDBx data from archive to instance </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
-                        <wf:detail name="copyToArchive" action="copy" where="api"/>
+                        <wf:detail name="copyToArchive" action="copy-if-exists" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
                             <wf:location dataID="D7" type="output"/>
@@ -464,7 +464,7 @@
                 <wf:task taskID="TP29" name="copyLetterToArchive" nextTask="TP19" breakpoint="false" exceptionID="EX4" reference="copy">
                     <wf:description>Put the correspondence letter back to archive</wf:description>
                     <wf:process runTime="00:00:04" failTime="00:05:20">
-                        <wf:detail name="copyLetterToArchive" action="copy" where="api"/>
+                        <wf:detail name="copyLetterToArchive" action="copy-if-exists" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D53" type="input"/>
                             <wf:location dataID="D54" type="output"/>

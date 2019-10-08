@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.51" author="tjo jdw" date="09-04-2015" id="LigMod" name="LigandModuleUI.xml"/>
+        <wf:version major="1.51" author="tjo jdw" date="09-04-2015" id="LigModUI" name="LigandModuleUI.xml"/>
         <wf:description>
             <wf:short>Ligand annotation module</wf:short>
             <wf:subtext>This is the ligand module that looks for cross references : FORCED UI</wf:subtext>

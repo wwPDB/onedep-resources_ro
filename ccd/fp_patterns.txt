@@ -1,0 +1,983 @@
+#
+#              SMARTS Patterns for Functional Group Classification 
+#
+#              written by Christian Laggner 
+#              Copyright 2005 Inte:Ligand Software-Entwicklungs und Consulting GmbH
+#
+#              Released under the Lesser General Public License (LGPL license)
+#              see http://www.gnu.org/copyleft/lesser.html
+#              Modified from Version 221105
+#####################################################################################################
+
+# General Stuff:
+# These patters were written in an attempt to represent the classification of organic compounds 
+# from the viewpoint of an organic chemist.
+# They are often very restrictive. This may be generally a good thing, but it also takes some time
+# for filtering/indexing large compound sets. 
+# For filtering undesired groups (in druglike compounds) one will want to have more general patterns 
+# (e.g. you don't want *any* halide of *any* acid, *neither* aldehyde *nor* formyl esters and amides, ...). 
+#
+
+# Part I: Carbon 
+# ==============
+
+
+# I.1: Carbon-Carbon Bonds
+# ------------------------
+
+# I.1.1 Alkanes:
+
+[CX4H3][#6] Primary_carbon
+
+[CX4H2]([#6])[#6] Secondary_carbon
+
+[CX4H1]([#6])([#6])[#6] Tertiary_carbon
+
+[CX4]([#6])([#6])([#6])[#6] Quaternary_carbon
+
+
+# I.1.2 C-C double and Triple Bonds
+
+[CX3;$([H2]),$([H1][#6]),$(C([#6])[#6])]=[CX3;$([H2]),$([H1][#6]),$(C([#6])[#6])] Alkene
+# sp2 C may be substituted only by C or H - 
+# does not hit ketenes and allenes, nor enamines, enols and the like
+
+[CX2]#[CX2] Alkyne
+# non-carbon substituents (e.g. alkynol ethers) are rather rare, thus no further discrimination
+
+[CX3]=[CX2]=[CX3] Allene
+
+
+# I.2: One Carbon-Hetero Bond
+# ---------------------------
+
+
+# I.2.1 Alkyl Halogenides
+
+[ClX1][CX4] Alkylchloride
+# will also hit chloromethylethers and the like, but no chloroalkenes, -alkynes or -aromats 
+# a more restrictive version can be obtained by modifying the Alcohol string.
+
+[FX1][CX4] Alkylfluoride
+
+[BrX1][CX4] Alkylbromide
+
+[IX1][CX4] Alkyliodide
+
+
+# I.2.2 Alcohols and Ethers
+
+[OX2H][CX4;!$(C([OX2H])[O,S,#7,#15])] Alcohol
+# nonspecific definition, no acetals, aminals, and the like
+
+[OX2H][CX4H2;!$(C([OX2H])[O,S,#7,#15])] Primary_alcohol
+
+[OX2H][CX4H;!$(C([OX2H])[O,S,#7,#15])] Secondary_alcohol
+
+[OX2H][CX4D4;!$(C([OX2H])[O,S,#7,#15])] Tertiary_alcohol
+
+[OX2]([CX4;!$(C([OX2])[O,S,#7,#15,F,Cl,Br,I])])[CX4;!$(C([OX2])[O,S,#7,#15])] Dialkylether
+# no acetals and the like; no enolethers
+
+[SX2]([CX4;!$(C([OX2])[O,S,#7,#15,F,Cl,Br,I])])[CX4;!$(C([OX2])[O,S,#7,#15])] Dialkylthioether
+# no acetals and the like; no enolethers
+
+[OX2](c)[CX4;!$(C([OX2])[O,S,#7,#15,F,Cl,Br,I])] Alkylarylether
+# no acetals and the like; no enolethers
+
+[c][OX2][c] Diarylether
+
+[SX2](c)[CX4;!$(C([OX2])[O,S,#7,#15,F,Cl,Br,I])] Alkylarylthioether
+
+[c][SX2][c] Diarylthioether
+
+[O+;!$([O]~[!#6]);!$([S]*~[#7,#8,#15,#16])] Oxonium
+# can't be aromatic, thus O and not #8
+
+# I.2.3 Amines
+
+[NX3+0,NX4+;!$([N]~[!#6]);!$([N]*~[#7,#8,#15,#16])] Amine
+# hits all amines (prim/sec/tert/quart), including ammonium salts, also enamines, but not amides, imides, aminals, ...
+
+# the following amines include also the protonated forms 
+
+[NX3H2+0,NX4H3+;!$([N][!C]);!$([N]*~[#7,#8,#15,#16])] Primary_aliph_amine
+
+[NX3H1+0,NX4H2+;!$([N][!C]);!$([N]*~[#7,#8,#15,#16])] Secondary_aliph_amine
+
+[NX3H0+0,NX4H1+;!$([N][!C]);!$([N]*~[#7,#8,#15,#16])] Tertiary_aliph_amine
+
+[NX4H0+;!$([N][!C]);!$([N]*~[#7,#8,#15,#16])] Quaternary_aliph_ammonium
+
+[NX3H2+0,NX4H3+]c Primary_arom_amine
+
+[NX3H1+0,NX4H2+;!$([N][!c]);!$([N]*~[#7,#8,#15,#16])] Secondary_arom_amine
+
+[NX3H0+0,NX4H1+;!$([N][!c]);!$([N]*~[#7,#8,#15,#16])] Tertiary_arom_amine
+
+[NX4H0+;!$([N][!c]);!$([N]*~[#7,#8,#15,#16])] Quaternary_arom_ammonium
+
+[NX3H1+0,NX4H2+;$([N]([c])[C]);!$([N]*~[#7,#8,#15,#16])] Secondary_mixed_amine
+
+[NX3H0+0,NX4H1+;$([N]([c])([C])[#6]);!$([N]*~[#7,#8,#15,#16])] Tertiary_mixed_amine
+
+[NX4H0+;$([N]([c])([C])[#6][#6]);!$([N]*~[#7,#8,#15,#16])] Quaternary_mixed_ammonium
+
+[N+;!$([N]~[!#6]);!$(N=*);!$([N]*~[#7,#8,#15,#16])] Ammonium
+# only C and H substituents allowed. Quaternary or protonated amines
+# NX4+ or Nv4+ is not recognized by Daylight's depictmatch if less than four C are present
+
+
+# I.2.4 Others
+
+[SX2H][CX4;!$(C([SX2H])~[O,S,#7,#15])] Alkylthiol
+
+[SX2]([CX4;!$(C([SX2])[O,S,#7,#15,F,Cl,Br,I])])[CX4;!$(C([SX2])[O,S,#7,#15])] Dialkylthioether
+
+[SX2](c)[CX4;!$(C([SX2])[O,S,#7,#15])] Alkylarylthioether
+
+[SX2D2][SX2D2] Disulfide
+
+[OX2H][CX4;!$(C([OX2H])[O,S,#7,#15,F,Cl,Br,I])][CX4;!$(C([N])[O,S,#7,#15])][NX3;!$(NC=[O,S,N])] 1,2-Aminoalcohol
+# does not hit alpha-amino acids, enaminoalcohols, 1,2-aminoacetals, o-aminophenols, etc.
+
+[OX2H][CX4;!$(C([OX2H])[O,S,#7,#15])][CX4;!$(C([OX2H])[O,S,#7,#15])][OX2H] 1,2-Diol
+# does not hit alpha-hydroxy acids, enolalcohols, 1,2-hydroxyacetals, 1,2-diphenols, etc.
+
+[OX2H][CX4;!$(C([OX2H])([OX2H])[O,S,#7,#15])][OX2H] 1,1-Diol
+
+[OX2H][OX2] Hydroperoxide
+#does not neccessarily have to be connected to a carbon atom, includes also hydrotrioxides
+
+[OX2D2][OX2D2] Peroxo
+
+[LiX1][#6,#14] Organolithium_compounds
+
+[MgX2][#6,#14] Organomagnesium_compounds
+# not restricted to Grignard compounds, also dialkyl Mg
+
+[!#1;!#5;!#6;!#7;!#8;!#9;!#14;!#15;!#16;!#17;!#33;!#34;!#35;!#52;!#53;!#85]~[#6;!-] Organometallic_compounds
+# very general, includes all metals covalently bound to carbon 
+
+
+# I.3: Two Carbon-Hetero Bonds (Carbonyl and Derivatives)
+# ----------------------------
+
+# I.3.1 Double Bond to Hetero
+
+[$([CX3H][#6]),$([CX3H2])]=[OX1] Aldehyde
+# hits aldehydes including formaldehyde
+
+[#6][CX3](=[OX1])[#6] Ketone
+# does not include oxo-groups connected to a (hetero-) aromatic ring
+
+[$([CX3H][#6]),$([CX3H2])]=[SX1] Thioaldehyde
+
+[#6][CX3](=[SX1])[#6] Thioketone
+# does not include thioxo-groups connected to a (hetero-) aromatic ring
+
+[NX2;$([N][#6]),$([NH]);!$([N][CX3]=[#7,#8,#15,#16])]=[CX3;$([CH2]),$([CH][#6]),$([C]([#6])[#6])] Imine
+# nitrogen is not part of an amidelike strukture, nor of an aromatic ring, but can be part of an aminal or similar
+
+[NX3+;!$([N][!#6]);!$([N][CX3]=[#7,#8,#15,#16])] Immonium
+
+[NX2](=[CX3;$([CH2]),$([CH][#6]),$([C]([#6])[#6])])[OX2H] Oxime
+
+[NX2](=[CX3;$([CH2]),$([CH][#6]),$([C]([#6])[#6])])[OX2][#6;!$(C=[#7,#8])] Oximether
+# ether, not ester or amide; does not hit isoxazole
+
+
+# I.3.2. Two Single Bonds to Hetero
+
+[OX2]([#6;!$(C=[O,S,N])])[CX4;!$(C(O)(O)[!#6])][OX2][#6;!$(C=[O,S,N])] Acetal
+# does not hit hydroxy-methylesters, ketenacetals, hemiacetals, orthoesters, etc.
+
+[OX2H][CX4;!$(C(O)(O)[!#6])][OX2][#6;!$(C=[O,S,N])] Hemiacetal
+
+[NX3v3;!$(NC=[#7,#8,#15,#16])]([#6])[CX4;!$(C(N)(N)[!#6])][NX3v3;!$(NC=[#7,#8,#15,#16])][#6] Aminal
+# Ns are not part of an amide or similar. v3 ist to exclude nitro and similar groups
+
+[NX3v3;!$(NC=[#7,#8,#15,#16])]([#6])[CX4;!$(C(N)(N)[!#6])][OX2H] Hemiaminal
+
+[SX2]([#6;!$(C=[O,S,N])])[CX4;!$(C(S)(S)[!#6])][SX2][#6;!$(C=[O,S,N])] Thioacetal
+
+[SX2]([#6;!$(C=[O,S,N])])[CX4;!$(C(S)(S)[!#6])][OX2H] Thiohemiacetal
+
+[NX3v3,SX2,OX2;!$(*C=[#7,#8,#15,#16])][CX4;!$(C([N,S,O])([N,S,O])[!#6])][FX1,ClX1,BrX1,IX1] Halogen_acetal_like
+# hits chloromethylenethers and other reactive alkylating agents
+
+[NX3v3,SX2,OX2;!$(*C=[#7,#8,#15,#16])][CX4;!$(C([N,S,O])([N,S,O])[!#6])][FX1,ClX1,BrX1,IX1,NX3v3,SX2,OX2;!$(*C=[#7,#8,#15,#16])] Acetal_like
+# includes all of the above and other combinations (S-C-N, hydrates, ...), but still no aminomethylenesters and similar
+
+[NX3v3,SX2,OX2;$(**=[#7,#8,#15,#16])][CX4;!$(C([N,S,O])([N,S,O])[!#6])][FX1,ClX1,BrX1,IX1] Halogenmethylen_ester_and_similar
+# also reactive alkylating agents. Acid does not have to be carboxylic acid, also S- and P-based acids allowed
+
+[NX3v3,SX2,OX2;$(**=[#7,#8,#15,#16])][CX4;!$(C([N,S,O])([N,S,O])[!#6])][NX3v3,SX2,OX2;!$(*C=[#7,#8,#15,#16])] NOS_methylen_ester_and_similar
+# Same as above, but N,O or S instead of halogen. Ester/amide allowed only on one side 
+
+[NX3v3,SX2,OX2;$(**=[#7,#8,#15,#16])][CX4;!$(C([N,S,O])([N,S,O])[!#6])][FX1,ClX1,BrX1,IX1,NX3v3,SX2,OX2;!$(*C=[#7,#8,#15,#16])] Hetero_methylen_ester_and_similar
+# Combination of the last two patterns
+
+[NX1]#[CX2][CX4;$([CH2]),$([CH]([CX2])[#6]),$(C([CX2])([#6])[#6])][OX2H] Cyanhydrine
+
+
+# I.3.3 Single Bond to Hetero, C=C Double Bond (Enols and Similar)
+
+[ClX1][CX3]=[CX3] Chloroalkene
+
+[FX1][CX3]=[CX3] Fluoroalkene
+
+[BrX1][CX3]=[CX3] Bromoalkene
+
+[IX1][CX3]=[CX3] Iodoalkene
+
+[OX2H][CX3;$([H1]),$(C[#6])]=[CX3] Enol
+# no phenols
+
+[OX2H][CX3;$([H1]),$(C[#6])]=[CX3;$([H1]),$(C[#6])][OX2H] Endiol
+# no 1,2-diphenols, ketenacetals, ...
+
+[OX2]([#6;!$(C=[N,O,S])])[CX3;$([H0][#6]),$([H1])]=[CX3] Enolether
+# finds also endiodiethers, but not enolesters, no aromats
+
+[OX2]([CX3]=[OX1])[#6X3;$([#6][#6]),$([H1])]=[#6X3;!$(C[OX2H])] Enolester
+
+
+[NX3;$([NH2][CX3]),$([NH1]([CX3])[#6]),$([N]([CX3])([#6])[#6]);!$([N]*=[#7,#8,#15,#16])][CX3;$([CH]),$([C][#6])]=[CX3] Enamine
+# does not hit amines attached to aromatic rings, nor may the nitrogen be aromatic
+
+[SX2H][CX3;$([H1]),$(C[#6])]=[CX3] Thioenol
+
+[SX2]([#6;!$(C=[N,O,S])])[CX3;$(C[#6]),$([CH])]=[CX3] Thioenolether
+
+
+# I.4: Three Carbon-Hetero Bonds (Carboxyl and Derivatives)
+# ------------------------------
+
+[CX3;$([R0][#6]),$([H1R0])](=[OX1])[ClX1] Acylchloride
+
+[CX3;$([R0][#6]),$([H1R0])](=[OX1])[FX1] Acylfluoride
+
+[CX3;$([R0][#6]),$([H1R0])](=[OX1])[BrX1] Acylbromide
+
+[CX3;$([R0][#6]),$([H1R0])](=[OX1])[IX1] Acyliodide
+
+[CX3;$([R0][#6]),$([H1R0])](=[OX1])[FX1,ClX1,BrX1,IX1] Acylhalide
+# all of the above
+
+
+# The following contains all simple carboxylic combinations of O, N, S, & Hal -
+# - acids, esters, amides, ... as well as a few extra cases (anhydride, hydrazide...)
+# Cyclic structures (including aromats) like lactones, lactames, ... got their own  
+# definitions. Structures where both heteroatoms are part of an aromatic ring  
+# (oxazoles, imidazoles, ...) were excluded.
+
+[CX3;$([R0][#6]),$([H1R0])](=[OX1])[$([OX2H]),$([OX1-])] Carboxylic_acid
+# includes carboxylate anions
+
+ Carboxylic_ester
+# does not hit anhydrides or lactones
+
+[#6][#6X3R](=[OX1])[#8X2][#6;!$(C=[O,N,S])] Lactone
+# may also be aromatic
+
+[CX3;$([H0][#6]),$([H1])](=[OX1])[#8X2][CX3;$([H0][#6]),$([H1])](=[OX1]) Carboxylic_anhydride
+# anhydride formed by two carboxylic acids, no mixed anhydrides (e.g. between carboxylic acid and sulfuric acid); may be part of a ring, even aromatic
+
+[$([#6X3H0][#6]),$([#6X3H])](=[!#6])[!#6] Carboxylic_acid_derivative
+# includes most of the structures of I.4 and many more, also 1,3-heteroaromatics such as isoxazole
+
+[CX3;!R;$([C][#6]),$([CH]);$([C](=[OX1])[$([SX2H]),$([SX1-])]),$([C](=[SX1])[$([OX2H]),$([OX1-])])] Carbothioic_acid
+# hits both tautomeric forms, as well as anions
+
+[CX3;$([R0][#6]),$([H1R0])](=[OX1])[SX2][#6;!$(C=[O,N,S])] Carbothioic_S_ester
+
+[#6][#6X3R](=[OX1])[#16X2][#6;!$(C=[O,N,S])] Carbothioic_S_lactone
+# may also be aromatic
+
+[CX3;$([H0][#6]),$([H1])](=[SX1])[OX2][#6;!$(C=[O,N,S])] Carbothioic_O_ester
+
+[#6][#6X3R](=[SX1])[#8X2][#6;!$(C=[O,N,S])] Carbothioic_O_lactone
+
+[CX3;$([H0][#6]),$([H1])](=[SX1])[FX1,ClX1,BrX1,IX1] Carbothioic_halide
+
+[CX3;!R;$([C][#6]),$([CH]);$([C](=[SX1])[SX2H])] Carbodithioic_acid
+
+[CX3;!R;$([C][#6]),$([CH]);$([C](=[SX1])[SX2][#6;!$(C=[O,N,S])])] Carbodithioic_ester
+
+[#6][#6X3R](=[SX1])[#16X2][#6;!$(C=[O,N,S])] Carbodithiolactone
+
+
+[CX3;$([R0][#6]),$([H1R0])](=[OX1])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Amide
+# does not hit lactames
+
+[CX3;$([R0][#6]),$([H1R0])](=[OX1])[NX3H2] Primary_amide
+
+[CX3;$([R0][#6]),$([H1R0])](=[OX1])[#7X3H1][#6;!$(C=[O,N,S])] Secondary_amide
+
+[CX3;$([R0][#6]),$([H1R0])](=[OX1])[#7X3H0]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])] Tertiary_amide
+
+[#6R][#6X3R](=[OX1])[#7X3;$([H1][#6;!$(C=[O,N,S])]),$([H0]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Lactam
+# cyclic amides, may also be aromatic
+
+[#6X3;$([H0][#6]),$([H1])](=[OX1])[#7X3H0]([#6])[#6X3;$([H0][#6]),$([H1])](=[OX1]) Alkyl_imide
+# may be part of a ring, even aromatic. only C allowed at central N. May also be triacyl amide
+
+[#6X3;$([H0][#6]),$([H1])](=[OX1])[#7X3H0]([!#6])[#6X3;$([H0][#6]),$([H1])](=[OX1]) N_hetero_imide
+# everything else than H or C at central N
+
+[#6X3;$([H0][#6]),$([H1])](=[OX1])[#7X3H1][#6X3;$([H0][#6]),$([H1])](=[OX1]) Imide_acidic
+# can be deprotonated
+
+[$([CX3;!R][#6]),$([CX3H;!R])](=[SX1])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Thioamide
+# does not hit thiolactames
+
+[#6R][#6X3R](=[SX1])[#7X3;$([H1][#6;!$(C=[O,N,S])]),$([H0]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Thiolactam
+# cyclic thioamides, may also be aromatic
+
+
+[#6X3;$([H0][#6]),$([H1])](=[OX1])[#8X2][#7X2]=,:[#6X3;$([H0]([#6])[#6]),$([H1][#6]),$([H2])] Oximester
+# may also be part of a ring / aromatic
+
+[NX3;!$(NC=[O,S])][CX3;$([CH]),$([C][#6])]=[NX2;!$(NC=[O,S])] Amidine
+# only basic amidines, not as part of aromatic ring (e.g. imidazole)
+
+[CX3;$([H0][#6]),$([H1])](=[OX1])[#7X3;$([H1]),$([H0][#6;!$(C=[O,N,S])])][$([OX2H]),$([OX1-])] Hydroxamic_acid
+
+[CX3;$([H0][#6]),$([H1])](=[OX1])[#7X3;$([H1]),$([H0][#6;!$(C=[O,N,S])])][OX2][#6;!$(C=[O,N,S])] Hydroxamic_acid_ester
+# does not hit anhydrides of carboxylic acids withs hydroxamic acids
+
+
+[CX3R0;$([H0][#6]),$([H1])](=[NX2;$([H1]),$([H0][#6;!$(C=[O,N,S])])])[$([OX2H]),$([OX1-])] Imidoacid
+# not cyclic 
+
+[#6R][#6X3R](=,:[#7X2;$([H1]),$([H0][#6;!$(C=[O,N,S])])])[$([OX2H]),$([OX1-])] Imidoacid_cyclic
+# the enamide-form of lactames. may be aromatic like 2-hydroxypyridine 
+
+[CX3R0;$([H0][#6]),$([H1])](=[NX2;$([H1]),$([H0][#6;!$(C=[O,N,S])])])[OX2][#6;!$(C=[O,N,S])] Imidoester
+# esters of the above structures. no anhydrides. 
+
+[#6R][#6X3R](=,:[#7X2;$([H1]),$([H0][#6;!$(C=[O,N,S])])])[OX2][#6;!$(C=[O,N,S])] Imidolactone
+# no oxazoles and similar
+
+[CX3R0;$([H0][#6]),$([H1])](=[NX2;$([H1]),$([H0][#6;!$(C=[O,N,S])])])[$([SX2H]),$([SX1-])] Imidothioacid
+# not cyclic 
+
+[#6R][#6X3R](=,:[#7X2;$([H1]),$([H0][#6;!$(C=[O,N,S])])])[$([SX2H]),$([SX1-])] Imidothioacid_cyclic
+# the enamide-form of thiolactames. may be aromatic like 2-thiopyridine 
+
+[CX3R0;$([H0][#6]),$([H1])](=[NX2;$([H1]),$([H0][#6;!$(C=[O,N,S])])])[SX2][#6;!$(C=[O,N,S])] Imidothioester
+# thioesters of the above structures. no anhydrides. 
+
+[#6R][#6X3R](=,:[#7X2;$([H1]),$([H0][#6;!$(C=[O,N,S])])])[SX2][#6;!$(C=[O,N,S])] Imidothiolactone
+# no thioxazoles and similar
+
+[#7X3v3;!$(N([#6X3]=[#7X2])C=[O,S])][CX3R0;$([H1]),$([H0][#6])]=[NX2v3;!$(N(=[#6X3][#7X3])C=[O,S])] Amidine
+# only basic amidines, not substituted by carbonyl or thiocarbonyl, not as part of a ring 
+
+[#6][#6X3R;$([H0](=[NX2;!$(N(=[#6X3][#7X3])C=[O,S])])[#7X3;!$(N([#6X3]=[#7X2])C=[O,S])]),$([H0](-[NX3;!$(N([#6X3]=[#7X2])C=[O,S])])=,:[#7X2;!$(N(=[#6X3][#7X3])C=[O,S])])] Imidolactam
+# one of the two C~N bonds is part of a ring (may be aromatic), but not both - thus no imidazole
+
+[CX3R0;$([H0][#6]),$([H1])](=[NX2;$([H1]),$([H0][#6;!$(C=[O,N,S])])])[FX1,ClX1,BrX1,IX1] Imidoylhalide
+# not cyclic
+
+[#6R][#6X3R](=,:[#7X2;$([H1]),$([H0][#6;!$(C=[O,N,S])])])[FX1,ClX1,BrX1,IX1] Imidoylhalide_cyclic
+# may also be aromatic
+ 
+# may be ring, aromatic, substituted with carbonyls, hetero, ...
+# (everything else would get too complicated)
+
+[$([$([#6X3][#6]),$([#6X3H])](=[#7X2v3])[#7X3v3][#7X3v3]),$([$([#6X3][#6]),$([#6X3H])]([#7X3v3])=[#7X2v3][#7X3v3])] Amidrazone
+# hits both tautomers. as above, it may be ring, aromatic, substituted with carbonyls, hetero, ...
+
+
+[NX3,NX4+;!$([N]~[!#6]);!$([N]*~[#7,#8,#15,#16])][C][CX3](=[OX1])[OX2H,OX1-] Alpha_aminoacid
+# N may be alkylated, but not part of an amide (as in peptides), ionic forms are included
+# includes also non-natural aminoacids with double-bonded or two aliph./arom. substituents at alpha-C 
+# N may not be aromatic as in 1H-pyrrole-2-carboxylic acid
+
+[OX2H][C][CX3](=[OX1])[OX2H,OX1-] Alpha_hydroxyacid
+
+[NX3;$([N][CX3](=[OX1])[C][NX3,NX4+])][C][CX3](=[OX1])[NX3;$([N][C][CX3](=[OX1])[NX3,OX2,OX1-])] Peptide_middle
+# finds peptidic structures which are neither C- nor N-terminal. Both neighbours must be amino-acids/peptides
+
+[NX3;$([N][CX3](=[OX1])[C][NX3,NX4+])][C][CX3](=[OX1])[OX2H,OX1-] Peptide_C_term
+# finds C-terminal amino acids
+
+[NX3,NX4+;!$([N]~[!#6]);!$([N]*~[#7,#8,#15,#16])][C][CX3](=[OX1])[NX3;$([N][C][CX3](=[OX1])[NX3,OX2,OX1-])] Peptide_N_term
+# finds N-terminal amino acids. As above, N may be substituted, but not part of an amide-bond.
+
+
+[#6][OX2][CX4;$(C[#6]),$([CH])]([OX2][#6])[OX2][#6] Carboxylic_orthoester
+# hits also anhydride like struktures (e. g. HC(OMe)2-OC=O residues)
+
+[CX3]=[CX2]=[OX1] Ketene
+
+[#7X2,#8X3,#16X2;$(*[#6,#14])][#6X3]([#7X2,#8X3,#16X2;$(*[#6,#14])])=[#6X3] Ketenacetal
+# includes aminals, silylacetals, ketenesters, etc. C=C DB is not aromatic, everything else may be
+
+[NX1]#[CX2] Nitrile
+# includes cyanhydrines
+
+[CX1-]#[NX2+] Isonitrile
+
+
+[#6X3](=[OX1])[#6X3]=,:[#6X3][#7,#8,#16,F,Cl,Br,I] Vinylogous_carbonyl_or_carboxyl_derivative
+# may be part of a ring, even aromatic
+
+[#6X3](=[OX1])[#6X3]=,:[#6X3][$([OX2H]),$([OX1-])] Vinylogous_acid
+
+[#6X3](=[OX1])[#6X3]=,:[#6X3][#6;!$(C=[O,N,S])] Vinylogous_ester
+
+[#6X3](=[OX1])[#6X3]=,:[#6X3][#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Vinylogous_amide
+
+[#6X3](=[OX1])[#6X3]=,:[#6X3][FX1,ClX1,BrX1,IX1] Vinylogous_halide
+
+
+
+# I.5: Four Carbon-Hetero Bonds (Carbonic Acid and Derivatives)
+# -----------------------------
+
+[#6;!$(C=[O,N,S])][#8X2][#6X3](=[OX1])[#8X2][#6;!$(C=[O,N,S])] Carbonic_acid_dieester
+# may be part of a ring, even aromatic
+
+[#6;!$(C=[O,N,S])][OX2;!R][CX3](=[OX1])[OX2][FX1,ClX1,BrX1,IX1] Carbonic_acid_esterhalide
+
+[#6;!$(C=[O,N,S])][OX2;!R][CX3](=[OX1])[$([OX2H]),$([OX1-])] Carbonic_acid_monoester
+# unstable
+
+[!#6][#6X3](=[!#6])[!#6] Carbonic_acid_derivatives
+
+
+[#6;!$(C=[O,N,S])][#8X2][#6X3](=[SX1])[#8X2][#6;!$(C=[O,N,S])] Thiocarbonic_acid_dieester
+# may be part of a ring, even aromatic
+
+[#6;!$(C=[O,N,S])][OX2;!R][CX3](=[SX1])[OX2][FX1,ClX1,BrX1,IX1] Thiocarbonic_acid_esterhalide
+
+[#6;!$(C=[O,N,S])][OX2;!R][CX3](=[SX1])[$([OX2H]),$([OX1-])] Thiocarbonic_acid_monoester
+
+
+[#7X3;!$([#7][!#6])][#6X3](=[OX1])[#7X3;!$([#7][!#6])] Urea
+# no check whether part of imide, biuret, etc. Aromatic structures are only hit if
+# both N share no double bonds, like in the dioxo-form of uracil
+
+[#7X3;!$([#7][!#6])][#6X3](=[SX1])[#7X3;!$([#7][!#6])] Thiourea
+
+[#7X2;!$([#7][!#6])]=,:[#6X3]([#8X2&!$([#8][!#6]),OX1-])[#7X3;!$([#7][!#6])] Isourea
+# O may be substituted. no check whether further amide-like bonds are present. Aromatic 
+# structures are only hit if single bonded N shares no additional double bond, like in
+# the 1-hydroxy-3-oxo form of uracil
+
+[#7X2;!$([#7][!#6])]=,:[#6X3]([#16X2&!$([#16][!#6]),SX1-])[#7X3;!$([#7][!#6])] Isothiourea
+
+[N;v3X3,v4X4+][CX3](=[N;v3X2,v4X3+])[N;v3X3,v4X4+] Guanidine
+# also hits guanidinium salts. v3 and v4 to avoid nitroamidines
+
+[NX3]C(=[OX1])[O;X2H,X1-] Carbaminic_acid
+# quite unstable, unlikely to be found. Also hits salts
+
+[#7X3][#6](=[OX1])[#8X2][#6] Urethan
+# also hits when part of a ring, no check whether the last C is part of carbonyl
+
+[#7X3][#6](=[OX1])[#7X3][#6](=[OX1])[#7X3] Biuret
+
+[#7X3][#7X3][#6X3]([#7X3;!$([#7][#7])])=[OX1] Semicarbazide
+
+[#7X3][#7X3][#6X3]([#7X3][#7X3])=[OX1] Carbazide
+
+[#7X2](=[#6])[#7X3][#6X3]([#7X3;!$([#7][#7])])=[OX1] Semicarbazone
+
+[#7X2](=[#6])[#7X3][#6X3]([#7X3][#7X3])=[OX1] Carbazone
+
+[#7X3][#7X3][#6X3]([#7X3;!$([#7][#7])])=[SX1] Thiosemicarbazide
+
+[#7X3][#7X3][#6X3]([#7X3][#7X3])=[SX1] Thiocarbazide
+
+[#7X2](=[#6])[#7X3][#6X3]([#7X3;!$([#7][#7])])=[SX1] Thiosemicarbazone
+
+[#7X2](=[#6])[#7X3][#6X3]([#7X3][#7X3])=[SX1] Thiocarbazone
+
+
+[NX2]=[CX2]=[OX1] Isocyanate
+
+[OX2][CX2]#[NX1] Cyanate
+
+[NX2]=[CX2]=[SX1] Isothiocyanate
+
+[SX2][CX2]#[NX1] Thiocyanate
+
+[NX2]=[CX2]=[NX2] Carbodiimide
+
+[CX4H0]([O,S,#7])([O,S,#7])([O,S,#7])[O,S,#7,F,Cl,Br,I] Orthocarbonic_derivatives
+# halogen allowed just once, to avoid mapping to -OCF3 and similar groups (much more
+# stable as for example C(OCH3)4)
+
+
+# I.6 Aromatics
+# -------------
+
+# I know that this classification is not very logical, arylamines are found under I.2 ...
+
+[OX2H][c] Phenol
+
+[OX2H][c][c][OX2H] 1,2-Diphenol
+
+[Cl][c] Arylchloride
+
+[F][c] Arylfluoride
+
+[Br][c] Arylbromide
+
+[I][c] Aryliodide
+
+[SX2H][c] Arylthiol
+
+[c]=[NX2;$([H1]),$([H0][#6;!$([C]=[N,S,O])])] Iminoarene
+# N may be substituted with H or C, but not carbonyl or similar
+# aromatic atom is always C, not S or P (these are not planar when substituted)
+
+[c]=[OX1] Oxoarene
+
+[c]=[SX1] Thioarene
+
+[nX3H1+0] Hetero_N_basic_H
+# as in pyrole. uncharged to exclude pyridinium ions
+
+[nX3H0+0] Hetero_N_basic_no_H
+# as in N-methylpyrole. uncharged to exclude pyridinium ions
+
+[nX2,nX3+] Hetero_N_nonbasic
+# as in pyridine, pyridinium
+
+[o] Hetero_O
+
+[sX2] Hetero_S
+# X2 because Daylight's depictmatch falsely describes C1=CS(=O)C=C1 as aromatic
+# (is not planar because of lonepair at S)
+
+[a;!c] Heteroaromatic
+
+
+# Part II: N, S, P, Si, B 
+# =======================
+
+
+# II.1 Nitrogen
+# -------------
+
+[NX2](=[OX1])[O;$([X2]),$([X1-])] Nitrite
+# hits nitrous acid, its anion, esters, and other O-substituted derivatives 
+
+[SX2][NX2]=[OX1] Thionitrite
+
+[$([NX3](=[OX1])(=[OX1])[O;$([X2]),$([X1-])]),$([NX3+]([OX1-])(=[OX1])[O;$([X2]),$([X1-])])] Nitrate
+# hits nitric acid, its anion, esters, and other O-substituted derivatives 
+
+[$([NX3](=O)=O),$([NX3+](=O)[O-])][!#8] Nitro
+# hits nitro groups attached to C,N, ... but not nitrates
+
+[NX2](=[OX1])[!#7;!#8] Nitroso
+# no nitrites, no nitrosamines
+
+[NX1]~[NX2]~[NX2,NX1] Azide
+# hits both mesomeric forms, also anion
+
+[CX3](=[OX1])[NX2]~[NX2]~[NX1] Acylazide
+
+[$([#6]=[NX2+]=[NX1-]),$([#6-]-[NX2+]#[NX1])] Diazo
+
+[#6][NX2+]#[NX1] Diazonium
+
+[#7;!$(N*=O)][NX2]=[OX1] Nitrosamine
+
+[NX2](=[OX1])N-*=O Nitrosamide
+# includes nitrososulfonamides
+
+[$([#7+][OX1-]),$([#7v5]=[OX1]);!$([#7](~[O])~[O]);!$([#7]=[#7])] N-Oxide
+# Hits both forms. Won't hit azoxy, nitro, nitroso, or nitrate.
+
+
+[NX3;$([H2]),$([H1][#6]),$([H0]([#6])[#6]);!$(NC=[O,N,S])][NX3;$([H2]),$([H1][#6]),$([H0]([#6])[#6]);!$(NC=[O,N,S])] Hydrazine
+# no hydrazides
+
+[NX3;$([H2]),$([H1][#6]),$([H0]([#6])[#6]);!$(NC=[O,N,S])][NX2]=[#6] Hydrazone
+
+[NX3;$([H2]),$([H1][#6]),$([H0]([#6])[#6]);!$(NC=[O,N,S])][OX2;$([H1]),$(O[#6;!$(C=[N,O,S])])] Hydroxylamine
+# no discrimination between O-, N-, and O,N-substitution
+
+
+# II.2 Sulfur
+# -----------
+
+[$([SX4](=[OX1])(=[OX1])([#6])[#6]),$([SX4+2]([OX1-])([OX1-])([#6])[#6])] Sulfon
+# can't be aromatic, thus S and not #16
+
+[$([SX3](=[OX1])([#6])[#6]),$([SX3+]([OX1-])([#6])[#6])] Sulfoxide
+
+[S+;!$([S]~[!#6]);!$([S]*~[#7,#8,#15,#16])] Sulfonium
+# can't be aromatic, thus S and not #16
+
+[SX4](=[OX1])(=[OX1])([$([OX2H]),$([OX1-])])[$([OX2H]),$([OX1-])] Sulfuric_acid
+# includes anions
+
+[SX4](=[OX1])(=[OX1])([$([OX2H]),$([OX1-])])[OX2][#6;!$(C=[O,N,S])] Sulfuric_monoester
+
+[SX4](=[OX1])(=[OX1])([OX2][#6;!$(C=[O,N,S])])[OX2][#6;!$(C=[O,N,S])] Sulfuric_diester
+
+[SX4](=[OX1])(=[OX1])([#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])])[$([OX2H]),$([OX1-])] Sulfuric_monoamide
+
+[SX4](=[OX1])(=[OX1])([#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Sulfuric_diamide
+
+[SX4](=[OX1])(=[OX1])([#7X3][#6;!$(C=[O,N,S])])[OX2][#6;!$(C=[O,N,S])] Sulfuric_esteramide
+
+[SX4D4](=[!#6])(=[!#6])([!#6])[!#6] Sulfuric_derivative
+# everything else (would not be a "true" derivative of sulfuric acid, if one of the substituents were less electronegative 
+# than sulfur, but this should be very very rare, anyway)
+
+
+
+#### sulfurous acid and derivatives missing!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+[SX4;$([H1]),$([H0][#6])](=[OX1])(=[OX1])[$([OX2H]),$([OX1-])] Sulfonic_acid
+
+[SX4;$([H1]),$([H0][#6])](=[OX1])(=[OX1])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Sulfonamide
+
+[SX4;$([H1]),$([H0][#6])](=[OX1])(=[OX1])[OX2][#6;!$(C=[O,N,S])] Sulfonic_ester
+
+[SX4;$([H1]),$([H0][#6])](=[OX1])(=[OX1])[FX1,ClX1,BrX1,IX1] Sulfonic_halide
+
+[SX4;$([H1]),$([H0][#6])](=[!#6])(=[!#6])[!#6] Sulfonic_derivative
+# includes all of the above and many more
+# for comparison: this is what "all sulfonic derivatives but not the ones above" would look like:
+# [$([SX4;$([H1]),$([H0][#6])](=[!#6])(=[!#6;!O])[!#6]),$([SX4;$([H1]),$([H0][#6])](=[OX1])(=[OX1])[!$([FX1,ClX1,BrX1,IX1]);!$([#6]);!$([OX2H]);!$([OX1-]);!$([OX2][#6;!$(C=[O,N,S])]);!$([#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])])])]
+
+
+[SX3;$([H1]),$([H0][#6])](=[OX1])[$([OX2H]),$([OX1-])] Sulfinic_acid
+
+[SX3;$([H1]),$([H0][#6])](=[OX1])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Sulfinic_amide
+
+[SX3;$([H1]),$([H0][#6])](=[OX1])[OX2][#6;!$(C=[O,N,S])] Sulfinic_ester
+
+[SX3;$([H1]),$([H0][#6])](=[OX1])[FX1,ClX1,BrX1,IX1] Sulfinic_halide
+
+[SX3;$([H1]),$([H0][#6])](=[!#6])[!#6] Sulfinic_derivative
+
+[SX2;$([H1]),$([H0][#6])][$([OX2H]),$([OX1-])] Sulfenic_acid
+
+[SX2;$([H1]),$([H0][#6])][#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Sulfenic_amide
+
+[SX2;$([H1]),$([H0][#6])][OX2][#6;!$(C=[O,N,S])] Sulfenic_ester
+
+[SX2;$([H1]),$([H0][#6])][FX1,ClX1,BrX1,IX1] Sulfenic_halide
+
+[SX2;$([H1]),$([H0][#6])][!#6] Sulfenic_derivative
+
+
+# II.3 Phosphorous
+# ----------------
+
+[PX3;$([H3]),$([H2][#6]),$([H1]([#6])[#6]),$([H0]([#6])([#6])[#6])] Phosphine
+# similar to amine, but less restrictive: includes also amide- and aminal-analogues 
+
+[PX4;$([H3]=[OX1]),$([H2](=[OX1])[#6]),$([H1](=[OX1])([#6])[#6]),$([H0](=[OX1])([#6])([#6])[#6])] Phosphine_oxide
+
+[P+;!$([P]~[!#6]);!$([P]*~[#7,#8,#15,#16])] Phosphonium
+# similar to Ammonium
+
+[PX4;$([H3]=[CX3]),$([H2](=[CX3])[#6]),$([H1](=[CX3])([#6])[#6]),$([H0](=[CX3])([#6])([#6])[#6])] Phosphorylen
+
+
+# conventions for the following acids and derivatives: 
+# acids find protonated and deprotonated acids
+# esters do not find mixed anhydrides ( ...P-O-C(=O))
+# derivatives: subtituents which go in place of the OH and =O are not H or C (may also be O, 
+# thus including acids and esters)
+
+[PX4;$([H1]),$([H0][#6])](=[OX1])([$([OX2H]),$([OX1-])])[$([OX2H]),$([OX1-])] Phosphonic_acid
+# includes anions
+
+[PX4;$([H1]),$([H0][#6])](=[OX1])([$([OX2H]),$([OX1-])])[OX2][#6;!$(C=[O,N,S])] Phosphonic_monoester
+
+[PX4;$([H1]),$([H0][#6])](=[OX1])([OX2][#6;!$(C=[O,N,S])])[OX2][#6;!$(C=[O,N,S])] Phosphonic_diester
+
+[PX4;$([H1]),$([H0][#6])](=[OX1])([$([OX2H]),$([OX1-])])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Phosphonic_monoamide
+
+[PX4;$([H1]),$([H0][#6])](=[OX1])([#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Phosphonic_diamide
+
+[PX4;$([H1]),$([H0][#6])](=[OX1])([OX2][#6;!$(C=[O,N,S])])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Phosphonic_esteramide
+
+[PX4;$([H1]),$([H0][#6])](=[!#6])([!#6])[!#6] Phosphonic_acid_derivative
+# all of the above and much more 
+
+
+[PX4D4](=[OX1])([$([OX2H]),$([OX1-])])([$([OX2H]),$([OX1-])])[$([OX2H]),$([OX1-])] Phosphoric_acid
+# includes anions
+
+[PX4D4](=[OX1])([$([OX2H]),$([OX1-])])([$([OX2H]),$([OX1-])])[OX2][#6;!$(C=[O,N,S])] Phosphoric_monoester
+
+[PX4D4](=[OX1])([$([OX2H]),$([OX1-])])([OX2][#6;!$(C=[O,N,S])])[OX2][#6;!$(C=[O,N,S])] Phosphoric_diester
+
+[PX4D4](=[OX1])([OX2][#6;!$(C=[O,N,S])])([OX2][#6;!$(C=[O,N,S])])[OX2][#6;!$(C=[O,N,S])] Phosphoric_triester
+
+[PX4D4](=[OX1])([$([OX2H]),$([OX1-])])([$([OX2H]),$([OX1-])])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Phosphoric_monoamide
+
+[PX4D4](=[OX1])([$([OX2H]),$([OX1-])])([#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Phosphoric_diamide
+
+[PX4D4](=[OX1])([#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])])([#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Phosphoric_triamide
+
+[PX4D4](=[OX1])([$([OX2H]),$([OX1-])])([OX2][#6;!$(C=[O,N,S])])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Phosphoric_monoestermonoamide
+
+[PX4D4](=[OX1])([OX2][#6;!$(C=[O,N,S])])([OX2][#6;!$(C=[O,N,S])])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Phosphoric_diestermonoamide
+
+[PX4D4](=[OX1])([OX2][#6;!$(C=[O,N,S])])([#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Phosphoric_monoesterdiamide
+
+[PX4D4](=[!#6])([!#6])([!#6])[!#6] Phosphoric_acid_derivative
+
+
+[PX4;$([H2]),$([H1][#6]),$([H0]([#6])[#6])](=[OX1])[$([OX2H]),$([OX1-])] Phosphinic_acid
+
+[PX4;$([H2]),$([H1][#6]),$([H0]([#6])[#6])](=[OX1])[OX2][#6;!$(C=[O,N,S])] Phosphinic_ester
+
+[PX4;$([H2]),$([H1][#6]),$([H0]([#6])[#6])](=[OX1])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Phosphinic_amide
+
+[PX4;$([H2]),$([H1][#6]),$([H0]([#6])[#6])](=[!#6])[!#6] Phosphinic_acid_derivative
+
+
+[PX3;$([H1]),$([H0][#6])]([$([OX2H]),$([OX1-])])[$([OX2H]),$([OX1-])] Phosphonous_acid
+
+[PX3;$([H1]),$([H0][#6])]([$([OX2H]),$([OX1-])])[OX2][#6;!$(C=[O,N,S])] Phosphonous_monoester
+
+[PX3;$([H1]),$([H0][#6])]([OX2][#6;!$(C=[O,N,S])])[OX2][#6;!$(C=[O,N,S])] Phosphonous_diester
+
+[PX3;$([H1]),$([H0][#6])]([$([OX2H]),$([OX1-])])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Phosphonous_monoamide
+
+[PX3;$([H1]),$([H0][#6])]([#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Phosphonous_diamide
+
+[PX3;$([H1]),$([H0][#6])]([OX2][#6;!$(C=[O,N,S])])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Phosphonous_esteramide
+
+[PX3;$([D2]),$([D3][#6])]([!#6])[!#6] Phosphonous_derivatives
+
+
+[PX3;$([H2]),$([H1][#6]),$([H0]([#6])[#6])][$([OX2H]),$([OX1-])] Phosphinous_acid
+
+[PX3;$([H2]),$([H1][#6]),$([H0]([#6])[#6])][OX2][#6;!$(C=[O,N,S])] Phosphinous_ester
+
+[PX3;$([H2]),$([H1][#6]),$([H0]([#6])[#6])][#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])] Phosphinous_amide
+
+[PX3;$([H2]),$([H1][#6]),$([H0]([#6])[#6])][!#6] Phosphinous_derivatives
+
+
+# II.4 Silicon
+# ------------
+
+[SiX4]([#6])([#6])([#6])[#6] Quart_silane
+# four C-substituents. non-reactive, non-toxic, in experimental phase for drug development
+
+[SiX4;$([H1]([#6])([#6])[#6]),$([H2]([#6])[#6]),$([H3][#6]),$([H4])] Non-quart_silane
+# has 1-4 hydride(s), reactive. Daylight's depictmatch does not add hydrogens automatically to 
+# the free positions at Si, thus Hs had to be added implicitly
+
+[SiX4]([FX1,ClX1,BrX1,IX1])([#6])([#6])[#6] Silylmonohalide
+# reagents for inserting protection groups
+
+[SiX4]([!#6])([#6])([#6])[#6] Het_trialkylsilane
+# mostly acid-labile protection groups such as trimethylsilyl-ethers 
+
+[SiX4]([!#6])([!#6])([#6])[#6] Dihet_dialkylsilane
+
+[SiX4]([!#6])([!#6])([!#6])[#6] Trihet_alkylsilane
+
+[SiX4]([!#6])([!#6])([!#6])[!#6] Silicic_acid_derivative
+# four substituent which are neither C nor H
+
+
+# II.5 Boron
+# ----------
+
+[BX3]([#6])([#6])[#6] Trialkylborane
+# also carbonyls allowed
+
+[BX3]([!#6])([!#6])[!#6] Boric_acid_derivatives
+# includes acids, esters, amides, ... H-substituent at B is very rare.
+
+[BX3]([!#6])([!#6])[!#6] Boronic_acid_derivative
+# # includes acids, esters, amides, ...
+
+[BH1,BH2,BH3,BH4] Borohydride
+# at least one H attached to B
+
+[BX4] Quaternary_boron
+# mostly borates (negative charge), in complex with Lewis-base
+
+
+
+# Part III: Some Special Patterns
+# ===============================
+
+
+# III.1 Chains
+# ------------
+
+# some simple chains
+
+
+
+# III.2 Rings
+# -----------
+
+a Aromatic
+
+[!#6;!R0] Heterocyclic
+# may be aromatic or not
+
+[OX2r3]1[#6r3][#6r3]1 Epoxide
+# toxic/reactive. may be annelated to aromat, but must not be aromatic itself (oxirane-2,3-dione)
+
+[NX3H1r3]1[#6r3][#6r3]1 NH_aziridine
+# toxic/reactive according to Maybridge's garbage filter
+
+[D4R;$(*(@*)(@*)(@*)@*)] Spiro
+# at least two different rings can be found which are sharing just one atom.
+# these two rings can be connected by a third ring, so it matches also some 
+# bridged systems, like morphine
+
+[R;$(*(@*)(@*)@*);!$([R2;$(*(@*)(@*)(@*)@*)])]@[R;$(*(@*)(@*)@*);!$([R2;$(*(@*)(@*)(@*)@*)])] Annelated_rings
+# two different rings sharing exactly two atoms
+
+[R;$(*(@*)(@*)@*);!$([D4R;$(*(@*)(@*)(@*)@*)]);!$([R;$(*(@*)(@*)@*);!$([R2;$(*(@*)(@*)(@*)@*)])]@[R;$(*(@*)(@*)@*);!$([R2;$(*(@*)(@*)(@*)@*)])])] Bridged_rings
+# part of two or more rings, not spiro, not annelated -> finds bridgehead atoms, 
+# but only if they are not annelated at the same time - otherwise impossible (?)
+# to distinguish from non-bridgehead annelated atoms
+
+# some basic ring-patterns (just size, no other information):
+
+
+
+
+
+# III.3 Sugars and Nucleosides/Nucleotides, Steroids
+# --------------------------------------------------
+
+# because of the large variety of sugar derivatives, different patterns can be applied.
+# The choice of patterns and their combinations will depend on the contents of the database
+# e.g. natural products, nucleoside analoges with modified sugars, ... as well as on the 
+# desired restriction
+
+
+[OX2;$([r5]1@C@C@C(O)@C1),$([r6]1@C@C@C(O)@C(O)@C1)] Sugar_pattern_1
+# 5 or 6-membered ring containing one O and at least one (r5) or two (r6) oxygen-substituents. 
+
+[OX2;$([r5]1@C(!@[OX2,NX3,SX2,FX1,ClX1,BrX1,IX1])@C@C@C1),$([r6]1@C(!@[OX2,NX3,SX2,FX1,ClX1,BrX1,IX1])@C@C@C@C1)] Sugar_pattern_2
+# 5 or 6-membered ring containing one O and an acetal-like bond at postion 2. 
+
+[OX2;$([r5]1@C(!@[OX2,NX3,SX2,FX1,ClX1,BrX1,IX1])@C@C(O)@C1),$([r6]1@C(!@[OX2,NX3,SX2,FX1,ClX1,BrX1,IX1])@C@C(O)@C(O)@C1)] Sugar_pattern_combi
+# combination of the two above
+
+[OX2;$([r5]1@C(!@[OX2H1])@C@C@C1),$([r6]1@C(!@[OX2H1])@C@C@C@C1)] Sugar_pattern_2_reducing
+# 5 or 6-membered cyclic hemi-acetal
+
+[OX2;$([r5]1@[C@@](!@[OX2,NX3,SX2,FX1,ClX1,BrX1,IX1])@C@C@C1),$([r6]1@[C@@](!@[OX2,NX3,SX2,FX1,ClX1,BrX1,IX1])@C@C@C@C1)] Sugar_pattern_2_alpha
+# 5 or 6-membered cyclic hemi-acetal
+
+[OX2;$([r5]1@[C@](!@[OX2,NX3,SX2,FX1,ClX1,BrX1,IX1])@C@C@C1),$([r6]1@[C@](!@[OX2,NX3,SX2,FX1,ClX1,BrX1,IX1])@C@C@C@C1)] Sugar_pattern_2_beta
+# 5 or 6-membered cyclic hemi-acetal
+
+##Poly_sugar_1: ([OX2;$([r5]1@C@C@C(O)@C1),$([r6]1@C@C@C(O)@C(O)@C1)].[OX2;$([r5]1@C@C@C(O)@C1),$([r6]1@C@C@C(O)@C(O)@C1)])
+# pattern1 occours more than once (in same molecule, but moieties don't have to be adjacent!)
+
+##Poly_sugar_2: ([OX2;$([r5]1@C(!@[OX2,NX3,SX2,FX1,ClX1,BrX1,IX1])@C@C@C1),$([r6]1@C(!@[OX2,NX3,SX2,FX1,ClX1,BrX1,IX1])@C@C@C@C1)].[OX2;$([r5]1@C(!@[OX2,NX3,SX2,FX1,ClX1,BrX1,IX1])@C@C@C1),$([r6]1@C(!@[OX2,NX3,SX2,FX1,ClX1,BrX1,IX1])@C@C@C@C1)])
+# pattern2 occours more than once (in same molecule, but moieties don't have to be adjacent!)
+
+
+# III.4 Everything else...
+# ------------------------
+
+*=*[*]=,#,:[*] Conjugated_double_bond
+
+*#*[*]=,#,:[*] Conjugated_tripple_bond
+
+*/[D2]=[D2]\* Cis_double_bond
+# only one single-bonded substituent on each DB-atom. no aromats. 
+# only found when character of DB is explicitely stated.
+
+*/[D2]=[D2]/* Trans_double_bond
+# analog
+
+[$(*=O),$([#16,#14,#5]),$([#7]([#6]=[OX1]))][#8X2][$(*=O),$([#16,#14,#5]),$([#7]([#6]=[OX1]))] Mixed_anhydrides
+# should hits all combinations of two acids
+
+[FX1,ClX1,BrX1,IX1][!#6] Halogen_on_hetero
+
+[F,Cl,Br,I;!$([X1]);!$([X0-])] Halogen_multi_subst
+# Halogen which is not mono-substituted nor an anion, e.g. chlorate.
+# Most of these cases should be also filtered by Halogen_on_hetero.
+
+[FX1][CX4;!$([H0][Cl,Br,I]);!$([F][C]([F])([F])[F])]([FX1])([FX1]) Trifluoromethyl
+# C with three F attached, connected to anything which is not another halogen
+
+[#6]~[#7,#8,#16] C_ONS_bond
+# probably all drug-like molecules have at least one O, N, or S connected to a C -> nice filter
+
+## Mixture: (*).(*)
+# two or more seperate parts, may also be salt
+# component-level grouping is not yet supported in Open Babel Version 2.0
+
+
+[!+0] Charged
+
+[-1,-2,-3,-4,-5,-6,-7] Anion
+
+[+1,+2,+3,+4,+5,+6,+7] Kation
+
+([-1,-2,-3,-4,-5,-6,-7]).([+1,+2,+3,+4,+5,+6,+7]) Salt
+# two or more seperate components with opposite charges
+
+##Zwitterion: ([-1,-2,-3,-4,-5,-6,-7].[+1,+2,+3,+4,+5,+6,+7])
+# both negative and positive charges somewhere within the same molecule. 
+
+[$([#7X2,OX1,SX1]=*[!H0;!$([a;!n])]),$([#7X3,OX2,SX2;!H0]*=*),$([#7X3,OX2,SX2;!H0]*:n)] 1,3-Tautomerizable
+# 1,3 migration of H allowed. Includes keto/enol and amide/enamide. 
+# Aromatic rings must stay aromatic - no keto form of phenol 
+
+[$([#7X2,OX1,SX1]=,:**=,:*[!H0;!$([a;!n])]),$([#7X3,OX2,SX2;!H0]*=**=*),$([#7X3,OX2,SX2;!H0]*=,:**:n)] 1,5-Tautomerizable
+
+[!$(*#*)&!D1]-!@[!$(*#*)&!D1] Rotatable_bond
+# taken from http://www.daylight.com/support/contrib/smarts/content.html
+
+[CX3]=[CX3][$([CX3]=[O,N,S]),$(C#[N]),$([S,P]=[OX1]),$([NX3]=O),$([NX3+](=O)[O-])] Michael_acceptor
+# the classical case: C=C near carbonyl, nitrile, nitro, or similar
+# Oxo-heteroaromats and similar are not included.
+
+[CX3](=[OX1])[NX2]=[NX2][CX3](=[OX1]) Dicarbodiazene
+# Michael-like acceptor, see Mitsunobu reaction
+
+# H-Bond_donor:
+
+# H-Bond_acceptor:
+
+# Pos_ionizable:
+
+# Neg_ionizable:
+
+# Unlikely_ions: 
+# O+,N-,C+,C-, ...
+
+[$([CX4;!$([H0]);!$(C[!#6;!$([P,S]=O);!$(N(~O)~O)])][$([CX3]=[O,N,S]),$(C#[N]),$([S,P]=[OX1]),$([NX3]=O),$([NX3+](=O)[O-]);!$(*[S,O,N;H1,H2]);!$([*+0][S,O;X1-])]),$([CX4;!$([H0])]1[CX3]=[CX3][CX3]=[CX3]1)] CH-acidic
+# C-H alpha to carbony, nitro or similar, C is not double-bonded, only C, H, S,P=O and nitro substituents allowed. 
+# pentadiene is included. acids, their salts, prim./sec. amides, and imides are excluded. 
+# hits also CH-acidic_strong
+
+[CX4;!$([H0]);!$(C[!#6;!$([P,S]=O);!$(N(~O)~O)])]([$([CX3]=[O,N,S]),$(C#[N]),$([S,P]=[OX1]),$([NX3]=O),$([NX3+](=O)[O-]);!$(*[S,O,N;H1,H2]);!$([*+0][S,O;X1-])])[$([CX3]=[O,N,S]),$(C#[N]),$([S,P]=[OX1]),$([NX3]=O),$([NX3+](=O)[O-]);!$(*[S,O,N;H1,H2]);!$([*+0][S,O;X1-])] CH-acidic_strong
+# same as above (without pentadiene), but carbonyl or similar on two or three sides
+
+[$([*@](~*)(~*)(*)*),$([*@H](*)(*)*),$([*@](~*)(*)*),$([*@H](~*)~*)] Chiral_center_specified
+# Hits atoms with tetrahedral chirality, if chiral center is specified in the SMILES string
+# depictmach does not find oxonium, sulfonium, or sulfoxides!
+
+# Chiral_center_unspecified: [$([*@?](~*)(~*)(*)*),$([*@?H](*)(*)*),$([*@?](~*)(*)*),$([*@?H](~*)~*)]
+# Hits atoms with tetrahedral chirality, if chiral center is not specified in the SMILES string
+# "@?" (unspecified chirality) is not yet supported in Open Babel Version 2.0 
+ 
