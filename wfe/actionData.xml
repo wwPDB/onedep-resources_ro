@@ -1712,13 +1712,19 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-
-        <wfDataObject name="src4">
+                 <wfDataObject name="src4">
             <dataReferenceType>file</dataReferenceType>
             <contentType>em-volume</contentType>
             <fileFormat>map</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src5">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>fsc</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
          </wfDataObject>
      </inputList>
 
@@ -1798,13 +1804,19 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-
         <wfDataObject name="src4">
             <dataReferenceType>file</dataReferenceType>
             <contentType>em-volume</contentType>
             <fileFormat>map</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src5">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>fsc</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
          </wfDataObject>
      </inputList>
 
@@ -1864,6 +1876,7 @@
             <selectorType></selectorType>
          </wfDataObject>
 
+
      </outputList>
 
      <userParameters>
@@ -1900,7 +1913,6 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-
         <wfDataObject name="src4">
             <dataReferenceType>file</dataReferenceType>
             <contentType>em-volume</contentType>
@@ -1908,6 +1920,15 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <wfDataObject name="src5">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>fsc</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
+         </wfDataObject>
+
+
      </inputList>
 
      <outputList>
@@ -1994,6 +2015,14 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <wfDataObject name="src5">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>fsc</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
+         </wfDataObject>
+
      </inputList>
 
      <outputList>
@@ -2096,6 +2125,13 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <wfDataObject name="src5">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>fsc</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
+         </wfDataObject>
      </inputList>
 
      <outputList>
@@ -2181,6 +2217,13 @@
             <fileFormat>map</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src5">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>fsc</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
          </wfDataObject>
      </inputList>
 
@@ -4362,6 +4405,7 @@
      <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
      <methodName>em3dAutoMapFixOp</methodName>
   </action>
+
   <!-- comment  -->
 </actionList>
 
