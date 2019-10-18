@@ -32,7 +32,7 @@
 
             <wf:tasks>
 
-                <wf:task taskID="T2" name="pdb2pdbx" nextTask="T6" breakpoint="false" exceptionID="EX0" reference="pdb2pdbx">
+                <wf:task taskID="T2" name="pdb2pdbx" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="pdb2pdbx">
                     <wf:description>PDB to PDBx task</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:15:20">
                         <wf:detail name="pdb2pdbx" action="pdb2pdbx-deposit" where="api"/>

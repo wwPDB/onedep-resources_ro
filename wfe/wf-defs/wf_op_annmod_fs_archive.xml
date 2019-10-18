@@ -139,6 +139,12 @@
                 <wf:location where="archive" content="correspondence-to-depositor" format="txt"  version="next" />
             </wf:dataObject>
 
+            <wf:dataObject dataID="DE1" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Original (latest) of archive model - with attribute details - </wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="latest"
+                    selectCategory="database_2" selectAttribute="database_id" />
+            </wf:dataObject>
+
         </wf:dataObjects>
 
         <wf:flow>
@@ -148,7 +154,7 @@
 
             <wf:tasks>
 
-                <wf:task taskID="TP1" name="MakeDirectory" nextTask="TP2" breakpoint="false" exceptionID="EX0" reference="mkdir">
+                <wf:task taskID="TP1" name="MakeDirectory" nextTask="TE1" breakpoint="false" exceptionID="EX0" reference="mkdir">
                     <wf:description>Make a directory for the instance data</wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:20">
                         <wf:detail name="makeDirectory" action="mkdir" where="api"/>
@@ -158,10 +164,54 @@
                     </wf:process>
                 </wf:task>
 
+	      <!-- Look at archive directory, update maps on entry before usual processing - write back to archive with map updates -->
+                <wf:task taskID="TE1" name="pre-fetch-accession-attributes" nextTask="TE2" breakpoint="false" exceptionID="EX0" reference="pre-fetch attribute">
+                    <wf:description>Fetch accessions </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:02:01">
+                        <wf:detail name="pre-fetch" action="fetch" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="DE1" type="input"/>
+                            <wf:location dataID="L1" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+                <wf:task taskID="TE2" name="string-compare" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="string compare">
+                    <wf:description>String compare - accession code test - </wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="L1" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TE3">
+                                <wf:function dataID="L1" inList="EMDB" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP2">
+                                <wf:function dataID="L1" inList="PDB" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+                <wf:task taskID="TE3" name="auto-mapfix" nextTask="TP2" breakpoint="true" exceptionID="EX0" reference="site-environment">
+                    <wf:description>EM automatic update map labels</wf:description>
+                    <wf:process runTime="00:00:10" failTime="01:55:20">
+                        <wf:detail name="AutoMapFix" action="auto-mapfix" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D1" type="input"/>
+                               <wf:location dataID="D2" type="input"/>
+                               <wf:location dataID="D20" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+	      <!-- Original handling -->
+
                 <wf:task taskID="TP2" name="copyArchive" nextTask="TP2A" breakpoint="false" exceptionID="EX0" reference="copy">
                     <wf:description>copy PDBx data from archive to instance </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
-                        <wf:detail name="copyToArchive" action="copy" where="api"/>
+                        <wf:detail name="copyToArchive" action="copy-if-exists" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="output"/>
@@ -172,7 +222,7 @@
                 <wf:task taskID="TP2A" name="copyShiftsArchive" nextTask="TP2B" breakpoint="false" exceptionID="EX0" reference="copy">
                     <wf:description>copy PDBx data from archive to instance </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
-                        <wf:detail name="copyToArchive" action="copy" where="api"/>
+                        <wf:detail name="copyToArchive" action="copy-if-exists" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
                             <wf:location dataID="D7" type="output"/>
@@ -414,7 +464,7 @@
                 <wf:task taskID="TP29" name="copyLetterToArchive" nextTask="TP19" breakpoint="false" exceptionID="EX4" reference="copy">
                     <wf:description>Put the correspondence letter back to archive</wf:description>
                     <wf:process runTime="00:00:04" failTime="00:05:20">
-                        <wf:detail name="copyLetterToArchive" action="copy" where="api"/>
+                        <wf:detail name="copyLetterToArchive" action="copy-if-exists" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D53" type="input"/>
                             <wf:location dataID="D54" type="output"/>

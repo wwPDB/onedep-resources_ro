@@ -21,6 +21,7 @@
                20-Jan-2017  ep   add assembly-auth-depinfo for depositor author assembly processing
 	       15-Feb-2017  ep   add combine-ligand-of-interest for binding assay processing
                10-May-2018  ep   add val-report-all-annv2
+	       19-Jun-2018  ep   add auto-mapfix
   -->
 <actionList version="0.01">
   <action name="copy">
@@ -513,7 +514,7 @@
          <wfDataObject name="dst">
             <dataReferenceType>file</dataReferenceType>
             <contentType>seqdb-match</contentType>
-            <fileFormat>pdbx</fileFormat>
+            <fileFormat>pic</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
@@ -527,7 +528,7 @@
      <methodName>matchAllOp</methodName>
   </action>
 
-  <action name="match-all-new">
+  <action name="match-all-auto">
      <inputList>
          <wfDataObject name="src">
             <dataReferenceType>file</dataReferenceType>
@@ -552,7 +553,7 @@
      <internalParameters>
      </internalParameters>
      <moduleName>wwpdb.utils.wf.plugins.SeqdbUtils</moduleName>
-     <methodName>matchAllOp</methodName>
+     <methodName>matchAllAutoOp</methodName>
   </action>
 
   <action name="match-entity">
@@ -584,7 +585,40 @@
      <methodName>matchEntityOp</methodName>
   </action>
 
+  <action name="seq-assign-update">
+     <inputList>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>seq-assign</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
 
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.SeqdbUtils</moduleName>
+     <methodName>updateModelWithSeqAssignmentOp</methodName>
+  </action>
 
   <action name="seq-data-prep">
      <inputList>
@@ -1678,13 +1712,19 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-
-        <wfDataObject name="src4">
+                 <wfDataObject name="src4">
             <dataReferenceType>file</dataReferenceType>
             <contentType>em-volume</contentType>
             <fileFormat>map</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src5">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>fsc</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
          </wfDataObject>
      </inputList>
 
@@ -1764,13 +1804,19 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-
         <wfDataObject name="src4">
             <dataReferenceType>file</dataReferenceType>
             <contentType>em-volume</contentType>
             <fileFormat>map</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src5">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>fsc</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
          </wfDataObject>
      </inputList>
 
@@ -1830,6 +1876,7 @@
             <selectorType></selectorType>
          </wfDataObject>
 
+
      </outputList>
 
      <userParameters>
@@ -1866,7 +1913,6 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-
         <wfDataObject name="src4">
             <dataReferenceType>file</dataReferenceType>
             <contentType>em-volume</contentType>
@@ -1874,6 +1920,15 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <wfDataObject name="src5">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>fsc</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
+         </wfDataObject>
+
+
      </inputList>
 
      <outputList>
@@ -1960,6 +2015,14 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <wfDataObject name="src5">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>fsc</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
+         </wfDataObject>
+
      </inputList>
 
      <outputList>
@@ -2062,6 +2125,13 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <wfDataObject name="src5">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>fsc</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
+         </wfDataObject>
      </inputList>
 
      <outputList>
@@ -2147,6 +2217,13 @@
             <fileFormat>map</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src5">
+             <dataReferenceType>file</dataReferenceType>
+             <contentType>fsc</contentType>
+             <fileFormat>xml</fileFormat>
+             <containerType></containerType>
+             <selectorType></selectorType>
          </wfDataObject>
      </inputList>
 
@@ -2566,40 +2643,6 @@
      <methodName>nmrstar2pdbxOp</methodName>
   </action>
 
-  <action name="pdbx2nmrstar">
-    <!--  obsolete  -->
-     <inputList>
-         <wfDataObject name="src">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-bmrb-entry</contentType>
-            <fileFormat>pdbx</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-     </inputList>
-
-
-     <outputList>
-         <wfDataObject name="dst">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>model</contentType>
-            <fileFormat>nmr-star</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-
-     </outputList>
-
-     <userParameters>
-           <parameter name="data_set_id">UNASSIGNED</parameter>
-     </userParameters>
-
-     <internalParameters>
-     </internalParameters>
-     <moduleName>wwpdb.utils.wf.plugins.FormatUtils</moduleName>
-     <methodName>pdbx2nmrstarOp</methodName>
-  </action>
-
   <action name="pdbx2nmrstar-annot">
      <inputList>
          <wfDataObject name="src">
@@ -2719,41 +2762,6 @@
      <methodName>autoChemShiftProcessOp</methodName>
   </action>
 
-
-  <action name="cs-format-check2">
-     <inputList>
-         <wfDataObject name="src">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-bmrb-entry</contentType>
-            <fileFormat>nmr-star</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-     </inputList>
-     <outputList>
-         <wfDataObject name="dst1">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-cs-check-report</contentType>
-            <fileFormat>html</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="dst2">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-chemical-shifts</contentType>
-            <fileFormat>nmr-star</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-     </outputList>
-     <userParameters>
-     </userParameters>
-     <internalParameters>
-     </internalParameters>
-     <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
-     <methodName>formatCheckCsOp</methodName>
-  </action>
-
   <action name="cs-format-check">
      <inputList>
          <wfDataObject name="src">
@@ -2788,16 +2796,22 @@
      <methodName>formatCheckCsOp</methodName>
   </action>
 
-  <action name="cs-xyz-format-check">
+  <action name="nmr-nef-consistency-check">
      <inputList>
+         <wfDataObject name="src0">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-config</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-chemical-shifts</contentType>
+            <contentType>nmr-unified-data-nef</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-
          <wfDataObject name="src2">
             <dataReferenceType>file</dataReferenceType>
             <contentType>model</contentType>
@@ -2805,22 +2819,211 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <wfDataObject name="prc2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
      </inputList>
+
      <outputList>
          <wfDataObject name="dst">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-cs-xyz-check-report</contentType>
-            <fileFormat>html</fileFormat>
+            <contentType>nmr-unified-data-nef-report</contentType>
+            <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
      </outputList>
-     <userParameters>
-     </userParameters>
-     <internalParameters>
-     </internalParameters>
+     <userParameters/>
+     <internalParameters/>
      <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
-     <methodName>formatCheckCsXyzOp</methodName>
+     <methodName>nefConsistencyCheckOp</methodName>
+  </action>
+
+  <action name="nmr-str-consistency-check">
+     <inputList>
+         <wfDataObject name="src0">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-config</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-str</contentType>
+            <fileFormat>nmr-star</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="prc2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-str-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters/>
+     <internalParameters/>
+     <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
+     <methodName>strConsistencyCheckOp</methodName>
+  </action>
+
+  <action name="nmr-nef2str-deposit">
+     <inputList>
+         <wfDataObject name="src0">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-config</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-nef</contentType>
+            <fileFormat>nmr-star</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="prc2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-nef-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-nef</contentType>
+            <fileFormat>nmr-star</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-str</contentType>
+            <fileFormat>nmr-star</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-nef-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+        <wfDataObject name="dst4">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-str-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters/>
+     <internalParameters/>
+     <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
+     <methodName>nef2strDepositOp</methodName>
+  </action>
+
+  <action name="nmr-str2str-deposit">
+     <inputList>
+         <wfDataObject name="src0">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-config</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-str</contentType>
+            <fileFormat>nmr-star</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="prc2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-str-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-str</contentType>
+            <fileFormat>nmr-star</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-str-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters/>
+     <internalParameters/>
+     <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
+     <methodName>str2strDepositOp</methodName>
   </action>
 
   <action name="fsc-deposit">
@@ -4167,6 +4370,42 @@
      <moduleName>wwpdb.utils.wf.plugins.EmUtils</moduleName>
      <methodName>mapFixInPlaceCfgOp</methodName>
   </action>
+ 
+  <!-- This is an unsual WF - it updates model/map in place if needed  -->
+  <action name="auto-mapfix">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="sessdir">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType></contentType>
+            <fileFormat></fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
+     <methodName>em3dAutoMapFixOp</methodName>
+  </action>
+
   <!-- comment  -->
 </actionList>
 

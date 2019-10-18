@@ -47,10 +47,13 @@
                 <wf:description>Copy of the archive data in instance latest</wf:description>
                 <wf:location where="wf-instance" content="nmr-chemical-shifts" format="pdbx"  version="latest" />
             </wf:dataObject>
-
             <wf:dataObject dataID="D71" name="archiveData" type="string" container="list" mutable="false">
                 <wf:description>Latest em volume in archive</wf:description>
                 <wf:location where="archive" content="em-volume" format="map"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D104" name="authorFSC" type="string" container="list" mutable="true">
+                <wf:description>The author provided FSC file</wf:description>
+                <wf:location where="archive" content="fsc" format="xml" version="latest" partitionNumber="1"/>
             </wf:dataObject>
 
             <wf:dataObject dataID="D6" name="instanceDataW" type="string" container="list" mutable="true" >
@@ -186,7 +189,7 @@
                 <wf:task taskID="TP2" name="copyArchive" nextTask="TP3" breakpoint="false" exceptionID="EX0">
                     <wf:description>copy PDBx data from archive to instance </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
-                        <wf:detail name="copyToInstance" action="copy" where="api"/>
+                        <wf:detail name="copyToInstance" action="copy-if-exists" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="output"/>
@@ -197,7 +200,7 @@
                 <wf:task taskID="TP3" name="copySFArchive" nextTask="TP3A" breakpoint="false" exceptionID="EX0">
                     <wf:description>copy PDBx data from archive to instance </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:03:01">
-                        <wf:detail name="copySFArchive" action="copy" where="api"/>
+                        <wf:detail name="copySFArchive" action="copy-if-exists" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
                             <wf:location dataID="D4" type="output"/>
@@ -208,16 +211,13 @@
                 <wf:task taskID="TP3A" name="copyShiftsArchive" nextTask="TP7" breakpoint="false" exceptionID="EX0">
                     <wf:description>copy chemical shifts data from archive to instance </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
-                        <wf:detail name="copyShiftsArchive" action="copy" where="api"/>
+                        <wf:detail name="copyShiftsArchive" action="copy-if-exists" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D61" type="input"/>
                             <wf:location dataID="D62" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
-
-
-
 
                 <wf:task taskID="TP7" name="val-report-all-ann" nextTask="TM6" breakpoint="true" exceptionID="EX0">
                     <wf:description>Validation Report</wf:description>
@@ -228,6 +228,8 @@
                                <wf:location dataID="D44" type="input2"/>
                                <wf:location dataID="D63" type="input3"/>
                                <wf:location dataID="D71" type="input4"/>
+                               <wf:location dataID="D104" type="input5"/>
+
                                <wf:location dataID="D6" type="output1"/>
                                <wf:location dataID="D7" type="output2"/>
                                <wf:location dataID="D8" type="output3"/>

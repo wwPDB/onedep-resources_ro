@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.51" author="tjo jdw" date="09-04-2015" id="SeqMod" name="SequenceModuleUI.xml"/>
+        <wf:version major="1.51" author="tjo jdw" date="09-04-2015" id="SeqModUI" name="SequenceModuleUI.xml"/>
         <wf:description>
-            <wf:short>Sequence module workflow</wf:short>
+            <wf:short>Sequence Module Workflow</wf:short>
             <wf:subtext>Sequence database search for all polymer entities followed by UI review</wf:subtext>
         </wf:description>
     </wf:metadata>
@@ -73,10 +73,10 @@
                 </wf:task>
 
 
-                <wf:task taskID="TP3B" name="Prepare Alignment for UI" nextTask="TM6" breakpoint="false" exceptionID="EX0" reference="match-all-new">
+                <wf:task taskID="TP3B" name="Prepare Alignment for UI" nextTask="TM6" breakpoint="false" exceptionID="EX0" reference="match-all">
                     <wf:description>Do alignment for all chains for the seqUI</wf:description>
                     <wf:process runTime="00:05:04" failTime="15:55:20">
-                        <wf:detail name="match-all-new" action="match-all-new" where="api"/>
+                        <wf:detail name="match-all" action="match-all" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
                             <wf:location dataID="D4" type="output"/>
