@@ -40,7 +40,7 @@ EC        EC,EMmap
 # XRAY2 X-ray Reflection/Refinement
 # NMR1  NMR specific tab
 # T7 Derived
-# E
+# EM2 EM Sample
 # EM3 EM Specimen
 # EM4 EM Imaging
 # EM5 EM Reconstruction
@@ -1330,10 +1330,10 @@ _pdbx_display_view_category_info.category_cardinality
 'EM Sample'          em_virus_entity                     'EM Sample'           em_virus_entity                    multi 
 'EM Sample'          em_virus_natural_host               'EM Sample'           em_virus_natural_host              multi 
 'EM Sample'          em_virus_shell                      'EM Sample'           em_virus_shell                     multi 
-'EM Sample'          entity                              'EM Sample'           'Entity Description'               multi
-'EM Sample'          entity_src_gen                      'EM Sample'           'Genetically Engineered'              multi
-'EM Sample'          entity_src_nat                      'EM Sample'           'Naturally Obtained'                  multi
-'EM Sample'          pdbx_entity_src_syn                 'EM Sample'            Synthesized                           multi
+'EM Sample'          entity                              'EM Sample'           'Entity Description2'              multi
+'EM Sample'          entity_src_gen                      'EM Sample'           'Genetically Engineered2'          multi
+'EM Sample'          entity_src_nat                      'EM Sample'           'Naturally Obtained2'              multi
+'EM Sample'          pdbx_entity_src_syn                 'EM Sample'            Synthesized2                      multi
 
 loop_
 _pdbx_display_view_item_info.category_display_name 
@@ -1385,48 +1385,48 @@ em_virus_shell                     '_em_virus_shell.diameter'                   
 em_virus_shell                     '_em_virus_shell.name'                                        name                                             N 
 em_virus_shell                     '_em_virus_shell.entity_assembly_id'                          assembly_id                                      N 
 em_virus_shell                     '_em_virus_shell.triangulation'                               triangulation                                    N 
-'Entity Description'               '_entity.id'                                                  'Entity ID'                                      Y
-'Entity Description'               '_entity.pdbx_description'                                    'Molecule name'                                  N
-'Genetically Engineered'              '_entity_src_gen.entity_id'                                   'Entity ID'                                 N
-'Genetically Engineered'              '_entity_src_gen.pdbx_src_id'                                 'Src ID'                                    N
-'Genetically Engineered'              '_entity_src_gen.pdbx_gene_src_ncbi_taxonomy_id'              TaxID                                       N
-'Genetically Engineered'              '_entity_src_gen.pdbx_gene_src_scientific_name'               'Scientific Name'                           N
-'Genetically Engineered'              '_entity_src_gen.gene_src_common_name'                        'Common name'                               N
-'Genetically Engineered'              '_entity_src_gen.gene_src_strain'                             Strain                                      N
-'Genetically Engineered'              '_entity_src_gen.pdbx_gene_src_variant'                       Variant                                     N
-'Genetically Engineered'              '_entity_src_gen.pdbx_gene_src_gene'                          Gene                                        N
-'Genetically Engineered'              '_entity_src_gen.gene_src_details'                            'Other details'                             N
-'Genetically Engineered'              '_entity_src_gen.pdbx_host_org_ncbi_taxonomy_id'              'Expr. TaxID'                               N
-'Genetically Engineered'              '_entity_src_gen.pdbx_host_org_scientific_name'               'Expr. Sci. name'                           N
-'Genetically Engineered'              '_entity_src_gen.host_org_common_name'                        'Expr. Common name'                         N
-'Genetically Engineered'              '_entity_src_gen.pdbx_host_org_strain'                        'Expr. Strain'                              N
-'Genetically Engineered'              '_entity_src_gen.pdbx_host_org_variant'                       'Expr. Variant'                             N
-'Genetically Engineered'              '_entity_src_gen.pdbx_host_org_cell_line'                     'Expr. Cell line'                           N
-'Genetically Engineered'              '_entity_src_gen.pdbx_host_org_vector_type'                   'Expr. Vector type'                         N
-'Genetically Engineered'              '_entity_src_gen.pdbx_host_org_vector'                        'Expr. Vector'                              N
-'Genetically Engineered'              '_entity_src_gen.plasmid_name'                                'Expr. Plasmid name'                        N
-'Genetically Engineered'              '_entity_src_gen.pdbx_host_org_organ'                         'Expr. Organ'                               N
-'Genetically Engineered'              '_entity_src_gen.pdbx_host_org_tissue'                        'Expr. Tissue'                              N
-'Genetically Engineered'              '_entity_src_gen.pdbx_host_org_cell'                          'Expr. Cell'                                N
-'Genetically Engineered'              '_entity_src_gen.pdbx_description'                            Description                                 N
-'Naturally Obtained'                  '_entity_src_nat.entity_id'                                   'Entity ID'                                 N
-'Naturally Obtained'                  '_entity_src_nat.pdbx_src_id'                                 'Src ID'                                    N
-'Naturally Obtained'                  '_entity_src_nat.pdbx_ncbi_taxonomy_id'                       'Tax ID'                                    N
-'Naturally Obtained'                  '_entity_src_nat.pdbx_organism_scientific'                    'Scientific name'                           N
-'Naturally Obtained'                  '_entity_src_nat.common_name'                                 'Common name'                               N
-'Naturally Obtained'                  '_entity_src_nat.strain'                                      Strain                                      N
-'Naturally Obtained'                  '_entity_src_nat.pdbx_variant'                                Variant                                     N
-'Naturally Obtained'                  '_entity_src_nat.tissue'                                      Tissue                                      N
-'Naturally Obtained'                  '_entity_src_nat.pdbx_organ'                                  Organ                                       N
-'Naturally Obtained'                  '_entity_src_nat.pdbx_cell'                                   Cell                                        N
-'Naturally Obtained'                  '_entity_src_nat.pdbx_cell_line'                              'Cell line'                                 N
-'Naturally Obtained'                  '_entity_src_nat.details'                                     'Other details'                             N
-Synthesized                           '_pdbx_entity_src_syn.entity_id'                              'Entity ID'                                 N
-Synthesized                           '_pdbx_entity_src_syn.pdbx_src_id'                            'Src ID'                                    N
-Synthesized                           '_pdbx_entity_src_syn.ncbi_taxonomy_id'                       'Tax ID'                                    N
-Synthesized                           '_pdbx_entity_src_syn.organism_scientific'                    'Scientific name'                           N
-Synthesized                           '_pdbx_entity_src_syn.organism_common_name'                   'Common name'                               N
-Synthesized                           '_pdbx_entity_src_syn.details'                                'Other details'                             N
+'Entity Description2'              '_entity.id'                                                  'Entity ID'                                      Y
+'Entity Description2'              '_entity.pdbx_description'                                    'Molecule name'                                  N
+'Genetically Engineered2'          '_entity_src_gen.entity_id'                                   'Entity ID'                                      N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_src_id'                                 'Src ID'                                         N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_gene_src_ncbi_taxonomy_id'              TaxID                                            N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_gene_src_scientific_name'               'Scientific Name'                                N
+'Genetically Engineered2'          '_entity_src_gen.gene_src_common_name'                        'Common name'                                    N
+'Genetically Engineered2'          '_entity_src_gen.gene_src_strain'                             Strain                                           N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_gene_src_variant'                       Variant                                          N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_gene_src_gene'                          Gene                                             N
+'Genetically Engineered2'          '_entity_src_gen.gene_src_details'                            'Other details'                                  N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_host_org_ncbi_taxonomy_id'              'Expr. TaxID'                                    N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_host_org_scientific_name'               'Expr. Sci. name'                                N
+'Genetically Engineered2'          '_entity_src_gen.host_org_common_name'                        'Expr. Common name'                              N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_host_org_strain'                        'Expr. Strain'                                   N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_host_org_variant'                       'Expr. Variant'                                  N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_host_org_cell_line'                     'Expr. Cell line'                                N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_host_org_vector_type'                   'Expr. Vector type'                              N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_host_org_vector'                        'Expr. Vector'                                   N
+'Genetically Engineered2'          '_entity_src_gen.plasmid_name'                                'Expr. Plasmid name'                             N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_host_org_organ'                         'Expr. Organ'                                    N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_host_org_tissue'                        'Expr. Tissue'                                   N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_host_org_cell'                          'Expr. Cell'                                     N
+'Genetically Engineered2'          '_entity_src_gen.pdbx_description'                            Description                                      N
+'Naturally Obtained2'              '_entity_src_nat.entity_id'                                   'Entity ID'                                      N
+'Naturally Obtained2'              '_entity_src_nat.pdbx_src_id'                                 'Src ID'                                         N
+'Naturally Obtained2'              '_entity_src_nat.pdbx_ncbi_taxonomy_id'                       'Tax ID'                                         N
+'Naturally Obtained2'              '_entity_src_nat.pdbx_organism_scientific'                    'Scientific name'                                N
+'Naturally Obtained2'              '_entity_src_nat.common_name'                                 'Common name'                                    N
+'Naturally Obtained2'              '_entity_src_nat.strain'                                      Strain                                           N
+'Naturally Obtained2'              '_entity_src_nat.pdbx_variant'                                Variant                                          N
+'Naturally Obtained2'              '_entity_src_nat.tissue'                                      Tissue                                           N
+'Naturally Obtained2'              '_entity_src_nat.pdbx_organ'                                  Organ                                            N
+'Naturally Obtained2'              '_entity_src_nat.pdbx_cell'                                   Cell                                             N
+'Naturally Obtained2'              '_entity_src_nat.pdbx_cell_line'                              'Cell line'                                      N
+'Naturally Obtained2'              '_entity_src_nat.details'                                     'Other details'                                  N
+Synthesized2                       '_pdbx_entity_src_syn.entity_id'                              'Entity ID'                                      N
+Synthesized2                       '_pdbx_entity_src_syn.pdbx_src_id'                            'Src ID'                                         N
+Synthesized2                       '_pdbx_entity_src_syn.ncbi_taxonomy_id'                       'Tax ID'                                         N
+Synthesized2                       '_pdbx_entity_src_syn.organism_scientific'                    'Scientific name'                                N
+Synthesized2                       '_pdbx_entity_src_syn.organism_common_name'                   'Common name'                                    N
+Synthesized2                       '_pdbx_entity_src_syn.details'                                'Other details'                                  N
 
 ##################################################################################
 data_EM3
