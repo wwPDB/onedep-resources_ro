@@ -194,10 +194,22 @@
                     </wf:decision>
                 </wf:task>
 
-                <wf:task taskID="TE3" name="auto-mapfix" nextTask="TP2" breakpoint="true" exceptionID="EX0" reference="site-environment">
+                <wf:task taskID="TE3" name="auto-mapfix" nextTask="TE4" breakpoint="true" exceptionID="EX0" reference="site-environment">
                     <wf:description>EM automatic update map labels</wf:description>
                     <wf:process runTime="00:00:10" failTime="01:55:20">
                         <wf:detail name="AutoMapFix" action="auto-mapfix" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D1" type="input"/>
+                               <wf:location dataID="D2" type="input"/>
+                               <wf:location dataID="D20" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TE4" name="auto-em-map-versions" nextTask="TP2" breakpoint="true" exceptionID="EX0" reference="site-environment">
+                    <wf:description>EM automatic update map file versions</wf:description>
+                    <wf:process runTime="00:00:10" failTime="01:55:20">
+                        <wf:detail name="AutoEmMapFixVers" action="auto-em-map-versions-archive" where="api"/>
                         <wf:dataObjectsLocation>
                                <wf:location dataID="D1" type="input"/>
                                <wf:location dataID="D2" type="input"/>
