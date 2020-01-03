@@ -101,6 +101,7 @@ _pdbx_display_view_item_info.read_only_flag
 'Overall Data0'                        '_reflns.pdbx_Rmerge_I_obs'                                   R-merge                                     N 
 'Overall Data0'                        '_reflns.pdbx_Rsym_value'                                     R-sym                                       N 
 'Overall Data0'                        '_reflns.pdbx_CC_half'                                        CC-half                                     N 
+'Overall Data0'                        '_reflns.pdbx_CC_star'                                        CC*                                         N 
 'Overall Data0'                        '_reflns.pdbx_Rpim_I_all'                                     Rpim                                        N 
 'Overall Data0'                        '_reflns.pdbx_Rpim_I_all_anomalous'                           'Rpim_anom'                                 N 
 'Overall Data0'                        '_reflns.pdbx_Rrim_I_all'                                     Rmeas                                       N 
@@ -119,9 +120,10 @@ _pdbx_display_view_item_info.read_only_flag
 'Highest Resolution Shell0'            '_reflns_shell.Rmerge_I_obs'                                  R-merge                                     N 
 'Highest Resolution Shell0'            '_reflns_shell.pdbx_Rsym_value'                               R-sym                                       N 
 'Highest Resolution Shell0'            '_reflns_shell.pdbx_CC_half'                                  CC-half                                     N 
+'Highest Resolution Shell0'            '_reflns_shell.pdbx_CC_star'                                  CC*                                         N 
 'Highest Resolution Shell0'            '_reflns_shell.pdbx_Rpim_I_all'                               Rpim                                        N 
 'Highest Resolution Shell0'            '_reflns_shell.pdbx_Rpim_I_all_anomalous'                     'Rpim_anom'                                 N 
-'Highest Resolution Shell0'            '_reflns_shell.pdbx_Rrim_I_all'                               'Rmeas'                                    N 
+'Highest Resolution Shell0'            '_reflns_shell.pdbx_Rrim_I_all'                               'Rmeas'                                     N 
 'Highest Resolution Shell0'            '_reflns_shell.pdbx_Rrim_I_all_anomalous'                     'Rmeas_anom'                                N 
 'Highest Resolution Shell0'            '_reflns_shell.meanI_over_sigI_obs'                           'Net I over sigma I'                        N 
 'Highest Resolution Shell0'            '_reflns_shell.percent_possible_all'                          percent_possible_all                        N 
@@ -818,6 +820,7 @@ _pdbx_display_view_item_info.read_only_flag
 'Overall Data'                        '_reflns.pdbx_Rmerge_I_obs'                                   R-merge                                     N 
 'Overall Data'                        '_reflns.pdbx_Rsym_value'                                     R-sym                                       N 
 'Overall Data'                        '_reflns.pdbx_CC_half'                                        CC-half                                     N 
+'Overall Data'                        '_reflns.pdbx_CC_star'                                        CC*                                         N 
 'Overall Data'                        '_reflns.pdbx_Rpim_I_all'                                     Rpim                                        N 
 'Overall Data'                        '_reflns.pdbx_Rpim_I_all_anomalous'                           'Rpim_anom'                                 N 
 'Overall Data'                        '_reflns.pdbx_Rrim_I_all'                                     Rmeas                                       N 
@@ -836,9 +839,10 @@ _pdbx_display_view_item_info.read_only_flag
 'Highest Resolution Shell'            '_reflns_shell.Rmerge_I_obs'                                  R-merge                                     N 
 'Highest Resolution Shell'            '_reflns_shell.pdbx_Rsym_value'                               R-sym                                       N 
 'Highest Resolution Shell'            '_reflns_shell.pdbx_CC_half'                                  CC-half                                     N 
+'Highest Resolution Shell'            '_reflns_shell.pdbx_CC_star'                                  CC*                                         N 
 'Highest Resolution Shell'            '_reflns_shell.pdbx_Rpim_I_all'                               Rpim                                        N 
 'Highest Resolution Shell'            '_reflns_shell.pdbx_Rpim_I_all_anomalous'                     'Rpim_anom'                                 N 
-'Highest Resolution Shell'            '_reflns_shell.pdbx_Rrim_I_all'                               'Rmeas'                                    N 
+'Highest Resolution Shell'            '_reflns_shell.pdbx_Rrim_I_all'                               'Rmeas'                                     N 
 'Highest Resolution Shell'            '_reflns_shell.pdbx_Rrim_I_all_anomalous'                     'Rmeas_anom'                                N 
 'Highest Resolution Shell'            '_reflns_shell.meanI_over_sigI_obs'                           'Net I over sigma I'                        N 
 'Highest Resolution Shell'            '_reflns_shell.percent_possible_all'                          percent_possible_all                        N 
