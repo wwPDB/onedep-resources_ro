@@ -24,7 +24,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.1.8"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.1.7"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -2038,8 +2038,6 @@
                         <xs:enumeration value="TFS GLACIOS"/>
                         <xs:enumeration value="TFS KRIOS"/>
                         <xs:enumeration value="TFS TALOS"/>
-                        <xs:enumeration value="TFS TALOS L120C"/>
-                        <xs:enumeration value="TFS TALOS F200C"/>
                         <xs:enumeration value="ZEISS LEO912"/>
                         <xs:enumeration value="ZEISS LIBRA120PLUS"/>
                     </xs:restriction>
@@ -2404,15 +2402,7 @@
     </xs:complexType>
     <xs:complexType name="specialist_optics_type">
         <xs:sequence>
-            <xs:element name="phase_plate" minOccurs="0">
-                <xs:simpleType>
-                    <xs:restriction base="xs:token">
-                        <xs:enumeration value="ZERNIKE PHASE PLATE"/>
-                        <xs:enumeration value="VOLTA PHASE PLATE"/>
-                        <xs:enumeration value="OTHER"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
+            <xs:element name="phase_plate" type="xs:token" minOccurs="0"/>
             <xs:element name="sph_aberration_corrector" type="xs:token" minOccurs="0"/>
             <xs:element name="chr_aberration_corrector" type="xs:token" minOccurs="0"/>
             <xs:element name="energy_filter" minOccurs="0">
