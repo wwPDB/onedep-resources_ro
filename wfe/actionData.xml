@@ -3954,6 +3954,53 @@
      <methodName>uploadChemicalShiftAltOp</methodName>
   </action>
 
+ <!-- upload chemical shift report (NMR unified deposition) -->
+  <action name="nmr-str2cif-uplchk">
+     <inputList>
+         <!-- text file containing input CS  full path list -->
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-cs-path-list</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <!-- text file containing input CS author name list -->
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-cs-auth-file-name-list</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-str</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-chemical-shifts-upload-report</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
+     <methodName>uploadChemicalShiftAltOp</methodName>
+  </action>
+
   <!-- atom name chemical shift check  -->
   <action name="cs-atom-name-check">
      <inputList>
@@ -4059,6 +4106,54 @@
          <wfDataObject name="dst1">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-chemical-shifts</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <!--  cif report file   -->
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-chemical-shifts-atom-name-report</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
+     <methodName>atomNameCheckCsXyzAltOp</methodName>
+  </action>
+
+<!-- atom name chemical shift check (NMR unified deposition)  -->
+  <action name="nmr-str2cif-namechk">
+     <inputList>
+         <!-- input CS  full path list -->
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-str</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
+         <!-- model file path -->
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <!--  chemical shift file as output from cs-upload-check  -->
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-unified-data-str</contentType>
             <fileFormat>pdbx</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>

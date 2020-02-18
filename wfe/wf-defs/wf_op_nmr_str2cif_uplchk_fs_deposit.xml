@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
     <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
         <wf:metadata>
-            <wf:version major="1.51" author="jdw" date="08-05-2015" id="CSUPLCHK_DEP" name="wf_op_csuplchk_fs_deposit.xml" />
+            <wf:version major="1.0" author="my" date="02-18-2020" id="NMR_STR2CIF_UPLCHK_DEP" name="wf_op_nmr_str2cif_uplchk_fs_deposit.xml" />
             <wf:description>
                 <wf:short>Chemical shifts upload file check (deposit)</wf:short>
                 <wf:subtext>Chemical shifts upload file check workflow</wf:subtext>
@@ -19,12 +19,12 @@
                     <wf:location where="deposit" content="nmr-cs-auth-file-name-list" format="txt" version="latest" />
                 </wf:dataObject>
 
-                <wf:dataObject dataID="D3" name="csfile" type="string" container="list" mutable="true">
-                    <wf:description>Chemical shifts file (next version)</wf:description>
-                    <wf:location where="deposit" content="nmr-chemical-shifts" format="pdbx" version="next" />
+                <wf:dataObject dataID="D3" name="nmr-unified-data-str-file" type="string" container="list" mutable="true">
+                    <wf:description>NMR unified data file (next version)</wf:description>
+                    <wf:location where="deposit" content="nmr-unified-data-str" format="pdbx" version="next" />
                 </wf:dataObject>
 
-                <wf:dataObject dataID="D4" name="csuploadreportfile" type="string" container="list" mutable="true">
+                <wf:dataObject dataID="D4" name="struploadreportfile" type="string" container="list" mutable="true">
                     <wf:description>Chemical shifts upload report file (next version)</wf:description>
                     <wf:location where="deposit" content="nmr-chemical-shifts-upload-report" format="pdbx" version="next" />
                 </wf:dataObject>
@@ -35,10 +35,10 @@
                     <wf:description>Process entry point</wf:description>
                 </wf:entryPoint>
                 <wf:tasks>
-                    <wf:task taskID="T2" name="csuploadcheck" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="csuploadcheck">
+                    <wf:task taskID="T2" name="struploadcheck" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="struploadcheck">
                         <wf:description>Chemical shifts upload check task</wf:description>
                         <wf:process runTime="00:00:10" failTime="00:15:20">
-                            <wf:detail name="csuploadcheckalt" action="cs-upload-check-alt" where="api" />
+                            <wf:detail name="nmr-str2cif-uplchk" action="nmr-str2cif-uplchk" where="api" />
                             <wf:dataObjectsLocation>
                                 <wf:location dataID="D1" type="input" />
                                 <wf:location dataID="D2" type="input" />

@@ -36,7 +36,7 @@
                 </wf:entryPoint>
                 <wf:tasks>
                     <wf:task taskID="T2" name="csuploadcheck" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="csuploadcheck">
-                        <wf:description>Chemical shifts uload check task</wf:description>
+                        <wf:description>Chemical shifts upload check task</wf:description>
                         <wf:process runTime="00:00:10" failTime="00:15:20">
                             <wf:detail name="csuploadcheckalt" action="cs-upload-check-alt" where="api" />
                             <wf:dataObjectsLocation>
