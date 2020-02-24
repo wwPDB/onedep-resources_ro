@@ -407,10 +407,22 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP11" name="update-geometry" nextTask="TM6" breakpoint="true" exceptionID="EX0" reference="site-environment">
+                <wf:task taskID="TP11" name="update-geometry" nextTask="TP12" breakpoint="true" exceptionID="EX0" reference="site-environment">
                     <wf:description>Update Geometry</wf:description>
                     <wf:process runTime="00:00:10" failTime="01:55:20">
                         <wf:detail name="UpdateGeometry" action="update-geometry-validation" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D19" type="input"/>
+                               <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+                <wf:task taskID="TP12" name="database-related" nextTask="TM6" breakpoint="true" exceptionID="EX0" reference="cis-peptide">
+                    <wf:description>Resolve pdbx_database_related</wf:description>
+                    <wf:process runTime="00:00:10" failTime="01:55:20">
+                        <wf:detail name="DatabaseRelated" action="update-database-related" where="api"/>
                         <wf:dataObjectsLocation>
                                <wf:location dataID="D19" type="input"/>
                                <wf:location dataID="D2" type="output"/>
