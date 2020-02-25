@@ -1,43 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.0" author="my" date="08-23-2019" id="NMR_STR2STR_DEP" name="wf_op_nmr_str2str_fs_deposit.xml"/>
+        <wf:version major="1.0" author="my" date="02-21-2020" id="NMR_STR2NEF_REL" name="wf_op_nmr_str2nef_fs_release.xml"/>
         <wf:description>
-            <wf:short>Convert NMR-STAR V3.2 to NMR-STAR V3.2 (deposit)</wf:short>
+            <wf:short>Convert NMR-STAR V3.2 to NEF (release)</wf:short>
             <wf:subtext>Deposition system file conversion workflow</wf:subtext>
         </wf:description>
     </wf:metadata>
 
     <wf:workflow>
         <wf:dataObjects>
-            <wf:dataObject dataID="C1" name="nmr-data-config-file" type="string" container="list" mutable="true" >
-                <wf:description>NMR unified data configuration file</wf:description>
-                <wf:location where="tempdep" content="nmr-data-config" format="json" version="latest" />
-            </wf:dataObject>
             <wf:dataObject dataID="D1" name="nmr-data-str-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR unified data file: NMR-STAR V3.2 (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-data-str" format="nmr-star" version="latest" />
+                <wf:location where="release" content="nmr-data-str" format="nmr-star" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version)</wf:description>
-                <wf:location where="deposit" content="model" format="pdbx" version="latest" />
-            </wf:dataObject>
-            <wf:dataObject dataID="D3" name="nmr-str-consistency-log" type="string" container="list" mutable="true" >
-                <wf:description>NMR-STAR V3.2 consistency log (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-data-str-report" format="json" version="next" />
+                <wf:location where="release" content="model" format="pdbx" version="latest" />
             </wf:dataObject>
 
-            <wf:dataObject dataID="D4" name="nmr-str-consistency-log" type="string" container="list" mutable="true" >
-                <wf:description>NMR-STAR V3.2 consistency log (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-data-str-report" format="json" version="latest" />
+            <wf:dataObject dataID="D3" name="nmr-str-consistency-log" type="string" container="list" mutable="true" >
+                <wf:description>NMR-STAR V3.2 consistency log (next version)</wf:description>
+                <wf:location where="release" content="nmr-data-str-report" format="json" version="next" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D5" name="nmr-data-str-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR unified data file: NMR-STAR V3.2 (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-data-str" format="nmr-star" version="next" />
+                <wf:location where="release" content="nmr-data-str" format="nmr-star" version="next" />
             </wf:dataObject>
-            <wf:dataObject dataID="D6" name="nmr-str-deposit-log" type="string" container="list" mutable="true" >
-                <wf:description>NMR-STAR V3.2 deposit log (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-data-str-report" format="json" version="next" />
+            <wf:dataObject dataID="D6" name="nmr-data-nef-file" type="string" container="list" mutable="true" >
+                <wf:description>NMR unified data file: NEF (next version)</wf:description>
+                <wf:location where="release" content="nmr-data-nef" format="nmr-star" version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D7" name="nmr-str-release-log" type="string" container="list" mutable="true" >
+                <wf:description>NMR-STAR V3.2 release log (next version)</wf:description>
+                <wf:location where="release" content="nmr-data-str-report" format="json" version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D8" name="nmr-nef-release-log" type="string" container="list" mutable="true" >
+                <wf:description>NEF release log (next version)</wf:description>
+                <wf:location where="release" content="nmr-data-nef-report" format="json" version="next" />
             </wf:dataObject>
 
         </wf:dataObjects>
@@ -49,32 +50,18 @@
 
             <wf:tasks>
 
-                <wf:task taskID="T2" name="nmr-str-consistency-check" nextTask="T7" breakpoint="false" exceptionID="EX0" reference="nmr-str-consistency-check">
-                    <wf:description>NMR-STAR V3.2 consistency check</wf:description>
+                <wf:task taskID="T2" name="nmr-str2nef-release" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nmr-str2nef-release">
+                    <wf:description>NMR-STAR V3.2 -> NEF conversion and release</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:05:20">
-                        <wf:detail name="nmr-str-consistency-check" action="nmr-str-consistency-check" where="api"/>
+                        <wf:detail name="nmr-str2nef-release" action="nmr-str2nef-release" where="api"/>
                         <wf:dataObjectsLocation>
-                            <wf:location dataID="C1" type="input"/>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="input"/>
-                            <wf:location dataID="D2" type="input"/> <!-- dummy for compatibility -->
                             <wf:location dataID="D3" type="output"/>
-                        </wf:dataObjectsLocation>
-                    </wf:process>
-                </wf:task>
-
-                <wf:task taskID="T7" name="nmr-str2str-deposit" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nmr-str2str-deposit">
-                    <wf:description>NMR-STAR V3.2 -> NMR-STAR V3.2 conversion and deposition</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:05:20">
-                        <wf:detail name="nmr-str2str-deposit" action="nmr-str2str-deposit" where="api"/>
-                        <wf:dataObjectsLocation>
-                            <wf:location dataID="C1" type="input"/>
-                            <wf:location dataID="D1" type="input"/>
-                            <wf:location dataID="D2" type="input"/>
-                            <wf:location dataID="D2" type="input"/> <!--  dummy for compatibility -->
-                            <wf:location dataID="D4" type="input"/>
                             <wf:location dataID="D5" type="output"/>
                             <wf:location dataID="D6" type="output"/>
+                            <wf:location dataID="D7" type="output"/>
+                            <wf:location dataID="D8" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>

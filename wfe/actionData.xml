@@ -2774,7 +2774,7 @@
          </wfDataObject>
          <wfDataObject name="src2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-nef</contentType>
+            <contentType>nmr-data-nef</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2791,7 +2791,7 @@
          </wfDataObject>
          <wfDataObject name="dst2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-nef</contentType>
+            <contentType>nmr-data-nef</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2844,14 +2844,14 @@
      <inputList>
          <wfDataObject name="src0">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-config</contentType>
+            <contentType>nmr-data-config</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-nef</contentType>
+            <contentType>nmr-data-nef</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2875,7 +2875,7 @@
      <outputList>
          <wfDataObject name="dst">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-nef-report</contentType>
+            <contentType>nmr-data-nef-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2891,14 +2891,14 @@
      <inputList>
          <wfDataObject name="src0">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-config</contentType>
+            <contentType>nmr-data-config</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str</contentType>
+            <contentType>nmr-data-str</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2922,7 +2922,7 @@
      <outputList>
          <wfDataObject name="dst">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str-report</contentType>
+            <contentType>nmr-data-str-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2938,14 +2938,14 @@
      <inputList>
          <wfDataObject name="src0">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-config</contentType>
+            <contentType>nmr-data-config</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-nef</contentType>
+            <contentType>nmr-data-nef</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2966,7 +2966,7 @@
          </wfDataObject>
          <wfDataObject name="src3">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-nef-report</contentType>
+            <contentType>nmr-data-nef-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -2976,28 +2976,28 @@
      <outputList>
          <wfDataObject name="dst1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-nef</contentType>
+            <contentType>nmr-data-nef</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="dst2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str</contentType>
+            <contentType>nmr-data-str</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="dst3">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-nef-report</contentType>
+            <contentType>nmr-data-nef-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
         <wfDataObject name="dst4">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str-report</contentType>
+            <contentType>nmr-data-str-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -3013,14 +3013,14 @@
      <inputList>
          <wfDataObject name="src0">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-config</contentType>
+            <contentType>nmr-data-config</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str</contentType>
+            <contentType>nmr-data-str</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -3041,7 +3041,7 @@
          </wfDataObject>
          <wfDataObject name="src3">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str-report</contentType>
+            <contentType>nmr-data-str-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -3051,14 +3051,14 @@
      <outputList>
          <wfDataObject name="dst1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str</contentType>
+            <contentType>nmr-data-str</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="dst2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str-report</contentType>
+            <contentType>nmr-data-str-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -3070,18 +3070,11 @@
      <methodName>str2strDepositOp</methodName>
   </action>
 
-  <action name="nmr-str2nef-deposit">
+  <action name="nmr-str2nef-release">
      <inputList>
-         <wfDataObject name="src0">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-config</contentType>
-            <fileFormat>json</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str</contentType>
+            <contentType>nmr-data-str</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -3093,47 +3086,40 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-         <wfDataObject name="prc2">
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst0">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>model</contentType>
-            <fileFormat>pdbx</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="src3">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str-report</contentType>
+            <contentType>nmr-data-str-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-     </inputList>
-
-     <outputList>
          <wfDataObject name="dst1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str</contentType>
+            <contentType>nmr-data-str</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="dst2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-nef</contentType>
+            <contentType>nmr-data-nef</contentType>
             <fileFormat>nmr-star</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="dst3">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str-report</contentType>
+            <contentType>nmr-data-str-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
         <wfDataObject name="dst4">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-nef-report</contentType>
+            <contentType>nmr-data-nef-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -3142,7 +3128,7 @@
      <userParameters/>
      <internalParameters/>
      <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
-     <methodName>str2nefDepositOp</methodName>
+     <methodName>str2nefReleaseOp</methodName>
   </action>
 
   <action name="fsc-deposit">
@@ -3978,7 +3964,7 @@
      <outputList>
          <wfDataObject name="dst1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str</contentType>
+            <contentType>nmr-data-str</contentType>
             <fileFormat>pdbx</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -4127,13 +4113,13 @@
      <methodName>atomNameCheckCsXyzAltOp</methodName>
   </action>
 
-<!-- atom name chemical shift check (NMR unified deposition)  -->
+ <!-- atom name chemical shift check (NMR unified deposition)  -->
   <action name="nmr-str2cif-namechk">
      <inputList>
          <!-- input CS  full path list -->
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str</contentType>
+            <contentType>nmr-data-str</contentType>
             <fileFormat>pdbx</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
@@ -4153,7 +4139,7 @@
          <!--  chemical shift file as output from cs-upload-check  -->
          <wfDataObject name="dst1">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-unified-data-str</contentType>
+            <contentType>nmr-data-str</contentType>
             <fileFormat>pdbx</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>

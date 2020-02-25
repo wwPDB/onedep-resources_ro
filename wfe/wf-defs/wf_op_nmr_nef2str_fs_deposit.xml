@@ -10,13 +10,13 @@
 
     <wf:workflow>
         <wf:dataObjects>
-        	<wf:dataObject dataID="C1" name="nmr-unified-data-config-file" type="string" container="list" mutable="true" >
+            <wf:dataObject dataID="C1" name="nmr-data-config-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR unified data configuration file</wf:description>
-                <wf:location where="tempdep" content="nmr-unified-data-config" format="json" version="latest" />
+                <wf:location where="tempdep" content="nmr-data-config" format="json" version="latest" />
             </wf:dataObject>
-            <wf:dataObject dataID="D1" name="nmr-unified-data-nef-file" type="string" container="list" mutable="true" >
+            <wf:dataObject dataID="D1" name="nmr-data-nef-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR unified data file: NEF (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-unified-data-nef" format="nmr-star" version="latest" />
+                <wf:location where="deposit" content="nmr-data-nef" format="nmr-star" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version)</wf:description>
@@ -24,28 +24,28 @@
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="nmr-nef-consistency-log" type="string" container="list" mutable="true" >
                 <wf:description>NEF consistency log (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-unified-data-nef-report" format="json" version="next" />
+                <wf:location where="deposit" content="nmr-data-nef-report" format="json" version="next" />
             </wf:dataObject>
 
             <wf:dataObject dataID="D4" name="nmr-nef-consistency-log" type="string" container="list" mutable="true" >
                 <wf:description>NEF consistency log (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-unified-data-nef-report" format="json" version="latest" />
+                <wf:location where="deposit" content="nmr-data-nef-report" format="json" version="latest" />
             </wf:dataObject>
-            <wf:dataObject dataID="D5" name="nmr-unified-data-nef-file" type="string" container="list" mutable="true" >
+            <wf:dataObject dataID="D5" name="nmr-data-nef-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR unified data file: NEF (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-unified-data-nef" format="nmr-star" version="next" />
+                <wf:location where="deposit" content="nmr-data-nef" format="nmr-star" version="next" />
             </wf:dataObject>
-            <wf:dataObject dataID="D6" name="nmr-unified-data-str-file" type="string" container="list" mutable="true" >
+            <wf:dataObject dataID="D6" name="nmr-data-str-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR unified data file: NMR-STAR V3.2 (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-unified-data-str" format="nmr-star" version="next" />
+                <wf:location where="deposit" content="nmr-data-str" format="nmr-star" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D7" name="nmr-nef-deposit-log" type="string" container="list" mutable="true" >
                 <wf:description>NEF deposit log (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-unified-data-nef-report" format="json" version="next" />
+                <wf:location where="deposit" content="nmr-data-nef-report" format="json" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D8" name="nmr-str-deposit-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR-STAR V3.2 deposit log (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-unified-data-str-report" format="json" version="next" />
+                <wf:location where="deposit" content="nmr-data-str-report" format="json" version="next" />
             </wf:dataObject>
 
         </wf:dataObjects>
@@ -62,7 +62,7 @@
                     <wf:process runTime="00:00:10" failTime="00:05:20">
                         <wf:detail name="nmr-nef-consistency-check" action="nmr-nef-consistency-check" where="api"/>
                         <wf:dataObjectsLocation>
-                        	<wf:location dataID="C1" type="input"/>
+                            <wf:location dataID="C1" type="input"/>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="input"/>
                             <wf:location dataID="D2" type="input"/> <!-- dummy for compatibility -->
@@ -76,7 +76,7 @@
                     <wf:process runTime="00:00:10" failTime="00:05:20">
                         <wf:detail name="nmr-nef2str-deposit" action="nmr-nef2str-deposit" where="api"/>
                         <wf:dataObjectsLocation>
-                        	<wf:location dataID="C1" type="input"/>
+                            <wf:location dataID="C1" type="input"/>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="input"/>
                             <wf:location dataID="D2" type="input"/> <!-- dummy for compatibility -->
