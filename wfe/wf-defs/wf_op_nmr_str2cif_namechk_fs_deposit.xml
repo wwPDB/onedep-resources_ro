@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
     <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
         <wf:metadata>
-            <wf:version major="1.0" author="my" date="02-18-2020" id="NMR_STR2CIF_NAMECHK_DEP" name="wf_op_nmr_str2cif_namechk_fs_deposit.xml" />
+            <wf:version major="1.0" author="my" date="02-18-2020" id="STR2CS_NCHK_DEP" name="wf_op_nmr_str2cif_namechk_fs_deposit.xml" />
             <wf:description>
                 <wf:short>Chemical shifts atom name check (deposit)</wf:short>
                 <wf:subtext>Chemical shifts atom name check workflow</wf:subtext>
@@ -10,7 +10,7 @@
         <wf:workflow>
             <wf:dataObjects>
                 <wf:dataObject dataID="D1" name="nmr-data-str-file" type="string" container="list" mutable="true">
-                    <wf:description>NMR unified data file (latest version)</wf:description>
+                    <wf:description>NMR data file (latest version)</wf:description>
                     <wf:location where="deposit" content="nmr-data-str" format="pdbx" version="latest" />
                 </wf:dataObject>
 
@@ -20,7 +20,7 @@
                 </wf:dataObject>
 
                 <wf:dataObject dataID="D3" name="nmr-data-str-file" type="string" container="list" mutable="true">
-                    <wf:description>NMR unified data file (next version)</wf:description>
+                    <wf:description>NMR data file (next version)</wf:description>
                     <wf:location where="deposit" content="nmr-data-str" format="pdbx" version="next" />
                 </wf:dataObject>
 

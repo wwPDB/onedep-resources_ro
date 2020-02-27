@@ -2961,6 +2961,54 @@
      <methodName>strConsistencyCheckOp</methodName>
   </action>
 
+  <action name="nmr-cs-str-consistency-check">
+     <inputList>
+         <wfDataObject name="src0">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-config</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <!-- text file containing input CS full path list -->
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-cs-path-list</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="prc2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-str-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters/>
+     <internalParameters/>
+     <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
+     <methodName>csStrConsistencyCheckOp</methodName>
+  </action>
+
   <action name="nmr-nef2str-deposit">
      <inputList>
          <wfDataObject name="src0">
@@ -3845,7 +3893,7 @@
   <!-- upload chemical shift report  -->
   <action name="cs-upload-check">
      <inputList>
-         <!-- input CS  full path list -->
+         <!-- input CS full path list -->
          <wfDataObject name="src1">
             <dataReferenceType></dataReferenceType>
             <contentType></contentType>
@@ -3923,7 +3971,7 @@
  <!-- upload chemical shift report  (alternate file based version) -->
   <action name="cs-upload-check-alt">
      <inputList>
-         <!-- text file containing input CS  full path list -->
+         <!-- text file containing input CS full path list -->
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-cs-path-list</contentType>
@@ -3970,7 +4018,7 @@
  <!-- upload chemical shift report (NMR unified deposition) -->
   <action name="nmr-str2cif-uplchk">
      <inputList>
-         <!-- text file containing input CS  full path list -->
+         <!-- text file containing input CS full path list -->
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-cs-path-list</contentType>
@@ -4017,7 +4065,7 @@
   <!-- atom name chemical shift check  -->
   <action name="cs-atom-name-check">
      <inputList>
-         <!-- input CS  full path list -->
+         <!-- input CS full path list -->
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-chemical-shifts</contentType>
@@ -4095,7 +4143,7 @@
 <!-- atom name chemical shift check (alternate file only version)  -->
   <action name="cs-atom-name-check-alt">
      <inputList>
-         <!-- input CS  full path list -->
+         <!-- input CS full path list -->
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-chemical-shifts</contentType>
@@ -4143,7 +4191,7 @@
  <!-- atom name chemical shift check (NMR unified deposition)  -->
   <action name="nmr-str2cif-namechk">
      <inputList>
-         <!-- input CS  full path list -->
+         <!-- input CS full path list -->
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-data-str</contentType>

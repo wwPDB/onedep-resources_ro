@@ -11,7 +11,7 @@
     <wf:workflow>
         <wf:dataObjects>
             <wf:dataObject dataID="D1" name="nmr-data-str-file" type="string" container="list" mutable="true" >
-                <wf:description>NMR unified data file: NMR-STAR V3.2 (latest version)</wf:description>
+                <wf:description>NMR data file: NMR-STAR V3.2 (latest version)</wf:description>
                 <wf:location where="release" content="nmr-data-str" format="nmr-star" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
@@ -25,11 +25,11 @@
             </wf:dataObject>
 
             <wf:dataObject dataID="D5" name="nmr-data-str-file" type="string" container="list" mutable="true" >
-                <wf:description>NMR unified data file: NMR-STAR V3.2 (next version)</wf:description>
+                <wf:description>NMR data file: NMR-STAR V3.2 (next version)</wf:description>
                 <wf:location where="release" content="nmr-data-str" format="nmr-star" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D6" name="nmr-data-nef-file" type="string" container="list" mutable="true" >
-                <wf:description>NMR unified data file: NEF (next version)</wf:description>
+                <wf:description>NMR data file: NEF (next version)</wf:description>
                 <wf:location where="release" content="nmr-data-nef" format="nmr-star" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D7" name="nmr-str-release-log" type="string" container="list" mutable="true" >
@@ -52,7 +52,7 @@
 
                 <wf:task taskID="T2" name="nmr-str2nef-release" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nmr-str2nef-release">
                     <wf:description>NMR-STAR V3.2 -> NEF conversion and release</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                    <wf:process runTime="00:00:10" failTime="00:15:20">
                         <wf:detail name="nmr-str2nef-release" action="nmr-str2nef-release" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>

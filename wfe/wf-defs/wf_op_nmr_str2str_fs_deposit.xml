@@ -11,11 +11,11 @@
     <wf:workflow>
         <wf:dataObjects>
             <wf:dataObject dataID="C1" name="nmr-data-config-file" type="string" container="list" mutable="true" >
-                <wf:description>NMR unified data configuration file</wf:description>
+                <wf:description>NMR data configuration file</wf:description>
                 <wf:location where="tempdep" content="nmr-data-config" format="json" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D1" name="nmr-data-str-file" type="string" container="list" mutable="true" >
-                <wf:description>NMR unified data file: NMR-STAR V3.2 (latest version)</wf:description>
+                <wf:description>NMR data file: NMR-STAR V3.2 (latest version)</wf:description>
                 <wf:location where="deposit" content="nmr-data-str" format="nmr-star" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
@@ -32,7 +32,7 @@
                 <wf:location where="deposit" content="nmr-data-str-report" format="json" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D5" name="nmr-data-str-file" type="string" container="list" mutable="true" >
-                <wf:description>NMR unified data file: NMR-STAR V3.2 (next version)</wf:description>
+                <wf:description>NMR data file: NMR-STAR V3.2 (next version)</wf:description>
                 <wf:location where="deposit" content="nmr-data-str" format="nmr-star" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D6" name="nmr-str-deposit-log" type="string" container="list" mutable="true" >
@@ -51,7 +51,7 @@
 
                 <wf:task taskID="T2" name="nmr-str-consistency-check" nextTask="T7" breakpoint="false" exceptionID="EX0" reference="nmr-str-consistency-check">
                     <wf:description>NMR-STAR V3.2 consistency check</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                    <wf:process runTime="00:00:10" failTime="00:15:20">
                         <wf:detail name="nmr-str-consistency-check" action="nmr-str-consistency-check" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="C1" type="input"/>
@@ -65,7 +65,7 @@
 
                 <wf:task taskID="T7" name="nmr-str2str-deposit" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nmr-str2str-deposit">
                     <wf:description>NMR-STAR V3.2 -> NMR-STAR V3.2 conversion and deposition</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                    <wf:process runTime="00:00:10" failTime="00:15:20">
                         <wf:detail name="nmr-str2str-deposit" action="nmr-str2str-deposit" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="C1" type="input"/>
