@@ -51,6 +51,21 @@
                 <wf:description>Copy of the archive data in instance latest</wf:description>
                 <wf:location where="wf-instance" content="nmr-chemical-shifts" format="pdbx"  version="latest" />
             </wf:dataObject>
+
+            <wf:dataObject dataID="D64" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Latest combined nmr-data in PDBx format in archive</wf:description>
+                <wf:location where="archive" content="nmr-data-str" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D65" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive nmr-data data in instance next</wf:description>
+                <wf:location where="wf-instance" content="nmr-data-str" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D66" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive nmr-data in instance latest</wf:description>
+                <wf:location where="wf-instance" content="nmr-data-str" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+
             <wf:dataObject dataID="D71" name="archiveData" type="string" container="list" mutable="false">
                 <wf:description>Latest em volume in archive</wf:description>
                 <wf:location where="archive" content="em-volume" format="map"  version="latest" />
@@ -255,7 +270,7 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP3A" name="copyShiftsArchive" nextTask="TP7" breakpoint="false" exceptionID="EX0">
+                <wf:task taskID="TP3A" name="copyShiftsArchive" nextTask="TP4" breakpoint="false" exceptionID="EX0">
                     <wf:description>copy chemical shifts data from archive to instance </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
                         <wf:detail name="copyShiftsArchive" action="copy-if-exists" where="api"/>
@@ -266,16 +281,28 @@
                     </wf:process>
                 </wf:task>
 
+                <wf:task taskID="TP4" name="copyNmrDataArchive" nextTask="TP7" breakpoint="false" exceptionID="EX0">
+                    <wf:description>copy nmr-data from archive to instance </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="copyNmrDataArchive" action="copy-if-exists" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D64" type="input"/>
+                            <wf:location dataID="D65" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
                 <wf:task taskID="TP7" name="val-report-all-ann" nextTask="TM6" breakpoint="true" exceptionID="EX0">
                     <wf:description>Validation Report</wf:description>
                     <wf:process runTime="00:01:10" failTime="14:55:20">
-                        <wf:detail name="val-report-all-ann" action="val-report-all-ann-v2" where="api" parameter="in_annotation:yes"/>
+                        <wf:detail name="val-report-all-ann" action="val-report-all-ann-v3" where="api" parameter="in_annotation:yes"/>
                         <wf:dataObjectsLocation>
                                <wf:location dataID="D5" type="input1"/>
                                <wf:location dataID="D44" type="input2"/>
                                <wf:location dataID="D63" type="input3"/>
                                <wf:location dataID="D71" type="input4"/>
                                <wf:location dataID="D104" type="input5"/>
+                               <wf:location dataID="D66" type="input6"/>
 
                                <wf:location dataID="D6" type="output1"/>
                                <wf:location dataID="D7" type="output2"/>
