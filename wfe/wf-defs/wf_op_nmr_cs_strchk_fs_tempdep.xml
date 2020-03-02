@@ -12,19 +12,15 @@
         <wf:dataObjects>
             <wf:dataObject dataID="D1" name="cspathlist" type="string" container="list" mutable="true">
                 <wf:description>Chemical shifts path list (latest version)</wf:description>
-                <wf:location where="tempdep" content="nmr-cs-path-list" format="string" version="latest" />
+                <wf:location where="tempdep" content="nmr-cs-path-list" format="txt" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="mrpathlist" type="string" container="list" mutable="true">
                 <wf:description>Restraints path list (latest version)</wf:description>
-                <wf:location where="tempdep" content="nmr-mr-path-list" format="string" version="latest" />
+                <wf:location where="tempdep" content="nmr-mr-path-list" format="json" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version)</wf:description>
                 <wf:location where="tempdep" content="model" format="pdbx" version="latest" />
-            </wf:dataObject>
-            <wf:dataObject dataID="P3" name="pdbxmodelfile" type="string" container="list" mutable="true" >
-                <wf:description>PDBx format model data file (latest version - deposit storage)</wf:description>
-                <wf:location where="deposit" content="model" format="pdbx" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D4" name="nmr-cs-str-check-log" type="string" container="list" mutable="true" >
                 <wf:description>Chemical shifts check log (next version)</wf:description>
@@ -47,7 +43,6 @@
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="input"/>
                             <wf:location dataID="D3" type="input"/>
-                            <wf:location dataID="P3" type="input"/>
                             <wf:location dataID="D4" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>

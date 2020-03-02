@@ -3329,18 +3329,11 @@
          <wfDataObject name="src2">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-mr-path-list</contentType>
-            <fileFormat>txt</fileFormat>
+            <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="src3">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>model</contentType>
-            <fileFormat>pdbx</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="prc3">
             <dataReferenceType>file</dataReferenceType>
             <contentType>model</contentType>
             <fileFormat>pdbx</fileFormat>
