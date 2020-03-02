@@ -1916,7 +1916,6 @@
      <moduleName>wwpdb.utils.wf.plugins.ValidationUtils</moduleName>
      <methodName>validationReportAllOpV2</methodName>
   </action>
-  
 
   <action name="val-report-all-dep-v3">
      <inputList>
@@ -2033,7 +2032,6 @@
      <moduleName>wwpdb.utils.wf.plugins.ValidationUtils</moduleName>
      <methodName>validationReportAllOpV3</methodName>
   </action>
-  
 
 <action name="val-report-all-ann">
      <inputList>
@@ -3319,13 +3317,6 @@
 
   <action name="nmr-cs-str-consistency-check">
      <inputList>
-         <wfDataObject name="src0">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-data-config</contentType>
-            <fileFormat>json</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
          <!-- text file containing input CS full path list -->
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
@@ -3334,14 +3325,22 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <!-- text file containing input MR full path list -->
          <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-mr-path-list</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src3">
             <dataReferenceType>file</dataReferenceType>
             <contentType>model</contentType>
             <fileFormat>pdbx</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-         <wfDataObject name="prc2">
+         <wfDataObject name="prc3">
             <dataReferenceType>file</dataReferenceType>
             <contentType>model</contentType>
             <fileFormat>pdbx</fileFormat>
@@ -5001,7 +5000,7 @@
      <moduleName>wwpdb.utils.wf.plugins.EmUtils</moduleName>
      <methodName>mapFixInPlaceCfgOp</methodName>
   </action>
- 
+
   <!-- This is an unsual WF - it updates model/map in place if needed  -->
   <action name="auto-mapfix">
      <inputList>

@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.0" author="my" date="02-26-2020" id="CS_STRCHK_TDEP" name="wf_op_nmr_cs_strchk_fs_deposit.xml"/>
+        <wf:version major="1.0" author="my" date="03-02-2020" id="CS_STRCHK_TDEP" name="wf_op_nmr_cs_strchk_fs_tempdep.xml"/>
         <wf:description>
-            <wf:short>Chemical shifts upload file check (deposit)</wf:short>
+            <wf:short>Chemical shifts upload file check (tempdep)</wf:short>
             <wf:subtext>Chemical shifts upload file check workflow</wf:subtext>
         </wf:description>
     </wf:metadata>
 
     <wf:workflow>
         <wf:dataObjects>
-            <wf:dataObject dataID="C1" name="nmr-data-config-file" type="string" container="list" mutable="true" >
-                <wf:description>NMR data configuration file</wf:description>
-                <wf:location where="deposit" content="nmr-data-config" format="json" version="latest" />
-            </wf:dataObject>
             <wf:dataObject dataID="D1" name="cspathlist" type="string" container="list" mutable="true">
                 <wf:description>Chemical shifts path list (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-cs-path-list" format="txt" version="latest" />
+                <wf:location where="tempdep" content="nmr-cs-path-list" format="string" version="latest" />
             </wf:dataObject>
-            <wf:dataObject dataID="D2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
+            <wf:dataObject dataID="D2" name="mrpathlist" type="string" container="list" mutable="true">
+                <wf:description>Restraints path list (latest version)</wf:description>
+                <wf:location where="tempdep" content="nmr-mr-path-list" format="string" version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D3" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version)</wf:description>
-                <wf:location where="deposit" content="model" format="pdbx" version="latest" />
+                <wf:location where="tempdep" content="model" format="pdbx" version="latest" />
             </wf:dataObject>
-            <wf:dataObject dataID="P2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
+            <wf:dataObject dataID="P3" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version - deposit storage)</wf:description>
                 <wf:location where="deposit" content="model" format="pdbx" version="latest" />
             </wf:dataObject>
-            <wf:dataObject dataID="D3" name="nmr-cs-str-check-log" type="string" container="list" mutable="true" >
+            <wf:dataObject dataID="D4" name="nmr-cs-str-check-log" type="string" container="list" mutable="true" >
                 <wf:description>Chemical shifts check log (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-data-str-report" format="json" version="next" />
+                <wf:location where="tempdep" content="nmr-data-str-report" format="json" version="next" />
             </wf:dataObject>
         </wf:dataObjects>
 
@@ -44,11 +44,11 @@
                     <wf:process runTime="00:00:10" failTime="00:15:20">
                         <wf:detail name="nmr-cs-str-consistency-check" action="nmr-cs-str-consistency-check" where="api"/>
                         <wf:dataObjectsLocation>
-                            <wf:location dataID="C1" type="input"/>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="input"/>
-                            <wf:location dataID="P2" type="input"/>
-                            <wf:location dataID="D3" type="output"/>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="P3" type="input"/>
+                            <wf:location dataID="D4" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
