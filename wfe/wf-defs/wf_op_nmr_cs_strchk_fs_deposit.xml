@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.0" author="my" date="03-02-2020" id="CS_STRCHK_DEP" name="wf_op_nmr_cs_strchk_fs_deposit.xml"/>
+        <wf:version major="1.0" author="my" date="03-04-2020" id="CS_STRCHK_DEP" name="wf_op_nmr_cs_strchk_fs_deposit.xml"/>
         <wf:description>
             <wf:short>Chemical shifts upload file check (deposit)</wf:short>
             <wf:subtext>Chemical shifts upload file check workflow</wf:subtext>
@@ -12,11 +12,11 @@
         <wf:dataObjects>
             <wf:dataObject dataID="D1" name="cspathlist" type="string" container="list" mutable="true">
                 <wf:description>Chemical shifts path list (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-cs-path-list" format="string" version="latest" />
+                <wf:location where="deposit" content="nmr-cs-path-list" format="txt" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="mrpathlist" type="string" container="list" mutable="true">
                 <wf:description>Restraints path list (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-mr-path-list" format="string" version="latest" />
+                <wf:location where="deposit" content="nmr-mr-path-list" format="json" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version)</wf:description>

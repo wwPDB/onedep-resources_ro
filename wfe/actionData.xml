@@ -3329,7 +3329,7 @@
          <wfDataObject name="src2">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-mr-path-list</contentType>
-            <fileFormat>txt</fileFormat>
+            <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
