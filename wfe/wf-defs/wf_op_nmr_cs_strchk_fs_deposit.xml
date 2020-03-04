@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.0" author="my" date="03-02-2020" id="CS_STRCHK_DEP" name="wf_op_nmr_cs_strchk_fs_deposit.xml"/>
+        <wf:version major="1.0" author="my" date="03-04-2020" id="CS_STRCHK_DEP" name="wf_op_nmr_cs_strchk_fs_deposit.xml"/>
         <wf:description>
             <wf:short>Chemical shifts upload file check (deposit)</wf:short>
             <wf:subtext>Chemical shifts upload file check workflow</wf:subtext>
@@ -20,6 +20,10 @@
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version)</wf:description>
+                <wf:location where="deposit" content="model" format="pdbx" version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="P3" name="pdbxmodelfile" type="string" container="list" mutable="true" >
+                <wf:description>PDBx format model data file (latest version - deposit storage)</wf:description>
                 <wf:location where="deposit" content="model" format="pdbx" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D4" name="nmr-cs-str-check-log" type="string" container="list" mutable="true" >
@@ -43,6 +47,7 @@
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="input"/>
                             <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="P3" type="input"/>
                             <wf:location dataID="D4" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
