@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.0" author="my" date="08-23-2019" id="NMR_NEF2STR_TDEP" name="wf_op_nmr_nef2str_fs_tempdep.xml"/>
+        <wf:version major="1.0" author="my" date="08-23-2019" id="NEF2STR_TDEP" name="wf_op_nmr_nef2str_fs_tempdep.xml"/>
         <wf:description>
             <wf:short>Convert NEF to NMR-STAR V3.2 (tempdep)</wf:short>
             <wf:subtext>Deposition system file conversion workflow</wf:subtext>
