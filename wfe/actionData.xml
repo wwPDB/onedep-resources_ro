@@ -3155,8 +3155,8 @@
          </wfDataObject>
          <wfDataObject name="src2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-data-nef</contentType>
-            <fileFormat>nmr-star</fileFormat>
+            <contentType>nmr-data-str</contentType>
+            <fileFormat>pdbx</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
@@ -3172,8 +3172,8 @@
          </wfDataObject>
          <wfDataObject name="dst2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-data-nef</contentType>
-            <fileFormat>nmr-star</fileFormat>
+            <contentType>nmr-data-str</contentType>
+            <fileFormat>pdbx</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>

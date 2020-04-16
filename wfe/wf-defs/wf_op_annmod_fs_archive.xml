@@ -19,8 +19,12 @@
                 <wf:location where="wf-instance" content="model" format="pdbx"  version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="archiveData" type="string" container="list" mutable="false">
-                <wf:description>Original (latest) copy of the archive model data</wf:description>
+                <wf:description>Original (latest) copy of the archive nmr chemical shifts data</wf:description>
                 <wf:location where="archive" content="nmr-chemical-shifts" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D3B" name="archiveData" type="string" container="list" mutable="false">
+                <wf:description>Original (latest) copy of the archive nmr nef data</wf:description>
+                <wf:location where="archive" content="nmr-data-str" format="pdbx"  version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D4" name="instanceReportW" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
@@ -41,6 +45,14 @@
             <wf:dataObject dataID="D8" name="instanceDataR" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive data in instance latest</wf:description>
                 <wf:location where="wf-instance" content="nmr-chemical-shifts" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D9" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance next</wf:description>
+                <wf:location where="wf-instance" content="nmr-data-str" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D10" name="instanceDataR" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the archive data in instance latest</wf:description>
+                <wf:location where="wf-instance" content="nmr-data-str" format="pdbx"  version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D11" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Validation report</wf:description>
@@ -69,10 +81,6 @@
             <wf:dataObject dataID="D44" name="fileExists" type="string" container="value" mutable="true">
                 <wf:description>Run time variable to hold if file exists</wf:description>
                 <wf:location where="constant" content="latest" format="string"  version="" select=""/>
-            </wf:dataObject>
-            <wf:dataObject dataID="D10" name="waitTime" type="integer" container="value" mutable="true">
-                <wf:description>Wait time for the monitor in seconds</wf:description>
-                <wf:location where="constant" value="10"  version="latest" select=""/>
             </wf:dataObject>
             <wf:dataObject dataID="D19" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
@@ -231,13 +239,24 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP2A" name="copyShiftsArchive" nextTask="TP2B" breakpoint="false" exceptionID="EX0" reference="copy">
+                <wf:task taskID="TP2A" name="copyShiftsArchive" nextTask="TP2N" breakpoint="false" exceptionID="EX0" reference="copy">
                     <wf:description>copy PDBx data from archive to instance </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
                         <wf:detail name="copyToArchive" action="copy-if-exists" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
                             <wf:location dataID="D7" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP2N" name="copyNefArchive" nextTask="TP2B" breakpoint="false" exceptionID="EX0" reference="copy">
+                    <wf:description>copy PDBx data from archive to instance </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="copyToArchive" action="copy-if-exists" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3B" type="input"/>
+                            <wf:location dataID="D9" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
@@ -263,14 +282,14 @@
                             <wf:nextTask taskID="TP2D">
                                 <wf:function dataID="D44" string="true" />
                             </wf:nextTask>
-                            <wf:nextTask taskID="TP2F">
+                            <wf:nextTask taskID="TP2E">
                                 <wf:function dataID="D44" string="false" />
                             </wf:nextTask>
                         </wf:nextTasks>
                     </wf:decision>
                 </wf:task>
 
-                <wf:task taskID="TP2D" name="nmr-cs-processing" nextTask="TP2F" breakpoint="false" exceptionID="EX0" reference="nmr-cs-processing">
+                <wf:task taskID="TP2D" name="nmr-cs-processing" nextTask="TP2E" breakpoint="false" exceptionID="EX0" reference="nmr-cs-processing">
                     <wf:description>Chemical shifts atom name check task</wf:description>
                     <wf:process runTime="00:00:10" failTime="01:15:20">
                         <wf:detail name="nmr-cs-processing" action="nmr-cs-processing" where="api" />
@@ -289,7 +308,48 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP2F" name="pdbx-dict-check" nextTask="TT1" breakpoint="true" exceptionID="EX0" reference="pdbx-dict-check">
+                <wf:task taskID="TP2E" name="nefExist" nextTask="TA2F" breakpoint="false" exceptionID="EX0" reference="fileExist">
+                    <wf:description>Does file exist</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="nefFileExist" action="fileExist" where="wfe"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D10" type="input"/>
+                            <wf:location dataID="D44" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TA2F" name="testFile" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="testFile">
+                    <wf:description>File nef existance test</wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D44" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP2G">
+                                <wf:function dataID="D44" string="true" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP2H">
+                                <wf:function dataID="D44" string="false" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+                <wf:task taskID="TP2G" name="nmr-nef-processing" nextTask="TP2H" breakpoint="false" exceptionID="EX0" neference="nmr-nef-processing">
+                    <wf:description>Nef atom name check task</wf:description>
+                    <wf:process runTime="00:00:10" failTime="01:15:20">
+                        <wf:detail name="nmr-nef-processing" action="nmr-nef-processing" where="api" />
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D19" type="input1" />
+                            <wf:location dataID="D10" type="input2" />
+                            <wf:location dataID="D2"  type="output1"/>
+                            <wf:location dataID="D9"  type="output2" />
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP2H" name="pdbx-dict-check" nextTask="TT1" breakpoint="true" exceptionID="EX0" reference="pdbx-dict-check">
                     <wf:description>Dictionary Check</wf:description>
                         <wf:process runTime="00:00:10" failTime="01:55:20">
                         <wf:detail name="pdbx-dict-check" action="pdbx-dict-check" where="api"/>
