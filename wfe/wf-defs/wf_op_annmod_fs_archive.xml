@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.52" author="jdw" date="09-02-2015" id="AnnMod" name="AnnotateModule.xml"/>
+        <wf:version major="1.53" author="jdw" date="05-13-2020" id="AnnMod" name="AnnotateModule.xml"/>
         <wf:description>
             <wf:short>Annotation module (all methods)</wf:short>
             <wf:subtext>(wf_op_annmod_fs_archive.xml) </wf:subtext>
@@ -147,6 +147,16 @@
                 <wf:location where="archive" content="correspondence-to-depositor" format="txt"  version="next" />
             </wf:dataObject>
 
+            <wf:dataObject dataID="D60" name="archiveDataW" type="string" container="list" mutable="false" >
+                <wf:description>Original (latest) copy of the structure-factor file</wf:description>
+                <wf:location where="archive" content="structure-factors" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D61" name="archiveDataW" type="string" container="list" mutable="true">
+                <wf:description>Final (next) copy of the structure-factor file</wf:description>
+                <wf:location where="archive" content="structure-factors" format="pdbx"  version="next" />
+            </wf:dataObject>
+
             <wf:dataObject dataID="DE1" name="archiveData" type="string" container="list" mutable="false">
                 <wf:description>Original (latest) of archive model - with attribute details - </wf:description>
                 <wf:location where="archive" content="model" format="pdbx"  version="latest"
@@ -228,13 +238,27 @@
 
 	      <!-- Original handling -->
 
-                <wf:task taskID="TP2" name="copyArchive" nextTask="TP2A" breakpoint="false" exceptionID="EX0" reference="copy">
+
+                <wf:task taskID="TP2" name="copyArchive" nextTask="TP2SF" breakpoint="false" exceptionID="EX0" reference="copy">
                     <wf:description>copy PDBx data from archive to instance </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
                         <wf:detail name="copyToArchive" action="copy-if-exists" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+		<!-- Using model in instance directory, potentially update SF in archive.  Instance directory (model) used for session dir -->
+                <wf:task taskID="TP2SF" name="updateSF" nextTask="TP2A" breakpoint="false" exceptionID="EX0" reference="site-environment">
+                    <wf:description>Update SF in archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:05:01">
+                        <wf:detail name="CorrectSFWavelength" action="update-sf-wavelength" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D19" type="input"/>
+                               <wf:location dataID="D60" type="input"/>
+                               <wf:location dataID="D61" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>

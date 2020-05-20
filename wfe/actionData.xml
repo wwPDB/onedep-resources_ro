@@ -5072,6 +5072,40 @@
      <methodName>em3dAutoEmMapFixVersOp</methodName>
   </action>
 
+  <action name="update-sf-wavelength">
+     <inputList>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>structure-factors</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>structure-factors</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
+     <methodName>updateSFWavelengthOp</methodName>
+  </action>
+
   <!-- comment  -->
 </actionList>
 
