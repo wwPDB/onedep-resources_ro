@@ -121,7 +121,7 @@
 
                 <wf:task taskID="TA5" name="autoSeqUpdate" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="seq-assign-update">
                     <wf:description>Merge sequence assignment and update model file</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                    <wf:process runTime="00:00:10" failTime="00:15:20">
                         <wf:detail name="autoSeqUpdate" action="seq-assign-update" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input1"/>
