@@ -211,7 +211,7 @@
 
                 <wf:task taskID="TP7" name="ChemCompUpdate" nextTask="TP8" breakpoint="false" exceptionID="EX0" reference="chem-comp-instance-update">
                     <wf:description>Update the instance data for match - DONE BY UI</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                    <wf:process runTime="00:00:10" failTime="01:05:20">
                         <wf:detail name="ChemCompUpdate" action="chem-comp-instance-update" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input1"/>
