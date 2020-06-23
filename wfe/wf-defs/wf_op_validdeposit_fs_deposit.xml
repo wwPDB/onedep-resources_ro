@@ -142,7 +142,7 @@
 
                <wf:task taskID="TP6" name="val-report-all-dep" nextTask="TP31" breakpoint="true" exceptionID="EX0">
                   <wf:description>Validation Report</wf:description>
-                  <wf:process runTime="00:55:10" failTime="02:00:00">
+                  <wf:process runTime="00:55:10" failTime="03:30:00">
                      <wf:detail name="val-report-all-dep" action="val-report-all-dep-v3" where="api" parameter="in_annotation:no"/>
                      <wf:dataObjectsLocation>
                          <wf:location dataID="D24" type="input1"/>

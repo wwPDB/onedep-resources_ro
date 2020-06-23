@@ -125,7 +125,7 @@
 
                <wf:task taskID="TP6" name="val-report-all-srv" nextTask="TP31" breakpoint="true" exceptionID="EX0">
                   <wf:description>Validation Report</wf:description>
-                  <wf:process runTime="00:55:10" failTime="02:00:00">
+                  <wf:process runTime="00:55:10" failTime="03:30:00">
                      <wf:detail name="val-report-all-srv" action="val-report-all-srv-v3" where="api" parameter="validation_mode:server"/>
                      <wf:dataObjectsLocation>
                          <wf:location dataID="D24" type="input1"/>
