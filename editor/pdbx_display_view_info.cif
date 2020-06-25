@@ -189,6 +189,9 @@ AV3 PRD                          pdbx_reference_molecule             PRD        
 AV3 PRD                          pdbx_reference_entity_src_nat       PRD                          pdbx_reference_entity_src_nat         multi 
 AV3 PRD                          pdbx_reference_entity_link          PRD                          'Linkage between entities'            multi 
 AV3 PRD                          pdbx_reference_entity_poly_link     PRD                          'Linkage within a polymer entity'     multi 
+AV3 PRD                          pdbx_reference_entity_list          PRD                          'List of entities'                    multi 
+AV3 PRD                          pdbx_reference_entity_poly          PRD                          'Polymer details'                     multi
+AV3 PRD                          pdbx_reference_entity_sequence	     PRD      		  	  'Additional features'                 multi
 AV3 PRD                          pdbx_prd_audit                      PRD                          'PRD Revision History'                multi 
 # 
 loop_
@@ -998,6 +1001,23 @@ AV3 'Linkage within a polymer entity'     '_pdbx_reference_entity_poly_link.enti
 AV3 'Linkage within a polymer entity'     '_pdbx_reference_entity_poly_link.comp_id_2'                  'Residue name'                              N 
 AV3 'Linkage within a polymer entity'     '_pdbx_reference_entity_poly_link.atom_id_2'                  'Atom name'                                 N 
 AV3 'Linkage within a polymer entity'     '_pdbx_reference_entity_poly_link.value_order'                'Bond order'                                N 
+AV3 'List of entities'                    '_pdbx_reference_entity_list.prd_id'                          'PRD ID'                                    Y
+AV3 'List of entities'                    '_pdbx_reference_entity_list.ref_entity_id'                   ID                                          Y
+AV3 'List of entities'                    '_pdbx_reference_entity_list.component_id'                    'Component ID'                              Y
+AV3 'List of entities'                    '_pdbx_reference_entity_list.type'                            Type                                        N
+AV3 'List of entities'                    '_pdbx_reference_entity_list.details'                         Details                                     N
+AV3 'Polymer details'                     '_pdbx_reference_entity_poly.prd_id'                          'PRD ID'                                    Y 
+AV3 'Polymer details'                     '_pdbx_reference_entity_poly.ref_entity_id'                   'Entity ID'                                 Y 
+AV3 'Polymer details'                     '_pdbx_reference_entity_poly.type'                            Type                                        N
+AV3 'Polymer details'                     '_pdbx_reference_entity_poly.db_code'                         'DB code'                                   N
+AV3 'Polymer details'                     '_pdbx_reference_entity_poly.db_name'                         'DB name'                                   N
+AV3 'Additional features'                 '_pdbx_reference_entity_sequence.prd_id'                      'PRD ID'                                    Y 
+AV3 'Additional features'                 '_pdbx_reference_entity_sequence.ref_entity_id'               'Entity ID'                                 Y 
+AV3 'Additional features'                 '_pdbx_reference_entity_sequence.type'                        Type                                        N
+AV3 'Additional features'                 '_pdbx_reference_entity_sequence.NRP_flag'                    'NRP flag'                                  N
+AV3 'Additional features'                 '_pdbx_reference_entity_sequence.one_letter_codes'            'One letter codes'                          Y
+
+
 AV3 'PRD Revision History'                '_pdbx_prd_audit.prd_id'                                      'PRD ID'                                    Y 
 AV3 'PRD Revision History'                '_pdbx_prd_audit.date'                                        Date                                        N 
 AV3 'PRD Revision History'                '_pdbx_prd_audit.processing_site'                             'Processing site'                           N 
