@@ -50,6 +50,13 @@
                 <wf:location where="archive" content="dcc-report" format="txt"  version="next" />
             </wf:dataObject>
 
+
+            <wf:dataObject dataID="D20" name="emdxml" type="string" container="list" mutable="true" >
+                <wf:description>EML-XML  check report txt</wf:description>
+                <wf:location where="archive" content="emd-xml-header-report" format="txt"  version="next" />
+            </wf:dataObject>
+
+
             <wf:dataObject dataID="D13" name="geometrycheck" type="string" container="list" mutable="true" >
                 <wf:description>Geometry check report</wf:description>
                 <wf:location where="archive" content="geometry-check-report" format="pdbx"  version="next" />
@@ -142,7 +149,7 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP10" name="pdbx2pdb" nextTask="T10" breakpoint="false" exceptionID="EX0" reference="pdbx2pdb">
+                <wf:task taskID="TP10" name="pdbx2pdb" nextTask="TP11" breakpoint="false" exceptionID="EX0" reference="pdbx2pdb">
                     <wf:description>Create PDB format file</wf:description>
                     <wf:process runTime="00:00:04" failTime="00:00:20">
                         <wf:detail name="pdbx2pdb" action="pdbx2pdb" where="api"/>
@@ -153,6 +160,16 @@
                     </wf:process>
                 </wf:task>
 
+                <wf:task taskID="TP11" name="emd-xmlheader-check" nextTask="T10" breakpoint="false" exceptionID="EX0" reference="special-position-check">
+                    <wf:description>Do EMD XML header generation check</wf:description>
+                    <wf:process runTime="00:00:50" failTime="00:30:20">
+                        <wf:detail name="emd-xml-header-check" action="emd-xml-header-check" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D20" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
 
             </wf:tasks>
 
