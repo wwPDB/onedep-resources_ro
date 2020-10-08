@@ -140,7 +140,7 @@
                     <wf:workflow runTime="00:00:00" failTime="00:00:00" file="wf_op_validannot_fs_archive.xml" classID="ValMod"/>
                 </wf:task>
 
-                <wf:task taskID="TP21" name="ReportMod" nextTask="TP20" breakpoint="true" exceptionID="EX0" reference="ReportsModule2">
+                <wf:task taskID="TP21" name="ReportMod2" nextTask="TP20" breakpoint="true" exceptionID="EX0" reference="ReportsModule2">
                     <wf:description>Report module  - post annotation </wf:description>
                     <wf:workflow runTime="00:00:00" failTime="00:00:00" file="ReportsModule2.xml" classID="ReportMod2"/>
 
