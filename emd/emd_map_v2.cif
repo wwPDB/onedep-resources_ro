@@ -264,6 +264,16 @@ _pdbx_dict_item_mapping.map_type
 "_em_entity_assembly_recombinant.organism"                   "_emd_recombinant_expression.organism"                                    src_to_dst  as_item
 "_em_entity_assembly_recombinant.plasmid"                    "_emd_recombinant_expression.plasmid"                                     src_to_dst  as_item
 "_em_entity_assembly_recombinant.strain"                     "_emd_recombinant_expression.strain"                                      src_to_dst  as_item
+"_em_entity_assembly_synthetic.id"                           "_emd_synthetic_source.id"                                                src_to_dst  as_key
+"_em_entity_assembly_synthetic.entity_assembly_id"           "_emd_synthetic_source.emd_supramolecule_"                                src_to_dst  as_key
+"_em_entity_assembly_synthetic.cell"                         "_emd_synthetic_source.cell"                                              src_to_dst  as_item
+"_em_entity_assembly_synthetic.cellular_location"            "_emd_synthetic_source.cellular_location"                                 src_to_dst  as_item
+"_em_entity_assembly_synthetic.ncbi_tax_id"                  "_emd_synthetic_source.ncbi_tax_id"                                       src_to_dst  as_item
+"_em_entity_assembly_synthetic.organ"                        "_emd_synthetic_source.organ"                                             src_to_dst  as_item
+"_em_entity_assembly_synthetic.organelle"                    "_emd_synthetic_source.organelle"                                         src_to_dst  as_item
+"_em_entity_assembly_synthetic.organism"                     "_emd_synthetic_source.organism"                                          src_to_dst  as_item
+"_em_entity_assembly_synthetic.strain"                       "_emd_synthetic_source.strain"                                            src_to_dst  as_item
+"_em_entity_assembly_synthetic.tissue"                       "_emd_synthetic_source.tissue"                                            src_to_dst  as_item
 "_em_image_processing.id"                                    "_emd_image_processing.id"                                                src_to_dst  as_key
 "_em_image_processing.image_recording_id"                    "_emd_image_processing.emd_image_recording_id"                            src_to_dst  as_key
 "_em_image_processing.details"                               "_emd_image_processing.details"                                           src_to_dst  as_item
@@ -575,6 +585,9 @@ _pdbx_dict_item_substitution.tag
 "_emd_natural_source.ncbi_tax_id"           32644          post_src_to_dst    prereleasetitle
 "_emd_natural_source.organism"              Suppressed     post_src_to_dst    prereleasetitle
 "_emd_natural_source.strain"                Suppressed     post_src_to_dst    prereleasetitle
+"_emd_synthetic_source.ncbi_tax_id"         32644          post_src_to_dst    prereleasetitle
+"_emd_synthetic_source.organism"            Suppressed     post_src_to_dst    prereleasetitle
+"_emd_synthetic_source.strain"              Suppressed     post_src_to_dst    prereleasetitle
 "_emd_virus_natural_host.ncbi_tax_id"       32644          post_src_to_dst    prereleasetitle
 "_emd_virus_natural_host.organism"          Suppressed     post_src_to_dst    prereleasetitle
 "_emd_virus_natural_host.strain"            ?              post_src_to_dst    prereleasetitle
