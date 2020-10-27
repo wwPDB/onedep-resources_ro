@@ -1331,6 +1331,7 @@ _pdbx_display_view_category_info.category_cardinality
 'EM Sample'          em_entity_assembly_molwt            'EM Sample'           em_entity_assembly_molwt           multi 
 'EM Sample'          em_entity_assembly_naturalsource    'EM Sample'           em_entity_assembly_naturalsource   multi 
 'EM Sample'          em_entity_assembly_recombinant      'EM Sample'           em_entity_assembly_recombinant     multi 
+'EM Sample'          em_entity_assembly_synthetic        'EM Sample'           em_entity_assembly_synthetic       multi 
 'EM Sample'          em_virus_entity                     'EM Sample'           em_virus_entity                    multi 
 'EM Sample'          em_virus_natural_host               'EM Sample'           em_virus_natural_host              multi 
 'EM Sample'          em_virus_shell                      'EM Sample'           em_virus_shell                     multi 
@@ -1374,6 +1375,16 @@ em_entity_assembly_recombinant     '_em_entity_assembly_recombinant.organism'   
 em_entity_assembly_recombinant     '_em_entity_assembly_recombinant.plasmid'                     plasmid                                          N 
 em_entity_assembly_recombinant     '_em_entity_assembly_recombinant.strain'                      strain                                           N 
 em_entity_assembly_recombinant     '_em_entity_assembly_recombinant.entity_assembly_id'          assembly_id                                      N 
+em_entity_assembly_synthetic       '_em_entity_assembly_synthetic.id'                            id                                               N 
+em_entity_assembly_synthetic       '_em_entity_assembly_synthetic.cell'                          cell                                             N 
+em_entity_assembly_synthetic       '_em_entity_assembly_synthetic.cellular_location'             cellular_location                                N 
+em_entity_assembly_synthetic       '_em_entity_assembly_synthetic.ncbi_tax_id'                   ncbi_tax_id                                      N 
+em_entity_assembly_synthetic       '_em_entity_assembly_synthetic.organ'                         organ                                            N 
+em_entity_assembly_synthetic       '_em_entity_assembly_synthetic.organelle'                     organelle                                        N 
+em_entity_assembly_synthetic       '_em_entity_assembly_synthetic.organism'                      organism                                         N 
+em_entity_assembly_synthetic       '_em_entity_assembly_synthetic.strain'                        strain                                           N 
+em_entity_assembly_synthetic       '_em_entity_assembly_synthetic.entity_assembly_id'            assembly_id                                      N 
+em_entity_assembly_synthetic       '_em_entity_assembly_synthetic.tissue'                        tissue                                           N 
 em_virus_entity                    '_em_virus_entity.virus_type'                                 category                                         N 
 em_virus_entity                    '_em_virus_entity.empty'                                      empty                                            N 
 em_virus_entity                    '_em_virus_entity.enveloped'                                  enveloped                                        N 
