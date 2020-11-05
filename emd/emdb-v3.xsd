@@ -24,7 +24,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.2.0"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.2.1"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -162,6 +162,7 @@
                         <xs:enumeration value="PDBe"/>
                         <xs:enumeration value="RCSB"/>
                         <xs:enumeration value="PDBj"/>
+                        <xs:enumeration value="PDBc"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -2473,6 +2474,7 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="details" type="xs:string" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
     <xs:simpleType name="allowed_energy_window">
@@ -3215,11 +3217,11 @@
             <xs:element name="number_intensities_measured" type="xs:positiveInteger"/>
             <xs:element name="number_structure_factors" type="xs:positiveInteger"/>
             <xs:element name="fourier_space_coverage" type="xs:float"/>
-            <xs:element name="r_sym" type="xs:float"/>
+            <xs:element name="r_sym" type="xs:float" minOccurs="0"/>
             <xs:element name="r_merge" type="xs:float"/>
-            <xs:element name="overall_phase_error" type="xs:float"/>
-            <xs:element name="overall_phase_residual" type="xs:float"/>
-            <xs:element name="phase_error_rejection_criteria" type="xs:float"/>
+            <xs:element name="overall_phase_error" type="xs:token" minOccurs="0"/>
+            <xs:element name="overall_phase_residual" type="xs:float" minOccurs="0"/>
+            <xs:element name="phase_error_rejection_criteria" type="xs:token"/>
             <xs:element name="high_resolution">
                 <xs:complexType>
                     <xs:simpleContent>
