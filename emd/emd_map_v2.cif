@@ -365,6 +365,13 @@ _pdbx_dict_item_mapping.map_type
 "_em_virus_natural_host.ncbi_tax_id"                         "_emd_virus_natural_host.ncbi_tax_id"                                     src_to_dst  as_item
 "_em_virus_natural_host.organism"                            "_emd_virus_natural_host.organism"                                        src_to_dst  as_item
 "_em_virus_natural_host.strain"                              "_emd_virus_natural_host.strain"                                          src_to_dst  as_item
+#
+"_em_virus_synthetic.id"                                     "_emd_virus_synthetic.id"                                                 src_to_dst  as_key
+"_em_virus_synthetic.entity_assembly_id"                     "_emd_virus_synthetic.emd_supramolecule_id"                               src_to_dst  as_key
+"_em_virus_synthetic.ncbi_tax_id"                            "_emd_virus_synthetic.ncbi_tax_id"                                        src_to_dst  as_item
+"_em_virus_synthetic.organism"                               "_emd_virus_synthetic.organism"                                           src_to_dst  as_item
+"_em_virus_synthetic.strain"                                 "_emd_virus_natural_host.strain"                                          src_to_dst  as_item
+#
 "_em_virus_shell.id"                                         "_emd_virus_shell.id"                                                     src_to_dst  as_key
 "_em_virus_shell.entity_assembly_id"                         "_emd_virus_shell.emd_supramolecule_id"                                   src_to_dst  as_key
 "_em_virus_shell.diameter"                                   "_emd_virus_shell.diameter"                                               src_to_dst  as_item
