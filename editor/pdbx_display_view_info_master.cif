@@ -1334,6 +1334,7 @@ _pdbx_display_view_category_info.category_cardinality
 'EM Sample'          em_entity_assembly_synthetic        'EM Sample'           em_entity_assembly_synthetic       multi 
 'EM Sample'          em_virus_entity                     'EM Sample'           em_virus_entity                    multi 
 'EM Sample'          em_virus_natural_host               'EM Sample'           em_virus_natural_host              multi 
+'EM Sample'          em_virus_synthetic                  'EM Sample'           em_virus_synthetic                 multi 
 'EM Sample'          em_virus_shell                      'EM Sample'           em_virus_shell                     multi 
 'EM Sample'          entity                              'EM Sample'           'Entity Description2'              multi
 'EM Sample'          entity_src_gen                      'EM Sample'           'Genetically Engineered2'          multi
@@ -1395,6 +1396,13 @@ em_virus_natural_host              '_em_virus_natural_host.ncbi_tax_id'         
 em_virus_natural_host              '_em_virus_natural_host.organism'                             organism                                         N 
 em_virus_natural_host              '_em_virus_natural_host.strain'                               strain                                           N 
 em_virus_natural_host              '_em_virus_natural_host.entity_assembly_id'                   assembly_id                                      N 
+#
+em_virus_synthetic                 '_em_virus_synthetic.id'                                      id                                               N 
+em_virus_synthetic                 '_em_virus_synthetic.ncbi_tax_id'                             ncbi_tax_id                                      N 
+em_virus_synthetic                 '_em_virus_synthetic.organism'                                organism                                         N 
+em_virus_synthetic                 '_em_virus_synthetic.strain'                                  strain                                           N 
+em_virus_synthetic                 '_em_virus_natural_host.entity_assembly_id'                   assembly_id                                      N 
+#
 em_virus_shell                     '_em_virus_shell.id'                                          id                                               N 
 em_virus_shell                     '_em_virus_shell.diameter'                                    diameter                                         N 
 em_virus_shell                     '_em_virus_shell.name'                                        name                                             N 
