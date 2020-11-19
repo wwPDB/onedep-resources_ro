@@ -24,7 +24,7 @@
             </xs:element>
         </xs:sequence>
         <xs:attribute name="emdb_id" type="emdb_id_type" use="required"/>
-        <xs:attribute name="version" type="xs:token" default="3.0.2.1"/>
+        <xs:attribute name="version" type="xs:token" default="3.0.2.2"/>
         <!-- <xs:attribute name="composite_structure" type="xs:boolean"/> -->
     </xs:complexType>
     <xs:complexType name="admin_type">
@@ -40,6 +40,7 @@
                                     <xs:enumeration value="PDBe"/>
                                     <xs:enumeration value="PDBj"/>
                                     <xs:enumeration value="RCSB"/>
+                                    <xs:enumeration value="PDBc"/>
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
@@ -49,6 +50,7 @@
                                     <xs:enumeration value="PDBe"/>
                                     <xs:enumeration value="PDBj"/>
                                     <xs:enumeration value="RCSB"/>
+                                    <xs:enumeration value="PDBc"/>
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
