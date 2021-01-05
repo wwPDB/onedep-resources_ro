@@ -1615,6 +1615,7 @@ em_imaging_optics                  '_em_imaging_optics.energyfilter_upper'      
 em_imaging_optics                  '_em_imaging_optics.energyfilter_slit_width'                  energyfilter_slit_width                          N 
 em_imaging_optics                  '_em_imaging_optics.phase_plate'                              phase_plate                                      N 
 em_imaging_optics                  '_em_imaging_optics.sph_aberration_corrector'                 sph_aberration_corrector                         N 
+em_imaging_optics                  '_em_imaging_optics.details'                                  details                                          N 
 
 ###############################################################################################
 data_EM5
