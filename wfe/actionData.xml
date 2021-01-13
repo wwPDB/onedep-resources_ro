@@ -279,6 +279,34 @@
      <methodName>fetchOp</methodName>
   </action>
 
+  <action name="fetch-summary">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>prd-search</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType>attribute</selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType></dataReferenceType>
+            <contentType></contentType>
+            <fileFormat></fileFormat>
+            <containerType>value</containerType>
+            <valueType>string</valueType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+           <parameter name="blockNumber">1</parameter>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.PdbxUtils</moduleName>
+     <methodName>fetchOp</methodName>
+  </action>
 
   <action name="pdbx2pdb">
      <inputList>
