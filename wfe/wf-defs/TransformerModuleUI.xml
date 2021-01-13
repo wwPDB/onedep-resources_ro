@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.51" author="T Oldfield" date="18-03-2013" id="TransMod" name="TransformerModuleUI.xml"/>
+        <wf:version major="1.51" author="T Oldfield" date="18-03-2013" id="TransModUI" name="TransformerModuleUI.xml"/>
         <wf:description>
             <wf:short>Transformer annotation module</wf:short>
             <wf:subtext>checks and validates the mmCIF core structure - I think : FORCED UI</wf:subtext>
