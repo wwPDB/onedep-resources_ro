@@ -28,7 +28,7 @@
 
             <wf:tasks>
 
-                <wf:task taskID="T2" name="assembly_auth_depinfo" nextTask="T2" breakpoint="false" exceptionID="EX0" reference="assembly_auth_depinfo">
+                <wf:task taskID="T2" name="assembly_auth_depinfo" nextTask="T3" breakpoint="false" exceptionID="EX0" reference="assembly_auth_depinfo">
                     <wf:description>PDB to PDBx task</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:05:20">
                         <wf:detail name="assembly_auth_depinfo" action="assembly-auth-depinfo" where="api"/>
@@ -41,7 +41,7 @@
 
 
                 <!-- Final task -->
-                <wf:task taskID="T2" name="Finish" nextTask="T3" breakpoint="false" exceptionID="EX0" reference="Finish">
+                <wf:task taskID="T3" name="Finish" nextTask="T4" breakpoint="false" exceptionID="EX0" reference="Finish">
                    <wf:description>Mark the WF as completed</wf:description>
                    <wf:process runTime="00:00:01" failTime="00:00:20">
                       <wf:detail name="finished" action="finished" where="wfe"/>
@@ -50,7 +50,7 @@
 
             </wf:tasks>
 
-            <wf:exitPoint taskID="T3" name="End" breakpoint="false" reference="exit">
+            <wf:exitPoint taskID="T4" name="End" breakpoint="false" reference="exit">
                 <wf:description>Last point in the workflow</wf:description>
             </wf:exitPoint>
 
