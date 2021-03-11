@@ -828,6 +828,24 @@
      <methodName>chemCompAssignOp</methodName>
   </action>
 
+   <action name="chem-comp-report">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>chem-comp-assign</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.ChemCompUtils</moduleName>
+     <methodName>chemCompReportOp</methodName>
+   </action>
+
   <action name="chem-comp-assign-nl">
      <inputList>
          <wfDataObject name="src">

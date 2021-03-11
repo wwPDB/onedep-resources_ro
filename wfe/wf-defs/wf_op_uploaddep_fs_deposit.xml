@@ -34,6 +34,10 @@
                <wf:description>Chemical Component assignment data(next)</wf:description>
                <wf:location where="deposit" content="chem-comp-assign" format="pdbx"  version="next" reference="cc-assign"/>
             </wf:dataObject>
+            <wf:dataObject dataID="D7" name="chemCompAssignR" type="string" container="list" mutable="true" >
+               <wf:description>Chemical Component assignment data(latest)</wf:description>
+               <wf:location where="deposit" content="chem-comp-assign" format="pdbx"  version="latest" reference="cc-assign"/>
+            </wf:dataObject>
         </wf:dataObjects>
 
         <wf:flow>
@@ -90,7 +94,7 @@
                 </wf:task>
 
 
-                <wf:task taskID="TP4" name="ChemCompAssign" nextTask="TP10" breakpoint="false" exceptionID="EX0" reference="chem-comp-assign-exact">
+                <wf:task taskID="TP4" name="ChemCompAssign" nextTask="TP6" breakpoint="false" exceptionID="EX0" reference="chem-comp-assign-exact">
                     <wf:description>Get the Chemical assignment from dictionary</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:55:20">
                        <wf:detail name="ChemCompAssign" action="chem-comp-assign-exact" where="api"/>
@@ -102,13 +106,23 @@
                    </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP5" name="ChemCompAssignNL" nextTask="TP10" breakpoint="false" exceptionID="EX0" reference="chem-comp-assign-exact-nl">
+                <wf:task taskID="TP5" name="ChemCompAssignNL" nextTask="TP6" breakpoint="false" exceptionID="EX0" reference="chem-comp-assign-exact-nl">
                     <wf:description>Get the Chemical assignment from dictionary</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:55:20">
                        <wf:detail name="ChemCompAssign" action="chem-comp-assign-exact-nl" where="api"/>
                        <wf:dataObjectsLocation>
                           <wf:location dataID="D3" type="input"/>
                           <wf:location dataID="D6" type="output"/>
+                       </wf:dataObjectsLocation>
+                   </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP6" name="ChemCompReport" nextTask="TP10" breakpoint="false" exceptionID="EX0" reference="chem-comp-report">
+                    <wf:description>Generate reports for ligand page.</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:55:20">
+                       <wf:detail name="ChemCompReport" action="chem-comp-report" where="api"/>
+                       <wf:dataObjectsLocation>
+                          <wf:location dataID="D7" type="input"/>
                        </wf:dataObjectsLocation>
                    </wf:process>
                 </wf:task>
