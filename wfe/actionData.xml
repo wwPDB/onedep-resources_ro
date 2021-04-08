@@ -842,7 +842,7 @@
      </userParameters>
      <internalParameters>
      </internalParameters>
-     <moduleName>wwpdb.utils.wf.plugins.ChemCompUtils</moduleName>
+     <moduleName>wwpdb.apps.ccmodule.utils.ChemCompWFInterface</moduleName>
      <methodName>chemCompReportOp</methodName>
    </action>
 
