@@ -56,7 +56,7 @@
 
                 <wf:task taskID="TP3" name="ChemCompLinkCalc" nextTask="TP31" breakpoint="false" exceptionID="EX0" reference="chem-comp-link">
                     <wf:description>Do the linkage calculation</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                    <wf:process runTime="00:00:10" failTime="12:05:20">
                         <wf:detail name="ChemCompLinkCalc" action="chem-comp-link" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
@@ -67,7 +67,7 @@
 
                 <wf:task taskID="TP31" name="linkExist" nextTask="TA32" breakpoint="false" exceptionID="EX0" reference="fileExist">
                     <wf:description>Does file exist</wf:description>
-                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                    <wf:process runTime="00:00:04" failTime="01:01:01">
                         <wf:detail name="linkFileExist" action="fileExist" where="wfe"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D5" type="input"/>
@@ -96,7 +96,7 @@
 
                 <wf:task taskID="TP4" name="ChemCompAssign" nextTask="TP6" breakpoint="false" exceptionID="EX0" reference="chem-comp-assign-exact">
                     <wf:description>Get the Chemical assignment from dictionary</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:55:20">
+                    <wf:process runTime="00:00:10" failTime="12:55:20">
                        <wf:detail name="ChemCompAssign" action="chem-comp-assign-exact" where="api"/>
                        <wf:dataObjectsLocation>
                           <wf:location dataID="D3" type="input1"/>
@@ -108,7 +108,7 @@
 
                 <wf:task taskID="TP5" name="ChemCompAssignNL" nextTask="TP6" breakpoint="false" exceptionID="EX0" reference="chem-comp-assign-exact-nl">
                     <wf:description>Get the Chemical assignment from dictionary</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:55:20">
+                    <wf:process runTime="00:00:10" failTime="12:55:20">
                        <wf:detail name="ChemCompAssign" action="chem-comp-assign-exact-nl" where="api"/>
                        <wf:dataObjectsLocation>
                           <wf:location dataID="D3" type="input"/>
@@ -119,7 +119,7 @@
 
                 <wf:task taskID="TP6" name="ChemCompReport" nextTask="TP10" breakpoint="false" exceptionID="EX0" reference="chem-comp-report">
                     <wf:description>Generate reports for ligand page.</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:55:20">
+                    <wf:process runTime="00:00:10" failTime="12:55:20">
                        <wf:detail name="ChemCompReport" action="chem-comp-report" where="api"/>
                        <wf:dataObjectsLocation>
                           <wf:location dataID="D7" type="input"/>
