@@ -457,7 +457,7 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP7" name="secondary-structure" nextTask="TP8" breakpoint="true" exceptionID="EX0" reference="secondary-structure">
+                <wf:task taskID="TP7" name="secondary-structure" nextTask="TP10" breakpoint="true" exceptionID="EX0" reference="secondary-structure">
                     <wf:description>Calculate Secondary structure</wf:description>
                     <wf:process runTime="00:00:10" failTime="01:55:20">
                         <wf:detail name="SecondaryStructure" action="secondary-structure" where="api"/>
@@ -468,6 +468,7 @@
                     </wf:process>
                 </wf:task>
 
+                <!--Removed in V5.5 - but left behind due to wf_tasks table-->
                 <wf:task taskID="TP8" name="site-environment" nextTask="TP10" breakpoint="true" exceptionID="EX0" reference="site-environment">
                     <wf:description>Site record </wf:description>
                     <wf:process runTime="00:00:10" failTime="01:55:20">

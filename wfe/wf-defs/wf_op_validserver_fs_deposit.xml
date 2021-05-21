@@ -78,6 +78,10 @@
                 <wf:description>Validation edmap 2fo coef</wf:description>
                 <wf:location where="deposit" content="validation-report-2fo-map-coef" format="pdbx"  version="next" />
             </wf:dataObject>
+            <wf:dataObject dataID="D13" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation data</wf:description>
+                <wf:location where="deposit" content="validation-data" format="pdbx"  version="next" />
+            </wf:dataObject>
             <wf:dataObject dataID="D66" name="reportPDF" type="string" container="list" mutable="true" >
                 <wf:description>Validation report</wf:description>
                 <wf:location where="deposit" content="validation-report" format="pdf"  version="latest" />
@@ -142,6 +146,7 @@
                          <wf:location dataID="D10" type="output5"/>
                          <wf:location dataID="D11" type="output6"/>
                          <wf:location dataID="D12" type="output7"/>			 
+                         <wf:location dataID="D13" type="output8"/>			 
                      </wf:dataObjectsLocation>
                  </wf:process>
                </wf:task>

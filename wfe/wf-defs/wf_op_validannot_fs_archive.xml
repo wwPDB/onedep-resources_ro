@@ -169,6 +169,18 @@
                 <wf:location where="archive" content="validation-report-2fo-map-coef" format="pdbx"  version="next" />
             </wf:dataObject>
 
+            <wf:dataObject dataID="D30" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation data</wf:description>
+                <wf:location where="wf-instance" content="validation-data" format="pdbx"  version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D31" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation data</wf:description>
+                <wf:location where="wf-instance" content="validation-data" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D32" name="instanceDataW" type="string" container="list" mutable="true" >
+                <wf:description>Validation data</wf:description>
+                <wf:location where="archive" content="validation-data" format="pdbx"  version="next" />
+            </wf:dataObject>
 
             <wf:dataObject dataID="D54" name="archiveCorrespond" type="string" container="list" mutable="false">
                 <wf:description>Final (next) copy of the Correspondene letter archive model data</wf:description>
@@ -311,6 +323,7 @@
                                <wf:location dataID="D10" type="output5"/>
                                <wf:location dataID="D24" type="output6"/>
                                <wf:location dataID="D25" type="output7"/>
+                               <wf:location dataID="D30" type="output8"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
@@ -415,13 +428,23 @@
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
-                <wf:task taskID="TP96" name="copy2FoMapToArchive" nextTask="T9" breakpoint="false" exceptionID="EX0">
+                <wf:task taskID="TP96" name="copy2FoMapToArchive" nextTask="TP97" breakpoint="false" exceptionID="EX0">
                     <wf:description>Put the 2fo-fc map coef to archive</wf:description>
                     <wf:process runTime="00:00:04" failTime="00:05:20">
                         <wf:detail name="copy2FoMapToArchive" action="copy-if-exists" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D28" type="input"/>
                             <wf:location dataID="D29" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+                <wf:task taskID="TP97" name="copy2FoMapToArchive" nextTask="T9" breakpoint="false" exceptionID="EX0">
+                    <wf:description>Put the model data back to archive</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:05:20">
+                        <wf:detail name="copy2FoMapToArchive" action="copy-if-exists" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D31" type="input"/>
+                            <wf:location dataID="D32" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
