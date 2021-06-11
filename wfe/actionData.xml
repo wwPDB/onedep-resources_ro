@@ -1757,7 +1757,7 @@
      <methodName>emVolumeBcifConversionOp</methodName>
   </action>
 
-  <action name="xray-volume-bcif-conversion">
+  <action name="xray-bcif-conversion">
      <inputList>
          <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
