@@ -1730,6 +1730,33 @@
      <methodName>emdXmlHeaderCheckOp</methodName>
   </action>
 
+  <action name="em-volume-bcif-conversion">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>em-volume</contentType>
+            <fileFormat>map</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>em-volume</contentType>
+            <fileFormat>bcif</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
+     <methodName>emVolumeBcifConversionOp</methodName>
+  </action>
+
   <action name="combine-ligand-of-interest">
      <inputList>
          <wfDataObject name="src1">
