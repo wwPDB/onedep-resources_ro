@@ -51,12 +51,6 @@
             </wf:dataObject>
 
 
-            <wf:dataObject dataID="D20" name="emdxml" type="string" container="list" mutable="true" >
-                <wf:description>EML-XML  check report txt</wf:description>
-                <wf:location where="archive" content="emd-xml-header-report" format="txt"  version="next" />
-            </wf:dataObject>
-
-
             <wf:dataObject dataID="D13" name="geometrycheck" type="string" container="list" mutable="true" >
                 <wf:description>Geometry check report</wf:description>
                 <wf:location where="archive" content="geometry-check-report" format="pdbx"  version="next" />
@@ -80,6 +74,26 @@
             <wf:dataObject dataID="D17" name="archivemapbcif" type="string" container="list" mutable="true" >
                 <wf:description>The EM map bcif</wf:description>
                 <wf:location where="archive" content="em-volume" format="bcif"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D18" name="validationreport2fomapcoef" type="string" container="list" mutable="true" >
+                <wf:description>The 2fo-fc map mmCIF from validation</wf:description>
+                <wf:location where="archive" content="validation-report-2fo-map-coef" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D19" name="validationreportfomapcoef" type="string" container="list" mutable="true" >
+                <wf:description>The fo-fc map mmCIF from validation</wf:description>
+                <wf:location where="archive" content="validation-report-fo-map-coef" format="pdbx"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D20" name="emdxml" type="string" container="list" mutable="true" >
+                <wf:description>EML-XML  check report txt</wf:description>
+                <wf:location where="archive" content="emd-xml-header-report" format="txt"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D21" name="mapxray" type="string" container="list" mutable="true" >
+                <wf:description>The X-ray map bcif</wf:description>
+                <wf:location where="archive" content="map-xray" format="bcif"  version="latest" />
             </wf:dataObject>
 
         </wf:dataObjects>
@@ -170,7 +184,7 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP11" name="emd-xmlheader-check" nextTask="TP12" breakpoint="false" exceptionID="EX0" reference="special-position-check">
+                <wf:task taskID="TP11" name="emd-xmlheader-check" nextTask="TP12" breakpoint="false" exceptionID="EX0" reference="emd-xml-header-check">
                     <wf:description>Do EMD XML header generation check</wf:description>
                     <wf:process runTime="00:00:50" failTime="00:30:20">
                         <wf:detail name="emd-xml-header-check" action="emd-xml-header-check" where="api"/>
@@ -188,6 +202,19 @@
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D16" type="input"/>
                             <wf:location dataID="D17" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP13" name="xray-volume-bcif-conversion" nextTask="T10" breakpoint="false" exceptionID="EX0" reference="xray-volume-bcif-conversion">
+                    <wf:description>Do X-ray map conversion to bcif</wf:description>
+                    <wf:process runTime="00:00:50" failTime="00:30:20">
+                        <wf:detail name="xray-volume-bcif-conversion" action="xray-volume-bcif-conversion" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input1"/>
+                            <wf:location dataID="D18" type="input2"/>
+                            <wf:location dataID="D19" type="input3"/>
+                            <wf:location dataID="D21" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
