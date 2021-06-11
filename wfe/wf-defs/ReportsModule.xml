@@ -72,6 +72,16 @@
                 <wf:location where="archive" content="model" format="pdb"  version="next" />
             </wf:dataObject>
 
+            <wf:dataObject dataID="D16" name="archivemap" type="string" container="list" mutable="true" >
+                <wf:description>The EM archive map</wf:description>
+                <wf:location where="archive" content="em-volume" format="map"  version="latest" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D17" name="archivemapbcif" type="string" container="list" mutable="true" >
+                <wf:description>The EM map bcif</wf:description>
+                <wf:location where="archive" content="em-volume" format="bcif"  version="latest" />
+            </wf:dataObject>
+
         </wf:dataObjects>
 
         <wf:flow>
@@ -160,13 +170,24 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP11" name="emd-xmlheader-check" nextTask="T10" breakpoint="false" exceptionID="EX0" reference="special-position-check">
+                <wf:task taskID="TP11" name="emd-xmlheader-check" nextTask="TP12" breakpoint="false" exceptionID="EX0" reference="special-position-check">
                     <wf:description>Do EMD XML header generation check</wf:description>
                     <wf:process runTime="00:00:50" failTime="00:30:20">
                         <wf:detail name="emd-xml-header-check" action="emd-xml-header-check" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
                             <wf:location dataID="D20" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP12" name="em-volume-bcif-conversion" nextTask="T10" breakpoint="false" exceptionID="EX0" reference="em-volume-bcif-conversion">
+                    <wf:description>Do EMD volume conversion to bcif</wf:description>
+                    <wf:process runTime="00:00:50" failTime="00:30:20">
+                        <wf:detail name="em-volume-bcif-conversion" action="em-volume-bcif-conversion" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D16" type="input"/>
+                            <wf:location dataID="D17" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
