@@ -400,6 +400,7 @@ _pdbx_dict_item_mapping.map_type
 "_em_euler_angle_assignment.type"                            "_emd_angle_assignment.type"                                              src_to_dst  as_item
 "_em_author_list.ordinal"                                    "_emd_author_list.ordinal"                                                src_to_dst  as_key
 "_em_author_list.author"                                     "_emd_author_list.author"                                                 src_to_dst  as_item
+"_em_author_list.identifier_ORCID"                           "_emd_author_list.identifier_ORCID"                                       src_to_dst  as_item
 "_em_db_reference.id"                                        "_emd_crossreference.id"                                                  src_to_dst  as_key
 "_em_db_reference.access_code"                               "_emd_crossreference.access_code"                                         src_to_dst  as_item
 "_em_db_reference.db_name"                                   "_emd_crossreference.db_name"                                             src_to_dst  as_item
