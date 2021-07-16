@@ -195,7 +195,7 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP12" name="em-volume-bcif-conversion" nextTask="T10" breakpoint="false" exceptionID="EX0" reference="em-volume-bcif-conversion">
+                <wf:task taskID="TP12" name="em-volume-bcif-conversion" nextTask="TP13" breakpoint="false" exceptionID="EX0" reference="em-volume-bcif-conversion">
                     <wf:description>Do EMD volume conversion to bcif</wf:description>
                     <wf:process runTime="00:00:50" failTime="00:30:20">
                         <wf:detail name="em-volume-bcif-conversion" action="em-volume-bcif-conversion" where="api"/>
@@ -206,10 +206,10 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP13" name="xray-volume-bcif-conversion" nextTask="T10" breakpoint="false" exceptionID="EX0" reference="xray-volume-bcif-conversion">
+                <wf:task taskID="TP13" name="xray-bcif-conversion" nextTask="T10" breakpoint="false" exceptionID="EX0" reference="xray-bcif-conversion">
                     <wf:description>Do X-ray map conversion to bcif</wf:description>
                     <wf:process runTime="00:00:50" failTime="00:30:20">
-                        <wf:detail name="xray-volume-bcif-conversion" action="xray-volume-bcif-conversion" where="api"/>
+                        <wf:detail name="xray-bcif-conversion" action="xray-bcif-conversion" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input1"/>
                             <wf:location dataID="D18" type="input2"/>
