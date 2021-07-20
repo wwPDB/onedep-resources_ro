@@ -174,7 +174,7 @@
 
                 <wf:task taskID="TP10" name="pdbx2pdb" nextTask="TP11" breakpoint="false" exceptionID="EX0" reference="pdbx2pdb">
                     <wf:description>Create PDB format file</wf:description>
-                    <wf:process runTime="00:00:04" failTime="00:00:20">
+                    <wf:process runTime="00:00:04" failTime="00:02:20">
                         <wf:detail name="pdbx2pdb" action="pdbx2pdb" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
