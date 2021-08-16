@@ -31,7 +31,7 @@
                 <wf:task taskID="T2" name="centre_of_mass" nextTask="T3" breakpoint="false" exceptionID="EX0" reference="centre_of_mass">
                     <wf:description>Adds three items to mmcif</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:05:20">
-                        <wf:detail name="centre_of_mass" action="centre_of_mass" where="api"/>
+                        <wf:detail name="centre_of_mass" action="center-of-mass" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="output"/>

@@ -1144,7 +1144,7 @@
      <methodName>assemblyUpdateDepInfoOp</methodName>
   </action>
 
-    <action name="center_of_mass">
+    <action name="center-of-mass">
         <inputList>
             <wfDataObject name="src">
                 <dataReferenceType>file</dataReferenceType>
