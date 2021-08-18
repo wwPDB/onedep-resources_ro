@@ -8,8 +8,10 @@ _rcsb_attribute_abbrev.table_name
 _rcsb_attribute_abbrev.attribute_name 
 _rcsb_attribute_abbrev.attribute_abbrev 
 diffrn_source             take-off_angle take_off_angle 
-pdbx_audit_revision_group group          content_group  
-# 
+pdbx_audit_revision_group group          content_group
+symmetry                  space_group_name_H-M                    space_group_name_H_M
+symmetry                  pdbx_full_space_group_name_H-M          pdbx_full_space_group_name_H_M
+#
 loop_
 _rcsb_table.table_name 
 _rcsb_table.table_type 
@@ -47,8 +49,11 @@ pdbx_audit_revision_category 0 pdbx_group                      1 1
 pdbx_audit_revision_details  0 pdbx_group                      1 1 
 pdbx_audit_revision_item     0 pdbx_group                      1 1 
 exptl                        0 exptl_group                     1 1 
-
-# 
+cell                         0 cell_group                      1 1
+pdbx_struct_oper_list        0 pdbx_group                      1 1
+pdbx_struct_assembly_gen     0 pdbx_group                      1 1
+symmetry                     0 symmetry_group                  1 1
+#
 loop_
 _rcsb_attribute_def.table_name 
 _rcsb_attribute_def.attribute_name 
@@ -147,7 +152,10 @@ struct                       pdbx_descriptor                text     0 0 1100  0
 struct                       pdbx_details                   text     0 0 4095  0 Y 
 struct                       pdbx_model_details             text     0 0 16383 0 Y 
 struct                       pdbx_CASP_flag                 char     0 0 2     0 Y 
-audit_author                 Structure_ID                   char     1 1 15    0 Y 
+struct                       pdbx_center_of_mass_x          float    0 0 10    6 Y
+struct                       pdbx_center_of_mass_y          float    0 0 10    6 Y
+struct                       pdbx_center_of_mass_z          float    0 0 10    6 Y
+audit_author                 Structure_ID                   char     1 1 15    0 Y
 audit_author                 name                           char     1 1 128   0 Y 
 audit_author                 pdbx_ordinal                   int      1 1 10    0 Y 
 audit_author                 identifier_ORCID               char     0 0 20    0 Y 
@@ -352,7 +360,36 @@ exptl                        crystals_number                int      0 0 10     
 exptl                        details                        char     0 0 1100   0 Y 
 exptl                        method                         char     1 1 80     0 Y 
 exptl                        method_details                 char     0 0 200    0 Y 
-
+pdbx_struct_oper_list        Structure_ID                   char     1 1 10    0 Y
+pdbx_struct_oper_list        id                             char     1 1 10    0 Y
+pdbx_struct_oper_list        type                           char     0 0 80    0 Y
+pdbx_struct_oper_list        name                           char     0 0 80    0 Y
+pdbx_struct_oper_list        symmetry_operation             char     0 0 80    0 Y
+cell                         Structure_ID                   char     1 1 10    0 Y
+cell                         angle_alpha                    float    0 0 10    6 Y
+cell                         angle_beta                     float    0 0 10    6 Y
+cell                         angle_gamma                    float    0 0 10    6 Y
+cell                         entry_id                       char     1 1 10    0 Y
+cell                         details                        char     0 0 200   0 Y
+cell                         length_a                       float    0 0 10    6 Y
+cell                         length_b                       float    0 0 10    6 Y
+cell                         length_c                       float    0 0 10    6 Y
+cell                         volume                         float    0 0 10    6 Y
+cell                         Z_PDB                          int      0 0 10    0 Y
+cell                         pdbx_unique_axis               char     0 0 200   0 Y
+pdbx_struct_assembly_gen     Structure_ID                   char     1 1 10    0 Y
+pdbx_struct_assembly_gen     assembly_id                    char     1 1 80    0 Y
+pdbx_struct_assembly_gen     entity_inst_id                 char     0 0 10    0 Y
+pdbx_struct_assembly_gen     asym_id_list                   char     1 1 32000 0 Y
+pdbx_struct_assembly_gen     auth_asym_id_list              char     0 0 80    0 Y
+pdbx_struct_assembly_gen     oper_expression                char     1 1 511   0 Y
+symmetry                     Structure_ID                   char     1 1 10    0 Y
+symmetry                     entry_id                       char     1 1 10    0 Y
+symmetry                     cell_setting                   char     0 0 13    0 Y
+symmetry                     Int_Tables_number              int      0 0 10    0 Y
+symmetry                     space_group_name_Hall          char     0 0 80    0 Y
+symmetry                     space_group_name_H-M           char     0 0 80    0 Y
+symmetry                     pdbx_full_space_group_name_H-M   char     0 0 80    0 Y
 # 
 loop_
 _rcsb_attribute_view.table_name 
@@ -449,7 +486,10 @@ struct                       pdbx_descriptor                3 1 1
 struct                       pdbx_details                   5 1 1 
 struct                       pdbx_model_details             5 1 1 
 struct                       pdbx_CASP_flag                 3 1 1 
-audit_author                 Structure_ID                   3 1 1 
+struct                       pdbx_center_of_mass_x          2 1 1
+struct                       pdbx_center_of_mass_y          2 1 1
+struct                       pdbx_center_of_mass_z          2 1 1
+audit_author                 Structure_ID                   3 1 1
 audit_author                 name                           3 1 1 
 audit_author                 pdbx_ordinal                   1 1 1 
 audit_author                 identifier_ORCID               3 1 1
@@ -654,8 +694,37 @@ exptl                        crystals_number                1 1 1
 exptl                        details                        5 1 1 
 exptl                        method                         5 1 1 
 exptl                        method_details                 5 1 1 
-
-# 
+pdbx_struct_oper_list        Structure_ID                   3 1 1
+pdbx_struct_oper_list        id                             3 1 1
+pdbx_struct_oper_list        type                           5 1 1
+pdbx_struct_oper_list        name                           5 1 1
+pdbx_struct_oper_list        symmetry_operation             5 1 1
+cell                         Structure_ID                   3 1 1
+cell                         angle_alpha                    2 1 1
+cell                         angle_beta                     2 1 1
+cell                         angle_gamma                    2 1 1
+cell                         entry_id                       3 1 1
+cell                         details                        5 1 1
+cell                         length_a                       2 1 1
+cell                         length_b                       2 1 1
+cell                         length_c                       2 1 1
+cell                         volume                         2 1 1
+cell                         Z_PDB                          1 1 1
+cell                         pdbx_unique_axis               5 1 1
+pdbx_struct_assembly_gen     Structure_ID                   3 1 1
+pdbx_struct_assembly_gen     assembly_id                    5 1 1
+pdbx_struct_assembly_gen     entity_inst_id                 3 1 1
+pdbx_struct_assembly_gen     asym_id_list                   5 1 1
+pdbx_struct_assembly_gen     auth_asym_id_list              5 1 1
+pdbx_struct_assembly_gen     oper_expression                3 1 1
+symmetry                     Structure_ID                   3 1 1
+symmetry                     entry_id                       3 1 1
+symmetry                     cell_setting                   3 1 1
+symmetry                     Int_Tables_number              1 1 1
+symmetry                     space_group_name_Hall          5 1 1
+symmetry                     space_group_name_H-M           5 1 1
+symmetry                     pdbx_full_space_group_name_H-M   5 1 1
+#
 data_rcsb_schema_map
 # 
 loop_
@@ -766,7 +835,10 @@ struct                       pdbx_details                   '_struct.pdbx_detail
 struct                       pdbx_descriptor                '_struct.pdbx_descriptor'                               ?  ?                       
 struct                       pdbx_model_details             '_struct.pdbx_model_details'                           ?  ?                       
 struct                       pdbx_CASP_flag                 '_struct.pdbx_CASP_flag'                               ?  ?                       
-audit_author                 Structure_ID                   ?                                                      ?  'datablockid()'         
+struct                       pdbx_center_of_mass_x          '_struct.pdbx_center_of_mass_x'                        ?  ?
+struct                       pdbx_center_of_mass_y          '_struct.pdbx_center_of_mass_y'                        ?  ?
+struct                       pdbx_center_of_mass_z          '_struct.pdbx_center_of_mass_z'                        ?  ?
+audit_author                 Structure_ID                   ?                                                      ?  'datablockid()'
 audit_author                 name                           '_audit_author.name'                                   ?  ?                       
 audit_author                 pdbx_ordinal                   '_audit_author.pdbx_ordinal'                           ?  ?                       
 audit_author                 identifier_ORCID               '_audit_author.identifier_ORCID'                       ?  ?                
@@ -974,4 +1046,34 @@ exptl                        crystals_number                '_exptl.crystals_num
 exptl                        details                        '_exptl.details'                                       ? ?               
 exptl                        method                         '_exptl.method'                                        ? ?               
 exptl                        method_details                 '_exptl.method_details'                                ? ?               
-# 
+pdbx_struct_oper_list        Structure_ID                   ?                                                      ? 'datablockid()'
+pdbx_struct_oper_list        id                             '_pdbx_struct_oper_list.id'                            ? ?
+pdbx_struct_oper_list        type                           '_pdbx_struct_oper_list.type'                          ? ?
+pdbx_struct_oper_list        name                           '_pdbx_struct_oper_list.name'                          ? ?
+pdbx_struct_oper_list        symmetry_operation             '_pdbx_struct_oper_list.symmetry_operation'            ? ?
+cell                         Structure_ID                   ?                                                      ? 'datablockid()'
+cell                         angle_alpha                    '_cell.angle_alpha'                                    ? ?
+cell                         angle_beta                     '_cell.angle_beta'                                     ? ?
+cell                         angle_gamma                    '_cell.angle_gamma'                                    ? ?
+cell                         entry_id                       '_cell.entry_id'                                       ? ?
+cell                         details                        '_cell.details'                                        ? ?
+cell                         length_a                       '_cell.length_a'                                       ? ?
+cell                         length_b                       '_cell.length_b'                                       ? ?
+cell                         length_c                       '_cell.length_c'                                       ? ?
+cell                         volume                         '_cell.volume'                                         ? ?
+cell                         Z_PDB                          '_cell.Z_PDB'                                          ? ?
+cell                         pdbx_unique_axis               '_cell.pdbx_unique_axis'                               ? ?
+pdbx_struct_assembly_gen     Structure_ID                   ?                                                      ? 'datablockid()'
+pdbx_struct_assembly_gen     assembly_id                    '_pdbx_struct_assembly_gen.assembly_id'                ? ?
+pdbx_struct_assembly_gen     entity_inst_id                 '_pdbx_struct_assembly_gen.entity_inst_id'             ? ?
+pdbx_struct_assembly_gen     asym_id_list                   '_pdbx_struct_assembly_gen.asym_id_list'               ? ?
+pdbx_struct_assembly_gen     auth_asym_id_list              '_pdbx_struct_assembly_gen.auth_asym_id_list'          ? ?
+pdbx_struct_assembly_gen     oper_expression                '_pdbx_struct_assembly_gen.oper_expression'            ? ?
+symmetry                     Structure_ID                   ?                                                      ? 'datablockid()'
+symmetry                     entry_id                       '_symmetry.entry_id'                                   ? ?
+symmetry                     cell_setting                   '_symmetry.cell_setting'                               ? ?
+symmetry                     Int_Tables_number              '_symmetry.Int_Tables_number'                          ? ?
+symmetry                     space_group_name_Hall          '_symmetry.space_group_name_Hall'                      ? ?
+symmetry                     space_group_name_H-M           '_symmetry.space_group_name_H-M'                       ? ?
+symmetry                     pdbx_full_space_group_name_H-M    '_symmetry.pdbx_full_space_group_name_H-M'          ? ?
+#
