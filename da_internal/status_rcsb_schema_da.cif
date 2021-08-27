@@ -369,7 +369,7 @@ cell                         Structure_ID                   char     1 1 15    0
 cell                         angle_alpha                    float    0 0 10    6 Y
 cell                         angle_beta                     float    0 0 10    6 Y
 cell                         angle_gamma                    float    0 0 10    6 Y
-cell                         entry_id                       char     1 1 10    0 Y
+cell                         entry_id                       char     1 1 15    0 Y
 cell                         details                        char     0 0 200   0 Y
 cell                         length_a                       float    0 0 10    6 Y
 cell                         length_b                       float    0 0 10    6 Y
@@ -384,7 +384,7 @@ pdbx_struct_assembly_gen     asym_id_list                   char     1 1 32000 0
 pdbx_struct_assembly_gen     auth_asym_id_list              char     0 0 80    0 Y
 pdbx_struct_assembly_gen     oper_expression                char     1 1 511   0 Y
 symmetry                     Structure_ID                   char     1 1 15    0 Y
-symmetry                     entry_id                       char     1 1 10    0 Y
+symmetry                     entry_id                       char     1 1 15    0 Y
 symmetry                     cell_setting                   char     0 0 13    0 Y
 symmetry                     Int_Tables_number              int      0 0 10    0 Y
 symmetry                     space_group_name_Hall          char     0 0 80    0 Y
