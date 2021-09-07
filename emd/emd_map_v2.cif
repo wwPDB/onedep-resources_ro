@@ -243,6 +243,7 @@ _pdbx_dict_item_mapping.map_type
 "_em_image_recording.num_diffraction_images"                 "_emd_image_recording.number_diffraction_images"                          src_to_dst  as_item
 "_em_image_recording.num_grids_imaged"                       "_emd_image_recording.number_grids_imaged"                                src_to_dst  as_item
 "_em_image_recording.num_real_images"                        "_emd_image_recording.number_real_images"                                 src_to_dst  as_item
+"_em_image_recording.avg_electron_dose_per_subtomogram"      "_emd_image_recording.average_electron_dose_per_subtomogram"              src_to_dst  as_item
 "_em_entity_assembly_molwt.entity_assembly_id"               "_emd_molecular_mass.emd_supramolecule_id"                                src_to_dst  as_key
 "_em_entity_assembly_molwt.id"                               "_emd_molecular_mass.id"                                                  src_to_dst  as_key
 "_em_entity_assembly_molwt.experimental_flag"                "_emd_molecular_mass.experimental"                                        src_to_dst  as_item
