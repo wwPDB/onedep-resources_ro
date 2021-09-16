@@ -3809,6 +3809,80 @@
      <methodName>fsc_check_options</methodName>
   </action>
 
+  <action name="res-est-fsc-deposit">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>res-est-fsc</contentType>
+            <fileFormat>xml</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>res-est-fsc</contentType>
+            <fileFormat>xml</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>res-est-fsc-report</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+
+     <userParameters>
+       <parameter name="options"></parameter>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.EmUtils</moduleName>
+     <methodName>fsc_check_options</methodName>
+  </action>
+
+  <action name="map-model-fsc-deposit">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>map-model-fsc</contentType>
+            <fileFormat>xml</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>map-model-fsc</contentType>
+            <fileFormat>xml</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>map-model-fsc-report</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+
+     <userParameters>
+       <parameter name="options"></parameter>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.EmUtils</moduleName>
+     <methodName>fsc_check_options</methodName>
+  </action>
+
   <action name="mapfix">
      <inputList>
          <wfDataObject name="src">
