@@ -31,7 +31,7 @@
 
             <wf:tasks>
 
-                <wf:task taskID="T2" name="map-model-fsc-depositop" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="res-est-fsc-depositop">
+                <wf:task taskID="T2" name="map-model-fsc-depositop" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="map-model-fsc-depositop">
                     <wf:description>Convert map-model-fsc</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:30:00">
                         <wf:detail name="map-model-fsc-depositop" action="map-model-fsc-deposit" where="api"/>
