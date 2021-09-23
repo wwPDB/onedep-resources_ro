@@ -478,7 +478,8 @@ pdbx_contact_author          phone                          5 1 1
 pdbx_contact_author          fax                            5 1 1 
 pdbx_contact_author          organization_type              5 1 1 
 pdbx_contact_author          continent                      5 1 1 
-pdbx_contact_author          identifier_ORCID               3 1 1 
+pdbx_contact_author          identifier_ORCID               3 1 1
+pdbx_contact_author          id                             3 1 1
 struct                       Structure_ID                   3 1 1 
 struct                       pdb_id                         3 1 1 
 struct                       title                          3 1 1 
