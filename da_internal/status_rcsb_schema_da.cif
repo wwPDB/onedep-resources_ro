@@ -125,7 +125,7 @@ rcsb_status                  date_nmr_data                  date     0 0 19    0
 rcsb_status                  date_hold_nmr_data             date     0 0 19    0 Y 
 rcsb_status                  dep_release_code_nmr_data      char     0 0 24    0 Y  
 rcsb_status                  date_of_nmr_data_release       date     0 0 19    0 Y 
-pdbx_contact_author          Structure_ID                   char     1 1 15    0 Y 
+pdbx_contact_author          Structure_ID                   char     0 1 15    0 Y
 pdbx_contact_author          name_salutation                char     0 0 15    0 Y 
 pdbx_contact_author          name_first                     char     0 0 60    0 Y 
 pdbx_contact_author          name_last                      char     0 1 65    0 Y 
