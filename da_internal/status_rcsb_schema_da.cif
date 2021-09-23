@@ -828,7 +828,8 @@ pdbx_contact_author          phone                          '_pdbx_contact_autho
 pdbx_contact_author          fax                            '_pdbx_contact_author.fax'                             ?  ?                       
 pdbx_contact_author          organization_type              '_pdbx_contact_author.organization_type'               ?  ?                       
 pdbx_contact_author          continent                      '_pdbx_contact_author.continent'                       ?  ?                       
-pdbx_contact_author          identifier_ORCID               '_pdbx_contact_author.identifier_ORCID'                ?  ?                       
+pdbx_contact_author          identifier_ORCID               '_pdbx_contact_author.identifier_ORCID'                ?  ?
+pdbx_contact_author          id                             '_pdbx_contact_author.id'                              ?  ?
 struct                       Structure_ID                   ?                                                      ?  'datablockid()'         
 struct                       pdb_id                         '_database_2.database_code'                            C2 ?                       
 struct                       title                          '_struct.title'                                        ?  ?                       
