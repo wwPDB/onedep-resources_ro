@@ -381,7 +381,7 @@ cell                         pdbx_unique_axis               char     0 0 200   0
 pdbx_struct_assembly_gen     Structure_ID                   char     1 1 15    0 Y
 pdbx_struct_assembly_gen     assembly_id                    char     1 1 80    0 Y
 pdbx_struct_assembly_gen     entity_inst_id                 char     0 0 10    0 Y
-pdbx_struct_assembly_gen     asym_id_list                   char     1 1 32000 0 Y
+pdbx_struct_assembly_gen     asym_id_list                   char     1 1 31000 0 Y
 pdbx_struct_assembly_gen     auth_asym_id_list              char     0 0 80    0 Y
 pdbx_struct_assembly_gen     oper_expression                char     1 1 511   0 Y
 symmetry                     Structure_ID                   char     1 1 15    0 Y
