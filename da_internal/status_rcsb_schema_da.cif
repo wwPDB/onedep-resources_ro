@@ -53,6 +53,7 @@ cell                         0 cell_group                      1 1
 pdbx_struct_oper_list        0 pdbx_group                      1 1
 pdbx_struct_assembly_gen     0 pdbx_group                      1 1
 symmetry                     0 symmetry_group                  1 1
+pdbx_struct_assembly         0 pdbx_group                      1 1
 #
 loop_
 _rcsb_attribute_def.table_name 
@@ -390,7 +391,13 @@ symmetry                     Int_Tables_number              int      0 0 10    0
 symmetry                     space_group_name_Hall          char     0 0 80    0 Y
 symmetry                     space_group_name_H-M           char     0 0 80    0 Y
 symmetry                     pdbx_full_space_group_name_H-M   char     0 0 80    0 Y
-# 
+pdbx_struct_assembly         Structure_ID                   char     1 1 15    0 Y
+pdbx_struct_assembly         method_details                 char     0 0 200   0 Y
+pdbx_struct_assembly         oligomeric_details             char     0 0 255   0 Y
+pdbx_struct_assembly         oligomeric_count               int      0 0 10    0 Y
+pdbx_struct_assembly         details                        char     0 0 200   0 Y
+pdbx_struct_assembly         id                             char     1 1 80    0 Y
+#
 loop_
 _rcsb_attribute_view.table_name 
 _rcsb_attribute_view.attribute_name 
@@ -724,6 +731,12 @@ symmetry                     Int_Tables_number              1 1 1
 symmetry                     space_group_name_Hall          5 1 1
 symmetry                     space_group_name_H-M           5 1 1
 symmetry                     pdbx_full_space_group_name_H-M   5 1 1
+pdbx_struct_assembly         Structure_ID                   3 1 1
+pdbx_struct_assembly         method_details                 5 1 1
+pdbx_struct_assembly         oligomeric_details             5 1 1
+pdbx_struct_assembly         oligomeric_count               1 1 1
+pdbx_struct_assembly         details                        5 1 1
+pdbx_struct_assembly         id                             5 1 1
 #
 data_rcsb_schema_map
 # 
@@ -1076,4 +1089,10 @@ symmetry                     Int_Tables_number              '_symmetry.Int_Table
 symmetry                     space_group_name_Hall          '_symmetry.space_group_name_Hall'                      ? ?
 symmetry                     space_group_name_H-M           '_symmetry.space_group_name_H-M'                       ? ?
 symmetry                     pdbx_full_space_group_name_H-M    '_symmetry.pdbx_full_space_group_name_H-M'          ? ?
+pdbx_struct_assembly         Structure_ID                   ?                                                                          ? 'datablockid()'
+pdbx_struct_assembly         method_details                 '_pdbx_struct_assembly.method_details'                                     ? ?
+pdbx_struct_assembly         oligomeric_details             '_pdbx_struct_assembly.oligomeric_details'                                 ? ?
+pdbx_struct_assembly         oligomeric_count               '_pdbx_struct_assembly.oligomeric_count'                                   ? ?
+pdbx_struct_assembly         details                        '_pdbx_struct_assembly.details'                                            ? ?
+pdbx_struct_assembly         id                             '_pdbx_struct_assembly.id'                                                 ? ?
 #
