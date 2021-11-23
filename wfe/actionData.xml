@@ -1761,21 +1761,12 @@
      <inputList>
          <wfDataObject name="src">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>em-volume</contentType>
-            <fileFormat>map</fileFormat>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
      </inputList>
-     <outputList>
-         <wfDataObject name="dst">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>em-volume</contentType>
-            <fileFormat>bcif</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-     </outputList>
      <userParameters>
      </userParameters>
      <internalParameters>
