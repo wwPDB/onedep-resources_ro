@@ -200,8 +200,7 @@
                     <wf:process runTime="00:00:50" failTime="00:30:20">
                         <wf:detail name="em-volume-bcif-conversion" action="em-volume-bcif-conversion" where="api"/>
                         <wf:dataObjectsLocation>
-                            <wf:location dataID="D16" type="input"/>
-                            <wf:location dataID="D17" type="output"/>
+                            <wf:location dataID="D3" type="input"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
