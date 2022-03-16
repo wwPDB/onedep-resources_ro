@@ -155,7 +155,7 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP5" name="ChemCompFetch" nextTask="TA6" breakpoint="false" exceptionID="EX0" reference="fetch-assign">
+                <wf:task taskID="TP5" name="ChemCompFetch" nextTask="TP6" breakpoint="false" exceptionID="EX0" reference="fetch-assign">
                     <wf:description>Fetch whether the match was found</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:05:20">
                         <wf:detail name="ChemCompAssign" action="fetch-assign" where="api"/>
@@ -164,6 +164,16 @@
                             <wf:location dataID="D8" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP6" name="ChemCompReport" nextTask="TA6" breakpoint="false" exceptionID="EX0" reference="chem-comp-report-ann">
+                    <wf:description>Generate reports for ligand page.</wf:description>
+                    <wf:process runTime="00:00:10" failTime="06:55:20">
+                       <wf:detail name="ChemCompReport" action="chem-comp-report-ann" where="api"/>
+                       <wf:dataObjectsLocation>
+                          <wf:location dataID="D9" type="input"/>
+                       </wf:dataObjectsLocation>
+                   </wf:process>
                 </wf:task>
 
                 <wf:task taskID="TA6" name="LigandOK" nextTask="T9" breakpoint="false" exceptionID="EX1" reference="ligandOk">

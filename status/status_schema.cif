@@ -1,0 +1,874 @@
+# empty tables
+# +---------------+----------------------+
+# | database_name | table_name           |
+# +---------------+----------------------+
+# | status        | author_corrections   |
+# | status        | citation             |
+# | status        | contact_author       |
+# | status        | database_PDB_obs_spr |
+# | status        | database_ref         |
+# | status        | database_related     |
+# | status        | dep_with_problems    |
+# | status        | manager_site         |
+# | status        | process_information  |
+# | status        | release_request      |
+# | status        | status_change        |
+# +---------------+----------------------+
+
+data_rcsb_schema
+#
+_rcsb_table_abbrev.table_name     cell 
+_rcsb_table_abbrev.table_abbrev   cell1 
+# 
+loop_
+_rcsb_attribute_abbrev.table_name 
+_rcsb_attribute_abbrev.attribute_name 
+_rcsb_attribute_abbrev.attribute_abbrev 
+diffrn_source             take-off_angle take_off_angle 
+pdbx_audit_revision_group group          content_group  
+#
+loop_
+_rcsb_table.table_name 
+_rcsb_table.table_type 
+_rcsb_table.group_name 
+_rcsb_table.www_select 
+_rcsb_table.www_report 
+anno_selection          0 wfe_group     1   1 
+bmrbID                  0 wfe_group     1   1 
+codes_db                0 wfe_group     1   1 
+com                     0 wfe_group     1   1 
+communication           0 wfe_group     1   1 
+da_group                0 wfe_group     1   1 
+da_users                0 wfe_group     1   1 
+deposition              0 wfe_group     1   1 
+django_session          0 wfe_group     1   1 
+emdbID                  0 wfe_group     1   1 
+engine_monitoring       0 wfe_group     1   1 
+experiments_db          0 wfe_group     1   1 
+other_data              0 wfe_group     1   1 
+pdbID                   0 wfe_group     1   1 
+related_db              0 wfe_group     1   1 
+remind_message_track    0 wfe_group     1   1 
+sgcenters               0 wfe_group     1   1 
+site                    0 wfe_group     1   1 
+status                  0 wfe_group     1   1 
+taxonomy                0 wfe_group     1   1 
+timestamp               0 wfe_group     1   1 
+user_data               0 wfe_group     1   1 
+wf_class_dict           0 wfe_group     1   1 
+wf_instance             0 wfe_group     1   1 
+wf_instance_last        0 wfe_group     1   1 
+wf_reference            0 wfe_group     1   1 
+wf_task                 0 wfe_group     1   1 
+
+# 
+loop_
+_rcsb_attribute_def.table_name 
+_rcsb_attribute_def.attribute_name 
+_rcsb_attribute_def.data_type 
+_rcsb_attribute_def.index_flag 
+_rcsb_attribute_def.null_flag 
+_rcsb_attribute_def.width 
+_rcsb_attribute_def.precision 
+_rcsb_attribute_def.populated 
+anno_selection       dep_set_id                          char                 1 1 30  0 Y 
+anno_selection       annotator_initials                  char                 0 0 12  0 Y 
+author_corrections   ordinal                             int                  1 1 11  0 Y 
+author_corrections   dep_set_id                          char                 0 0 30  0 Y 
+author_corrections   content                             char                 0 1 40  0 Y 
+author_corrections   sending_date                        date                 0 0 0   0 Y 
+author_corrections   remark                              char                 0 0 50  0 Y 
+bmrbID               ordinal                             int                  1 1 11  0 Y 
+bmrbID               bmrb_id                             char                 1 1 6   0 Y 
+bmrbID               used                                char                 0 0 2   0 Y 
+citation             ordinal                             int                  1 1 11  0 Y 
+citation             ord                                 int                  0 0 11  0 Y 
+citation             name                                char                 0 0 200 0 Y 
+citation             citID                               char                 1 1 40  0 Y 
+citation             abriev1                             char                 0 0 100 0 Y 
+citation             abriev2                             char                 0 0 100 0 Y 
+citation             count                               char                 0 0 40  0 Y 
+codes_db             ordinal                             int                  1 1 11  0 Y 
+codes_db             dep_set_id                          char                 0 1 30  0 Y 
+codes_db             code                                char                 0 0 20  0 Y 
+com                  ordinal                             int                  1 1 11  0 Y 
+com                  dep_set_id                          char                 1 1 30  0 Y 
+com                  dep_subject                         char                 0 0 255 0 Y 
+com                  dep_last_com_date                   datetime             0 0 0   0 Y 
+com                  ann_last_com_date                   datetime             0 0 0   0 Y 
+communication        ordinal                             int                  1 1 11  0 Y 
+communication        sender                              char                 0 1 10  0 Y 
+communication        receiver                            char                 0 1 10  0 Y 
+communication        dep_set_id                          char                 0 0 30  0 Y 
+communication        wf_class_id                         char                 0 0 16  0 Y 
+communication        wf_inst_id                          char                 0 0 10  0 Y 
+communication        wf_class_file                       char                 0 0 50  0 Y 
+communication        command                             char                 0 1 50  0 Y 
+communication        status                              char                 0 0 10  0 Y 
+communication        actual_timestamp                    float                0 0 20  8 Y 
+communication        parent_dep_set_id                   char                 0 0 30  0 Y 
+communication        parent_wf_class_id                  char                 0 0 16  0 Y 
+communication        parent_wf_inst_id                   char                 0 1 10  0 Y 
+communication        'data_version'                      char                 0 0 10  0 Y 
+communication        host                                char                 0 0 50  0 Y 
+communication        activity                            char                 0 0 10  0 Y 
+contact_author       ordinal                             int                  1 1 11  0 Y 
+contact_author       dep_set_id                          char                 1 1 30  0 Y 
+contact_author       name_salutation                     char                 0 0 15  0 Y 
+contact_author       name_first                          char                 1 1 40  0 Y 
+contact_author       name_last                           char                 1 1 65  0 Y 
+contact_author       name_mi                             char                 0 0 50  0 Y 
+contact_author       role                                char                 0 1 50  0 Y 
+contact_author       email                               char                 0 1 255 0 Y 
+contact_author       address_1                           char                 0 1 520 0 Y 
+contact_author       address_2                           char                 0 0 255 0 Y 
+contact_author       address_3                           char                 0 0 255 0 Y 
+contact_author       city                                char                 0 1 60  0 Y 
+contact_author       state_province                      char                 0 0 70  0 Y 
+contact_author       postal_code                         char                 0 1 128 0 Y 
+contact_author       country                             char                 0 1 50  0 Y 
+contact_author       phone                               char                 0 0 60  0 Y 
+contact_author       fax                                 char                 0 0 60  0 Y 
+contact_author       organization_type                   char                 0 1 40  0 Y 
+da_group             ordinal                             int                  1 1 11  0 Y 
+da_group             code                                char                 0 1 20  0 Y 
+da_group             group_name                          char                 0 1 25  0 Y 
+da_group             site                                char                 0 1 4   0 Y 
+da_group             main_page                           char                 0 0 30  0 Y 
+da_group             da_group_id                         int                  1 1 10  0 Y 
+da_users             ordinal                             int                  1 1 11  0 Y 
+da_users             user_name                           char                 1 1 20  0 Y 
+da_users             password                            char                 0 1 10  0 Y 
+da_users             da_group_id                         int                  0 1 10  0 Y 
+da_users             email                               char                 0 1 50  0 Y 
+da_users             initials                            char                 0 0 5   0 Y 
+da_users             first_name                          char                 0 0 50  0 Y 
+da_users             last_name                           char                 0 0 100 0 Y 
+da_users             active                              int                  0 0 1   0 Y 
+database_PDB_obs_spr ordinal                             int                  1 1 11  0 Y 
+database_PDB_obs_spr dep_set_id                          char                 1 1 30  0 Y 
+database_PDB_obs_spr id                                  char                 0 0 10  0 Y 
+database_PDB_obs_spr date                                datetime             0 0 0   0 Y 
+database_PDB_obs_spr pdb_id                              char                 0 0 10  0 Y 
+database_PDB_obs_spr replace_pdb_id                      char                 1 1 10  0 Y 
+database_ref         ordinal                             int                  1 1 11  0 Y 
+database_ref         dep_set_id                          char                 1 1 30  0 Y 
+database_ref         database_name                       char                 1 1 20  0 Y 
+database_ref         database_code                       char                 0 1 10  0 Y 
+database_related     ordinal                             int                  1 1 11  0 Y 
+database_related     dep_set_id                          char                 1 1 30  0 Y 
+database_related     db_name                             char                 1 1 10  0 Y 
+database_related     details                             char                 0 0 200 0 Y 
+database_related     content_type                        char                 0 0 10  0 Y 
+database_related     db_id                               char                 1 1 10  0 Y 
+dep_with_problems    ordinal                             int                  1 1 11  0 Y 
+dep_with_problems    dep_set_id                          char                 0 0 30  0 Y 
+dep_with_problems    type                                char                 0 1 10  0 Y 
+dep_with_problems    detail                              char                 0 0 50  0 Y 
+deposition           ordinal                             int                  1 1 11  0 Y 
+deposition           dep_set_id                          char                 1 1 30  0 Y 
+deposition           pdb_id                              char                 0 1 4   0 Y 
+deposition           initial_deposition_date             date                 0 0 0   0 Y 
+deposition           annotator_initials                  char                 0 0 12  0 Y 
+deposition           deposit_site                        char                 0 0 8   0 Y 
+deposition           process_site                        char                 0 0 8   0 Y 
+deposition           status_code                         char                 0 0 5   0 Y 
+deposition           author_release_status_code          char                 0 0 5   0 Y 
+deposition           title                               char                 0 0 400 0 Y 
+deposition           title_emdb                          char                 0 0 400 0 Y 
+deposition           author_list                         char                 0 0 500 0 Y 
+deposition           author_list_emdb                    char                 0 0 500 0 Y 
+deposition           exp_method                          char                 0 0 50  0 Y 
+deposition           status_code_exp                     char                 0 0 4   0 Y 
+deposition           SG_center                           char                 0 0 40  0 Y 
+deposition           depPW                               char                 0 1 16  0 Y 
+deposition           notify                              char                 0 1 8   0 Y 
+deposition           date_begin_processing               date                 0 0 0   0 Y 
+deposition           date_end_processing                 date                 0 0 0   0 Y 
+deposition           email                               char                 0 1 64  0 Y 
+deposition           locking                             char                 0 1 8   0 Y 
+deposition           country                             char                 0 1 32  0 Y 
+deposition           nmolecule                           int                  0 1 11  0 Y 
+deposition           emdb_id                             char                 0 0 20  0 Y 
+deposition           bmrb_id                             char                 0 0 6   0 Y 
+deposition           status_code_emdb                    char                 0 0 5   0 Y 
+deposition           dep_author_release_status_code_emdb char                 0 0 10  0 Y 
+deposition           status_code_bmrb                    char                 0 0 5   0 Y 
+deposition           status_code_other                   char                 0 0 5   0 Y 
+deposition           post_rel_status                     char                 0 0 6   0 Y 
+deposition           post_rel_recvd_coord                char                 0 0 1   0 Y 
+deposition           post_rel_recvd_coord_date           date                 0 0 0   0 Y 
+django_session       session_key                         char                 1 1 40  0 Y 
+django_session       session_data                        text                 0 1 0   0 Y 
+django_session       expire_date                         datetime             0 1 0   0 Y 
+emdbID               ordinal                             int                  1 1 11  0 Y 
+emdbID               emdb_id                             char                 1 1 20  0 Y 
+emdbID               used                                char                 0 0 2   0 Y 
+engine_monitoring    ordinal                             int                  1 1 11  0 Y 
+engine_monitoring    hostname                            char                 1 1 32  0 Y 
+engine_monitoring    total_physical_mem                  float                0 0 10  1 Y 
+engine_monitoring    total_virtual_mem                   float                0 0 12  0 Y 
+engine_monitoring    physical_mem_usage                  float                0 1 10  1 Y 
+engine_monitoring    virtual_mem_usage                   float                0 0 10  1 Y 
+engine_monitoring    cpu_usage                           float                0 1 10  3 Y 
+engine_monitoring    cpu_number                          int                  0 0 30  0 Y 
+engine_monitoring    ids_set                             char                 0 0 255 0 Y 
+engine_monitoring    status_timestamp                    float                0 0 20  8 Y 
+engine_monitoring    cached                              float                0 0 12  0 Y 
+engine_monitoring    buffers                             float                0 0 12  0 Y 
+engine_monitoring    swap_total                          float                0 0 12  0 Y 
+engine_monitoring    swap_used                           float                0 0 12  0 Y 
+engine_monitoring    swap_free                           float                0 0 12  0 Y 
+experiments_db       ordinal                             int                  1 1 11  0 Y 
+experiments_db       dep_set_id                          char                 0 1 30  0 Y 
+experiments_db       expt                                char                 0 0 20  0 Y 
+manager_site         id                                  int                  1 1 11  0 Y 
+manager_site         code                                char                 0 1 4   0 Y 
+manager_site         display_name                        char                 0 1 100 0 Y 
+other_data           ordinal                             int                  1 1 11  0 Y 
+other_data           dep_set_id                          char                 0 1 30  0 Y 
+other_data           data                                char                 0 0 200 0 Y 
+other_data           code                                char                 0 0 64  0 Y 
+pdbID                ordinal                             int                  1 1 11  0 Y 
+pdbID                pdb_id                              char                 1 1 6   0 Y 
+pdbID                used                                char                 0 0 2   0 Y 
+process_information  ordinal                             int                  1 1 11  0 Y 
+process_information  dep_set_id                          char                 1 1 30  0 Y 
+process_information  serial_number                       int                  1 1 11  0 Y 
+process_information  process_begin                       datetime             0 0 0   0 Y 
+process_information  process_end                         datetime             0 0 0   0 Y 
+process_information  remark                              char                 0 0 50  0 Y 
+related_db           ordinal                             int                  1 1 11  0 Y 
+related_db           dep_set_id                          char                 0 1 30  0 Y 
+related_db           id_code                             char                 0 0 20  0 Y 
+related_db           id_db                               char                 0 0 20  0 Y 
+release_request      ordinal                             int                  1 1 11  0 Y 
+release_request      dep_set_id                          char                 0 0 30  0 Y 
+release_request      citation                            char                 0 0 100 0 Y 
+release_request      release_date                        date                 0 0 0   0 Y 
+release_request      PubMed_id                           int                  0 0 11  0 Y 
+remind_message_track dep_set_id                          char                 1 1 30  0 Y 
+remind_message_track major_issue                         char                 0 0 4   0 Y 
+remind_message_track last_reminder_sent_date             date                 0 0 0   0 Y 
+remind_message_track last_validation_sent_date           date                 0 0 0   0 Y 
+remind_message_track last_message_sent_date              date                 0 0 0   0 Y 
+remind_message_track last_message_received_date          date                 0 0 0   0 Y 
+sgcenters            ordinal                             int                  1 1 11  0 Y 
+sgcenters            code                                char                 1 1 4   0 Y 
+sgcenters            verbose_name                        char                 0 1 250 0 Y 
+site                 ordinal                             int                  1 1 11  0 Y 
+site                 code                                char                 1 1 4   0 Y 
+site                 verbose_name                        char                 0 0 150 0 Y 
+status               ordinal                             int                  1 1 11  0 Y 
+status               code                                char                 1 1 4   0 Y 
+status               verbose_name                        char                 0 0 100 0 Y 
+status_change        ordinal                             int                  1 1 11  0 Y 
+status_change        dep_set_id                          char                 0 1 30  0 Y 
+status_change        mtime                               float                0 1 20  2 Y 
+status_change        laststatus                          char                 0 1 10  0 Y 
+status_change        status                              char                 0 1 10  0 Y 
+status_change        annotator                           char                 0 0 10  0 Y 
+status_change        owner                               char                 0 0 10  0 Y 
+status_change        module                              char                 0 0 10  0 Y 
+taxonomy             ordinal                             int                  1 1 11  0 Y 
+taxonomy             tax_id                              int                  0 0 11  0 Y 
+taxonomy             name                                char                 0 0 255 0 Y 
+taxonomy             data                                char                 0 0 255 0 Y 
+taxonomy             class                               char                 0 0 100 0 Y 
+taxonomy             annotation                          char                 0 0 20  0 Y 
+taxonomy             scientific                          char                 0 0 255 0 Y 
+timestamp            ordinal                             int                  1 1 11  0 Y 
+timestamp            dep_set_id                          char                 0 1 30  0 Y 
+timestamp            mtime                               float                0 1 20  2 Y 
+timestamp            event                               char                 0 0 8   0 Y 
+timestamp            info1                               char                 0 0 128 0 Y 
+timestamp            info2                               char                 0 0 128 0 Y 
+timestamp            info3                               char                 0 0 20  0 Y 
+timestamp            info4                               char                 0 0 20  0 Y 
+timestamp            info5                               char                 0 0 16  0 Y 
+user_data            ordinal                             int                  1 1 11  0 Y 
+user_data            dep_set_id                          char                 0 1 30  0 Y 
+user_data            email                               char                 0 0 64  0 Y 
+user_data            last_name                           char                 0 0 64  0 Y 
+user_data            role                                char                 0 0 8   0 Y 
+user_data            country                             char                 0 1 100 0 Y 
+wf_class_dict        ordinal                             int                  1 1 11  0 Y 
+wf_class_dict        wf_class_id                         char                 1 1 16  0 Y 
+wf_class_dict        wf_class_name                       char                 0 0 100 0 Y 
+wf_class_dict        title                               char                 0 0 50  0 Y 
+wf_class_dict        author                              char                 0 0 50  0 Y 
+wf_class_dict        version                             char                 0 0 8   0 Y 
+wf_class_dict        class_file                          char                 0 0 100 0 Y 
+wf_instance          ordinal                             int                  1 1 11  0 Y 
+wf_instance          wf_inst_id                          char                 0 1 10  0 Y 
+wf_instance          wf_class_id                         char                 0 0 16  0 Y 
+wf_instance          dep_set_id                          char                 0 0 30  0 Y 
+wf_instance          owner                               char                 0 0 50  0 Y 
+wf_instance          inst_status                         char                 0 0 10  0 Y 
+wf_instance          status_timestamp                    float                0 0 20  8 Y 
+wf_instance_last     ordinal                             int                  1 1 11  0 Y 
+wf_instance_last     wf_inst_id                          char                 0 1 10  0 Y 
+wf_instance_last     wf_class_id                         char                 0 0 16  0 Y 
+wf_instance_last     dep_set_id                          char                 0 0 30  0 Y 
+wf_instance_last     owner                               char                 0 0 50  0 Y 
+wf_instance_last     inst_status                         char                 0 0 10  0 Y 
+wf_instance_last     status_timestamp                    float                0 0 20  8 Y 
+wf_reference         ordinal                             int                  1 1 11  0 Y 
+wf_reference         dep_set_id                          char                 0 0 30  0 Y 
+wf_reference         wf_inst_id                          char                 0 0 10  0 Y 
+wf_reference         wf_task_id                          char                 0 0 10  0 Y 
+wf_reference         wf_class_id                         char                 0 0 16  0 Y 
+wf_reference         hash_id                             char                 0 1 20  0 Y 
+wf_reference         value                               char                 0 0 20  0 Y 
+wf_task              ordinal                             int                  1 1 11  0 Y 
+wf_task              wf_task_id                          char                 0 1 10  0 Y 
+wf_task              wf_inst_id                          char                 0 1 10  0 Y 
+wf_task              wf_class_id                         char                 0 0 16  0 Y 
+wf_task              dep_set_id                          char                 0 0 30  0 Y 
+wf_task              task_name                           char                 0 0 10  0 Y 
+wf_task              task_status                         char                 0 1 10  0 Y 
+wf_task              status_timestamp                    float                0 0 20  8 Y 
+wf_task              task_type                           char                 0 0 25  0 Y 
+
+# 
+loop_
+_rcsb_attribute_view.table_name 
+_rcsb_attribute_view.attribute_name 
+_rcsb_attribute_view.format_type 
+_rcsb_attribute_view.www_select 
+_rcsb_attribute_view.www_report 
+anno_selection       dep_set_id                          3 1 1
+anno_selection       annotator_initials                  3 1 1
+author_corrections   ordinal                             1 1 1
+author_corrections   dep_set_id                          3 1 1
+author_corrections   content                             3 1 1
+author_corrections   sending_date                        7 1 1
+author_corrections   remark                              3 1 1
+bmrbID               ordinal                             1 1 1
+bmrbID               bmrb_id                             3 1 1
+bmrbID               used                                3 1 1
+citation             ordinal                             1 1 1
+citation             ord                                 1 1 1
+citation             name                                3 1 1
+citation             citID                               3 1 1
+citation             abriev1                             3 1 1
+citation             abriev2                             3 1 1
+citation             count                               3 1 1
+codes_db             ordinal                             1 1 1
+codes_db             dep_set_id                          3 1 1
+codes_db             code                                3 1 1
+com                  ordinal                             1 1 1
+com                  dep_set_id                          3 1 1
+com                  dep_subject                         3 1 1
+com                  dep_last_com_date                   7 1 1
+com                  ann_last_com_date                   7 1 1
+communication        ordinal                             1 1 1
+communication        sender                              3 1 1
+communication        receiver                            3 1 1
+communication        dep_set_id                          3 1 1
+communication        wf_class_id                         3 1 1
+communication        wf_inst_id                          3 1 1
+communication        wf_class_file                       3 1 1
+communication        command                             3 1 1
+communication        status                              3 1 1
+communication        actual_timestamp                    2 1 1
+communication        parent_dep_set_id                   3 1 1
+communication        parent_wf_class_id                  3 1 1
+communication        parent_wf_inst_id                   3 1 1
+communication        'data_version'                      3 1 1
+communication        host                                3 1 1
+communication        activity                            3 1 1
+contact_author       ordinal                             1 1 1
+contact_author       dep_set_id                          3 1 1
+contact_author       name_salutation                     3 1 1
+contact_author       name_first                          3 1 1
+contact_author       name_last                           3 1 1
+contact_author       name_mi                             3 1 1
+contact_author       role                                3 1 1
+contact_author       email                               3 1 1
+contact_author       address_1                           3 1 1
+contact_author       address_2                           3 1 1
+contact_author       address_3                           3 1 1
+contact_author       city                                3 1 1
+contact_author       state_province                      3 1 1
+contact_author       postal_code                         3 1 1
+contact_author       country                             3 1 1
+contact_author       phone                               3 1 1
+contact_author       fax                                 3 1 1
+contact_author       organization_type                   3 1 1
+da_group             ordinal                             1 1 1
+da_group             code                                3 1 1
+da_group             group_name                          3 1 1
+da_group             site                                3 1 1
+da_group             main_page                           3 1 1
+da_group             da_group_id                         1 1 1
+da_users             ordinal                             1 1 1
+da_users             user_name                           3 1 1
+da_users             password                            3 1 1
+da_users             da_group_id                         1 1 1
+da_users             email                               3 1 1
+da_users             initials                            3 1 1
+da_users             first_name                          3 1 1
+da_users             last_name                           3 1 1
+da_users             active                              1 1 1
+database_PDB_obs_spr ordinal                             1 1 1
+database_PDB_obs_spr dep_set_id                          3 1 1
+database_PDB_obs_spr id                                  3 1 1
+database_PDB_obs_spr date                                7 1 1
+database_PDB_obs_spr pdb_id                              3 1 1
+database_PDB_obs_spr replace_pdb_id                      3 1 1
+database_ref         ordinal                             1 1 1
+database_ref         dep_set_id                          3 1 1
+database_ref         database_name                       3 1 1
+database_ref         database_code                       3 1 1
+database_related     ordinal                             1 1 1
+database_related     dep_set_id                          3 1 1
+database_related     db_name                             3 1 1
+database_related     details                             3 1 1
+database_related     content_type                        3 1 1
+database_related     db_id                               3 1 1
+dep_with_problems    ordinal                             1 1 1
+dep_with_problems    dep_set_id                          3 1 1
+dep_with_problems    type                                3 1 1
+dep_with_problems    detail                              3 1 1
+deposition           ordinal                             1 1 1
+deposition           dep_set_id                          3 1 1
+deposition           pdb_id                              3 1 1
+deposition           initial_deposition_date             7 1 1
+deposition           annotator_initials                  3 1 1
+deposition           deposit_site                        3 1 1
+deposition           process_site                        3 1 1
+deposition           status_code                         3 1 1
+deposition           author_release_status_code          3 1 1
+deposition           title                               3 1 1
+deposition           title_emdb                          3 1 1
+deposition           author_list                         3 1 1
+deposition           author_list_emdb                    3 1 1
+deposition           exp_method                          3 1 1
+deposition           status_code_exp                     3 1 1
+deposition           SG_center                           3 1 1
+deposition           depPW                               3 1 1
+deposition           notify                              3 1 1
+deposition           date_begin_processing               7 1 1
+deposition           date_end_processing                 7 1 1
+deposition           email                               3 1 1
+deposition           locking                             3 1 1
+deposition           country                             3 1 1
+deposition           nmolecule                           1 1 1
+deposition           emdb_id                             3 1 1
+deposition           bmrb_id                             3 1 1
+deposition           status_code_emdb                    3 1 1
+deposition           dep_author_release_status_code_emdb 3 1 1
+deposition           status_code_bmrb                    3 1 1
+deposition           status_code_other                   3 1 1
+deposition           post_rel_status                     3 1 1
+deposition           post_rel_recvd_coord                3 1 1
+deposition           post_rel_recvd_coord_date           7 1 1
+django_session       session_key                         3 1 1
+django_session       session_data                        5 1 1
+django_session       expire_date                         7 1 1
+emdbID               ordinal                             1 1 1
+emdbID               emdb_id                             3 1 1
+emdbID               used                                3 1 1
+engine_monitoring    ordinal                             1 1 1
+engine_monitoring    hostname                            3 1 1
+engine_monitoring    total_physical_mem                  2 1 1
+engine_monitoring    total_virtual_mem                   2 1 1
+engine_monitoring    physical_mem_usage                  2 1 1
+engine_monitoring    virtual_mem_usage                   2 1 1
+engine_monitoring    cpu_usage                           2 1 1
+engine_monitoring    cpu_number                          1 1 1
+engine_monitoring    ids_set                             3 1 1
+engine_monitoring    status_timestamp                    2 1 1
+engine_monitoring    cached                              2 1 1
+engine_monitoring    buffers                             2 1 1
+engine_monitoring    swap_total                          2 1 1
+engine_monitoring    swap_used                           2 1 1
+engine_monitoring    swap_free                           2 1 1
+experiments_db       ordinal                             1 1 1
+experiments_db       dep_set_id                          3 1 1
+experiments_db       expt                                3 1 1
+manager_site         id                                  1 1 1
+manager_site         code                                3 1 1
+manager_site         display_name                        3 1 1
+other_data           ordinal                             1 1 1
+other_data           dep_set_id                          3 1 1
+other_data           data                                3 1 1
+other_data           code                                3 1 1
+pdbID                ordinal                             1 1 1
+pdbID                pdb_id                              3 1 1
+pdbID                used                                3 1 1
+process_information  ordinal                             1 1 1
+process_information  dep_set_id                          3 1 1
+process_information  serial_number                       1 1 1
+process_information  process_begin                       7 1 1
+process_information  process_end                         7 1 1
+process_information  remark                              3 1 1
+related_db           ordinal                             1 1 1
+related_db           dep_set_id                          3 1 1
+related_db           id_code                             3 1 1
+related_db           id_db                               3 1 1
+release_request      ordinal                             1 1 1
+release_request      dep_set_id                          3 1 1
+release_request      citation                            3 1 1
+release_request      release_date                        7 1 1
+release_request      PubMed_id                           1 1 1
+remind_message_track dep_set_id                          3 1 1
+remind_message_track major_issue                         3 1 1
+remind_message_track last_reminder_sent_date             7 1 1
+remind_message_track last_validation_sent_date           7 1 1
+remind_message_track last_message_sent_date              7 1 1
+remind_message_track last_message_received_date          7 1 1
+sgcenters            ordinal                             1 1 1
+sgcenters            code                                3 1 1
+sgcenters            verbose_name                        3 1 1
+site                 ordinal                             1 1 1
+site                 code                                3 1 1
+site                 verbose_name                        3 1 1
+status               ordinal                             1 1 1
+status               code                                3 1 1
+status               verbose_name                        3 1 1
+status_change        ordinal                             1 1 1
+status_change        dep_set_id                          3 1 1
+status_change        mtime                               2 1 1
+status_change        laststatus                          3 1 1
+status_change        status                              3 1 1
+status_change        annotator                           3 1 1
+status_change        owner                               3 1 1
+status_change        module                              3 1 1
+taxonomy             ordinal                             1 1 1
+taxonomy             tax_id                              1 1 1
+taxonomy             name                                3 1 1
+taxonomy             data                                3 1 1
+taxonomy             class                               3 1 1
+taxonomy             annotation                          3 1 1
+taxonomy             scientific                          3 1 1
+timestamp            ordinal                             1 1 1
+timestamp            dep_set_id                          3 1 1
+timestamp            mtime                               2 1 1
+timestamp            event                               3 1 1
+timestamp            info1                               3 1 1
+timestamp            info2                               3 1 1
+timestamp            info3                               3 1 1
+timestamp            info4                               3 1 1
+timestamp            info5                               3 1 1
+user_data            ordinal                             1 1 1
+user_data            dep_set_id                          3 1 1
+user_data            email                               3 1 1
+user_data            last_name                           3 1 1
+user_data            role                                3 1 1
+user_data            country                             3 1 1
+wf_class_dict        ordinal                             1 1 1
+wf_class_dict        wf_class_id                         3 1 1
+wf_class_dict        wf_class_name                       3 1 1
+wf_class_dict        title                               3 1 1
+wf_class_dict        author                              3 1 1
+wf_class_dict        version                             3 1 1
+wf_class_dict        class_file                          3 1 1
+wf_instance          ordinal                             1 1 1
+wf_instance          wf_inst_id                          3 1 1
+wf_instance          wf_class_id                         3 1 1
+wf_instance          dep_set_id                          3 1 1
+wf_instance          owner                               3 1 1
+wf_instance          inst_status                         3 1 1
+wf_instance          status_timestamp                    2 1 1
+wf_instance_last     ordinal                             1 1 1
+wf_instance_last     wf_inst_id                          3 1 1
+wf_instance_last     wf_class_id                         3 1 1
+wf_instance_last     dep_set_id                          3 1 1
+wf_instance_last     owner                               3 1 1
+wf_instance_last     inst_status                         3 1 1
+wf_instance_last     status_timestamp                    2 1 1
+wf_reference         ordinal                             1 1 1
+wf_reference         dep_set_id                          3 1 1
+wf_reference         wf_inst_id                          3 1 1
+wf_reference         wf_task_id                          3 1 1
+wf_reference         wf_class_id                         3 1 1
+wf_reference         hash_id                             3 1 1
+wf_reference         value                               3 1 1
+wf_task              ordinal                             1 1 1
+wf_task              wf_task_id                          3 1 1
+wf_task              wf_inst_id                          3 1 1
+wf_task              wf_class_id                         3 1 1
+wf_task              dep_set_id                          3 1 1
+wf_task              task_name                           3 1 1
+wf_task              task_status                         3 1 1
+wf_task              status_timestamp                    2 1 1
+wf_task              task_type                           3 1 1
+# 
+
+# 
+data_rcsb_schema_map
+# 
+loop_
+_rcsb_map_condition.condition_id 
+_rcsb_map_condition.attribute_name 
+_rcsb_map_condition.attribute_value  
+C1 entry_id    'datablockid()' 
+#
+
+loop_
+_rcsb_attribute_map.target_table_name 
+_rcsb_attribute_map.target_attribute_name 
+_rcsb_attribute_map.source_item_name 
+_rcsb_attribute_map.condition_id 
+_rcsb_attribute_map.function_id 
+anno_selection       dep_set_id                          '_anno_selection.dep_set_id'                                ? 'datablockid()' 
+anno_selection       annotator_initials                  '_anno_selection.annotator_initials'                        ? ?
+author_corrections   ordinal                             '_author_corrections.ordinal'                               ? ?
+author_corrections   dep_set_id                          '_author_corrections.dep_set_id'                            ? 'datablockid()' 
+author_corrections   content                             '_author_corrections.content'                               ? ?
+author_corrections   sending_date                        '_author_corrections.sending_date'                          ? ?
+author_corrections   remark                              '_author_corrections.remark'                                ? ?
+bmrbID               ordinal                             '_bmrbID.ordinal'                                           ? ?
+bmrbID               bmrb_id                             '_bmrbID.bmrb_id'                                           ? ?
+bmrbID               used                                '_bmrbID.used'                                              ? ?
+citation             ordinal                             '_citation.ordinal'                                         ? ?
+citation             ord                                 '_citation.ord'                                             ? ?
+citation             name                                '_citation.name'                                            ? ?
+citation             citID                               '_citation.citID'                                           ? ?
+citation             abriev1                             '_citation.abriev1'                                         ? ?
+citation             abriev2                             '_citation.abriev2'                                         ? ?
+citation             count                               '_citation.count'                                           ? ?
+codes_db             ordinal                             '_codes_db.ordinal'                                         ? ?
+codes_db             dep_set_id                          '_codes_db.dep_set_id'                                      ? 'datablockid()' 
+codes_db             code                                '_codes_db.code'                                            ? ?
+com                  ordinal                             '_com.ordinal'                                              ? ?
+com                  dep_set_id                          '_com.dep_set_id'                                           ? 'datablockid()' 
+com                  dep_subject                         '_com.dep_subject'                                          ? ?
+com                  dep_last_com_date                   '_com.dep_last_com_date'                                    ? ?
+com                  ann_last_com_date                   '_com.ann_last_com_date'                                    ? ?
+communication        ordinal                             '_communication.ordinal'                                    ? ?
+communication        sender                              '_communication.sender'                                     ? ?
+communication        receiver                            '_communication.receiver'                                   ? ?
+communication        dep_set_id                          '_communication.dep_set_id'                                 ? 'datablockid()' 
+communication        wf_class_id                         '_communication.wf_class_id'                                ? ?
+communication        wf_inst_id                          '_communication.wf_inst_id'                                 ? ?
+communication        wf_class_file                       '_communication.wf_class_file'                              ? ?
+communication        command                             '_communication.command'                                    ? ?
+communication        status                              '_communication.status'                                     ? ?
+communication        actual_timestamp                    '_communication.actual_timestamp'                           ? ?
+communication        parent_dep_set_id                   '_communication.parent_dep_set_id'                          ? ?
+communication        parent_wf_class_id                  '_communication.parent_wf_class_id'                         ? ?
+communication        parent_wf_inst_id                   '_communication.parent_wf_inst_id'                          ? ?
+communication        'data_version'                      '_communication.'data_version''                             ? ?
+communication        host                                '_communication.host'                                       ? ?
+communication        activity                            '_communication.activity'                                   ? ?
+contact_author       ordinal                             '_contact_author.ordinal'                                   ? ?
+contact_author       dep_set_id                          '_contact_author.dep_set_id'                                ? 'datablockid()' 
+contact_author       name_salutation                     '_contact_author.name_salutation'                           ? ?
+contact_author       name_first                          '_contact_author.name_first'                                ? ?
+contact_author       name_last                           '_contact_author.name_last'                                 ? ?
+contact_author       name_mi                             '_contact_author.name_mi'                                   ? ?
+contact_author       role                                '_contact_author.role'                                      ? ?
+contact_author       email                               '_contact_author.email'                                     ? ?
+contact_author       address_1                           '_contact_author.address_1'                                 ? ?
+contact_author       address_2                           '_contact_author.address_2'                                 ? ?
+contact_author       address_3                           '_contact_author.address_3'                                 ? ?
+contact_author       city                                '_contact_author.city'                                      ? ?
+contact_author       state_province                      '_contact_author.state_province'                            ? ?
+contact_author       postal_code                         '_contact_author.postal_code'                               ? ?
+contact_author       country                             '_contact_author.country'                                   ? ?
+contact_author       phone                               '_contact_author.phone'                                     ? ?
+contact_author       fax                                 '_contact_author.fax'                                       ? ?
+contact_author       organization_type                   '_contact_author.organization_type'                         ? ?
+da_group             ordinal                             '_da_group.ordinal'                                         ? ?
+da_group             code                                '_da_group.code'                                            ? ?
+da_group             group_name                          '_da_group.group_name'                                      ? ?
+da_group             site                                '_da_group.site'                                            ? ?
+da_group             main_page                           '_da_group.main_page'                                       ? ?
+da_group             da_group_id                         '_da_group.da_group_id'                                     ? ?
+da_users             ordinal                             '_da_users.ordinal'                                         ? ?
+da_users             user_name                           '_da_users.user_name'                                       ? ?
+da_users             password                            '_da_users.password'                                        ? ?
+da_users             da_group_id                         '_da_users.da_group_id'                                     ? ?
+da_users             email                               '_da_users.email'                                           ? ?
+da_users             initials                            '_da_users.initials'                                        ? ?
+da_users             first_name                          '_da_users.first_name'                                      ? ?
+da_users             last_name                           '_da_users.last_name'                                       ? ?
+da_users             active                              '_da_users.active'                                          ? ?
+database_PDB_obs_spr ordinal                             '_database_PDB_obs_spr.ordinal'                             ? ?
+database_PDB_obs_spr dep_set_id                          '_database_PDB_obs_spr.dep_set_id'                          ? 'datablockid()' 
+database_PDB_obs_spr id                                  '_database_PDB_obs_spr.id'                                  ? ?
+database_PDB_obs_spr date                                '_database_PDB_obs_spr.date'                                ? ?
+database_PDB_obs_spr pdb_id                              '_database_PDB_obs_spr.pdb_id'                              ? ?
+database_PDB_obs_spr replace_pdb_id                      '_database_PDB_obs_spr.replace_pdb_id'                      ? ?
+database_ref         ordinal                             '_database_ref.ordinal'                                     ? ?
+database_ref         dep_set_id                          '_database_ref.dep_set_id'                                  ? 'datablockid()' 
+database_ref         database_name                       '_database_ref.database_name'                               ? ?
+database_ref         database_code                       '_database_ref.database_code'                               ? ?
+database_related     ordinal                             '_database_related.ordinal'                                 ? ?
+database_related     dep_set_id                          '_database_related.dep_set_id'                              ? 'datablockid()' 
+database_related     db_name                             '_database_related.db_name'                                 ? ?
+database_related     details                             '_database_related.details'                                 ? ?
+database_related     content_type                        '_database_related.content_type'                            ? ?
+database_related     db_id                               '_database_related.db_id'                                   ? ?
+dep_with_problems    ordinal                             '_dep_with_problems.ordinal'                                ? ?
+dep_with_problems    dep_set_id                          '_dep_with_problems.dep_set_id'                             ? 'datablockid()' 
+dep_with_problems    type                                '_dep_with_problems.type'                                   ? ?
+dep_with_problems    detail                              '_dep_with_problems.detail'                                 ? ?
+deposition           ordinal                             '_deposition.ordinal'                                       ? ?
+deposition           dep_set_id                          '_deposition.dep_set_id'                                    ? 'datablockid()' 
+deposition           pdb_id                              '_deposition.pdb_id'                                        ? ?
+deposition           initial_deposition_date             '_deposition.initial_deposition_date'                       ? ?
+deposition           annotator_initials                  '_deposition.annotator_initials'                            ? ?
+deposition           deposit_site                        '_deposition.deposit_site'                                  ? ?
+deposition           process_site                        '_deposition.process_site'                                  ? ?
+deposition           status_code                         '_deposition.status_code'                                   ? ?
+deposition           author_release_status_code          '_deposition.author_release_status_code'                    ? ?
+deposition           title                               '_deposition.title'                                         ? ?
+deposition           title_emdb                          '_deposition.title_emdb'                                    ? ?
+deposition           author_list                         '_deposition.author_list'                                   ? ?
+deposition           author_list_emdb                    '_deposition.author_list_emdb'                              ? ?
+deposition           exp_method                          '_deposition.exp_method'                                    ? ?
+deposition           status_code_exp                     '_deposition.status_code_exp'                               ? ?
+deposition           SG_center                           '_deposition.SG_center'                                     ? ?
+deposition           depPW                               '_deposition.depPW'                                         ? ?
+deposition           notify                              '_deposition.notify'                                        ? ?
+deposition           date_begin_processing               '_deposition.date_begin_processing'                         ? ?
+deposition           date_end_processing                 '_deposition.date_end_processing'                           ? ?
+deposition           email                               '_deposition.email'                                         ? ?
+deposition           locking                             '_deposition.locking'                                       ? ?
+deposition           country                             '_deposition.country'                                       ? ?
+deposition           nmolecule                           '_deposition.nmolecule'                                     ? ?
+deposition           emdb_id                             '_deposition.emdb_id'                                       ? ?
+deposition           bmrb_id                             '_deposition.bmrb_id'                                       ? ?
+deposition           status_code_emdb                    '_deposition.status_code_emdb'                              ? ?
+deposition           dep_author_release_status_code_emdb '_deposition.dep_author_release_status_code_emdb'           ? ?
+deposition           status_code_bmrb                    '_deposition.status_code_bmrb'                              ? ?
+deposition           status_code_other                   '_deposition.status_code_other'                             ? ?
+deposition           post_rel_status                     '_deposition.post_rel_status'                               ? ?
+deposition           post_rel_recvd_coord                '_deposition.post_rel_recvd_coord'                          ? ?
+deposition           post_rel_recvd_coord_date           '_deposition.post_rel_recvd_coord_date'                     ? ?
+django_session       session_key                         '_django_session.session_key'                               ? ?
+django_session       session_data                        '_django_session.session_data'                              ? ?
+django_session       expire_date                         '_django_session.expire_date'                               ? ?
+emdbID               ordinal                             '_emdbID.ordinal'                                           ? ?
+emdbID               emdb_id                             '_emdbID.emdb_id'                                           ? ?
+emdbID               used                                '_emdbID.used'                                              ? ?
+engine_monitoring    ordinal                             '_engine_monitoring.ordinal'                                ? ?
+engine_monitoring    hostname                            '_engine_monitoring.hostname'                               ? ?
+engine_monitoring    total_physical_mem                  '_engine_monitoring.total_physical_mem'                     ? ?
+engine_monitoring    total_virtual_mem                   '_engine_monitoring.total_virtual_mem'                      ? ?
+engine_monitoring    physical_mem_usage                  '_engine_monitoring.physical_mem_usage'                     ? ?
+engine_monitoring    virtual_mem_usage                   '_engine_monitoring.virtual_mem_usage'                      ? ?
+engine_monitoring    cpu_usage                           '_engine_monitoring.cpu_usage'                              ? ?
+engine_monitoring    cpu_number                          '_engine_monitoring.cpu_number'                             ? ?
+engine_monitoring    ids_set                             '_engine_monitoring.ids_set'                                ? ?
+engine_monitoring    status_timestamp                    '_engine_monitoring.status_timestamp'                       ? ?
+engine_monitoring    cached                              '_engine_monitoring.cached'                                 ? ?
+engine_monitoring    buffers                             '_engine_monitoring.buffers'                                ? ?
+engine_monitoring    swap_total                          '_engine_monitoring.swap_total'                             ? ?
+engine_monitoring    swap_used                           '_engine_monitoring.swap_used'                              ? ?
+engine_monitoring    swap_free                           '_engine_monitoring.swap_free'                              ? ?
+experiments_db       ordinal                             '_experiments_db.ordinal'                                   ? ?
+experiments_db       dep_set_id                          '_experiments_db.dep_set_id'                                ? 'datablockid()' 
+experiments_db       expt                                '_experiments_db.expt'                                      ? ?
+manager_site         id                                  '_manager_site.id'                                          ? ?
+manager_site         code                                '_manager_site.code'                                        ? ?
+manager_site         display_name                        '_manager_site.display_name'                                ? ?
+other_data           ordinal                             '_other_data.ordinal'                                       ? ?
+other_data           dep_set_id                          '_other_data.dep_set_id'                                    ? 'datablockid()' 
+other_data           data                                '_other_data.data'                                          ? ?
+other_data           code                                '_other_data.code'                                          ? ?
+pdbID                ordinal                             '_pdbID.ordinal'                                            ? ?
+pdbID                pdb_id                              '_pdbID.pdb_id'                                             ? ?
+pdbID                used                                '_pdbID.used'                                               ? ?
+process_information  ordinal                             '_process_information.ordinal'                              ? ?
+process_information  dep_set_id                          '_process_information.dep_set_id'                           ? 'datablockid()' 
+process_information  serial_number                       '_process_information.serial_number'                        ? ?
+process_information  process_begin                       '_process_information.process_begin'                        ? ?
+process_information  process_end                         '_process_information.process_end'                          ? ?
+process_information  remark                              '_process_information.remark'                               ? ?
+related_db           ordinal                             '_related_db.ordinal'                                       ? ?
+related_db           dep_set_id                          '_related_db.dep_set_id'                                    ? 'datablockid()' 
+related_db           id_code                             '_related_db.id_code'                                       ? ?
+related_db           id_db                               '_related_db.id_db'                                         ? ?
+release_request      ordinal                             '_release_request.ordinal'                                  ? ?
+release_request      dep_set_id                          '_release_request.dep_set_id'                               ? 'datablockid()' 
+release_request      citation                            '_release_request.citation'                                 ? ?
+release_request      release_date                        '_release_request.release_date'                             ? ?
+release_request      PubMed_id                           '_release_request.PubMed_id'                                ? ?
+remind_message_track dep_set_id                          '_remind_message_track.dep_set_id'                          ? 'datablockid()' 
+remind_message_track major_issue                         '_remind_message_track.major_issue'                         ? ?
+remind_message_track last_reminder_sent_date             '_remind_message_track.last_reminder_sent_date'             ? ?
+remind_message_track last_validation_sent_date           '_remind_message_track.last_validation_sent_date'           ? ?
+remind_message_track last_message_sent_date              '_remind_message_track.last_message_sent_date'              ? ?
+remind_message_track last_message_received_date          '_remind_message_track.last_message_received_date'          ? ?
+sgcenters            ordinal                             '_sgcenters.ordinal'                                        ? ?
+sgcenters            code                                '_sgcenters.code'                                           ? ?
+sgcenters            verbose_name                        '_sgcenters.verbose_name'                                   ? ?
+site                 ordinal                             '_site.ordinal'                                             ? ?
+site                 code                                '_site.code'                                                ? ?
+site                 verbose_name                        '_site.verbose_name'                                        ? ?
+status               ordinal                             '_status.ordinal'                                           ? ?
+status               code                                '_status.code'                                              ? ?
+status               verbose_name                        '_status.verbose_name'                                      ? ?
+status_change        ordinal                             '_status_change.ordinal'                                    ? ?
+status_change        dep_set_id                          '_status_change.dep_set_id'                                 ? 'datablockid()' 
+status_change        mtime                               '_status_change.mtime'                                      ? ?
+status_change        laststatus                          '_status_change.laststatus'                                 ? ?
+status_change        status                              '_status_change.status'                                     ? ?
+status_change        annotator                           '_status_change.annotator'                                  ? ?
+status_change        owner                               '_status_change.owner'                                      ? ?
+status_change        module                              '_status_change.module'                                     ? ?
+taxonomy             ordinal                             '_taxonomy.ordinal'                                         ? ?
+taxonomy             tax_id                              '_taxonomy.tax_id'                                          ? ?
+taxonomy             name                                '_taxonomy.name'                                            ? ?
+taxonomy             data                                '_taxonomy.data'                                            ? ?
+taxonomy             class                               '_taxonomy.class'                                           ? ?
+taxonomy             annotation                          '_taxonomy.annotation'                                      ? ?
+taxonomy             scientific                          '_taxonomy.scientific'                                      ? ?
+timestamp            ordinal                             '_timestamp.ordinal'                                        ? ?
+timestamp            dep_set_id                          '_timestamp.dep_set_id'                                     ? 'datablockid()' 
+timestamp            mtime                               '_timestamp.mtime'                                          ? ?
+timestamp            event                               '_timestamp.event'                                          ? ?
+timestamp            info1                               '_timestamp.info1'                                          ? ?
+timestamp            info2                               '_timestamp.info2'                                          ? ?
+timestamp            info3                               '_timestamp.info3'                                          ? ?
+timestamp            info4                               '_timestamp.info4'                                          ? ?
+timestamp            info5                               '_timestamp.info5'                                          ? ?
+user_data            ordinal                             '_user_data.ordinal'                                        ? ?
+user_data            dep_set_id                          '_user_data.dep_set_id'                                     ? 'datablockid()' 
+user_data            email                               '_user_data.email'                                          ? ?
+user_data            last_name                           '_user_data.last_name'                                      ? ?
+user_data            role                                '_user_data.role'                                           ? ?
+user_data            country                             '_user_data.country'                                        ? ?
+wf_class_dict        ordinal                             '_wf_class_dict.ordinal'                                    ? ?
+wf_class_dict        wf_class_id                         '_wf_class_dict.wf_class_id'                                ? ?
+wf_class_dict        wf_class_name                       '_wf_class_dict.wf_class_name'                              ? ?
+wf_class_dict        title                               '_wf_class_dict.title'                                      ? ?
+wf_class_dict        author                              '_wf_class_dict.author'                                     ? ?
+wf_class_dict        version                             '_wf_class_dict.version'                                    ? ?
+wf_class_dict        class_file                          '_wf_class_dict.class_file'                                 ? ?
+wf_instance          ordinal                             '_wf_instance.ordinal'                                      ? ?
+wf_instance          wf_inst_id                          '_wf_instance.wf_inst_id'                                   ? ?
+wf_instance          wf_class_id                         '_wf_instance.wf_class_id'                                  ? ?
+wf_instance          dep_set_id                          '_wf_instance.dep_set_id'                                   ? 'datablockid()' 
+wf_instance          owner                               '_wf_instance.owner'                                        ? ?
+wf_instance          inst_status                         '_wf_instance.inst_status'                                  ? ?
+wf_instance          status_timestamp                    '_wf_instance.status_timestamp'                             ? ?
+wf_instance_last     ordinal                             '_wf_instance_last.ordinal'                                 ? ?
+wf_instance_last     wf_inst_id                          '_wf_instance_last.wf_inst_id'                              ? ?
+wf_instance_last     wf_class_id                         '_wf_instance_last.wf_class_id'                             ? ?
+wf_instance_last     dep_set_id                          '_wf_instance_last.dep_set_id'                              ? 'datablockid()' 
+wf_instance_last     owner                               '_wf_instance_last.owner'                                   ? ?
+wf_instance_last     inst_status                         '_wf_instance_last.inst_status'                             ? ?
+wf_instance_last     status_timestamp                    '_wf_instance_last.status_timestamp'                        ? ?
+wf_reference         ordinal                             '_wf_reference.ordinal'                                     ? ?
+wf_reference         dep_set_id                          '_wf_reference.dep_set_id'                                  ? 'datablockid()' 
+wf_reference         wf_inst_id                          '_wf_reference.wf_inst_id'                                  ? ?
+wf_reference         wf_task_id                          '_wf_reference.wf_task_id'                                  ? ?
+wf_reference         wf_class_id                         '_wf_reference.wf_class_id'                                 ? ?
+wf_reference         hash_id                             '_wf_reference.hash_id'                                     ? ?
+wf_reference         value                               '_wf_reference.value'                                       ? ?
+wf_task              ordinal                             '_wf_task.ordinal'                                          ? ?
+wf_task              wf_task_id                          '_wf_task.wf_task_id'                                       ? ?
+wf_task              wf_inst_id                          '_wf_task.wf_inst_id'                                       ? ?
+wf_task              wf_class_id                         '_wf_task.wf_class_id'                                      ? ?
+wf_task              dep_set_id                          '_wf_task.dep_set_id'                                       ? 'datablockid()' 
+wf_task              task_name                           '_wf_task.task_name'                                        ? ?
+wf_task              task_status                         '_wf_task.task_status'                                      ? ?
+wf_task              status_timestamp                    '_wf_task.status_timestamp'                                 ? ?
+wf_task              task_type                           '_wf_task.task_type'                                        ? ?
+#
