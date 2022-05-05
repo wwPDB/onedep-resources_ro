@@ -34,7 +34,7 @@ pdbx_molecule_features       0 pdbx_group                      1 1
 entity                       0 entity_group                    1 1 
 pdbx_database_PDB_obs_spr    0 pdbx_group                      1 1 
 pdbx_depui_entry_details     0 pdbx_group                      1 1 
-em_admin                     0 pdbx_group                      1 1 
+em_admin                     0 emdb_admin_group                1 1
 database_2                   0 database_group                  1 1 
 pdbx_database_related        0 pdbx_group                      1 1 
 pdbx_entity_nonpoly          0 rcsb_group                      1 1 
@@ -54,6 +54,8 @@ pdbx_struct_oper_list        0 pdbx_group                      1 1
 pdbx_struct_assembly_gen     0 pdbx_group                      1 1
 symmetry                     0 symmetry_group                  1 1
 pdbx_struct_assembly         0 pdbx_group                      1 1
+em_depui                     0 emdb_admin_group                1 1
+em_author_list               0 emdb_admin_group                1 1
 #
 loop_
 _rcsb_attribute_def.table_name 
@@ -157,7 +159,7 @@ struct                       pdbx_center_of_mass_x          float    0 0 10    6
 struct                       pdbx_center_of_mass_y          float    0 0 10    6 Y
 struct                       pdbx_center_of_mass_z          float    0 0 10    6 Y
 audit_author                 Structure_ID                   char     1 1 15    0 Y
-audit_author                 name                           char     1 1 128   0 Y 
+audit_author                 name                           char     0 1 128   0 Y
 audit_author                 pdbx_ordinal                   int      1 1 10    0 Y 
 audit_author                 identifier_ORCID               char     0 0 20    0 Y 
 status_information           Structure_ID                   char     1 1 15    0 Y 
@@ -283,7 +285,7 @@ em_admin                     details                        char     0 0 200   0
 em_admin                     header_release_date            date     0 0 19    0 Y 
 em_admin                     author_list                    char     0 0 700   0 Y 
 em_admin                     map_hold_date                  date     0 0 19    0 Y 
-database_2                   Structure_ID                   char     1 1 15    0 Y 
+database_2                   Structure_ID                   char     1 1 15    0 Y
 database_2                   database_id                    char     1 1 10    0 Y 
 database_2                   database_code                  char     1 1 80    0 Y 
 pdbx_database_related        Structure_ID                   char     1 1 15    0 Y 
@@ -397,6 +399,16 @@ pdbx_struct_assembly         oligomeric_details             char     0 0 255   0
 pdbx_struct_assembly         oligomeric_count               int      0 0 10    0 Y
 pdbx_struct_assembly         details                        char     0 0 200   0 Y
 pdbx_struct_assembly         id                             char     1 1 80    0 Y
+em_depui                     Structure_ID                   char     1 1 15    0 Y
+em_depui                     depositor_hold_instructions    char     0 0 80    0 Y
+em_depui                     macromolecule_description      char     0 0 10    0 Y
+em_depui                     obsolete_instructions          char     0 0 200   0 Y
+em_depui                     same_authors_as_pdb            char     0 0 5    0 Y
+em_depui                     same_title_as_pdb              char     0 0 5    0 Y
+em_author_list               Structure_ID                   char     1 1 15    0 Y
+em_author_list               author                         char     0 0 150    0 Y
+em_author_list               ordinal                        int      1 1 10    0 Y
+em_author_list               identifier_ORCID               char     0 0 20    0 Y
 #
 loop_
 _rcsb_attribute_view.table_name 
@@ -623,7 +635,8 @@ em_admin                     details                        5 1 1
 em_admin                     header_release_date            7 1 1 
 em_admin                     author_list                    5 1 1 
 em_admin                     map_hold_date                  7 1 1 
-database_2                   Structure_ID                   3 1 1 
+#
+database_2                   Structure_ID                   3 1 1
 database_2                   database_id                    3 1 1 
 database_2                   database_code                  5 1 1 
 pdbx_database_related        Structure_ID                   3 1 1 
@@ -737,6 +750,16 @@ pdbx_struct_assembly         oligomeric_details             5 1 1
 pdbx_struct_assembly         oligomeric_count               1 1 1
 pdbx_struct_assembly         details                        5 1 1
 pdbx_struct_assembly         id                             5 1 1
+em_depui                     Structure_ID                   3 1 1
+em_depui                     depositor_hold_instructions    5 1 1
+em_depui                     macromolecule_description      3 1 1
+em_depui                     obsolete_instructions          5 1 1
+em_depui                     same_authors_as_pdb            3 1 1
+em_depui                     same_title_as_pdb              3 1 1
+em_author_list               Structure_ID                   3 1 1
+em_author_list               author                         3 1 1
+em_author_list               ordinal                        3 1 1
+em_author_list               identifier_ORCID               3 1 1
 #
 data_rcsb_schema_map
 # 
@@ -973,15 +996,12 @@ em_admin                     last_update                    '_em_admin.last_upda
 em_admin                     map_release_date               '_em_admin.map_release_date'                           ?  ?                       
 em_admin                     obsoleted_date                 '_em_admin.obsoleted_date'                             ?  ?                       
 em_admin                     replace_existing_entry_flag    '_em_admin.replace_existing_entry_flag'                ?  ?                       
-em_admin                     author_list                    '_em_author_list.author'                               ?  'collapse(comma)'       
-em_admin                     title                          '_em_admin.title'                                      ?  ?                       
+em_admin                     title                          '_em_admin.title'                                      ?  ?
 em_admin                     details                        '_em_admin.details'                                    ?  ?                       
 em_admin                     header_release_date            '_em_admin.header_release_date'                        ?  ?                       
 em_admin                     author_list                    '_em_author_list.author'                               ?  'collapse(comma)'       
-em_admin                     author_list                    '_em_author_list.author'                               ?  'collapse(comma)'       
-em_admin                     author_list                    '_em_author_list.author'                               ?  'collapse(comma)'       
-em_admin                     map_hold_date                  '_em_admin.map_hold_date'                              ?  ?                       
-database_2                   Structure_ID                   ?                                                      ?  'datablockid()'         
+em_admin                     map_hold_date                  '_em_admin.map_hold_date'                              ?  ?
+database_2                   Structure_ID                   ?                                                      ?  'datablockid()'
 database_2                   database_id                    '_database_2.database_id'                              ?  ?                       
 database_2                   database_code                  '_database_2.database_code'                            ?  ?                       
 pdbx_database_related        Structure_ID                   ?                                                      ?  'datablockid()'         
@@ -1089,10 +1109,20 @@ symmetry                     Int_Tables_number              '_symmetry.Int_Table
 symmetry                     space_group_name_Hall          '_symmetry.space_group_name_Hall'                      ? ?
 symmetry                     space_group_name_H-M           '_symmetry.space_group_name_H-M'                       ? ?
 symmetry                     pdbx_full_space_group_name_H-M    '_symmetry.pdbx_full_space_group_name_H-M'          ? ?
-pdbx_struct_assembly         Structure_ID                   ?                                                                          ? 'datablockid()'
-pdbx_struct_assembly         method_details                 '_pdbx_struct_assembly.method_details'                                     ? ?
-pdbx_struct_assembly         oligomeric_details             '_pdbx_struct_assembly.oligomeric_details'                                 ? ?
-pdbx_struct_assembly         oligomeric_count               '_pdbx_struct_assembly.oligomeric_count'                                   ? ?
-pdbx_struct_assembly         details                        '_pdbx_struct_assembly.details'                                            ? ?
-pdbx_struct_assembly         id                             '_pdbx_struct_assembly.id'                                                 ? ?
+pdbx_struct_assembly         Structure_ID                   ?                                                      ? 'datablockid()'
+pdbx_struct_assembly         method_details                 '_pdbx_struct_assembly.method_details'                 ? ?
+pdbx_struct_assembly         oligomeric_details             '_pdbx_struct_assembly.oligomeric_details'             ? ?
+pdbx_struct_assembly         oligomeric_count               '_pdbx_struct_assembly.oligomeric_count'               ? ?
+pdbx_struct_assembly         details                        '_pdbx_struct_assembly.details'                        ? ?
+pdbx_struct_assembly         id                             '_pdbx_struct_assembly.id'                             ? ?
+em_depui                     Structure_ID                   ?                                                      ? 'datablockid()'
+em_depui                     depositor_hold_instructions    '_em_depui.depositor_hold_instructions'                ? ?
+em_depui                     macromolecule_description      '_em_depui.macromolecule_description'                  ? ?
+em_depui                     obsolete_instructions          '_em_depui.obsolete_instructions'                      ? ?
+em_depui                     same_authors_as_pdb            '_em_depui.same_authors_as_pdb'                        ? ?
+em_depui                     same_title_as_pdb              '_em_depui.same_title_as_pdb'                          ? ?
+em_author_list               Structure_ID                   ?                                                                          ? 'datablockid()'
+em_author_list               author                         '_em_author_list.author'                                                   ? ?
+em_author_list               ordinal                        '_em_author_list.ordinal'                              ? ?
+em_author_list               identifier_ORCID               '_em_author_list.identifier_ORCID'                     ? ?
 #
