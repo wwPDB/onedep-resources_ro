@@ -309,6 +309,7 @@ _pdbx_dict_item_mapping.map_type
 "_em_map.dimensions_sec"                                     "_emd_map.dimensions_sec"                                                 src_to_dst  as_item
 "_em_map.endian_type"                                        "_emd_map.endian_type"                                                    src_to_dst  as_item
 "_em_map.file"                                               "_emd_map.file"                                                           src_to_dst  as_item
+"_em_map.original_file"                                      "_emd_map.original_file"                                                  src_to_dst  as_item
 "_em_map.format"                                             "_emd_map.format"                                                         src_to_dst  as_item
 "_em_map.label"                                              "_emd_map.label"                                                          src_to_dst  as_item
 "_em_map.limit_col"                                          "_emd_map.limit_col"                                                      src_to_dst  as_item
@@ -331,6 +332,15 @@ _pdbx_dict_item_mapping.map_type
 "_em_map.statistics_std"                                     "_emd_map.statistics_std"                                                 src_to_dst  as_item
 "_em_map.symmetry_space_group"                               "_emd_map.symmetry_space_group"                                           src_to_dst  as_item
 "_em_map.type"                                               "_emd_map.type"                                                           src_to_dst  as_item
+"_em_map_upload.id"                                          "_emd_map_upload.id"                                                      src_to_dst  as_key
+"_em_map_upload.annotation_details"                          "_emd_map_upload.annotation_details"                                      src_to_dst  as_item
+"_em_map_upload.file"                                        "_emd_map_upload.file"                                                    src_to_dst  as_item
+"_em_map_upload.original_file"                               "_emd_map_upload.original_file"                                           src_to_dst  as_item
+"_em_map_upload.partition"                                   "_emd_map_upload.partition"                                               src_to_dst  as_item
+"_em_map_upload.pixel_spacing_x"                             "_emd_map_upload.pixel_spacing_x"                                         src_to_dst  as_item
+"_em_map_upload.pixel_spacing_y"                             "_emd_map_upload.pixel_spacing_y"                                         src_to_dst  as_item
+"_em_map_upload.pixel_spacing_z"                             "_emd_map_upload.pixel_spacing_z"                                         src_to_dst  as_item
+"_em_map_upload.type"                                        "_emd_map_upload.type"                                                    src_to_dst  as_item
 "_em_particle_selection.id"                                  "_emd_particle_selection.id"                                              src_to_dst  as_key
 "_em_particle_selection.image_processing_id"                 "_emd_particle_selection.emd_image_processing_id"                         src_to_dst  as_item
 "_em_particle_selection.details"                             "_emd_particle_selection.details"                                         src_to_dst  as_item
