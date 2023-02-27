@@ -31,7 +31,7 @@
 
                 <wf:task taskID="T2" name="pdbxformatchecktask" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="pdbxformatchecktask">
                     <wf:description>PDBx format check task</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:10:20">
+                    <wf:process runTime="00:00:10" failTime="00:29:00">
                         <wf:detail name="pdbxformatcheck" action="pdbx-format-check" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
