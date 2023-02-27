@@ -30,7 +30,7 @@
 
                 <wf:task taskID="T2" name="pdbx2pdbx" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="pdbx2pdbx">
                     <wf:description>PDBx to PDBx task</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                    <wf:process runTime="00:00:10" failTime="01:05:20">
                         <wf:detail name="pdbx2pdbx" action="pdbx2pdbx-deposit" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
