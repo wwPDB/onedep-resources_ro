@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.0" author="my" date="08-23-2019" id="NEF2STR_TDEP" name="wf_op_nmr_nef2str_fs_tempdep.xml"/>
+        <wf:version major="1.0" author="my" date="03-24-2023" id="NEF2CIF_TDEP" name="wf_op_nmr_nef2cif_fs_tempdep.xml"/>
         <wf:description>
-            <wf:short>Convert NEF to NMR-STAR V3.2 (tempdep)</wf:short>
+            <wf:short>Convert NEF to CIF formated NMR data (tempdep)</wf:short>
             <wf:subtext>Deposition system file conversion workflow</wf:subtext>
         </wf:description>
     </wf:metadata>
@@ -43,11 +43,15 @@
                 <wf:description>NMR data file: NMR-STAR V3.2 (next version)</wf:description>
                 <wf:location where="tempdep" content="nmr-data-str" format="nmr-star" version="next" />
             </wf:dataObject>
-            <wf:dataObject dataID="D7" name="nmr-nef-deposit-log" type="string" container="list" mutable="true" >
+            <wf:dataObject dataID="D7" name="nmr-data-str-file" type="string" container="list" mutable="true" >
+                <wf:description>NMR data file: CIF (next version)</wf:description>
+                <wf:location where="tempdep" content="nmr-data-str" format="pdbx" version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D8" name="nmr-nef-deposit-log" type="string" container="list" mutable="true" >
                 <wf:description>NEF deposit log (next version)</wf:description>
                 <wf:location where="tempdep" content="nmr-data-nef-report" format="json" version="next" />
             </wf:dataObject>
-            <wf:dataObject dataID="D8" name="nmr-str-deposit-log" type="string" container="list" mutable="true" >
+            <wf:dataObject dataID="D9" name="nmr-str-deposit-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR-STAR V3.2 deposit log (next version)</wf:description>
                 <wf:location where="tempdep" content="nmr-data-str-report" format="json" version="next" />
             </wf:dataObject>
@@ -75,10 +79,10 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="T7" name="nmr-nef2str-deposit" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nmr-nef2str-deposit">
-                    <wf:description>NEF -> NMR-STAR V3.2 file conversion and deposition</wf:description>
+                <wf:task taskID="T7" name="nmr-nef2cif-deposit" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nmr-nef2cif-deposit">
+                    <wf:description>NEF -> CIF formated NMR-STAR V3.2 file conversion and deposition</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:15:20">
-                        <wf:detail name="nmr-nef2str-deposit" action="nmr-nef2str-deposit" where="api"/>
+                        <wf:detail name="nmr-nef2cif-deposit" action="nmr-nef2cif-deposit" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="C1" type="input"/>
                             <wf:location dataID="D1" type="input"/>
@@ -89,6 +93,7 @@
                             <wf:location dataID="D6" type="output"/>
                             <wf:location dataID="D7" type="output"/>
                             <wf:location dataID="D8" type="output"/>
+                            <wf:location dataID="D9" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>

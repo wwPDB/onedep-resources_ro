@@ -72,7 +72,7 @@
                 </wf:task>
 
                 <wf:task taskID="T7" name="nmr-nef2str-deposit" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nmr-nef2str-deposit">
-                    <wf:description>NEF -> NMR-STAR V3.2 conversion and deposition</wf:description>
+                    <wf:description>NEF -> NMR-STAR V3.2 file conversion and deposition</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:15:20">
                         <wf:detail name="nmr-nef2str-deposit" action="nmr-nef2str-deposit" where="api"/>
                         <wf:dataObjectsLocation>

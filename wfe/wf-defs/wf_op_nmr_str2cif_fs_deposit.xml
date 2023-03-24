@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.0" author="my" date="08-23-2019" id="NEF2STR_TDEP" name="wf_op_nmr_nef2str_fs_tempdep.xml"/>
+        <wf:version major="1.0" author="my" date="03-24-2023" id="STR2CIF_DEP" name="wf_op_nmr_str2cif_fs_deposit.xml"/>
         <wf:description>
-            <wf:short>Convert NEF to NMR-STAR V3.2 (tempdep)</wf:short>
+            <wf:short>Convert NMR-STAR V3.2 to CIF formated NMR-STAR V3.2 (deposit)</wf:short>
             <wf:subtext>Deposition system file conversion workflow</wf:subtext>
         </wf:description>
     </wf:metadata>
@@ -14,42 +14,34 @@
                 <wf:description>NMR data configuration file</wf:description>
                 <wf:location where="tempdep" content="nmr-data-config" format="json" version="latest" />
             </wf:dataObject>
-            <wf:dataObject dataID="D1" name="nmr-data-nef-file" type="string" container="list" mutable="true" >
-                <wf:description>NMR data file: NEF (latest version)</wf:description>
-                <wf:location where="tempdep" content="nmr-data-nef" format="nmr-star" version="latest" />
+            <wf:dataObject dataID="D1" name="nmr-data-str-file" type="string" container="list" mutable="true" >
+                <wf:description>NMR data file: NMR-STAR V3.2 (latest version)</wf:description>
+                <wf:location where="deposit" content="nmr-data-str" format="nmr-star" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version)</wf:description>
-                <wf:location where="tempdep" content="model" format="pdbx" version="latest" />
-            </wf:dataObject>
-            <wf:dataObject dataID="P2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
-                <wf:description>PDBx format model data file (latest version - deposit storage)</wf:description>
                 <wf:location where="deposit" content="model" format="pdbx" version="latest" />
-            </wf:dataObject>            
-            <wf:dataObject dataID="D3" name="nmr-nef-consistency-log" type="string" container="list" mutable="true" >
-                <wf:description>NEF consistency log (next version)</wf:description>
-                <wf:location where="tempdep" content="nmr-data-nef-report" format="json" version="next" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D3" name="nmr-str-consistency-log" type="string" container="list" mutable="true" >
+                <wf:description>NMR-STAR V3.2 consistency log (next version)</wf:description>
+                <wf:location where="deposit" content="nmr-data-str-report" format="json" version="next" />
             </wf:dataObject>
 
-            <wf:dataObject dataID="D4" name="nmr-nef-consistency-log" type="string" container="list" mutable="true" >
-                <wf:description>NEF consistency log (latest version)</wf:description>
-                <wf:location where="tempdep" content="nmr-data-nef-report" format="json" version="latest" />
+            <wf:dataObject dataID="D4" name="nmr-str-consistency-log" type="string" container="list" mutable="true" >
+                <wf:description>NMR-STAR V3.2 consistency log (latest version)</wf:description>
+                <wf:location where="deposit" content="nmr-data-str-report" format="json" version="latest" />
             </wf:dataObject>
-            <wf:dataObject dataID="D5" name="nmr-data-nef-file" type="string" container="list" mutable="true" >
-                <wf:description>NMR data file: NEF (next version)</wf:description>
-                <wf:location where="tempdep" content="nmr-data-nef" format="nmr-star" version="next" />
+            <wf:dataObject dataID="D5" name="nmr-data-str-file" type="string" container="list" mutable="true" >
+                <wf:description>NMR data file: NMR-STAR V3.2 (next version)</wf:description>
+                <wf:location where="deposit" content="nmr-data-str" format="nmr-star" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D6" name="nmr-data-str-file" type="string" container="list" mutable="true" >
-                <wf:description>NMR data file: NMR-STAR V3.2 (next version)</wf:description>
-                <wf:location where="tempdep" content="nmr-data-str" format="nmr-star" version="next" />
+                <wf:description>NMR data file: CIF (next version)</wf:description>
+                <wf:location where="deposit" content="nmr-data-str" format="pdbx" version="next" />
             </wf:dataObject>
-            <wf:dataObject dataID="D7" name="nmr-nef-deposit-log" type="string" container="list" mutable="true" >
-                <wf:description>NEF deposit log (next version)</wf:description>
-                <wf:location where="tempdep" content="nmr-data-nef-report" format="json" version="next" />
-            </wf:dataObject>
-            <wf:dataObject dataID="D8" name="nmr-str-deposit-log" type="string" container="list" mutable="true" >
+            <wf:dataObject dataID="D7" name="nmr-str-deposit-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR-STAR V3.2 deposit log (next version)</wf:description>
-                <wf:location where="tempdep" content="nmr-data-str-report" format="json" version="next" />
+                <wf:location where="deposit" content="nmr-data-str-report" format="json" version="next" />
             </wf:dataObject>
 
         </wf:dataObjects>
@@ -61,34 +53,33 @@
 
             <wf:tasks>
 
-                <wf:task taskID="T2" name="nmr-nef-consistency-check" nextTask="T7" breakpoint="false" exceptionID="EX0" reference="nmr-nef-consistency-check">
-                    <wf:description>NEF consistency check</wf:description>
+                <wf:task taskID="T2" name="nmr-str-consistency-check" nextTask="T7" breakpoint="false" exceptionID="EX0" reference="nmr-str-consistency-check">
+                    <wf:description>NMR-STAR V3.2 consistency check</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:15:20">
-                        <wf:detail name="nmr-nef-consistency-check" action="nmr-nef-consistency-check" where="api"/>
+                        <wf:detail name="nmr-str-consistency-check" action="nmr-str-consistency-check" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="C1" type="input"/>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="input"/>
-                            <wf:location dataID="P2" type="input"/>
+                            <wf:location dataID="D2" type="input"/> <!-- dummy for compatibility -->
                             <wf:location dataID="D3" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="T7" name="nmr-nef2str-deposit" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nmr-nef2str-deposit">
-                    <wf:description>NEF -> NMR-STAR V3.2 file conversion and deposition</wf:description>
+                <wf:task taskID="T7" name="nmr-str2cif-deposit" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nmr-str2cif-deposit">
+                    <wf:description>NMR-STAR V3.2 -> CIF formated NMR-STAR V3.2 file conversion and deposition</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:15:20">
-                        <wf:detail name="nmr-nef2str-deposit" action="nmr-nef2str-deposit" where="api"/>
+                        <wf:detail name="nmr-str2cif-deposit" action="nmr-str2cif-deposit" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="C1" type="input"/>
                             <wf:location dataID="D1" type="input"/>
                             <wf:location dataID="D2" type="input"/>
-                            <wf:location dataID="P2" type="input"/>
+                            <wf:location dataID="D2" type="input"/> <!--  dummy for compatibility -->
                             <wf:location dataID="D4" type="input"/>
                             <wf:location dataID="D5" type="output"/>
                             <wf:location dataID="D6" type="output"/>
                             <wf:location dataID="D7" type="output"/>
-                            <wf:location dataID="D8" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>

@@ -3573,6 +3573,7 @@
      <methodName>strConsistencyCheckOp</methodName>
   </action>
 
+  <!-- DAOTHER-7407: "nmr-cs-str-consistency-check" has been deprecated since V5.18, please use "nmr-cs-mr-merge" instead -->
   <action name="nmr-cs-str-consistency-check">
      <inputList>
          <!-- text file containing input CS full path list -->
@@ -3622,6 +3623,63 @@
      <methodName>csStrConsistencyCheckOp</methodName>
   </action>
 
+  <action name="nmr-cs-mr-merge">
+     <inputList>
+         <!-- text file containing input CS full path list -->
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-cs-path-list</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <!-- text file containing input MR full path list -->
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-mr-path-list</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="prc3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-str</contentType>
+            <fileFormat>nmr-star</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-str-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters/>
+     <internalParameters/>
+     <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
+     <methodName>csMrMergeOp</methodName>
+  </action>
+
+  <!-- DAOTHER-7407: "nmr-nef2str-deposit" has been deprecated since V5.18, please use "nmr-nef2cif-deposit" instead -->
   <action name="nmr-nef2str-deposit">
      <inputList>
          <wfDataObject name="src0">
@@ -3697,6 +3755,89 @@
      <methodName>nef2strDepositOp</methodName>
   </action>
 
+  <action name="nmr-nef2cif-deposit">
+     <inputList>
+         <wfDataObject name="src0">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-config</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-nef</contentType>
+            <fileFormat>nmr-star</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="prc2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-nef-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-nef</contentType>
+            <fileFormat>nmr-star</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-str</contentType>
+            <fileFormat>nmr-star</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-str</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst4">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-nef-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+        <wfDataObject name="dst5">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-str-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters/>
+     <internalParameters/>
+     <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
+     <methodName>nef2cifDepositOp</methodName>
+  </action>
+
+  <!-- DAOTHER-7407: "nmr-str2str-deposit" has been deprecated since V5.18, please use "nmr-str2cif-deposit" instead -->
   <action name="nmr-str2str-deposit">
      <inputList>
          <wfDataObject name="src0">
@@ -3756,6 +3897,74 @@
      <internalParameters/>
      <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
      <methodName>str2strDepositOp</methodName>
+  </action>
+
+  <action name="nmr-str2cif-deposit">
+     <inputList>
+         <wfDataObject name="src0">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-config</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-str</contentType>
+            <fileFormat>nmr-star</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="prc2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-str-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-str</contentType>
+            <fileFormat>nmr-star</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-str</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-data-str-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters/>
+     <internalParameters/>
+     <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
+     <methodName>str2cifDepositOp</methodName>
   </action>
 
   <action name="nmr-str2nef-release">
