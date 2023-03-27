@@ -31,7 +31,7 @@
                 <wf:location where="tempdep" content="nmr-data-str" format="nmr-star" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D5" name="nmr-cs-mr-merge-log" type="string" container="list" mutable="true" >
-                <wf:description>Chemical shifts/restraints check log (next version)</wf:description>
+                <wf:description>NMR data merge log (next version)</wf:description>
                 <wf:location where="tempdep" content="nmr-data-str-report" format="json" version="next" />
             </wf:dataObject>
 
@@ -57,7 +57,7 @@
                 <wf:location where="tempdep" content="nmr-data-str" format="nmr-star" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D10" name="nmr-data-str-file" type="string" container="list" mutable="true" >
-                <wf:description>NMR data file: CIF (next version)</wf:description>
+                <wf:description>NMR data file: CIF formated NMR-STAR V3.2 (next version)</wf:description>
                 <wf:location where="tempdep" content="nmr-data-str" format="pdbx" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D11" name="nmr-str-deposit-log" type="string" container="list" mutable="true" >

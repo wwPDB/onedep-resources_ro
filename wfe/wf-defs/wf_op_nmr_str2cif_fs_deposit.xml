@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.0" author="my" date="03-24-2023" id="STR2CIF_DEP" name="wf_op_nmr_str2cif_fs_deposit.xml"/>
+        <wf:version major="1.0" author="my" date="03-27-2023" id="STR2CIF_DEP" name="wf_op_nmr_str2cif_fs_deposit.xml"/>
         <wf:description>
             <wf:short>Convert NMR-STAR V3.2 to CIF formated NMR-STAR V3.2 (deposit)</wf:short>
             <wf:subtext>Deposition system file conversion workflow (NMR-STAR to CIF)</wf:subtext>
@@ -36,7 +36,7 @@
                 <wf:location where="deposit" content="nmr-data-str" format="nmr-star" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D6" name="nmr-data-str-file" type="string" container="list" mutable="true" >
-                <wf:description>NMR data file: CIF (next version)</wf:description>
+                <wf:description>NMR data file: CIF formated NMR-STAR V3.2 (next version)</wf:description>
                 <wf:location where="deposit" content="nmr-data-str" format="pdbx" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D7" name="nmr-str-deposit-log" type="string" container="list" mutable="true" >
