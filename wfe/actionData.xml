@@ -3633,22 +3633,30 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-         <!-- text file containing input MR full path list -->
+         <!-- text file containing original CS file name list -->
          <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmr-cs-auth-file-name-list</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <!-- text file containing input MR full path list -->
+         <wfDataObject name="src3">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-mr-path-list</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-         <wfDataObject name="src3">
+         <wfDataObject name="src4">
             <dataReferenceType>file</dataReferenceType>
             <contentType>model</contentType>
             <fileFormat>pdbx</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-         <wfDataObject name="prc3">
+         <wfDataObject name="prc4">
             <dataReferenceType>file</dataReferenceType>
             <contentType>model</contentType>
             <fileFormat>pdbx</fileFormat>
@@ -3771,21 +3779,29 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <!-- text file containing original NEF file name -->
          <wfDataObject name="src2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>model</contentType>
-            <fileFormat>pdbx</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="prc2">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>model</contentType>
-            <fileFormat>pdbx</fileFormat>
+            <contentType>nmr-cs-auth-file-name-list</contentType>
+            <fileFormat>txt</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="prc3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src4">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-data-nef-report</contentType>
             <fileFormat>json</fileFormat>
@@ -3915,21 +3931,29 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <!-- text file containing original NMR-STAR file name -->
          <wfDataObject name="src2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>model</contentType>
-            <fileFormat>pdbx</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="prc2">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>model</contentType>
-            <fileFormat>pdbx</fileFormat>
+            <contentType>nmr-cs-auth-file-name-list</contentType>
+            <fileFormat>txt</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="prc3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src4">
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-data-str-report</contentType>
             <fileFormat>json</fileFormat>

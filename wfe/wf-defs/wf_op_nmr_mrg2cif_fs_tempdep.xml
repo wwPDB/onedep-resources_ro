@@ -14,6 +14,10 @@
                 <wf:description>Chemical shifts path list (latest version)</wf:description>
                 <wf:location where="tempdep" content="nmr-cs-path-list" format="txt" version="latest" />
             </wf:dataObject>
+            <wf:dataObject dataID="A1" name="csauthfilenamelist" type="string" container="list" mutable="true">
+                <wf:description>Chemical shifts author file name list (latest version)</wf:description>
+                <wf:location where="tempdep" content="nmr-cs-auth-file-name-list" format="txt" version="latest" />
+            </wf:dataObject>
             <wf:dataObject dataID="D2" name="mrpathlist" type="string" container="list" mutable="true">
                 <wf:description>Restraints path list (latest version)</wf:description>
                 <wf:location where="tempdep" content="nmr-mr-path-list" format="json" version="latest" />
@@ -80,6 +84,7 @@
                         <wf:detail name="nmr-cs-mr-merge" action="nmr-cs-mr-merge" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
+                            <wf:location dataID="A1" type="input"/>
                             <wf:location dataID="D2" type="input"/>
                             <wf:location dataID="D3" type="input"/>
                             <wf:location dataID="P3" type="input"/>
@@ -110,6 +115,7 @@
                         <wf:dataObjectsLocation>
                             <wf:location dataID="C1" type="input"/>
                             <wf:location dataID="D6" type="input"/>
+                            <wf:location dataID="A1" type="input"/>
                             <wf:location dataID="D3" type="input"/>
                             <wf:location dataID="P3" type="input"/>
                             <wf:location dataID="D8" type="input"/>

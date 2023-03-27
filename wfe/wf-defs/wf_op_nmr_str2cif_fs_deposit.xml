@@ -18,6 +18,10 @@
                 <wf:description>NMR data file: NMR-STAR V3.2 (latest version)</wf:description>
                 <wf:location where="deposit" content="nmr-data-str" format="nmr-star" version="latest" />
             </wf:dataObject>
+            <wf:dataObject dataID="A1" name="csauthfilenamelist" type="string" container="list" mutable="true">
+                <wf:description>Chemical shifts author file name list (latest version)</wf:description>
+                <wf:location where="deposit" content="nmr-cs-auth-file-name-list" format="txt" version="latest" />
+            </wf:dataObject>
             <wf:dataObject dataID="D2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version)</wf:description>
                 <wf:location where="deposit" content="model" format="pdbx" version="latest" />
@@ -74,6 +78,7 @@
                         <wf:dataObjectsLocation>
                             <wf:location dataID="C1" type="input"/>
                             <wf:location dataID="D1" type="input"/>
+                            <wf:location dataID="A1" type="input"/>
                             <wf:location dataID="D2" type="input"/>
                             <wf:location dataID="D2" type="input"/> <!--  dummy for compatibility -->
                             <wf:location dataID="D4" type="input"/>
