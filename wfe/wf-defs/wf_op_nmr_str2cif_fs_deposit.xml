@@ -4,7 +4,7 @@
         <wf:version major="1.0" author="my" date="03-24-2023" id="STR2CIF_DEP" name="wf_op_nmr_str2cif_fs_deposit.xml"/>
         <wf:description>
             <wf:short>Convert NMR-STAR V3.2 to CIF formated NMR-STAR V3.2 (deposit)</wf:short>
-            <wf:subtext>Deposition system file conversion workflow</wf:subtext>
+            <wf:subtext>Deposition system file conversion workflow (NMR-STAR to CIF)</wf:subtext>
         </wf:description>
     </wf:metadata>
 

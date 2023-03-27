@@ -4,7 +4,7 @@
         <wf:version major="1.0" author="my" date="03-24-2023" id="NEF2CIF_TDEP" name="wf_op_nmr_nef2cif_fs_tempdep.xml"/>
         <wf:description>
             <wf:short>Convert NEF to CIF formated NMR data (tempdep)</wf:short>
-            <wf:subtext>Deposition system file conversion workflow</wf:subtext>
+            <wf:subtext>Deposition system file conversion workflow (NEF to CIF)</wf:subtext>
         </wf:description>
     </wf:metadata>
 
