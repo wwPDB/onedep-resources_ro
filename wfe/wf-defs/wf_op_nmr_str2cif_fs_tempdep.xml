@@ -18,8 +18,8 @@
                 <wf:description>NMR data file: NMR-STAR V3.2 (latest version)</wf:description>
                 <wf:location where="tempdep" content="nmr-data-str" format="nmr-star" version="latest" />
             </wf:dataObject>
-            <wf:dataObject dataID="A1" name="csauthfilenamelist" type="string" container="list" mutable="true">
-                <wf:description>Chemical shifts author file name list (latest version)</wf:description>
+            <wf:dataObject dataID="A1" name="strauthfilename" type="string" container="list" mutable="true">
+                <wf:description>NMR-STAR V3.2 author file name (latest version)</wf:description>
                 <wf:location where="tempdep" content="nmr-cs-auth-file-name-list" format="txt" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
