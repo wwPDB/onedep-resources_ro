@@ -3210,6 +3210,7 @@
      <methodName>miscCheckReportOp</methodName>
   </action>
 
+  <!-- DAOTHER-7407: "ccpn-extrac" has never been implemented before
   <action name="ccpn-extract">
      <inputList>
          <wfDataObject name="src">
@@ -3248,7 +3249,7 @@
      <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
      <methodName>ccpnExtractOp</methodName>
   </action>
-
+  -->
 
   <action name="nmrstar2pdbx">
      <inputList>
@@ -3260,7 +3261,6 @@
             <selectorType></selectorType>
          </wfDataObject>
      </inputList>
-
 
      <outputList>
          <wfDataObject name="dst">
