@@ -3675,7 +3675,7 @@
          </wfDataObject>
          <wfDataObject name="dst2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>nmr-data-str-report</contentType>
+            <contentType>nmr-cs-mr-merge-report</contentType>
             <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
