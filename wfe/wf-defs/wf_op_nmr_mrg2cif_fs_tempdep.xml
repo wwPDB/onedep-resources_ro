@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.0" author="my" date="03-28-2023" id="MRG2CIF_TDEP" name="wf_op_nmr_mrg2cif_fs_tempdep.xml"/>
+        <wf:version major="1.0" author="my" date="04-06-2023" id="MRG2CIF_TDEP" name="wf_op_nmr_mrg2cif_fs_tempdep.xml"/>
         <wf:description>
             <wf:short>Combine upload files and convert to CIF formated NMR-STAR V3.2 (tempdep)</wf:short>
             <wf:subtext>Deposition system file conversion workflow (CS/MR/PK to CIF)</wf:subtext>
@@ -78,7 +78,7 @@
 
             <wf:tasks>
 
-                <wf:task taskID="T2" name="nmr-cs-mr-merge" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nmr-cs-mr-merge">
+                <wf:task taskID="T2" name="nmr-cs-mr-merge" nextTask="T6" breakpoint="false" exceptionID="EX0" reference="nmr-cs-mr-merge">
                     <wf:description>Chemical shifts/restraints check task</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:30:20">
                         <wf:detail name="nmr-cs-mr-merge" action="nmr-cs-mr-merge" where="api"/>
