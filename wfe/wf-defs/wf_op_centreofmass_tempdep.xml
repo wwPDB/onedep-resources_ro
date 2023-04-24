@@ -3,7 +3,7 @@
     <wf:metadata>
         <wf:version major="1.51" author="Ahsan" date="16-08-2021" id="CNTR_O_MASS" name="CentreOfMass.xml"/>
         <wf:description>
-            <wf:short>Calculates Centre of Mass, using gemmi for assembly improvements</wf:short>
+            <wf:short>Calculates Centre of Mass for assembly</wf:short>
             <wf:subtext>Subtext for assembly_auth_depinfo</wf:subtext>
         </wf:description>
     </wf:metadata>
