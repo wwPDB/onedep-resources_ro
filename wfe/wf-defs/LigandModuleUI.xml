@@ -95,7 +95,7 @@
 
                 <wf:task taskID="TP3" name="ChemCompLinkCalc" nextTask="TP31" breakpoint="false" exceptionID="EX0" reference="chem-comp-link">
                     <wf:description>Do the linkage calculation</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                    <wf:process runTime="00:00:10" failTime="00:15:20">
                         <wf:detail name="ChemCompLinkCalc" action="chem-comp-link" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
