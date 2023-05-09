@@ -375,7 +375,7 @@
 
                 <wf:task taskID="TP2H" name="pdbx-dict-check" nextTask="TT1" breakpoint="true" exceptionID="EX0" reference="pdbx-dict-check">
                     <wf:description>Dictionary Check</wf:description>
-                        <wf:process runTime="00:00:10" failTime="01:55:20">
+                        <wf:process runTime="00:00:10" failTime="02:55:20">
                         <wf:detail name="pdbx-dict-check" action="pdbx-dict-check-first" where="api"/>
                         <wf:dataObjectsLocation>
                                <wf:location dataID="D19" type="input"/>
