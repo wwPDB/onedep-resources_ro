@@ -1564,6 +1564,33 @@
      <methodName>dictCheckFirstOp</methodName>
   </action>
 
+  <action name="pdbx-xml-check">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>xml-check-report</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
+     <methodName>xmlCheckOp</methodName>
+  </action>
+
   <action name="pdbx-dict-r4-check">
      <inputList>
          <wfDataObject name="src">
@@ -1782,6 +1809,33 @@
      </internalParameters>
      <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
      <methodName>emdXmlHeaderCheckOp</methodName>
+  </action>
+
+  <action name="em-map-check">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>em-map-check-report</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
+     <methodName>emMapCheckOp</methodName>
   </action>
 
   <action name="em-volume-bcif-conversion">

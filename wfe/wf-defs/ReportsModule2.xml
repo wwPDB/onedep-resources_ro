@@ -30,6 +30,11 @@
                 <wf:location where="archive" content="dict-check-report" format="txt"  version="next" />
             </wf:dataObject>
 
+            <wf:dataObject dataID="D5X" name="xmlreport" type="string" container="list" mutable="true" >
+                <wf:description>PDBML XML check report</wf:description>
+                <wf:location where="archive" content="xml-check-report" format="txt"  version="next" />
+            </wf:dataObject>
+
             <wf:dataObject dataID="D6" name="formatcheck" type="string" container="list" mutable="true" >
                 <wf:description>Format check report</wf:description>
                 <wf:location where="archive" content="format-check-report" format="txt"  version="next" />
@@ -75,7 +80,7 @@
                 <wf:location where="archive" content="em-volume" format="bcif"  version="latest" />
             </wf:dataObject>
 
-             <wf:dataObject dataID="D18" name="validationreport2fomapcoef" type="string" container="list" mutable="true" >
+            <wf:dataObject dataID="D18" name="validationreport2fomapcoef" type="string" container="list" mutable="true" >
                 <wf:description>The 2fo-fc map mmCIF from validation</wf:description>
                 <wf:location where="archive" content="validation-report-2fo-map-coef" format="pdbx"  version="latest" />
             </wf:dataObject>
@@ -88,6 +93,11 @@
             <wf:dataObject dataID="D20" name="emdxml" type="string" container="list" mutable="true" >
                 <wf:description>EML-XML  check report txt</wf:description>
                 <wf:location where="archive" content="emd-xml-header-report" format="txt"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D20M" name="emmap" type="string" container="list" mutable="true" >
+                <wf:description>em_map category check report txt</wf:description>
+                <wf:location where="archive" content="em-map-check-report" format="txt"  version="next" />
             </wf:dataObject>
 
             <wf:dataObject dataID="D21" name="mapxray" type="string" container="list" mutable="true" >
@@ -104,13 +114,24 @@
 
             <wf:tasks>
 
-                <wf:task taskID="TP3" name="pdbx-dict-check" nextTask="TP4" breakpoint="false" exceptionID="EX0" reference="pdbx-dict-check">
-                    <wf:description>Do the dictionary check calculation</wf:description>
+                <wf:task taskID="TP3" name="pdbx-dict-check" nextTask="TP3A" breakpoint="false" exceptionID="EX0" reference="pdbx-dict-check">
+                    <wf:description>Do the dictionary check calculation on first block</wf:description>
                     <wf:process runTime="00:00:50" failTime="00:30:20">
                         <wf:detail name="pdbx-dict-check" action="pdbx-dict-check-first" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
                             <wf:location dataID="D5" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP3A" name="pdbx-xml-check" nextTask="TP4" breakpoint="false" exceptionID="EX0" reference="pdbx-xml-check">
+                    <wf:description>Do PDBML XML check calculation</wf:description>
+                    <wf:process runTime="00:00:50" failTime="00:30:20">
+                        <wf:detail name="pdbx-xml-check" action="pdbx-xml-check" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D5X" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
@@ -183,13 +204,24 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP11" name="emd-xmlheader-check" nextTask="TP12" breakpoint="false" exceptionID="EX0" reference="emd-xml-header-check">
+                <wf:task taskID="TP11" name="emd-xmlheader-check" nextTask="TP11M" breakpoint="false" exceptionID="EX0" reference="emd-xml-header-check">
                     <wf:description>Do EMD XML header generation check</wf:description>
                     <wf:process runTime="00:00:50" failTime="00:30:20">
                         <wf:detail name="emd-xml-header-check" action="emd-xml-header-check" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
                             <wf:location dataID="D20" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP11M" name="em-map-check" nextTask="TP12" breakpoint="false" exceptionID="EX0" reference="em-map-check">
+                    <wf:description>em_map category check</wf:description>
+                    <wf:process runTime="00:00:50" failTime="00:30:20">
+                        <wf:detail name="em-map-check" action="em-map-check" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D20M" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
