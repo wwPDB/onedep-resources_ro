@@ -14,74 +14,92 @@
                 <wf:description>Original (latest) copy of the archive model data</wf:description>
                 <wf:location where="archive" content="model" format="pdbx"  version="latest" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D2" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
                 <wf:location where="wf-instance" content="model" format="pdbx"  version="next" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D3" name="archiveData" type="string" container="list" mutable="false">
                 <wf:description>Original (latest) copy of the archive nmr chemical shifts data</wf:description>
                 <wf:location where="archive" content="nmr-chemical-shifts" format="pdbx"  version="latest" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D3B" name="archiveData" type="string" container="list" mutable="false">
                 <wf:description>Original (latest) copy of the archive nmr nef data</wf:description>
                 <wf:location where="archive" content="nmr-data-str" format="pdbx"  version="latest" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D4" name="instanceReportW" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
                 <wf:location where="wf-instance" content="dict-check-report" format="txt"  version="next" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D5" name="instanceReportR" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
                 <wf:location where="wf-instance" content="dict-check-report" format="txt"  version="latest" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D6" name="archiveReportW" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
                 <wf:location where="archive" content="dict-check-report" format="txt"  version="next" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D7" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive data in instance next</wf:description>
                 <wf:location where="wf-instance" content="nmr-chemical-shifts" format="pdbx"  version="next" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D8" name="instanceDataR" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive data in instance latest</wf:description>
                 <wf:location where="wf-instance" content="nmr-chemical-shifts" format="pdbx"  version="latest" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D9" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive data in instance next</wf:description>
                 <wf:location where="wf-instance" content="nmr-data-str" format="pdbx"  version="next" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D10" name="instanceDataR" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive data in instance latest</wf:description>
                 <wf:location where="wf-instance" content="nmr-data-str" format="pdbx"  version="latest" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D11" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Validation report</wf:description>
                 <wf:location where="wf-instance" content="validation-report" format="pdf"  version="next" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D12" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Validation data</wf:description>
                 <wf:location where="wf-instance" content="validation-data" format="xml"  version="next" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D13" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Validation full report</wf:description>
                 <wf:location where="wf-instance" content="validation-report-full" format="pdf"  version="next" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D14" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Validation imagery</wf:description>
                 <wf:location where="wf-instance" content="validation-report-slider" format="png"  version="next" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D15" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Validation imagery</wf:description>
                 <wf:location where="wf-instance" content="validation-report-slider" format="svg"  version="next" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D16" name="instanceDataW" type="string" container="list" mutable="true">
                 <wf:description>Chemical shifts procrss report file</wf:description>
                 <wf:location where="wf-instance" content="nmr-shift-error-report" format="json" version="next" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D44" name="fileExists" type="string" container="value" mutable="true">
                 <wf:description>Run time variable to hold if file exists</wf:description>
                 <wf:location where="constant" content="latest" format="string"  version="" select=""/>
             </wf:dataObject>
+
             <wf:dataObject dataID="D19" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive data in instance(next-write) data area</wf:description>
                 <wf:location where="wf-instance" content="model" format="pdbx"  version="latest" />
@@ -117,6 +135,7 @@
                 <wf:description>Value for the loop : list of results from Pisa</wf:description>
                 <wf:location where="wf-instance" value="undefined" version="latest" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D31" name="value" type="string" container="value" mutable="true">
                 <wf:description>container for the loop iterator</wf:description>
                 <wf:location where="workflow" value="undefined" version="latest" />
@@ -126,22 +145,27 @@
                 <wf:description>Needs to be absolute file name from pisa</wf:description>
                 <wf:location where="wf-instance" content="model" format="pdbx"  version="latest" partitionNumber="$D31"/>
             </wf:dataObject>
+
             <wf:dataObject dataID="D41" name="archiveData" type="string" container="list" mutable="false">
                 <wf:description>Needs to be absolute file name from pisa</wf:description>
                 <wf:location where="archive" content="model" format="pdbx"  version="next" partitionNumber="$D31"/>
             </wf:dataObject>
+
             <wf:dataObject dataID="D50" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the archive pdb in instance(next-write) data area</wf:description>
                 <wf:location where="wf-instance" content="model" format="pdb"  version="latest" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D51" name="archiveData" type="string" container="list" mutable="false">
                 <wf:description>Final (next) copy of the pdb archive model data</wf:description>
                 <wf:location where="archive" content="model" format="pdb"  version="next" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D53" name="instanceCorrespond" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the Correspondence letter in instance(next-write) data area</wf:description>
                 <wf:location where="wf-instance" content="correspondence-to-depositor" format="txt"  version="latest" />
             </wf:dataObject>
+
             <wf:dataObject dataID="D54" name="archiveCorrespond" type="string" container="list" mutable="false">
                 <wf:description>Final (next) copy of the Correspondene letter archive model data</wf:description>
                 <wf:location where="archive" content="correspondence-to-depositor" format="txt"  version="next" />
@@ -182,7 +206,7 @@
                     </wf:process>
                 </wf:task>
 
-	      <!-- Look at archive directory, update maps on entry before usual processing - write back to archive with map updates -->
+	        <!-- Look at archive directory, update maps on entry before usual processing - write back to archive with map updates -->
                 <wf:task taskID="TE1" name="pre-fetch-accession-attributes" nextTask="TE2" breakpoint="false" exceptionID="EX0" reference="pre-fetch attribute">
                     <wf:description>Fetch accessions </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:02:01">
@@ -193,7 +217,6 @@
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
-
 
                 <wf:task taskID="TE2" name="string-compare" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="string compare">
                     <wf:description>String compare - accession code test - </wf:description>
@@ -236,10 +259,9 @@
                     </wf:process>
                 </wf:task>
 
-	      <!-- Original handling -->
+	        <!-- Original handling -->
 
-
-                <wf:task taskID="TP2" name="copyArchive" nextTask="TP2SF" breakpoint="false" exceptionID="EX0" reference="copy">
+                <wf:task taskID="TP2" name="copyArchive" nextTask="TE5" breakpoint="false" exceptionID="EX0" reference="copy">
                     <wf:description>copy PDBx data from archive to instance </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
                         <wf:detail name="copyToArchive" action="copy-if-exists" where="api"/>
@@ -248,6 +270,35 @@
                             <wf:location dataID="D2" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TE5" name="pre-fetch-accession-attributes" nextTask="TE6" breakpoint="false" exceptionID="EX0" reference="pre-fetch attribute">
+                    <wf:description>Fetch accessions </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:02:01">
+                        <wf:detail name="pre-fetch-1" action="fetch" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="DE1" type="input"/>
+                            <wf:location dataID="L1" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+	        <!-- Check if it is an map-only entry -->
+                <wf:task taskID="TE6" name="string-compare" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="string compare">
+                    <wf:description>String compare - accession code test - </wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="L1" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP2SF">
+                                <wf:function dataID="L1" inList="PDB" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP2H">
+                                <wf:function dataID="L1" inList="EMDB" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
                 </wf:task>
 
 		<!-- Using model in instance directory, potentially update SF in archive.  Instance directory (model) used for session dir -->
@@ -395,6 +446,7 @@
                     </wf:process>
                 </wf:task>
 
+	        <!-- Check if it is an map-only entry -->
                 <wf:task taskID="TD1" name="string-compare" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="string compare">
                     <wf:description>String compare - accession code test - </wf:description>
                     <wf:decision type="AUTO" application = "WFM">
@@ -411,7 +463,6 @@
                         </wf:nextTasks>
                     </wf:decision>
                 </wf:task>
-
 
                 <wf:task taskID="TP3" name="solvent-position-add-derived" nextTask="TP4" breakpoint="true" exceptionID="EX0" reference="solvent-position-add-derived">
                     <wf:description>Re position the waters</wf:description>
@@ -503,8 +554,7 @@
                     </wf:process>
                 </wf:task>
 
-
-                <wf:task taskID="TP12" name="database-related" nextTask="TM6" breakpoint="true" exceptionID="EX0" reference="cis-peptide">
+                <wf:task taskID="TP12" name="database-related" nextTask="TT2" breakpoint="true" exceptionID="EX0" reference="cis-peptide">
                     <wf:description>Resolve pdbx_database_related</wf:description>
                     <wf:process runTime="00:00:10" failTime="01:55:20">
                         <wf:detail name="DatabaseRelated" action="update-database-related" where="api"/>
@@ -515,6 +565,34 @@
                     </wf:process>
                 </wf:task>
 
+                <wf:task taskID="TT2" name="fetch-accession-attributes" nextTask="TD2" breakpoint="false" exceptionID="EX0" reference="fetch attribute">
+                    <wf:description>Fetch accessions </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="fetch-1" action="fetch" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D19C" type="input"/>
+                            <wf:location dataID="L1" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+	        <!-- Check if it is an map-only entry -->
+                <wf:task taskID="TD2" name="string-compare" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="string compare">
+                    <wf:description>String compare - accession code test - </wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="L1" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TM6">
+                                <wf:function dataID="L1" inList="PDB" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP20">
+                                <wf:function dataID="L1" inList="EMDB" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
 
                 <wf:task taskID="TM6" name="AnnotationInteface" nextTask="TL1" breakpoint="false" exceptionID="EX0" reference="AnnotationInteface">
                     <wf:description>manual wrapper for annotation module</wf:description>
@@ -592,7 +670,6 @@
                     </wf:process>
                 </wf:task>
 
-
                 <wf:task taskID="TP21" name="copyReportToArchive" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="copy">
                      <wf:description>Put the model data back to archive</wf:description>
                      <wf:process runTime="00:00:04" failTime="00:05:20">
@@ -630,10 +707,7 @@
                 <wf:handler warning="There was no Pisa data - continue" nextTask="TP20" select="rest"/>
             </wf:exception>
 
-
-
         </wf:flow>
-
 
     </wf:workflow>
 
