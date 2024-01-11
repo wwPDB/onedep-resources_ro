@@ -5272,6 +5272,54 @@
      <methodName>emmapcheck</methodName>
   </action>
 
+  <action name="check-em-upload">
+     <inputList>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>em-volume</contentType>
+            <fileFormat>map</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>em-half-volume-upload</contentType>
+            <fileFormat>map</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>em-half-volume-upload</contentType>
+            <fileFormat>map</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src4">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>em-map-report</contentType>
+            <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.EmUtils</moduleName>
+     <methodName>check-em-upload</methodName>
+  </action>
+
   <!--  EM wf defs
 
     -->
