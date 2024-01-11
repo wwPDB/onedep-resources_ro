@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
+    <wf:metadata>
+        <wf:version major="1.0" author="lco" date="01-11-2023" id="CHECKEMUPLOAD" name="wf_op_checkemupload_fs_tempdep.xml"/>
+        <wf:description>
+            <wf:short>EM Map validation</wf:short>
+            <wf:subtext>Validate EM Volumes during file upload</wf:subtext>
+        </wf:description>
+    </wf:metadata>
+
+    <wf:workflow>
+        <wf:dataObjects>
+            <wf:dataObject dataID="D1" name="emdbmapfile" type="string" container="list" mutable="true" >
+                <wf:description>EM primary map (latest version)</wf:description>
+                <wf:location where="tempdep" content="em-volume" format="map"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
+                <wf:description>PDBx format model data file with EMD dialect (latest version)</wf:description>
+                <wf:location where="tempdep" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D3" name="halfmap1" type="string" container="list" mutable="true" >
+                <wf:description>EM Map/Model validation output</wf:description>
+                <wf:location where="tempdep" content="em-half-volume-upload" format="map"  version="latest" partitionNumber=="1" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D4" name="halfmap2" type="string" container="list" mutable="true" >
+                <wf:description>EM Map/Model validation output</wf:description>
+                <wf:location where="tempdep" content="em-half-volume-upload" format="map"  version="latest" partitionNumber="2" />
+            </wf:dataObject>
+            <wf:dataObject dataID="D5" name="mapmodelval" type="string" container="list" mutable="true" >
+                <wf:description>EM Map/Model validation output</wf:description>
+                <wf:location where="tempdep" content="em-map-report" format="json"  version="next" />
+            </wf:dataObject>
+        </wf:dataObjects>
+
+        <wf:flow>
+            <wf:entryPoint taskID="T1" name="Start" nextTask="T2" breakpoint="false">
+                <wf:description>Process entry point</wf:description>
+            </wf:entryPoint>
+
+            <wf:tasks>
+
+                <wf:task taskID="T2" name="check-em-upload" nextTask="T3" breakpoint="false" exceptionID="EX0" reference="check-em-upload">
+                    <wf:description>Perform EM Map/Model validation on file upload</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:15:20">
+                        <wf:detail name="check-em-upload" action="check-em-upload" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                            <wf:location dataID="D2" type="input"/>
+                            <wf:location dataID="D3" type="input"/>
+                            <wf:location dataID="D4" type="input"/>
+                            <wf:location dataID="D5" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+                <!-- Final task -->
+                <wf:task taskID="T3" name="Finish" nextTask="T4" breakpoint="false" exceptionID="EX0" reference="Finish">
+                   <wf:description>Mark the WF as completed</wf:description>
+                   <wf:process runTime="00:00:01" failTime="00:00:20">
+                      <wf:detail name="finished" action="finished" where="wfe"/>
+                   </wf:process>
+                </wf:task>
+
+            </wf:tasks>
+
+            <wf:exitPoint taskID="T4" name="End" breakpoint="false" reference="exit">
+                <wf:description>Last point in the workflow</wf:description>
+            </wf:exitPoint>
+
+            <wf:exception taskID="EX0" name="Exception handler" >
+                <wf:description>Default unhandled exception - will mark instance data with exception.</wf:description>
+            </wf:exception>
+
+        </wf:flow>
+
+    </wf:workflow>
+
+</wf:wwPDBworkflow>
