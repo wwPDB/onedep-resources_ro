@@ -111,6 +111,10 @@
                 <wf:description>Validation data</wf:description>
                 <wf:location where="archive" content="validation-data" format="xml"  version="next" />
             </wf:dataObject>
+            <wf:dataObject dataID="D52" name="instanceCorrespond" type="string" container="list" mutable="true" >
+                <wf:description>Copy of the Correspondence letter in instance(next-write) data area</wf:description>
+                <wf:location where="wf-instance" content="correspondence-to-depositor" format="txt"  version="next" />
+            </wf:dataObject>
             <wf:dataObject dataID="D53" name="instanceCorrespond" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the Correspondence letter in instance(next-write) data area</wf:description>
                 <wf:location where="wf-instance" content="correspondence-to-depositor" format="txt"  version="latest" />
@@ -192,6 +196,11 @@
                 <wf:location where="inline" content="undefined" format="string"  version="" select=""/>
             </wf:dataObject>
 
+            <wf:dataObject dataID="L2" name="tempList" type="string" container="value" mutable="true">
+                <wf:description>Run time string variable</wf:description>
+                <wf:location where="inline" content="undefined" format="string"  version="" select=""/>
+            </wf:dataObject>
+
             <wf:dataObject dataID="DE1" name="archiveData" type="string" container="list" mutable="false">
                 <wf:description>Original (latest) of archive model - with attribute details - </wf:description>
                 <wf:location where="archive" content="model" format="pdbx"  version="latest"
@@ -228,7 +237,6 @@
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
-
 
                 <wf:task taskID="TE2" name="string-compare" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="string compare">
                     <wf:description>String compare - accession code test - </wf:description>
@@ -304,7 +312,7 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP7" name="val-report-all-ann" nextTask="TM6" breakpoint="true" exceptionID="EX0">
+                <wf:task taskID="TP7" name="val-report-all-ann" nextTask="TM7" breakpoint="true" exceptionID="EX0">
                     <wf:description>Validation Report</wf:description>
                     <wf:process runTime="00:01:10" failTime="83:55:20">
                         <wf:detail name="val-report-all-ann" action="val-report-all-ann-v3" where="api" parameter="in_annotation:yes"/>
@@ -324,8 +332,32 @@
                                <wf:location dataID="D24" type="output6"/>
                                <wf:location dataID="D25" type="output7"/>
                                <wf:location dataID="D30" type="output8"/>
+                               <wf:location dataID="L2" type="output9"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TM7" name="string-compare" nextTask="TM6" breakpoint="false" exceptionID="EX0" reference="string compare">
+                    <wf:description>String compare - site name test - </wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="L2" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TM6">
+                                <wf:function dataID="L2" string="RCSB" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TM6">
+                                <wf:function dataID="L2" string="PDBC" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TM5">
+                                <wf:function dataID="L2" string="PDBE" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TM6">
+                                <wf:function dataID="L2" string="PDBJ" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
                 </wf:task>
 
                 <wf:task taskID="TM6" name="ValidationInteface" nextTask="TP8" breakpoint="false" exceptionID="EX0">
@@ -348,13 +380,24 @@
                     </wf:manual>
                 </wf:task>
 
+                <wf:task taskID="TM5" name="CreateCorrespondLetter" nextTask="TP88" breakpoint="false" exceptionID="EX0" reference="val-generate-correspond-letter">
+                    <wf:description>Create the correspondence letter</wf:description>
+                    <wf:process runTime="00:00:10" failTime="00:15:20">
+                        <wf:detail name="CreateCorrespondLetter" action="val-generate-correspond-letter" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D5" type="input1"/>
+                            <wf:location dataID="D13" type="input2"/>
+                            <wf:location dataID="D52" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
                 <wf:task taskID="TP88" name="wait" nextTask="TP8" breakpoint="false" exceptionID="EX0">
                     <wf:description>Wait 5 seconds</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:00:20">
                         <wf:detail name="wait" action="wait" where="wfe"/>
                     </wf:process>
                 </wf:task>
-
 
                 <wf:task taskID="TP8" name="copyPDFDataToArchive" nextTask="TP29" breakpoint="false" exceptionID="EX0">
                     <wf:description>Put the model data back to archive</wf:description>
