@@ -23,6 +23,7 @@
                10-May-2018  ep   add val-report-all-annv2
 	       19-Jun-2019  ep   add auto-mapfix
 	       22-Oct-2019  ep   add auto-em-map-fix
+               31-Jan-2024  zf   ad  val-generate-correspond-letter
   -->
 <actionList version="0.01">
   <action name="copy">
@@ -2632,6 +2633,15 @@
             <selectorType></selectorType>
          </wfDataObject>
 
+         <wfDataObject name="dst9">
+            <dataReferenceType></dataReferenceType>
+            <contentType></contentType>
+            <fileFormat></fileFormat>
+            <containerType>value</containerType>
+            <valueType>string</valueType>
+            <selectorType></selectorType>
+         </wfDataObject>
+
      </outputList>
 
      <userParameters>
@@ -2642,6 +2652,40 @@
      </internalParameters>
      <moduleName>wwpdb.utils.wf.plugins.ValidationUtils</moduleName>
      <methodName>validationReportAllOpV3</methodName>
+  </action>
+
+<action name="val-generate-correspond-letter">
+     <inputList>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>validation-data</contentType>
+            <fileFormat>xml</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>correspondence-to-depositor</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.ValidationUtils</moduleName>
+     <methodName>validationGetCorrespondLetterOp</methodName>
   </action>
 
 <action name="val-report-all-srv">
