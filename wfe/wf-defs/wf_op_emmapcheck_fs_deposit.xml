@@ -16,11 +16,11 @@
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="halfmap1" type="string" container="list" mutable="true" >
                 <wf:description>EM half map 1 (latest version)</wf:description>
-                <wf:location where="tempdep" content="em-half-volume" format="map"  partitionNumber="1" version="latest" />
+                <wf:location where="tempdep" content="em-half-volume-upload" format="map"  partitionNumber="1" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="halfmap2" type="string" container="list" mutable="true" >
                 <wf:description>EM half map 2 (latest version)</wf:description>
-                <wf:location where="tempdep" content="em-half-volume" format="map"  partitionNumber="2" version="latest" />
+                <wf:location where="tempdep" content="em-half-volume-upload" format="map"  partitionNumber="2" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D4" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file with EMD dialect (latest version)</wf:description>
