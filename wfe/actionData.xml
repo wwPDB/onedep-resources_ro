@@ -5293,14 +5293,14 @@
          </wfDataObject>
          <wfDataObject name="src2">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>em-half-volume-upload</contentType>
+            <contentType>em-half-volume</contentType>
             <fileFormat>map</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
          <wfDataObject name="src3">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>em-half-volume-upload</contentType>
+            <contentType>em-half-volume</contentType>
             <fileFormat>map</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
