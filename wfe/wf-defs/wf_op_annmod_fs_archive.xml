@@ -116,6 +116,16 @@
                 <wf:location where="inline" content="undefined" format="string"  version="" select=""/>
             </wf:dataObject>
 
+            <wf:dataObject dataID="L2" name="tempList" type="string" container="value" mutable="true">
+                <wf:description>Run time string variable</wf:description>
+                <wf:location where="inline" content="undefined" format="string"  version="" select=""/>
+            </wf:dataObject>
+
+            <wf:dataObject dataID="L3" name="tempList" type="string" container="value" mutable="true">
+                <wf:description>Run time string variable</wf:description>
+                <wf:location where="inline" content="undefined" format="string"  version="" select=""/>
+            </wf:dataObject>
+
             <wf:dataObject dataID="D20" name="archiveData" type="string" container="list" mutable="false">
                 <wf:description>Final (next) copy of the archive model data</wf:description>
                 <wf:location where="archive" content="model" format="pdbx"  version="next" />
@@ -568,10 +578,12 @@
                 <wf:task taskID="TT2" name="fetch-accession-attributes" nextTask="TD2" breakpoint="false" exceptionID="EX0" reference="fetch attribute">
                     <wf:description>Fetch accessions </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
-                        <wf:detail name="fetch-1" action="fetch" where="api"/>
+                        <wf:detail name="fetch-1" action="fetch-ann-auto" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D19C" type="input"/>
                             <wf:location dataID="L1" type="output"/>
+                            <wf:location dataID="L2" type="output"/>
+                            <wf:location dataID="L3" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
@@ -584,11 +596,77 @@
                             <wf:location dataID="L1" type="input"/>
                         </wf:dataObjectsLocation>
                         <wf:nextTasks>
-                            <wf:nextTask taskID="TM6">
+                            <wf:nextTask taskID="TD3">
                                 <wf:function dataID="L1" inList="PDB" />
                             </wf:nextTask>
-                            <wf:nextTask taskID="TP20">
+                            <wf:nextTask taskID="TD5">
                                 <wf:function dataID="L1" inList="EMDB" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+	        <!-- Check if it is an auto-complete entry per request of DAOTHER-8952 -->
+                <wf:task taskID="TD3" name="string-compare" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="string compare">
+                    <wf:description>String compare - accession code test - </wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="L2" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TD4">
+                                <wf:function dataID="L2" string="YES" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TM6">
+                                <wf:function dataID="L2" string="NO" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+                <!-- Check the process site: auto-complete for PDBE per request of DAOTHER-8952 -->
+                <wf:task taskID="TD4" name="string-compare" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="string compare">
+                    <wf:description>String compare - site name test - </wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="L3" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TM6">
+                                <wf:function dataID="L3" string="RCSB" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TM6">
+                                <wf:function dataID="L3" string="PDBC" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP20">
+                                <wf:function dataID="L3" string="PDBE" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TM6">
+                                <wf:function dataID="L3" string="PDBJ" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+                <!-- Check the process site: auto-complete for map-only entry except for RCSB -->
+                <wf:task taskID="TD5" name="string-compare" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="string compare">
+                    <wf:description>String compare - site name test - </wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="L3" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TM6">
+                                <wf:function dataID="L3" string="RCSB" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP20">
+                                <wf:function dataID="L3" string="PDBC" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP20">
+                                <wf:function dataID="L3" string="PDBE" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP20">
+                                <wf:function dataID="L3" string="PDBJ" />
                             </wf:nextTask>
                         </wf:nextTasks>
                     </wf:decision>
