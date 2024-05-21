@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.53" author="jdw" date="05-13-2020" id="AnnMod" name="AnnotateModule.xml"/>
+        <wf:version major="1.54" author="jdw" date="05-21-2024" id="AnnMod" name="AnnotateModule.xml"/>
         <wf:description>
             <wf:short>Annotation module (all methods)</wf:short>
             <wf:subtext>(wf_op_annmod_fs_archive.xml) </wf:subtext>
@@ -111,6 +111,12 @@
                     selectCategory="database_2" selectAttribute="database_id" />
             </wf:dataObject>
 
+            <wf:dataObject dataID="D19D" name="instanceDataW" type="string" container="list" mutable="false">
+                <wf:description>Latest model in the instance file system - with attribute details - </wf:description>
+                <wf:location where="wf-instance" content="model" format="pdbx"  version="latest"
+                    selectCategory="exptl" selectAttribute="method" />
+            </wf:dataObject>
+
             <wf:dataObject dataID="L1" name="tempList" type="string" container="list" mutable="true">
                 <wf:description>Run time list of string variable</wf:description>
                 <wf:location where="inline" content="undefined" format="string"  version="" select=""/>
@@ -196,6 +202,12 @@
                 <wf:location where="archive" content="model" format="pdbx"  version="latest"
                     selectCategory="database_2" selectAttribute="database_id" />
             </wf:dataObject>
+
+            <!-- A string to compare and dispatch as boolean does not work in WFE -->
+            <wf:dataObject dataID="D99" name="constTrue" type="string" container="string" mutable="false">
+                <wf:description>Wait time for the monitor in seconds</wf:description>
+                <wf:location where="constant" value="True"  version="latest" select=""/>
+	    </wf:dataObject>
 
         </wf:dataObjects>
 
@@ -518,7 +530,7 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP7" name="secondary-structure" nextTask="TP10" breakpoint="true" exceptionID="EX0" reference="secondary-structure">
+                <wf:task taskID="TP7" name="secondary-structure" nextTask="TM1" breakpoint="true" exceptionID="EX0" reference="secondary-structure">
                     <wf:description>Calculate Secondary structure</wf:description>
                     <wf:process runTime="00:00:10" failTime="01:55:20">
                         <wf:detail name="SecondaryStructure" action="secondary-structure" where="api"/>
@@ -539,6 +551,39 @@
                                <wf:location dataID="D2" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
+                </wf:task>
+
+                <!--If EM or NMR, skip PISA -->
+                <wf:task taskID="TM1" name="fetch-exptl-methods-attributes" nextTask="TM2" breakpoint="false" exceptionID="EX0" reference="fetch attribute">
+                    <wf:description>Fetch accessions </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="fetch" action="fetch" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D19D" type="input"/>
+                            <wf:location dataID="L1" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TM2" name="string-compare" nextTask="TP10" breakpoint="false" exceptionID="EX0" reference="string compare">
+                    <wf:description>String compare - experimental methods - </wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="L1" type="input"/>
+                            <wf:location dataID="D99" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP11">
+                                <wf:function dataID="L1" inList="ELECTRON MICROSCOPY" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP11">
+                                <wf:function dataID="L1" inList="NMR" compareAs="substring" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP10">
+                                <wf:function dataID="D99" string="True" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
                 </wf:task>
 
                 <wf:task taskID="TP10" name="assembly-report-and-models" nextTask="TP11" breakpoint="true" exceptionID="EX0" reference="assembly-report-and-models">
