@@ -111,7 +111,7 @@
                     selectCategory="database_2" selectAttribute="database_id" />
             </wf:dataObject>
 
-            <wf:dataObject dataID="D19D" name="instanceDataW" type="string" container="list" mutable="false">
+            <wf:dataObject dataID="D19D" name="instanceDataR" type="string" container="list" mutable="false">
                 <wf:description>Latest model in the instance file system - with attribute details - </wf:description>
                 <wf:location where="wf-instance" content="model" format="pdbx"  version="latest"
                     selectCategory="exptl" selectAttribute="method" />
@@ -119,6 +119,16 @@
 
             <wf:dataObject dataID="L1" name="tempList" type="string" container="list" mutable="true">
                 <wf:description>Run time list of string variable</wf:description>
+                <wf:location where="inline" content="undefined" format="string"  version="" select=""/>
+            </wf:dataObject>
+
+            <wf:dataObject dataID="L2" name="tempList" type="string" container="value" mutable="true">
+                <wf:description>Run time string variable</wf:description>
+                <wf:location where="inline" content="undefined" format="string"  version="" select=""/>
+            </wf:dataObject>
+
+            <wf:dataObject dataID="L3" name="tempList" type="string" container="value" mutable="true">
+                <wf:description>Run time string variable</wf:description>
                 <wf:location where="inline" content="undefined" format="string"  version="" select=""/>
             </wf:dataObject>
 
@@ -175,6 +185,17 @@
             <wf:dataObject dataID="D54" name="archiveCorrespond" type="string" container="list" mutable="false">
                 <wf:description>Final (next) copy of the Correspondene letter archive model data</wf:description>
                 <wf:location where="archive" content="correspondence-to-depositor" format="txt"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D55" name="instanceComplexityReport" type="string" container="list" mutable="true">
+                <wf:description>Complexity report</wf:description>
+                <wf:location where="wf-instance" content="complexity-report" format="pdbx" version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D55A" name="instanceComplexityReport" type="string" container="string" mutable="true">
+                <wf:description>Latest complexity report with attributes</wf:description>
+                <wf:location where="wf-instance" content="complexity-report" format="pdbx" version="latest"
+                    selectCategory="pdbx_complexity" selectAttribute="is_complex" />
             </wf:dataObject>
 
             <wf:dataObject dataID="D60" name="archiveDataW" type="string" container="list" mutable="false" >
@@ -527,7 +548,7 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TM2" name="string-compare" nextTask="TP10" breakpoint="false" exceptionID="EX0" reference="string compare">
+                <wf:task taskID="TM2" name="string-compare" nextTask="TM3" breakpoint="false" exceptionID="EX0" reference="string compare">
                     <wf:description>String compare - experimental methods - </wf:description>
                     <wf:decision type="AUTO" application = "WFM">
                         <wf:dataObjectsLocation>
@@ -540,6 +561,51 @@
                             </wf:nextTask>
                             <wf:nextTask taskID="TP11">
                                 <wf:function dataID="L1" inList="NMR" compareAs="substring" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TM3">
+                                <wf:function dataID="D99" string="True" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+                <!--Generate complexity report for non-EM and non-NMR.  If complex, skip pisa -->
+                <wf:task taskID="TM3" name="generate-complexity" nextTask="TM3A" breakpoint="true" exceptionID="EX0" reference="site-environment">
+                    <wf:description>Calculate complexity</wf:description>
+                    <wf:process runTime="00:00:10" failTime="05:55:20">
+                        <wf:detail name="CalculateComplexity" action="generate-complexity" where="api"/>
+                        <wf:dataObjectsLocation>
+                               <wf:location dataID="D19" type="input"/>
+                               <wf:location dataID="D55" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TM3A" name="fetch-accession-attributes" nextTask="TM3B" breakpoint="false" exceptionID="EX0" reference="fetch attribute">
+                    <wf:description>Fetch complexity </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="fetch" action="fetch-complexity" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D55A" type="input"/>
+                            <wf:location dataID="L2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+
+                <wf:task taskID="TM3B" name="string-compare" nextTask="TP10" breakpoint="false" exceptionID="EX0" reference="string compare">
+                    <wf:description>String compare - complexity methods - </wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="L2" type="input"/>
+                            <wf:location dataID="D99" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP11">
+                                <wf:function dataID="L2" string="True" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TP10">
+                                <wf:function dataID="L2" string="False" />
                             </wf:nextTask>
                             <wf:nextTask taskID="TP10">
                                 <wf:function dataID="D99" string="True" />
@@ -659,7 +725,6 @@
                     </wf:process>
                 </wf:task>
 
-
                 <wf:task taskID="TP21" name="copyReportToArchive" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="copy">
                      <wf:description>Put the model data back to archive</wf:description>
                      <wf:process runTime="00:00:04" failTime="00:05:20">
@@ -697,10 +762,7 @@
                 <wf:handler warning="There was no Pisa data - continue" nextTask="TP20" select="rest"/>
             </wf:exception>
 
-
-
         </wf:flow>
-
 
     </wf:workflow>
 

@@ -26,6 +26,7 @@
                31-Jan-2024  zf   add val-generate-correspond-letter
                28-Apr-2024  ep   add generate-complexity
                09-May-2024  zf   add fetch-ann-auto
+               21-May-2024  ep   add fetch-complexity
   -->
 <actionList version="0.01">
   <action name="copy">
@@ -355,6 +356,36 @@
      <moduleName>wwpdb.utils.wf.plugins.PdbxUtils</moduleName>
      <methodName>fetchAnnAutoOp</methodName>
   </action>
+
+  <action name="fetch-complexity">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>complexity-report</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType>attribute</selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType></dataReferenceType>
+            <contentType></contentType>
+            <fileFormat></fileFormat>
+            <containerType>value</containerType>
+            <valueType>string</valueType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+           <parameter name="blockNumber">1</parameter>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.PdbxUtils</moduleName>
+     <methodName>fetchOp</methodName>
+  </action>
+
 
   <action name="pdbx2pdb">
      <inputList>
