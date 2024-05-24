@@ -10,26 +10,6 @@
 
     <wf:workflow>
         <wf:dataObjects>
-            <!-- <wf:dataObject dataID="D1" name="emdbmapfile" type="string" container="list" mutable="true" >
-                <wf:description>EM primary map (latest version)</wf:description>
-                <wf:location where="tempdep" content="em-volume" format="map"  version="latest" />
-            </wf:dataObject>
-            <wf:dataObject dataID="D2" name="halfmap1" type="string" container="list" mutable="true" >
-                <wf:description>EM half map 1 (latest version)</wf:description>
-                <wf:location where="tempdep" content="em-half-volume-upload" format="map"  partitionNumber="1" version="latest" />
-            </wf:dataObject>
-            <wf:dataObject dataID="D3" name="halfmap2" type="string" container="list" mutable="true" >
-                <wf:description>EM half map 2 (latest version)</wf:description>
-                <wf:location where="tempdep" content="em-half-volume-upload" format="map"  partitionNumber="2" version="latest" />
-            </wf:dataObject>
-            <wf:dataObject dataID="D4" name="pdbxmodelfile" type="string" container="list" mutable="true" >
-                <wf:description>PDBx format model data file with EMD dialect (latest version)</wf:description>
-                <wf:location where="tempdep" content="model" format="pdbx"  version="latest" />
-            </wf:dataObject>
-            <wf:dataObject dataID="D5" name="mapmodelval" type="string" container="list" mutable="true" >
-                <wf:description>EM Map/Model validation output</wf:description>
-                <wf:location where="tempdep" content="em-map-report" format="json"  version="next" />
-            </wf:dataObject> -->
             <wf:dataObject dataID="D1" name="mapmodelpar" type="string" container="list" mutable="true" >
                 <wf:description>EM Map/Model validation input</wf:description>
                 <wf:location where="tempdep" content="em-check-input" format="json"  version="latest" />
@@ -53,10 +33,6 @@
                         <wf:detail name="emmapcheck" action="emmapcheck" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
-                            <!-- <wf:location dataID="D2" type="input"/>
-                            <wf:location dataID="D3" type="input"/>
-                            <wf:location dataID="D4" type="input"/>
-                            <wf:location dataID="D5" type="output"/> -->
                             <wf:location dataID="D2" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
