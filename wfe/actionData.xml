@@ -5284,7 +5284,7 @@
 
   <action name="emmapcheck">
      <inputList>
-         <wfDataObject name="src1">
+         <!-- <wfDataObject name="src1">
             <dataReferenceType>file</dataReferenceType>
             <contentType>em-volume</contentType>
             <fileFormat>map</fileFormat>
@@ -5309,6 +5309,13 @@
             <dataReferenceType>file</dataReferenceType>
             <contentType>model</contentType>
             <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject> -->
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>em-check-input</contentType>
+            <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
