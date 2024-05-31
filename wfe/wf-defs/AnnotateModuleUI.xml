@@ -330,7 +330,7 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP2N" name="copyNefArchive" nextTask="TM6" breakpoint="false" exceptionID="EX0" reference="copy">
+                <wf:task taskID="TP2N" name="copyNefArchive" nextTask="TP2B" breakpoint="false" exceptionID="EX0" reference="copy">
                     <wf:description>copy PDBx data from archive to instance </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
                         <wf:detail name="copyToArchive" action="copy-if-exists" where="api"/>
@@ -362,14 +362,14 @@
                             <wf:nextTask taskID="TP2D">
                                 <wf:function dataID="D44" string="true" />
                             </wf:nextTask>
-                            <wf:nextTask taskID="TP2E">
+                            <wf:nextTask taskID="TP2H">
                                 <wf:function dataID="D44" string="false" />
                             </wf:nextTask>
                         </wf:nextTasks>
                     </wf:decision>
                 </wf:task>
 
-                <wf:task taskID="TP2D" name="nmr-cs-processing" nextTask="TP2E" breakpoint="false" exceptionID="EX0" reference="nmr-cs-processing">
+                <wf:task taskID="TP2D" name="nmr-cs-processing" nextTask="TP2H" breakpoint="false" exceptionID="EX0" reference="nmr-cs-processing">
                     <wf:description>Chemical shifts atom name check task</wf:description>
                     <wf:process runTime="00:00:10" failTime="06:15:20">
                         <wf:detail name="nmr-cs-processing" action="nmr-cs-processing" where="api" />
@@ -384,47 +384,6 @@
                             <wf:location dataID="D14" type="output6" />
                             <wf:location dataID="D15" type="output7"/>
                             <wf:location dataID="D16" type="output8" />
-                        </wf:dataObjectsLocation>
-                    </wf:process>
-                </wf:task>
-
-                <wf:task taskID="TP2E" name="nefExist" nextTask="TA2F" breakpoint="false" exceptionID="EX0" reference="fileExist">
-                    <wf:description>Does file exist</wf:description>
-                    <wf:process runTime="00:00:04" failTime="00:01:01">
-                        <wf:detail name="nefFileExist" action="fileExist" where="wfe"/>
-                        <wf:dataObjectsLocation>
-                            <wf:location dataID="D10" type="input"/>
-                            <wf:location dataID="D44" type="output"/>
-                        </wf:dataObjectsLocation>
-                    </wf:process>
-                </wf:task>
-
-                <wf:task taskID="TA2F" name="testFile" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="testFile">
-                    <wf:description>File nef existance test</wf:description>
-                    <wf:decision type="AUTO" application = "WFM">
-                        <wf:dataObjectsLocation>
-                            <wf:location dataID="D44" type="input"/>
-                        </wf:dataObjectsLocation>
-                        <wf:nextTasks>
-                            <wf:nextTask taskID="TP2G">
-                                <wf:function dataID="D44" string="true" />
-                            </wf:nextTask>
-                            <wf:nextTask taskID="TP2H">
-                                <wf:function dataID="D44" string="false" />
-                            </wf:nextTask>
-                        </wf:nextTasks>
-                    </wf:decision>
-                </wf:task>
-
-                <wf:task taskID="TP2G" name="nmr-nef-processing" nextTask="TP2H" breakpoint="false" exceptionID="EX0" neference="nmr-nef-processing">
-                    <wf:description>Nef atom name check task</wf:description>
-                    <wf:process runTime="00:00:10" failTime="01:15:20">
-                        <wf:detail name="nmr-nef-processing" action="nmr-nef-processing" where="api" />
-                        <wf:dataObjectsLocation>
-                            <wf:location dataID="D19" type="input1" />
-                            <wf:location dataID="D10" type="input2" />
-                            <wf:location dataID="D2"  type="output1"/>
-                            <wf:location dataID="D9"  type="output2" />
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
@@ -513,13 +472,54 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP7" name="secondary-structure" nextTask="TM1" breakpoint="true" exceptionID="EX0" reference="secondary-structure">
+                <wf:task taskID="TP7" name="secondary-structure" nextTask="TP2E" breakpoint="true" exceptionID="EX0" reference="secondary-structure">
                     <wf:description>Calculate Secondary structure</wf:description>
                     <wf:process runTime="00:00:10" failTime="01:55:20">
                         <wf:detail name="SecondaryStructure" action="secondary-structure" where="api"/>
                         <wf:dataObjectsLocation>
                                <wf:location dataID="D19" type="input"/>
                                <wf:location dataID="D2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP2E" name="nefExist" nextTask="TA2F" breakpoint="false" exceptionID="EX0" reference="fileExist">
+                    <wf:description>Does file exist</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="nefFileExist" action="fileExist" where="wfe"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D10" type="input"/>
+                            <wf:location dataID="D44" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TA2F" name="testFile" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="testFile">
+                    <wf:description>File nef existance test</wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D44" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TP2G">
+                                <wf:function dataID="D44" string="true" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TM1">
+                                <wf:function dataID="D44" string="false" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+                <wf:task taskID="TP2G" name="nmr-nef-processing" nextTask="TM1" breakpoint="false" exceptionID="EX0" neference="nmr-nef-processing">
+                    <wf:description>Nef atom name check task</wf:description>
+                    <wf:process runTime="00:00:10" failTime="01:15:20">
+                        <wf:detail name="nmr-nef-processing" action="nmr-nef-processing" where="api" />
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D19" type="input1" />
+                            <wf:location dataID="D10" type="input2" />
+                            <wf:location dataID="D2"  type="output1"/>
+                            <wf:location dataID="D9"  type="output2" />
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
