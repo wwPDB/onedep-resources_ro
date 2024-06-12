@@ -5362,31 +5362,10 @@
 
   <action name="emmapcheck">
      <inputList>
-         <wfDataObject name="src1">
+         <wfDataObject name="src">
             <dataReferenceType>file</dataReferenceType>
-            <contentType>em-volume</contentType>
-            <fileFormat>map</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="src2">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>em-half-volume</contentType>
-            <fileFormat>map</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="src3">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>em-half-volume</contentType>
-            <fileFormat>map</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
-         <wfDataObject name="src4">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>model</contentType>
-            <fileFormat>pdbx</fileFormat>
+            <contentType>em-check-input</contentType>
+            <fileFormat>json</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
