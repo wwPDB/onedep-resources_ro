@@ -290,6 +290,8 @@ em_admin                     map_hold_date                  date     0 0 19    0
 database_2                   Structure_ID                   char     1 1 15    0 Y
 database_2                   database_id                    char     1 1 10    0 Y
 database_2                   database_code                  char     1 1 80    0 Y
+database_2                   pdbx_database_accession        char     0 0 20    0 Y
+database_2                   pdbx_DOI                       char     0 0 30    0 Y
 pdbx_database_related        Structure_ID                   char     1 1 15    0 Y
 pdbx_database_related        db_name                        char     1 1 12    0 Y
 pdbx_database_related        details                        char     0 0 5000  0 Y
@@ -643,6 +645,8 @@ em_admin                     map_hold_date                  7 1 1
 database_2                   Structure_ID                   3 1 1
 database_2                   database_id                    3 1 1
 database_2                   database_code                  5 1 1
+database_2                   pdbx_database_accession        3 1 1
+database_2                   pdbx_DOI                       5 1 1
 pdbx_database_related        Structure_ID                   3 1 1
 pdbx_database_related        db_name                        3 1 1
 pdbx_database_related        details                        5 1 1
@@ -1010,6 +1014,8 @@ em_admin                     map_hold_date                  '_em_admin.map_hold_
 database_2                   Structure_ID                   ?                                                      ?  'datablockid()'
 database_2                   database_id                    '_database_2.database_id'                              ?  ?
 database_2                   database_code                  '_database_2.database_code'                            ?  ?
+database_2                   pdbx_database_accession        '_database_2.pdbx_database_accession'                  ?  ?
+database_2                   pdbx_DOI                       '_database_2.pdbx_DOI'                                 ?  ?
 pdbx_database_related        Structure_ID                   ?                                                      ?  'datablockid()'
 pdbx_database_related        db_name                        '_pdbx_database_related.db_name'                       ?  ?
 pdbx_database_related        details                        '_pdbx_database_related.details'                       ?  ?
