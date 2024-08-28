@@ -142,6 +142,16 @@
                 <wf:location where="wf-instance" content="secondary-structure-topology" format="text"  version="latest" />
             </wf:dataObject>
 
+            <wf:dataObject dataID="D23" name="pcmDataW" type="string" container="list" mutable="false">
+                <wf:description>missing pcm data file</wf:description>
+                <wf:location where="wf-instance" content="pcm-missing-data" format="csv"  version="next" />
+            </wf:dataObject>
+
+            <wf:dataObject dataID="D24" name="pcmDataR" type="string" container="list" mutable="false">
+                <wf:description>missing pcm data file</wf:description>
+                <wf:location where="wf-instance" content="pcm-missing-data" format="csv"  version="latest" />
+            </wf:dataObject>
+
             <wf:dataObject dataID="D28" name="instanceReport" type="string" container="list" mutable="true">
                 <wf:description>Pisa XML report</wf:description>
                 <wf:location where="wf-instance" content="assembly-report" format="xml" version="next" />
@@ -481,10 +491,11 @@
                 <wf:task taskID="TP5" name="linkages" nextTask="TP6" breakpoint="true" exceptionID="EX0" reference = "linkages">
                     <wf:description>Calculate the linkage data</wf:description>
                     <wf:process runTime="00:00:10" failTime="01:55:20">
-                        <wf:detail name="Linkages" action="linkages" where="api"/>
+                        <wf:detail name="Linkages" action="linkages-ptm" where="api"/>
                         <wf:dataObjectsLocation>
                                <wf:location dataID="D19" type="input"/>
-                               <wf:location dataID="D2" type="output"/>
+                               <wf:location dataID="D2" type="output1"/>
+                               <wf:location dataID="D23" type="output2"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
@@ -666,7 +677,7 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP12" name="database-related" nextTask="TT2" breakpoint="true" exceptionID="EX0" reference="cis-peptide">
+                <wf:task taskID="TP12" name="database-related" nextTask="TP3E" breakpoint="true" exceptionID="EX0" reference="cis-peptide">
                     <wf:description>Resolve pdbx_database_related</wf:description>
                     <wf:process runTime="00:00:10" failTime="01:55:20">
                         <wf:detail name="DatabaseRelated" action="update-database-related" where="api"/>
@@ -677,6 +688,36 @@
                     </wf:process>
                 </wf:task>
 
+                <!-- Check if pcm-missing-data file D24 exists. If exists, go to task TM6 ("AnnotationInteface"), otherwise continues next tast TT2 -->
+                <wf:task taskID="TP3E" name="pcmExist" nextTask="TA3F" breakpoint="false" exceptionID="EX0" reference="fileExist">
+                    <wf:description>Does file exist</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="pcmFileExist" action="fileExist" where="wfe"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D24" type="input"/>
+                            <wf:location dataID="D44" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TA3F" name="testFile" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="testFile">
+                    <wf:description>File pcm existance test</wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D44" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TM6">
+                                <wf:function dataID="D44" string="true" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TT2">
+                                <wf:function dataID="D44" string="false" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
+                <!-- L1: [ _database_2.database_id ], L2: YES for EM or NMR with assembly annotation, L3: SITE_ID -->
                 <wf:task taskID="TT2" name="fetch-accession-attributes" nextTask="TD2" breakpoint="false" exceptionID="EX0" reference="fetch attribute">
                     <wf:description>Fetch accessions </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
@@ -708,7 +749,7 @@
                     </wf:decision>
                 </wf:task>
 
-	        <!-- Check if it is an auto-complete entry per request of DAOTHER-8952 -->
+	        <!-- Check if it is an auto-complete entry per request of DAOTHER-8952 (NMR or EM method) -->
                 <wf:task taskID="TD3" name="string-compare" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="string compare">
                     <wf:description>String compare - accession code test - </wf:description>
                     <wf:decision type="AUTO" application = "WFM">
@@ -726,7 +767,7 @@
                     </wf:decision>
                 </wf:task>
 
-                <!-- Check the process site: auto-complete for PDBE per request of DAOTHER-8952 -->
+                <!-- Check the process site: auto-complete for PDBE per request of DAOTHER-8952 (NMR or EM method) -->
                 <wf:task taskID="TD4" name="string-compare" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="string compare">
                     <wf:description>String compare - site name test - </wf:description>
                     <wf:decision type="AUTO" application = "WFM">

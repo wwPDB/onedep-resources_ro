@@ -27,6 +27,7 @@
                28-Apr-2024  ep   add generate-complexity
                09-May-2024  zf   add fetch-ann-auto
                21-May-2024  ep   add fetch-complexity
+               26-Aug-2024  zf   add linkages-ptm
   -->
 <actionList version="0.01">
   <action name="copy">
@@ -1411,6 +1412,41 @@
      <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
      <methodName>linkOp</methodName>
   </action>
+
+  <action name="linkages-ptm">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>pcm-missing-data</contentType>
+            <fileFormat>csv</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
+     <methodName>linkPtmOp</methodName>
+  </action>
+
 
   <action name="cis-peptide">
      <inputList>
