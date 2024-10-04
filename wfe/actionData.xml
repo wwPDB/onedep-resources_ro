@@ -28,6 +28,7 @@
                09-May-2024  zf   add fetch-ann-auto
                21-May-2024  ep   add fetch-complexity
                26-Aug-2024  zf   add linkages-ptm
+               04-Oct-2024  zf   add fetch-pcm-missing-data
   -->
 <actionList version="0.01">
   <action name="copy">
@@ -1447,6 +1448,33 @@
      <methodName>linkPtmOp</methodName>
   </action>
 
+  <action name="fetch-pcm-missing-data">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>pcm-missing-data</contentType>
+            <fileFormat>csv</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType></dataReferenceType>
+            <contentType></contentType>
+            <fileFormat></fileFormat>
+            <containerType>value</containerType>
+            <valueType>string</valueType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.PcmCsvUtils</moduleName>
+     <methodName>missingPcmDataOp</methodName>
+  </action>
 
   <action name="cis-peptide">
      <inputList>

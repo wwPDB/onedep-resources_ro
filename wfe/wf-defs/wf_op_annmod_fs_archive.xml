@@ -688,7 +688,7 @@
                     </wf:process>
                 </wf:task>
 
-                <!-- Check if pcm-missing-data file D24 exists. If exists, go to task TM6 ("AnnotationInteface"), otherwise continues next tast TT2 -->
+                <!-- Check if pcm-missing-data file D24 exists. -->
                 <wf:task taskID="TP3E" name="pcmExist" nextTask="TA3F" breakpoint="false" exceptionID="EX0" reference="fileExist">
                     <wf:description>Does file exist</wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
@@ -700,6 +700,7 @@
                     </wf:process>
                 </wf:task>
 
+                <!-- If pcm-missing-data file D24 exists, go to task TT2 to check if there is missing pcm data information, otherwise continues next tast TT3 -->
                 <wf:task taskID="TA3F" name="testFile" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="testFile">
                     <wf:description>File pcm existance test</wf:description>
                     <wf:decision type="AUTO" application = "WFM">
@@ -707,18 +708,48 @@
                             <wf:location dataID="D44" type="input"/>
                         </wf:dataObjectsLocation>
                         <wf:nextTasks>
-                            <wf:nextTask taskID="TM6">
+                            <wf:nextTask taskID="TT2">
                                 <wf:function dataID="D44" string="true" />
                             </wf:nextTask>
-                            <wf:nextTask taskID="TT2">
+                            <wf:nextTask taskID="TT3">
                                 <wf:function dataID="D44" string="false" />
                             </wf:nextTask>
                         </wf:nextTasks>
                     </wf:decision>
                 </wf:task>
 
+                <!-- Check if there is missing pcm data information in pcm-missing-data file D24. -->
+                <wf:task taskID="TT2" name="fetch-pcm-missing-data" nextTask="TDP" breakpoint="false" exceptionID="EX0" reference="fetch pcm missing data attribute">
+                    <wf:description>Fetch pcm missing data </wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                        <wf:detail name="fetch-pcm" action="fetch-pcm-missing-data" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D24" type="input"/>
+                            <wf:location dataID="L2" type="output"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
+                </wf:task>
+
+                <!-- If there is missing pcm data information in pcm-missing-data file, go to task TM6 ("AnnotationInteface"), otherwise continues next tast TT3 -->
+                <wf:task taskID="TDP" name="string-compare" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="string compare">
+                    <wf:description>String compare - missing pcm data test - </wf:description>
+                    <wf:decision type="AUTO" application = "WFM">
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="L2" type="input"/>
+                        </wf:dataObjectsLocation>
+                        <wf:nextTasks>
+                            <wf:nextTask taskID="TM6">
+                                <wf:function dataID="L2" string="YES" />
+                            </wf:nextTask>
+                            <wf:nextTask taskID="TT3">
+                                <wf:function dataID="L2" string="NO" />
+                            </wf:nextTask>
+                        </wf:nextTasks>
+                    </wf:decision>
+                </wf:task>
+
                 <!-- L1: [ _database_2.database_id ], L2: YES for EM or NMR with assembly annotation, L3: SITE_ID -->
-                <wf:task taskID="TT2" name="fetch-accession-attributes" nextTask="TD2" breakpoint="false" exceptionID="EX0" reference="fetch attribute">
+                <wf:task taskID="TT3" name="fetch-accession-attributes" nextTask="TD2" breakpoint="false" exceptionID="EX0" reference="fetch attribute">
                     <wf:description>Fetch accessions </wf:description>
                     <wf:process runTime="00:00:04" failTime="00:01:01">
                         <wf:detail name="fetch-1" action="fetch-ann-auto" where="api"/>
