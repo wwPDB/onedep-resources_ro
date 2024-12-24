@@ -29,7 +29,7 @@
                21-May-2024  ep   add fetch-complexity
                26-Aug-2024  zf   add linkages-ptm
                04-Oct-2024  zf   add fetch-pcm-missing-data
-               19-Dec-2024  my   add nmr-merge-nmrif-deposit
+               19-Dec-2024  my   add nmr-if-merge-deposit
   -->
 <actionList version="0.01">
   <action name="copy">
@@ -4232,7 +4232,7 @@
      <methodName>str2cifDepositOp</methodName>
   </action>
 
-  <action name="nmr-merge-nmrif-deposit">
+  <action name="nmr-if-merge-deposit">
      <inputList>
          <wfDataObject name="src0">
             <dataReferenceType>file</dataReferenceType>
@@ -4276,7 +4276,7 @@
      <userParameters/>
      <internalParameters/>
      <moduleName>wwpdb.utils.wf.plugins.NmrUtils</moduleName>
-     <methodName>mergeNmrIfDepositOp</methodName>
+     <methodName>nmrIfMergeDepositOp</methodName>
   </action>
 
   <action name="nmr-str2nef-release">

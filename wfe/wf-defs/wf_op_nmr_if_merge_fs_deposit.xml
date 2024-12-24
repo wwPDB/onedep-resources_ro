@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wf:wwPDBworkflow xmlns:wf="http://pdbml.wwpdb.org/schema-wf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pdbml.wwpdb.org/schema-wf wwpdb-workflow-v100.xsd">
     <wf:metadata>
-        <wf:version major="1.0" author="my" date="12-19-2024" id="MRG_NIF_DEP" name="wf_op_nmr_mrg_nmrif_fs_deposit.xml"/>
+        <wf:version major="1.0" author="my" date="12-19-2024" id="IF_MRG_DEP" name="wf_op_nmr_if_merge_fs_deposit.xml"/>
         <wf:description>
             <wf:short>Merge NMRIF to NMR combined data</wf:short>
             <wf:subtext>Deposition system file merging workflow on submission (NMRIF + NMR combined data)</wf:subtext>
@@ -41,10 +41,10 @@
 
             <wf:tasks>
 
-                <wf:task taskID="T2" name="nmr-merge-nmrif-deposit" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nmr-merge-nmrif-deposit">
+                <wf:task taskID="T2" name="nmr-if-merge-deposit" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nmr-if-merge-deposit">
                     <wf:description>NMRIF + NMR-STAR V3.2 -> CIF formated NMR-STAR V3.2 file conversion</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:15:20">
-                        <wf:detail name="nmr-merge-nmrif-deposit" action="nmr-merge-nmrif-deposit" where="api"/>
+                        <wf:detail name="nmr-if-merge-deposit" action="nmr-if-merge-deposit" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="C1" type="input"/>
                             <wf:location dataID="D1" type="input"/>
