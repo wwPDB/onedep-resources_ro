@@ -195,7 +195,7 @@ entity_poly                  type                           char     0 0 200   0
 entity_poly                  pdbx_seq_one_letter_code       text     0 0 33000 0 Y
 entity_poly                  pdbx_seq_one_letter_code_can   text     0 0 33000 0 Y
 entity_poly                  pdbx_description               char     0 0 1023  0 Y
-entity_poly                  pdbx_strand_id                 char     0 0 5000  0 Y
+entity_poly                  pdbx_strand_id                 char     0 0 2000  0 Y
 entity_poly                  number_of_monomers             int      0 0 10    0 Y
 entity_poly                  pdbx_target_identifier         char     0 0 150   0 Y
 citation                     Structure_ID                   char     1 1 15    0 Y
