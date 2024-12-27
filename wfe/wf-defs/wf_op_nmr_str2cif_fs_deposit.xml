@@ -72,7 +72,6 @@
                             <wf:location dataID="D2" type="input"/>
                             <wf:location dataID="D2" type="input"/> <!-- dummy for compatibility -->
                             <wf:location dataID="D3" type="output"/>
-                            <wf:location dataID="M1" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
@@ -91,6 +90,7 @@
                             <wf:location dataID="D5" type="output"/>
                             <wf:location dataID="D6" type="output"/>
                             <wf:location dataID="D7" type="output"/>
+                            <wf:location dataID="M1" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>

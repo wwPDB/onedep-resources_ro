@@ -4156,13 +4156,6 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
-         <wfDataObject name="dst3">
-            <dataReferenceType>file</dataReferenceType>
-            <contentType>nmrif</contentType>
-            <fileFormat>pdbx</fileFormat>
-            <containerType></containerType>
-            <selectorType></selectorType>
-         </wfDataObject>
      </outputList>
      <userParameters/>
      <internalParameters/>

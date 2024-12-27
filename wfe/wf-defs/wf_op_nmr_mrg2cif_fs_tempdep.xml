@@ -73,6 +73,10 @@
                 <wf:description>NMRIF file (next version)</wf:description>
                 <wf:location where="tempdep" content="nmrif" format="pdbx" version="next" />
             </wf:dataObject>
+            <wf:dataObject dataID="M2" name="nmr-metadata-file" type="string" container="list" mutable="true" >
+                <wf:description>NMRIF file (latest version)</wf:description>
+                <wf:location where="tempdep" content="nmrif" format="pdbx" version="latest" />
+            </wf:dataObject>
 
         </wf:dataObjects>
 
@@ -128,6 +132,7 @@
                             <wf:location dataID="D9" type="output"/>
                             <wf:location dataID="D10" type="output"/>
                             <wf:location dataID="D11" type="output"/>
+                            <wf:location dataID="M2" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
