@@ -3921,6 +3921,13 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <wfDataObject name="dst3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmrif</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
      </outputList>
      <userParameters/>
      <internalParameters/>
@@ -4149,6 +4156,13 @@
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>
+         <wfDataObject name="dst3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmrif</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
      </outputList>
      <userParameters/>
      <internalParameters/>
@@ -4222,6 +4236,13 @@
             <dataReferenceType>file</dataReferenceType>
             <contentType>nmr-data-str-report</contentType>
             <fileFormat>json</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst4">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>nmrif</contentType>
+            <fileFormat>pdbx</fileFormat>
             <containerType></containerType>
             <selectorType></selectorType>
          </wfDataObject>

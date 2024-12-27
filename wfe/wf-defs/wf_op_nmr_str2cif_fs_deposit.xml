@@ -48,6 +48,11 @@
                 <wf:location where="deposit" content="nmr-data-str-report" format="json" version="next" />
             </wf:dataObject>
 
+            <wf:dataObject dataID="M1" name="nmr-metadata-file" type="string" container="list" mutable="true" >
+                <wf:description>NMRIF file (next version)</wf:description>
+                <wf:location where="deposit" content="nmrif" format="pdbx" version="next" />
+            </wf:dataObject>
+
         </wf:dataObjects>
 
         <wf:flow>
@@ -67,6 +72,7 @@
                             <wf:location dataID="D2" type="input"/>
                             <wf:location dataID="D2" type="input"/> <!-- dummy for compatibility -->
                             <wf:location dataID="D3" type="output"/>
+                            <wf:location dataID="M1" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
