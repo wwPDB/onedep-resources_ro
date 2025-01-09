@@ -339,6 +339,8 @@ pdbx_audit_revision_history  minor_revision                 int      0 0 10    0
 pdbx_audit_revision_history  revision_date                  date     0 0 15    0 Y
 pdbx_audit_revision_history  internal_version               int      0 0 10    0 Y
 pdbx_audit_revision_history  internal_deposition_id         char     0 0 20    0 Y
+pdbx_audit_revision_history  internal_part_number           int      0 0 10    0 Y
+pdbx_audit_revision_history  part_number                    int      0 0 10    0 Y
 pdbx_audit_revision_group    Structure_ID                   char     1 1 15    0 Y
 pdbx_audit_revision_group    ordinal                        int      1 1 10    0 Y
 pdbx_audit_revision_group    revision_ordinal               int      1 1 10    0 Y
@@ -694,6 +696,8 @@ pdbx_audit_revision_history  minor_revision                 1 1 1
 pdbx_audit_revision_history  revision_date                  7 1 1
 pdbx_audit_revision_history  internal_version               1 1 1
 pdbx_audit_revision_history  internal_deposition_id         3 1 1
+pdbx_audit_revision_history  internal_part_number           1 1 1
+pdbx_audit_revision_history  part_number                    1 1 1
 pdbx_audit_revision_group    Structure_ID                   3 1 1
 pdbx_audit_revision_group    ordinal                        1 1 1
 pdbx_audit_revision_group    revision_ordinal               1 1 1
@@ -1063,6 +1067,8 @@ pdbx_audit_revision_history  minor_revision                 '_pdbx_audit_revisio
 pdbx_audit_revision_history  revision_date                  '_pdbx_audit_revision_history.revision_date'           ?  ?
 pdbx_audit_revision_history  internal_version               '_pdbx_audit_revision_history.internal_version'        ?  ?
 pdbx_audit_revision_history  internal_deposition_id         '_pdbx_audit_revision_history.internal_deposition_id'  ?  ?
+pdbx_audit_revision_history  internal_part_number           '_pdbx_audit_revision_history.internal_part_number'    ?  ?
+pdbx_audit_revision_history  part_number                    '_pdbx_audit_revision_history.part_number'             ?  ?
 pdbx_audit_revision_group    Structure_ID                   ?                                                      ?  'datablockid()'
 pdbx_audit_revision_group    ordinal                        '_pdbx_audit_revision_group.ordinal'                   ?  ?
 pdbx_audit_revision_group    revision_ordinal               '_pdbx_audit_revision_group.revision_ordinal'          ?  ?
