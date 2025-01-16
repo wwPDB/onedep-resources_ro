@@ -186,14 +186,14 @@ status_information           Struct_F_On_Hold_Until_Date    date     0 0 19    0
 status_information           Hold_Until_Publication_Y_N     char     0 0 1     0 Y
 pdbx_prerelease_seq          Structure_ID                   char     1 1 15    0 Y
 pdbx_prerelease_seq          entity_id                      char     1 1 10    0 Y
-pdbx_prerelease_seq          seq_one_letter_code            text     0 0 16400 0 Y
+pdbx_prerelease_seq          seq_one_letter_code            char     0 0 16400 0 Y
 entity_poly                  Structure_ID                   char     1 1 15    0 Y
 entity_poly                  entity_id                      char     1 1 10    0 Y
 entity_poly                  nstd_linkage                   int      0 0 1     0 Y
 entity_poly                  nstd_monomer                   int      0 0 1     0 Y
 entity_poly                  type                           char     0 0 200   0 Y
-entity_poly                  pdbx_seq_one_letter_code       text     0 0 33000 0 Y
-entity_poly                  pdbx_seq_one_letter_code_can   text     0 0 33000 0 Y
+entity_poly                  pdbx_seq_one_letter_code       char     0 0 33000 0 Y
+entity_poly                  pdbx_seq_one_letter_code_can   char     0 0 33000 0 Y
 entity_poly                  pdbx_description               char     0 0 1023  0 Y
 entity_poly                  pdbx_strand_id                 char     0 0 2000  0 Y
 entity_poly                  number_of_monomers             int      0 0 10    0 Y
