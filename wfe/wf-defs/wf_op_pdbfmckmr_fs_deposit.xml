@@ -12,12 +12,12 @@
         <wf:dataObjects>
             <wf:dataObject dataID="D1" name="pdbmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDB format model data file (latest version)</wf:description>
-                <wf:location where="deposit" content="model" format="pdb"  version="latest" />
+                <wf:location where="deposit-ui" content="model" format="pdb"  version="latest" />
             </wf:dataObject>
 
             <wf:dataObject dataID="D2" name="ckeckreport" type="string" container="list" mutable="true" >
                 <wf:description>PDB format check report (next version)</wf:description>
-                <wf:location where="deposit" content="format-check-report" format="txt"  version="next" />
+                <wf:location where="deposit-ui" content="format-check-report" format="txt"  version="next" />
             </wf:dataObject>
 
         </wf:dataObjects>

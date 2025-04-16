@@ -12,7 +12,7 @@
         <wf:dataObjects>
             <wf:dataObject dataID="D3" name="instanceDataR" type="string" container="list" mutable="true" >
                 <wf:description>Latest model data</wf:description>
-                <wf:location where="deposit" content="model" format="pdbx"  version="latest" />
+                <wf:location where="deposit-ui" content="model" format="pdbx"  version="latest" />
             </wf:dataObject>
         </wf:dataObjects>
 

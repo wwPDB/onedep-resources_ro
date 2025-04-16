@@ -12,11 +12,11 @@
         <wf:dataObjects>
             <wf:dataObject dataID="D1" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBX format model data file (latest)</wf:description>
-                <wf:location where="deposit" content="model" format="pdbx"  version="latest" />
+                <wf:location where="deposit-ui" content="model" format="pdbx"  version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (next)</wf:description>
-                <wf:location where="deposit" content="model" format="pdbx"  version="next" />
+                <wf:location where="deposit-ui" content="model" format="pdbx"  version="next" />
             </wf:dataObject>
 
         </wf:dataObjects>
