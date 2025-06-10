@@ -22,9 +22,14 @@
             </wf:entryPoint>
 
             <wf:tasks>
-                <wf:task taskID="T2" name="BatchCopyDepositToArchive" actionRef="deposit-to-archive-batch-copy" nextTask="T9" breakpoint="false">
+                <wf:task taskID="T2" name="BatchCopyDepositToArchive" nextTask="T9" breakpoint="false" exceptionID="EX0" reference="BatchCopyDepositToArchive">
                     <wf:description>Perform batch file copy from deposit to archive using config</wf:description>
-                    <wf:input name="src" ref="D1"/>
+                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                        <wf:detail name="BatchCopyDepositToArchive" action="deposit-to-archive-batch-copy" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D1" type="input"/>
+                        </wf:dataObjectsLocation>
+                    </wf:process>
                 </wf:task>
             </wf:tasks>
             
