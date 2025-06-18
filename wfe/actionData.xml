@@ -6014,6 +6014,27 @@
      <methodName>generateComplexityOp</methodName>
   </action>
 
+   <action name="deposit-to-archive-batch-copy">
+      <inputList>
+         <wfDataObject name="src">
+               <dataReferenceType>file</dataReferenceType>
+               <contentType>deposit-to-archive-wfcfg</contentType>
+               <fileFormat>json</fileFormat>
+               <containerType></containerType>
+               <selectorType></selectorType>
+         </wfDataObject>
+      </inputList>
+      <outputList>
+         <!-- No direct output, as batchCopyOp performs multiple file copies internally -->
+      </outputList>
+      <userParameters>
+      </userParameters>
+      <internalParameters>
+      </internalParameters>
+      <moduleName>wwpdb.utils.wf.plugins.FileUtils</moduleName>
+      <methodName>batchCopyOp</methodName>
+   </action>
+
   <!-- comment  -->
 </actionList>
 
