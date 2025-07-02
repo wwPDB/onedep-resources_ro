@@ -12,7 +12,7 @@
         <wf:dataObjects>
             <wf:dataObject dataID="D1" name="d2acpcfgfile" type="string" container="list" mutable="true" >
                 <wf:description>Deposit-to-archive file copy configuration file</wf:description>
-                <wf:location where="deposit" content="deposit-to-archive-wfcfg" format="json"  version="latest" />
+                <wf:location where="deposit-ui" content="deposit-to-archive-wfcfg" format="json"  version="latest" />
             </wf:dataObject>
         </wf:dataObjects>
 
