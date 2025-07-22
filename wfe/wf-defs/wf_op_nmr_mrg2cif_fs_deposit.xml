@@ -38,6 +38,10 @@
                 <wf:description>NMR data merge log (next version)</wf:description>
                 <wf:location where="deposit-ui" content="nmr-cs-mr-merge-report" format="json" version="next" />
             </wf:dataObject>
+            <wf:dataObject dataID="H5" name="nmr-cs-mr-merge-log" type="string" container="list" mutable="true" >
+                <wf:description>NMR data merge log (latest version)</wf:description>
+                <wf:location where="deposit" content="nmr-cs-mr-merge-report" format="json" version="latest" />
+            </wf:dataObject>
 
             <wf:dataObject dataID="C1" name="nmr-data-config-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR data configuration file</wf:description>
@@ -104,15 +108,16 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="T6" name="nmr-str-consistency-check" nextTask="T7" breakpoint="false" exceptionID="EX0" reference="nmr-str-consistency-check">
+                <wf:task taskID="T6" name="nmr-mrg-consistency-check" nextTask="T7" breakpoint="false" exceptionID="EX0" reference="nmr-mrg-consistency-check">
                     <wf:description>NMR-STAR V3.2 consistency check</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:15:20">
-                        <wf:detail name="nmr-str-consistency-check" action="nmr-str-consistency-check" where="api"/>
+                        <wf:detail name="nmr-mrg-consistency-check" action="nmr-mrg-consistency-check" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="C1" type="input"/>
                             <wf:location dataID="D6" type="input"/>
                             <wf:location dataID="D3" type="input"/>
                             <wf:location dataID="P3" type="input"/>
+                            <wf:location dataID="H5" type="input"/>
                             <wf:location dataID="D7" type="output"/>
                         </wf:dataObjectsLocation>
                     </wf:process>
