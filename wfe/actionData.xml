@@ -6037,6 +6037,13 @@
 
    <action name="sync-to-deposit">
       <inputList>
+         <wfDataObject name="src">
+               <dataReferenceType>file</dataReferenceType>
+               <contentType>model</contentType>
+               <fileFormat>pdbx</fileFormat>
+               <containerType></containerType>
+               <selectorType></selectorType>
+         </wfDataObject>
       </inputList>
       <outputList>
       </outputList>

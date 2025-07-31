@@ -14,6 +14,11 @@
                 <wf:description>Deposit-to-archive file copy configuration file</wf:description>
                 <wf:location where="deposit-ui" content="deposit-to-archive-wfcfg" format="json"  version="latest" />
             </wf:dataObject>
+
+            <wf:dataObject dataID="D2" name="dummyfile" type="string" container="list" mutable="true">
+                <wf:description>Dummy file to get the deposition id on the plugin side</wf:description>
+                <wf:location where="deposit-ui" content="model" format="pdbx" version="latest" />
+            </wf:dataObject>
         </wf:dataObjects>
 
         <wf:flow>
@@ -36,6 +41,9 @@
                     <wf:description>Sync deposit-ui to deposit</wf:description>
                     <wf:process runTime="00:00:10" failTime="00:20:00">
                         <wf:detail name="SyncToDeposit" action="sync-to-deposit" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D2" type="input"/>
+                        </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
 
