@@ -6035,6 +6035,19 @@
       <methodName>batchCopyOp</methodName>
    </action>
 
+   <action name="sync-to-deposit">
+      <inputList>
+      </inputList>
+      <outputList>
+      </outputList>
+      <userParameters>
+      </userParameters>
+      <internalParameters>
+      </internalParameters>
+      <moduleName>wwpdb.utils.wf.plugins.FileUtils</moduleName>
+      <methodName>syncToDepositOp</methodName>
+   </action>
+
   <!-- comment  -->
 </actionList>
 
