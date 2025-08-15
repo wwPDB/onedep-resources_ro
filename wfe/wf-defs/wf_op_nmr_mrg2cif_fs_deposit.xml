@@ -12,31 +12,31 @@
         <wf:dataObjects>
             <wf:dataObject dataID="D1" name="cspath" type="string" container="list" mutable="true">
                 <wf:description>Chemical shifts path (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-cs-path-list" format="txt" version="latest" />
+                <wf:location where="deposit-ui" content="nmr-cs-path-list" format="txt" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="A1" name="csauthfilename" type="string" container="list" mutable="true">
                 <wf:description>Chemical shifts author file name (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-cs-auth-file-name-list" format="txt" version="latest" />
+                <wf:location where="deposit-ui" content="nmr-cs-auth-file-name-list" format="txt" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="mrpathlist" type="string" container="list" mutable="true">
                 <wf:description>Restraints path list (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-mr-path-list" format="json" version="latest" />
+                <wf:location where="deposit-ui" content="nmr-mr-path-list" format="json" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version)</wf:description>
-                <wf:location where="deposit" content="model" format="pdbx" version="latest" />
+                <wf:location where="deposit-ui" content="model" format="pdbx" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="P3" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version - deposit storage)</wf:description>
-                <wf:location where="deposit" content="model" format="pdbx" version="latest" />
+                <wf:location where="deposit-ui" content="model" format="pdbx" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D4" name="nmr-data-str-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR data file: NMR-STAR V3.2 (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-data-str" format="nmr-star" version="next" />
+                <wf:location where="deposit-ui" content="nmr-data-str" format="nmr-star" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D5" name="nmr-cs-mr-merge-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR data merge log (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-cs-mr-merge-report" format="json" version="next" />
+                <wf:location where="deposit-ui" content="nmr-cs-mr-merge-report" format="json" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="H5" name="nmr-cs-mr-merge-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR data merge log (latest version)</wf:description>
@@ -45,41 +45,41 @@
 
             <wf:dataObject dataID="C1" name="nmr-data-config-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR data configuration file</wf:description>
-                <wf:location where="deposit" content="nmr-data-config" format="json" version="latest" />
+                <wf:location where="deposit-ui" content="nmr-data-config" format="json" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D6" name="nmr-data-str-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR data file: NMR-STAR V3.2 (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-data-str" format="nmr-star" version="latest" />
+                <wf:location where="deposit-ui" content="nmr-data-str" format="nmr-star" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D7" name="nmr-str-consistency-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR-STAR V3.2 consistency log (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-data-str-report" format="json" version="next" />
+                <wf:location where="deposit-ui" content="nmr-data-str-report" format="json" version="next" />
             </wf:dataObject>
 
             <wf:dataObject dataID="D8" name="nmr-str-consistency-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR-STAR V3.2 consistency log (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-data-str-report" format="json" version="latest" />
+                <wf:location where="deposit-ui" content="nmr-data-str-report" format="json" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D9" name="nmr-data-str-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR data file: NMR-STAR V3.2 (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-data-str" format="nmr-star" version="next" />
+                <wf:location where="deposit-ui" content="nmr-data-str" format="nmr-star" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D10" name="nmr-data-str-file" type="string" container="list" mutable="true" >
                 <wf:description>NMR data file: CIF formated NMR-STAR V3.2 (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-data-str" format="pdbx" version="next" />
+                <wf:location where="deposit-ui" content="nmr-data-str" format="pdbx" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D11" name="nmr-str-deposit-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR-STAR V3.2 deposit log (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-data-str-report" format="json" version="next" />
+                <wf:location where="deposit-ui" content="nmr-data-str-report" format="json" version="next" />
             </wf:dataObject>
 
             <wf:dataObject dataID="M1" name="nmr-metadata-file" type="string" container="list" mutable="true" >
                 <wf:description>NMRIF file (next version)</wf:description>
-                <wf:location where="deposit" content="nmrif" format="pdbx" version="next" />
+                <wf:location where="deposit-ui" content="nmrif" format="pdbx" version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="M2" name="nmr-metadata-file" type="string" container="list" mutable="true" >
                 <wf:description>NMRIF file (latest version)</wf:description>
-                <wf:location where="deposit" content="nmrif" format="pdbx" version="latest" />
+                <wf:location where="deposit-ui" content="nmrif" format="pdbx" version="latest" />
             </wf:dataObject>
 
         </wf:dataObjects>

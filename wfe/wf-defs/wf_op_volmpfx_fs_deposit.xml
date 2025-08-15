@@ -12,7 +12,7 @@
         <wf:dataObjects>
             <wf:dataObject dataID="D1" name="ipvolcfgfile" type="string" container="list" mutable="true" >
                 <wf:description>Primary volume configuration file</wf:description>
-                <wf:location where="deposit" content="em-volume-wfcfg" format="json"  version="latest" />
+                <wf:location where="deposit-ui" content="em-volume-wfcfg" format="json"  version="latest" />
             </wf:dataObject>
 
         </wf:dataObjects>

@@ -12,7 +12,7 @@
         <wf:dataObjects>
             <wf:dataObject dataID="D1" name="ipvolcfgfile" type="string" container="list" mutable="true" >
                 <wf:description>Volume mask workflow configuration file</wf:description>
-                <wf:location where="deposit" content="em-mask-volume-wfcfg" format="json"  partitionNumber='latest' version="latest" />
+                <wf:location where="deposit-ui" content="em-mask-volume-wfcfg" format="json"  partitionNumber='latest' version="latest" />
             </wf:dataObject>
         </wf:dataObjects>
 

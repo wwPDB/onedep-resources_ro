@@ -12,27 +12,27 @@
         <wf:dataObjects>
             <wf:dataObject dataID="D1" name="pdbxsffile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format structure factor data file (latest version)</wf:description>
-                <wf:location where="deposit" content="em-structure-factors" format="pdbx"  version="latest" />
+                <wf:location where="deposit-ui" content="em-structure-factors" format="pdbx"  version="latest" />
             </wf:dataObject>
 
             <wf:dataObject dataID="D2" name="pdbxfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version)</wf:description>
-                <wf:location where="deposit" content="model" format="pdbx"  version="latest" />
+                <wf:location where="deposit-ui" content="model" format="pdbx"  version="latest" />
             </wf:dataObject>
 
              <wf:dataObject dataID="D3" name="pdbxsffile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format structure factor data file (next version)</wf:description>
-                <wf:location where="deposit" content="em-structure-factors" format="pdbx"  version="next" />
+                <wf:location where="deposit-ui" content="em-structure-factors" format="pdbx"  version="next" />
             </wf:dataObject>
 
             <wf:dataObject dataID="D4" name="rptpdbxfile" type="string" container="list" mutable="true" >
                 <wf:description>Structure factor report </wf:description>
-                <wf:location where="deposit" content="em-sf-convert-report" format="pdbx"  version="next" />
+                <wf:location where="deposit-ui" content="em-sf-convert-report" format="pdbx"  version="next" />
             </wf:dataObject>
 
             <wf:dataObject dataID="D5" name="rpttxtfile" type="string" container="list" mutable="true" >
                 <wf:description>Structure factor report</wf:description>
-                <wf:location where="deposit" content="em-sf-convert-report" format="txt"  version="next" />
+                <wf:location where="deposit-ui" content="em-sf-convert-report" format="txt"  version="next" />
             </wf:dataObject>
 
             <wf:dataObject dataID="D6" name="statusValue" type="string" container="value" mutable="true">

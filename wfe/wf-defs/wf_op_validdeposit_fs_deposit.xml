@@ -12,7 +12,7 @@
         <wf:dataObjects>
             <wf:dataObject dataID="D22" name="depositdata" type="string" container="list" mutable="true" >
                 <wf:description>Latest model in deposit area </wf:description>
-                <wf:location where="deposit" content="model" format="pdbx"  version="latest" />
+                <wf:location where="deposit-ui" content="model" format="pdbx"  version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D23" name="sessiondata" type="string" container="list" mutable="true" >
                 <wf:description>Next model in session area </wf:description>
@@ -28,68 +28,68 @@
             </wf:dataObject>
             <wf:dataObject dataID="D44" name="depositSF" type="string" container="list" mutable="true" >
                 <wf:description>Latest SF data in deposit area</wf:description>
-                <wf:location where="deposit" content="structure-factors" format="pdbx"  version="latest" />
+                <wf:location where="deposit-ui" content="structure-factors" format="pdbx"  version="latest" />
             </wf:dataObject>
 
             <wf:dataObject dataID="D61" name="depositCS" type="string" container="list" mutable="true" >
                 <wf:description>Latest chemical shift data in deposit area</wf:description>
-                <wf:location where="deposit" content="nmr-chemical-shifts" format="pdbx"  version="latest" />
+                <wf:location where="deposit-ui" content="nmr-chemical-shifts" format="pdbx"  version="latest" />
             </wf:dataObject>
 
             <wf:dataObject dataID="D62" name="depositNMRData" type="string" container="list" mutable="true" >
                 <wf:description>Latest combined nmr-data data in deposit area</wf:description>
-                <wf:location where="deposit" content="nmr-data-str" format="pdbx"  version="latest" />
+                <wf:location where="deposit-ui" content="nmr-data-str" format="pdbx"  version="latest" />
             </wf:dataObject>
 
             <wf:dataObject dataID="D71" name="depositVOL" type="string" container="list" mutable="true" >
                 <wf:description>Latest em volume in deposit area</wf:description>
-                <wf:location where="deposit" content="em-volume" format="map"  version="latest" />
+                <wf:location where="deposit-ui" content="em-volume" format="map"  version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D104" name="authorFSC" type="string" container="list" mutable="true">
                 <wf:description>The author provided FSC file</wf:description>
-                <wf:location where="deposit" content="fsc" format="xml" version="latest" partitionNumber="1"/>
+                <wf:location where="deposit-ui" content="fsc" format="xml" version="latest" partitionNumber="1"/>
             </wf:dataObject>
 
 
             <wf:dataObject dataID="D6" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Validation report</wf:description>
-                <wf:location where="deposit" content="validation-report" format="pdf"  version="next" />
+                <wf:location where="deposit-ui" content="validation-report" format="pdf"  version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D7" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Validation data</wf:description>
-                <wf:location where="deposit" content="validation-data" format="xml"  version="next" />
+                <wf:location where="deposit-ui" content="validation-data" format="xml"  version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D8" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Validation full report</wf:description>
-                <wf:location where="deposit" content="validation-report-full" format="pdf"  version="next" />
+                <wf:location where="deposit-ui" content="validation-report-full" format="pdf"  version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D9" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Validation imagery</wf:description>
-                <wf:location where="deposit" content="validation-report-slider" format="png"  version="next" />
+                <wf:location where="deposit-ui" content="validation-report-slider" format="png"  version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D10" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Validation imagery</wf:description>
-                <wf:location where="deposit" content="validation-report-slider" format="svg"  version="next" />
+                <wf:location where="deposit-ui" content="validation-report-slider" format="svg"  version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D11" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Validation edmap fo coef</wf:description>
-                <wf:location where="deposit" content="validation-report-fo-map-coef" format="pdbx"  version="next" />
+                <wf:location where="deposit-ui" content="validation-report-fo-map-coef" format="pdbx"  version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D12" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Validation edmap 2fo coef</wf:description>
-                <wf:location where="deposit" content="validation-report-2fo-map-coef" format="pdbx"  version="next" />
+                <wf:location where="deposit-ui" content="validation-report-2fo-map-coef" format="pdbx"  version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D13" name="instanceDataW" type="string" container="list" mutable="true" >
                 <wf:description>Validation data</wf:description>
-                <wf:location where="deposit" content="validation-data" format="pdbx"  version="next" />
+                <wf:location where="deposit-ui" content="validation-data" format="pdbx"  version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D66" name="reportPDF" type="string" container="list" mutable="true" >
                 <wf:description>Validation report</wf:description>
-                <wf:location where="deposit" content="validation-report" format="pdf"  version="latest" />
+                <wf:location where="deposit-ui" content="validation-report" format="pdf"  version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="C1" name="corresinfofile" type="string" container="list" mutable="true" >
                 <wf:description>correspondance info file</wf:description>
-                <wf:location where="deposit" content="correspondence-info" format="pdbx"  version="next" />
+                <wf:location where="deposit-ui" content="correspondence-info" format="pdbx"  version="next" />
             </wf:dataObject>
         </wf:dataObjects>
 
