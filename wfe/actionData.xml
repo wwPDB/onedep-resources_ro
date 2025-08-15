@@ -6035,6 +6035,26 @@
       <methodName>batchCopyOp</methodName>
    </action>
 
+   <action name="sync-to-deposit">
+      <inputList>
+         <wfDataObject name="src">
+               <dataReferenceType>file</dataReferenceType>
+               <contentType>model</contentType>
+               <fileFormat>pdbx</fileFormat>
+               <containerType></containerType>
+               <selectorType></selectorType>
+         </wfDataObject>
+      </inputList>
+      <outputList>
+      </outputList>
+      <userParameters>
+      </userParameters>
+      <internalParameters>
+      </internalParameters>
+      <moduleName>wwpdb.utils.wf.plugins.FileUtils</moduleName>
+      <methodName>syncToDepositOp</methodName>
+   </action>
+
   <!-- comment  -->
 </actionList>
 
