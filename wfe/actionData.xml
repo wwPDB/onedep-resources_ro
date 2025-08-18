@@ -6051,7 +6051,7 @@
       </userParameters>
       <internalParameters>
       </internalParameters>
-      <moduleName>wwpdb.utils.wf.plugins.FileUtils</moduleName>
+      <moduleName>wwpdb.utils.wf.plugins.DepositUtils</moduleName>
       <methodName>syncToDepositOp</methodName>
    </action>
 
