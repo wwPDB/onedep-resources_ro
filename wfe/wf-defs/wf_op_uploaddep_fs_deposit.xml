@@ -142,7 +142,7 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP10" name="ValMod" nextTask="TP88" breakpoint="true" exceptionID="EX0" reference="ValidModule">
+                <wf:task taskID="TP10" name="ValMod" nextTask="TP11" breakpoint="true" exceptionID="EX0" reference="ValidModule">
                     <wf:description>Validation module</wf:description>
                     <wf:workflow runTime="00:00:00" failTime="00:00:00" file="wf_op_validdeposit_fs_deposit.xml" classID="ValidDeposit"/>
                 </wf:task>
