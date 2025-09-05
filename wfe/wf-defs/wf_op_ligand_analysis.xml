@@ -16,11 +16,11 @@
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="instanceDataR" type="string" container="list" mutable="true" >
                 <wf:description>Latest model data</wf:description>
-                <wf:location where="deposit-ui" content="model" format="pdbx"  version="latest" />
+                <wf:location where="deposit" content="model" format="pdbx"  version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D4" name="chemCompDataW" type="string" container="list" mutable="true" >
                 <wf:description>Chemical Component linkage data(next)</wf:description>
-                <wf:location where="deposit-ui" content="chem-comp-link" format="pdbx"  version="next" reference="cc-link"/>
+                <wf:location where="deposit" content="chem-comp-link" format="pdbx"  version="next" reference="cc-link"/>
             </wf:dataObject>
             <wf:dataObject dataID="D44" name="fileExists" type="string" container="value" mutable="true">
                 <wf:description>Run time variable to hold if file exists</wf:description>
@@ -28,15 +28,15 @@
             </wf:dataObject>
             <wf:dataObject dataID="D5" name="chemCompDataR" type="string" container="list" mutable="true" >
                 <wf:description>Chemical Component linkage data(lastest)</wf:description>
-                <wf:location where="deposit-ui" content="chem-comp-link" format="pdbx"  version="latest" reference="cc-link"/>
+                <wf:location where="deposit" content="chem-comp-link" format="pdbx"  version="latest" reference="cc-link"/>
             </wf:dataObject>
             <wf:dataObject dataID="D6" name="chemCompAssignW" type="string" container="list" mutable="true" >
                <wf:description>Chemical Component assignment data(next)</wf:description>
-               <wf:location where="deposit-ui" content="chem-comp-assign" format="pdbx"  version="next" reference="cc-assign"/>
+               <wf:location where="deposit" content="chem-comp-assign" format="pdbx"  version="next" reference="cc-assign"/>
             </wf:dataObject>
             <wf:dataObject dataID="D7" name="chemCompAssignR" type="string" container="list" mutable="true" >
                <wf:description>Chemical Component assignment data(latest)</wf:description>
-               <wf:location where="deposit-ui" content="chem-comp-assign" format="pdbx"  version="latest" reference="cc-assign"/>
+               <wf:location where="deposit" content="chem-comp-assign" format="pdbx"  version="latest" reference="cc-assign"/>
             </wf:dataObject>
         </wf:dataObjects>
 
