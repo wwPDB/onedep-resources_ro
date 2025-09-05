@@ -12,15 +12,15 @@
         <wf:dataObjects>
             <wf:dataObject dataID="D1" name="fscfile" type="string" container="list" mutable="true" >
                 <wf:description>FSC file (latest)</wf:description>
-                <wf:location where="deposit" content="fsc" format="xml"  version="latest" />
+                <wf:location where="deposit-ui" content="fsc" format="xml"  version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="imgfile" type="string" container="list" mutable="true" >
                 <wf:description>FSC file (next)</wf:description>
-                <wf:location where="deposit" content="fsc" format="xml"  version="next" />
+                <wf:location where="deposit-ui" content="fsc" format="xml"  version="next" />
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="conversion_report" type="string" container="list" mutable="true">
                 <wf:description>Report from conversion</wf:description>
-                <wf:location where="deposit" content="fsc-report" format="txt" version="next"/>
+                <wf:location where="deposit-ui" content="fsc-report" format="txt" version="next"/>
             </wf:dataObject>
         </wf:dataObjects>
 

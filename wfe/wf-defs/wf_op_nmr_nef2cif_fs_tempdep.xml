@@ -28,7 +28,7 @@
             </wf:dataObject>
             <wf:dataObject dataID="P2" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version - deposit storage)</wf:description>
-                <wf:location where="deposit" content="model" format="pdbx" version="latest" />
+                <wf:location where="deposit-ui" content="model" format="pdbx" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="nmr-nef-consistency-log" type="string" container="list" mutable="true" >
                 <wf:description>NEF consistency log (next version)</wf:description>

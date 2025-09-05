@@ -16,11 +16,11 @@
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="depositmodel" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the deposition model data</wf:description>
-                <wf:location where="deposit" content="model" format="pdbx"  version="latest" />
+                <wf:location where="deposit-ui" content="model" format="pdbx"  version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D4" name="depositsf" type="string" container="list" mutable="true" >
                 <wf:description>Copy of the deposition sf data</wf:description>
-                <wf:location where="deposit" content="structure-factors" format="pdbx"  version="latest" />
+                <wf:location where="deposit-ui" content="structure-factors" format="pdbx"  version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D5" name="dictreport" type="string" container="list" mutable="true" >
                 <wf:description>Dictionary check report</wf:description>

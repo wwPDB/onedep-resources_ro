@@ -24,7 +24,7 @@
             </wf:dataObject>
             <wf:dataObject dataID="P3" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version - deposit storage)</wf:description>
-                <wf:location where="deposit" content="model" format="pdbx" version="latest" />
+                <wf:location where="deposit-ui" content="model" format="pdbx" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D4" name="nmr-cs-str-check-log" type="string" container="list" mutable="true" >
                 <wf:description>Chemical shifts check log (next version)</wf:description>
