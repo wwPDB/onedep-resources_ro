@@ -40,7 +40,7 @@
             </wf:dataObject>
             <wf:dataObject dataID="H5" name="nmr-cs-mr-merge-log" type="string" container="list" mutable="true" >
                 <wf:description>NMR data merge log (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-cs-mr-merge-report" format="json" version="latest" />
+                <wf:location where="deposit-ui" content="nmr-cs-mr-merge-report" format="json" version="latest" />
             </wf:dataObject>
 
             <wf:dataObject dataID="C1" name="nmr-data-config-file" type="string" container="list" mutable="true" >

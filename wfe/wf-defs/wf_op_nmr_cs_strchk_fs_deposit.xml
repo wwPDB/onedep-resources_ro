@@ -12,23 +12,23 @@
         <wf:dataObjects>
             <wf:dataObject dataID="D1" name="cspathlist" type="string" container="list" mutable="true">
                 <wf:description>Chemical shifts path list (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-cs-path-list" format="txt" version="latest" />
+                <wf:location where="deposit-ui" content="nmr-cs-path-list" format="txt" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="mrpathlist" type="string" container="list" mutable="true">
                 <wf:description>Restraints path list (latest version)</wf:description>
-                <wf:location where="deposit" content="nmr-mr-path-list" format="json" version="latest" />
+                <wf:location where="deposit-ui" content="nmr-mr-path-list" format="json" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D3" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version)</wf:description>
-                <wf:location where="deposit" content="model" format="pdbx" version="latest" />
+                <wf:location where="deposit-ui" content="model" format="pdbx" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="P3" name="pdbxmodelfile" type="string" container="list" mutable="true" >
                 <wf:description>PDBx format model data file (latest version - deposit storage)</wf:description>
-                <wf:location where="deposit" content="model" format="pdbx" version="latest" />
+                <wf:location where="deposit-ui" content="model" format="pdbx" version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D4" name="nmr-cs-str-check-log" type="string" container="list" mutable="true" >
                 <wf:description>Chemical shifts check log (next version)</wf:description>
-                <wf:location where="deposit" content="nmr-data-str-report" format="json" version="next" />
+                <wf:location where="deposit-ui" content="nmr-data-str-report" format="json" version="next" />
             </wf:dataObject>
         </wf:dataObjects>
 
