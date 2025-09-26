@@ -43,7 +43,7 @@
 
                 <wf:task taskID="T2" name="nmr-if-merge-deposit" nextTask="T8" breakpoint="false" exceptionID="EX0" reference="nmr-if-merge-deposit">
                     <wf:description>NMRIF + NMR-STAR V3.2 -> CIF formated NMR-STAR V3.2 file conversion</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:15:20">
+                    <wf:process runTime="00:00:10" failTime="00:45:20">
                         <wf:detail name="nmr-if-merge-deposit" action="nmr-if-merge-deposit" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="C1" type="input"/>
