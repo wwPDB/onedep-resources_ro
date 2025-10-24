@@ -18,6 +18,10 @@
                 <wf:description>Latest model data</wf:description>
                 <wf:location where="deposit-ui" content="model" format="pdbx"  version="latest" />
             </wf:dataObject>
+            <wf:dataObject dataID="D31" name="mockDataR" type="string" container="list" mutable="true" >
+                <wf:description>Latest model data in archive</wf:description>
+                <wf:location where="archive" content="model" format="pdbx"  version="latest" />
+            </wf:dataObject>
             <wf:dataObject dataID="D4" name="chemCompDataW" type="string" container="list" mutable="true" >
                 <wf:description>Chemical Component linkage data(next)</wf:description>
                 <wf:location where="deposit-ui" content="chem-comp-link" format="pdbx"  version="next" reference="cc-link"/>
@@ -45,7 +49,7 @@
         </wf:dataObjects>
 
         <wf:flow>
-            <wf:entryPoint taskID="T1" name="Start" nextTask="TP3" breakpoint="false">
+            <wf:entryPoint taskID="T1" name="Start" nextTask="TP2" breakpoint="false">
                 <wf:description>Process Path entry point</wf:description>
             </wf:entryPoint>
 
@@ -55,6 +59,16 @@
                     <wf:description>Wait 5 seconds</wf:description>
                     <wf:process runTime="00:00:05" failTime="00:00:20">
                         <wf:detail name="wait" action="wait" where="wfe"/>
+                    </wf:process>
+                </wf:task>
+
+                <wf:task taskID="TP2" name="MakeDirectory" nextTask="TP3" breakpoint="false" exceptionID="EX0" reference="mkdir">
+                    <wf:description>Make archive directory</wf:description>
+                    <wf:process runTime="00:00:04" failTime="00:01:20">
+                        <wf:detail name="makeDirectory" action="mkdir" where="api"/>
+                        <wf:dataObjectsLocation>
+                            <wf:location dataID="D31" type="input"/>
+                        </wf:dataObjectsLocation>
                     </wf:process>
                 </wf:task>
 
