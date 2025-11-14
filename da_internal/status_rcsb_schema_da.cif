@@ -67,7 +67,7 @@ _rcsb_attribute_def.width
 _rcsb_attribute_def.precision
 _rcsb_attribute_def.populated
 rcsb_status                  Structure_ID                   char     1 1 15    0 Y
-rcsb_status                  pdb_id                         char     0 0 9     0 Y
+rcsb_status                  pdb_id                         char     0 0 12    0 Y
 rcsb_status                  rcsb_annotator                 char     0 0 10    0 Y
 rcsb_status                  status_code                    char     0 0 10    0 Y
 rcsb_status                  author_release_status_code     char     0 0 10    0 Y
@@ -148,7 +148,7 @@ pdbx_contact_author          organization_type              char     0 0 40    0
 pdbx_contact_author          continent                      char     0 0 20    0 Y
 pdbx_contact_author          identifier_ORCID               char     0 0 20    0 Y
 struct                       Structure_ID                   char     1 1 15    0 Y
-struct                       pdb_id                         char     0 0 9     0 Y
+struct                       pdb_id                         char     0 0 12    0 Y
 struct                       title                          char     0 0 600   0 Y
 struct                       pdbx_title_text                char     0 0 255   0 Y
 struct                       pdbx_descriptor                text     0 0 1100  0 Y
