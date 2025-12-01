@@ -490,7 +490,7 @@
 
                 <wf:task taskID="TP5" name="linkages" nextTask="TP6" breakpoint="true" exceptionID="EX0" reference = "linkages">
                     <wf:description>Calculate the linkage data</wf:description>
-                    <wf:process runTime="00:00:10" failTime="01:55:20">
+                    <wf:process runTime="00:00:10" failTime="04:55:20">
                         <wf:detail name="Linkages" action="linkages-ptm" where="api"/>
                         <wf:dataObjectsLocation>
                                <wf:location dataID="D19" type="input"/>
