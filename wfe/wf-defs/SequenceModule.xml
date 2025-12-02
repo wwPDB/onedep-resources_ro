@@ -82,7 +82,7 @@
 
                 <wf:task taskID="TP3B" name="Prepare Alignment for UI" nextTask="TP31" breakpoint="false" exceptionID="EX0" reference="match-all-auto">
                     <wf:description>Do alignment for all chains for the seqUI</wf:description>
-                    <wf:process runTime="00:05:04" failTime="15:55:20">
+                    <wf:process runTime="00:05:04" failTime="30:55:20">
                         <wf:detail name="match-all-auto" action="match-all-auto" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
