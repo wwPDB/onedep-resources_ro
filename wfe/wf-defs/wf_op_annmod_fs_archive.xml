@@ -813,7 +813,7 @@
                                 <wf:function dataID="L3" string="PDBC" />
                             </wf:nextTask>
                             <wf:nextTask taskID="TP20">
-                                <wf:function dataID="L3" string="PDBE_TEST" />
+                                <wf:function dataID="L3" string="PDBe" />
                             </wf:nextTask>
                             <wf:nextTask taskID="TM6">
                                 <wf:function dataID="L3" string="PDBJ" />
@@ -837,7 +837,7 @@
                                 <wf:function dataID="L3" string="PDBC" />
                             </wf:nextTask>
                             <wf:nextTask taskID="TP20">
-                                <wf:function dataID="L3" string="PDBE_TEST" />
+                                <wf:function dataID="L3" string="PDBe" />
                             </wf:nextTask>
                             <wf:nextTask taskID="TP20">
                                 <wf:function dataID="L3" string="PDBJ" />
