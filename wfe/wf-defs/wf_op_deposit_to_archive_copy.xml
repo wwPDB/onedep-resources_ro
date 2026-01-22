@@ -29,7 +29,7 @@
             <wf:tasks>
                 <wf:task taskID="T2" name="batch_copy" nextTask="T3" breakpoint="false" exceptionID="EX0" reference="batch_copy">
                     <wf:description>Perform batch file copy from deposit to archive using config</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:05:20">
+                    <wf:process runTime="00:00:10" failTime="01:05:20">
                         <wf:detail name="batch_copy" action="deposit-to-archive-batch-copy" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D1" type="input"/>
