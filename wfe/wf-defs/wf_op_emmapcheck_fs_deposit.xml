@@ -12,11 +12,11 @@
         <wf:dataObjects>
             <wf:dataObject dataID="D1" name="mapmodelpar" type="string" container="list" mutable="true" >
                 <wf:description>EM Map/Model validation input</wf:description>
-                <wf:location where="tempdep" content="em-check-input" format="json"  version="latest" />
+                <wf:location where="deposit-ui" content="em-check-input" format="json"  version="latest" />
             </wf:dataObject>
             <wf:dataObject dataID="D2" name="mapmodelval" type="string" container="list" mutable="true" >
                 <wf:description>EM Map/Model validation output</wf:description>
-                <wf:location where="tempdep" content="em-map-report" format="json"  version="next" />
+                <wf:location where="deposit-ui" content="em-map-report" format="json"  version="next" />
             </wf:dataObject>
         </wf:dataObjects>
 
