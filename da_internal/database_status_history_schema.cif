@@ -28,7 +28,7 @@ _rcsb_attribute_def.precision
 _rcsb_attribute_def.populated 
 pdbx_database_status_history                  entry_id                 char        1 1 36    0 Y 
 pdbx_database_status_history                  ordinal                  int         1 1 10    0 Y 
-pdbx_database_status_history                  pdb_id                   char        0 0 10    0 Y 
+pdbx_database_status_history                  pdb_id                   char        0 0 12    0 Y 
 pdbx_database_status_history                  date_begin               datetime    0 0 19    0 Y 
 pdbx_database_status_history                  date_end                 datetime    0 0 19    0 Y 
 pdbx_database_status_history                  status_code_begin        char        0 0 24    0 Y 
