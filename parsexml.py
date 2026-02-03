@@ -7,7 +7,31 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 
-def parse_workflow_xml(filepath: str) -> dict | None:
+def parse_action_data(filepath: str) -> dict:
+    """Parse actionData.xml and return a lookup dict: action name -> (module, method)."""
+    action_lookup = {}
+    try:
+        tree = ET.parse(filepath)
+        root = tree.getroot()
+    except ET.ParseError as e:
+        print(f"Error parsing {filepath}: {e}")
+        return action_lookup
+
+    for action in root.findall("action"):
+        name = action.get("name", "")
+        module_elem = action.find("moduleName")
+        method_elem = action.find("methodName")
+
+        module_name = module_elem.text.strip() if module_elem is not None and module_elem.text else ""
+        method_name = method_elem.text.strip() if method_elem is not None and method_elem.text else ""
+
+        if name:
+            action_lookup[name] = {"module": module_name, "method": method_name}
+
+    return action_lookup
+
+
+def parse_workflow_xml(filepath: str, action_lookup: dict) -> dict | None:
     """Parse a single workflow XML file and extract workflow data."""
     try:
         tree = ET.parse(filepath)
@@ -64,7 +88,8 @@ def parse_workflow_xml(filepath: str) -> dict | None:
         task = {
             "id": task_elem.get("taskID", ""),
             "name": task_elem.get("name", ""),
-            "action": "",
+            "module": "",
+            "method": "",
             "next": task_elem.get("nextTask", ""),
             "timeout": "",
             "inputs": [],
@@ -78,7 +103,10 @@ def parse_workflow_xml(filepath: str) -> dict | None:
 
             detail_elem = process_elem.find("wf:detail", ns)
             if detail_elem is not None:
-                task["action"] = detail_elem.get("action", "")
+                action_name = detail_elem.get("action", "")
+                if action_name and action_name in action_lookup:
+                    task["module"] = action_lookup[action_name]["module"]
+                    task["method"] = action_lookup[action_name]["method"]
 
             # Parse data objects locations for inputs/outputs
             locations = process_elem.findall("wf:dataObjectsLocation/wf:location", ns)
@@ -97,11 +125,18 @@ def parse_workflow_xml(filepath: str) -> dict | None:
 
 
 def main():
-    wf_defs_dir = Path(__file__).parent / "wfe" / "wf-defs"
+    base_dir = Path(__file__).parent
+    wf_defs_dir = base_dir / "wfe" / "wf-defs"
+    action_data_file = base_dir / "wfe" / "actionData.xml"
 
     if not wf_defs_dir.exists():
         print(f"Directory not found: {wf_defs_dir}")
         return
+
+    # Parse action data first
+    print(f"Parsing action data: {action_data_file}")
+    action_lookup = parse_action_data(str(action_data_file))
+    print(f"Found {len(action_lookup)} actions\n")
 
     workflows = []
 
@@ -112,7 +147,7 @@ def main():
             continue
 
         print(f"Parsing: {xml_file.name}")
-        workflow = parse_workflow_xml(str(xml_file))
+        workflow = parse_workflow_xml(str(xml_file), action_lookup)
         if workflow:
             workflows.append(workflow)
 

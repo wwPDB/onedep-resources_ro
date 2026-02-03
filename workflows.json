@@ -262,7 +262,8 @@
       {
         "id": "TP1",
         "name": "MakeDirectory",
-        "action": "mkdir",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "makeDirOp",
         "next": "TE1",
         "timeout": "00:01:20",
         "inputs": [
@@ -273,7 +274,8 @@
       {
         "id": "TE1",
         "name": "pre-fetch-accession-attributes",
-        "action": "fetch",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TE2",
         "timeout": "00:02:01",
         "inputs": [
@@ -286,7 +288,8 @@
       {
         "id": "TE2",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -295,7 +298,8 @@
       {
         "id": "TE3",
         "name": "auto-mapfix",
-        "action": "auto-mapfix",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "em3dAutoMapFixOp",
         "next": "TE4",
         "timeout": "01:55:20",
         "inputs": [
@@ -309,7 +313,8 @@
       {
         "id": "TE4",
         "name": "auto-em-map-versions",
-        "action": "auto-em-map-versions-archive",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "em3dAutoEmMapFixVersOp",
         "next": "TP2",
         "timeout": "01:55:20",
         "inputs": [
@@ -323,7 +328,8 @@
       {
         "id": "TP2",
         "name": "copyArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "TP2SF",
         "timeout": "00:01:01",
         "inputs": [
@@ -336,7 +342,8 @@
       {
         "id": "TP2SF",
         "name": "updateSF",
-        "action": "update-sf-wavelength",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "updateSFWavelengthOp",
         "next": "TP2A",
         "timeout": "00:05:01",
         "inputs": [
@@ -350,7 +357,8 @@
       {
         "id": "TP2A",
         "name": "copyShiftsArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "TP2N",
         "timeout": "00:01:01",
         "inputs": [
@@ -363,7 +371,8 @@
       {
         "id": "TP2N",
         "name": "copyNefArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "TP2B",
         "timeout": "00:01:01",
         "inputs": [
@@ -376,7 +385,8 @@
       {
         "id": "TP2B",
         "name": "shiftExist",
-        "action": "fileExist",
+        "module": "",
+        "method": "",
         "next": "TA2C",
         "timeout": "00:01:01",
         "inputs": [
@@ -389,7 +399,8 @@
       {
         "id": "TA2C",
         "name": "testFile",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -398,7 +409,8 @@
       {
         "id": "TP2D",
         "name": "nmr-cs-processing",
-        "action": "nmr-cs-processing",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "autoChemShiftProcessOp",
         "next": "TP2H",
         "timeout": "06:15:20",
         "inputs": [
@@ -419,7 +431,8 @@
       {
         "id": "TP2H",
         "name": "pdbx-dict-check",
-        "action": "pdbx-dict-check-first",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "dictCheckFirstOp",
         "next": "TT1",
         "timeout": "02:55:20",
         "inputs": [
@@ -432,7 +445,8 @@
       {
         "id": "TT1",
         "name": "fetch-accession-attributes",
-        "action": "fetch",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TD1",
         "timeout": "00:01:01",
         "inputs": [
@@ -445,7 +459,8 @@
       {
         "id": "TD1",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -454,7 +469,8 @@
       {
         "id": "TP3",
         "name": "solvent-position-add-derived",
-        "action": "solvent-position-add-derived",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "solventPositionAddDerivedOp",
         "next": "TP4",
         "timeout": "00:55:20",
         "inputs": [
@@ -467,7 +483,8 @@
       {
         "id": "TP4",
         "name": "nucleic-acid-geometry",
-        "action": "nucleic-acid-geometry",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "nucleicAcidGeometryOp",
         "next": "TP5",
         "timeout": "01:20:20",
         "inputs": [
@@ -480,9 +497,10 @@
       {
         "id": "TP5",
         "name": "linkages",
-        "action": "linkages-ptm",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "linkPtmOp",
         "next": "TP6",
-        "timeout": "01:55:20",
+        "timeout": "15:55:20",
         "inputs": [
           "D19"
         ],
@@ -494,7 +512,8 @@
       {
         "id": "TP6",
         "name": "cis-peptide",
-        "action": "cis-peptide",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "cisPeptideOp",
         "next": "TP7",
         "timeout": "01:55:20",
         "inputs": [
@@ -507,7 +526,8 @@
       {
         "id": "TP7",
         "name": "secondary-structure",
-        "action": "secondary-structure",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "secondaryStructureOp",
         "next": "TP2E",
         "timeout": "01:55:20",
         "inputs": [
@@ -520,7 +540,8 @@
       {
         "id": "TP2E",
         "name": "nefExist",
-        "action": "fileExist",
+        "module": "",
+        "method": "",
         "next": "TA2F",
         "timeout": "00:01:01",
         "inputs": [
@@ -533,7 +554,8 @@
       {
         "id": "TA2F",
         "name": "testFile",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -542,7 +564,8 @@
       {
         "id": "TP2G",
         "name": "nmr-nef-processing",
-        "action": "nmr-nef-processing",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "autoNmrNefProcessOp",
         "next": "TM1",
         "timeout": "01:15:20",
         "inputs": [
@@ -557,7 +580,8 @@
       {
         "id": "TP8",
         "name": "site-environment",
-        "action": "site-environment",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "siteEnvironmentOp",
         "next": "TP10",
         "timeout": "01:55:20",
         "inputs": [
@@ -570,7 +594,8 @@
       {
         "id": "TM1",
         "name": "fetch-exptl-methods-attributes",
-        "action": "fetch",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TM2",
         "timeout": "00:01:01",
         "inputs": [
@@ -583,7 +608,8 @@
       {
         "id": "TM2",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TM3",
         "timeout": "",
         "inputs": [],
@@ -592,7 +618,8 @@
       {
         "id": "TM3",
         "name": "generate-complexity",
-        "action": "generate-complexity",
+        "module": "wwpdb.utils.wf.plugins.DpUtils",
+        "method": "generateComplexityOp",
         "next": "TM3A",
         "timeout": "05:55:20",
         "inputs": [
@@ -605,7 +632,8 @@
       {
         "id": "TM3A",
         "name": "fetch-accession-attributes",
-        "action": "fetch-complexity",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TM3B",
         "timeout": "00:01:01",
         "inputs": [
@@ -618,7 +646,8 @@
       {
         "id": "TM3B",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP10",
         "timeout": "",
         "inputs": [],
@@ -627,7 +656,8 @@
       {
         "id": "TP10",
         "name": "assembly-report-and-models",
-        "action": "assembly-report-and-models",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "assemblyReportAndModelsOp",
         "next": "TP11",
         "timeout": "12:55:20",
         "inputs": [
@@ -641,9 +671,10 @@
       {
         "id": "TP11",
         "name": "update-geometry",
-        "action": "update-geometry-validation",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "updateGeometryValidationOp",
         "next": "TP12",
-        "timeout": "01:55:20",
+        "timeout": "10:55:20",
         "inputs": [
           "D19"
         ],
@@ -654,7 +685,8 @@
       {
         "id": "TP12",
         "name": "database-related",
-        "action": "update-database-related",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "updatePdbxDatabaseRelatedOp",
         "next": "TM6",
         "timeout": "01:55:20",
         "inputs": [
@@ -667,7 +699,8 @@
       {
         "id": "TM6",
         "name": "AnnotationInteface",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TL1",
         "timeout": "",
         "inputs": [],
@@ -676,7 +709,8 @@
       {
         "id": "TP88",
         "name": "wait",
-        "action": "wait",
+        "module": "",
+        "method": "",
         "next": "TL1",
         "timeout": "00:00:20",
         "inputs": [],
@@ -685,7 +719,8 @@
       {
         "id": "TL1",
         "name": "Loop",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP31",
         "timeout": "",
         "inputs": [],
@@ -694,7 +729,8 @@
       {
         "id": "TP31",
         "name": "copyPisaDataToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TL1",
         "timeout": "00:10:20",
         "inputs": [
@@ -707,7 +743,8 @@
       {
         "id": "TP20",
         "name": "copyModelToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP29",
         "timeout": "00:10:20",
         "inputs": [
@@ -720,7 +757,8 @@
       {
         "id": "TP29",
         "name": "copyLetterToArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "TP19",
         "timeout": "00:05:20",
         "inputs": [
@@ -733,7 +771,8 @@
       {
         "id": "TP19",
         "name": "copyPDBToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP21",
         "timeout": "00:05:20",
         "inputs": [
@@ -746,7 +785,8 @@
       {
         "id": "TP21",
         "name": "copyReportToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "T9",
         "timeout": "00:05:20",
         "inputs": [
@@ -775,7 +815,8 @@
       {
         "id": "TP1",
         "name": "Populate",
-        "action": "initDB",
+        "module": "",
+        "method": "",
         "next": "TP8",
         "timeout": "00:01:20",
         "inputs": [
@@ -786,7 +827,8 @@
       {
         "id": "TP8",
         "name": "resetDB",
-        "action": "resetStatus",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:01:20",
         "inputs": [
@@ -885,7 +927,8 @@
       {
         "id": "TP1",
         "name": "MakeDirectory",
-        "action": "mkdir",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "makeDirOp",
         "next": "TP2",
         "timeout": "00:01:20",
         "inputs": [
@@ -896,7 +939,8 @@
       {
         "id": "TP2",
         "name": "copyArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP3",
         "timeout": "00:01:01",
         "inputs": [
@@ -909,7 +953,8 @@
       {
         "id": "TP3",
         "name": "ChemCompLinkCalc",
-        "action": "chem-comp-link",
+        "module": "wwpdb.utils.wf.plugins.ChemCompUtils",
+        "method": "chemCompLinkOp",
         "next": "TP31",
         "timeout": "00:15:20",
         "inputs": [
@@ -922,7 +967,8 @@
       {
         "id": "TP31",
         "name": "linkExist",
-        "action": "fileExist",
+        "module": "",
+        "method": "",
         "next": "TA32",
         "timeout": "00:01:01",
         "inputs": [
@@ -935,7 +981,8 @@
       {
         "id": "TA32",
         "name": "testFile",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -944,7 +991,8 @@
       {
         "id": "TP4",
         "name": "ChemCompAssign",
-        "action": "chem-comp-assign",
+        "module": "wwpdb.utils.wf.plugins.ChemCompUtils",
+        "method": "chemCompAssignOp",
         "next": "TP5",
         "timeout": "04:55:20",
         "inputs": [
@@ -958,7 +1006,8 @@
       {
         "id": "TP44",
         "name": "ChemCompAssignNL",
-        "action": "chem-comp-assign-nl",
+        "module": "wwpdb.utils.wf.plugins.ChemCompUtils",
+        "method": "chemCompAssignNLOp",
         "next": "TP5",
         "timeout": "04:55:20",
         "inputs": [
@@ -971,7 +1020,8 @@
       {
         "id": "TP5",
         "name": "ChemCompFetch",
-        "action": "fetch-assign",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TA6",
         "timeout": "00:05:20",
         "inputs": [
@@ -984,7 +1034,8 @@
       {
         "id": "TA6",
         "name": "LigandOK",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -993,7 +1044,8 @@
       {
         "id": "TM6",
         "name": "TestInteface",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TL1",
         "timeout": "",
         "inputs": [],
@@ -1002,7 +1054,8 @@
       {
         "id": "TP7",
         "name": "ChemCompUpdate",
-        "action": "chem-comp-instance-update",
+        "module": "wwpdb.utils.wf.plugins.ChemCompUtils",
+        "method": "chemCompInstanceUpdateOp",
         "next": "TP8",
         "timeout": "01:05:20",
         "inputs": [
@@ -1016,7 +1069,8 @@
       {
         "id": "TP8",
         "name": "copyModelToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "T9",
         "timeout": "00:05:20",
         "inputs": [
@@ -1117,7 +1171,8 @@
       {
         "id": "TP1",
         "name": "MakeDirectory",
-        "action": "mkdir",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "makeDirOp",
         "next": "TP2",
         "timeout": "00:01:20",
         "inputs": [
@@ -1128,7 +1183,8 @@
       {
         "id": "TP2",
         "name": "copyArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP3",
         "timeout": "00:01:01",
         "inputs": [
@@ -1141,7 +1197,8 @@
       {
         "id": "TP3",
         "name": "ChemCompLinkCalc",
-        "action": "chem-comp-link",
+        "module": "wwpdb.utils.wf.plugins.ChemCompUtils",
+        "method": "chemCompLinkOp",
         "next": "TP31",
         "timeout": "00:15:20",
         "inputs": [
@@ -1154,7 +1211,8 @@
       {
         "id": "TP31",
         "name": "linkExist",
-        "action": "fileExist",
+        "module": "",
+        "method": "",
         "next": "TA32",
         "timeout": "00:01:01",
         "inputs": [
@@ -1167,7 +1225,8 @@
       {
         "id": "TA32",
         "name": "testFile",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -1176,7 +1235,8 @@
       {
         "id": "TP4",
         "name": "ChemCompAssign",
-        "action": "chem-comp-assign",
+        "module": "wwpdb.utils.wf.plugins.ChemCompUtils",
+        "method": "chemCompAssignOp",
         "next": "TP5",
         "timeout": "04:55:20",
         "inputs": [
@@ -1190,7 +1250,8 @@
       {
         "id": "TP44",
         "name": "ChemCompAssignNL",
-        "action": "chem-comp-assign-nl",
+        "module": "wwpdb.utils.wf.plugins.ChemCompUtils",
+        "method": "chemCompAssignNLOp",
         "next": "TP5",
         "timeout": "04:55:20",
         "inputs": [
@@ -1203,7 +1264,8 @@
       {
         "id": "TP5",
         "name": "ChemCompFetch",
-        "action": "fetch-assign",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TM6",
         "timeout": "00:05:20",
         "inputs": [
@@ -1216,7 +1278,8 @@
       {
         "id": "TA6",
         "name": "LigandOK",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -1225,7 +1288,8 @@
       {
         "id": "TM6",
         "name": "TestInteface",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TL1",
         "timeout": "",
         "inputs": [],
@@ -1234,7 +1298,8 @@
       {
         "id": "TP7",
         "name": "ChemCompUpdate",
-        "action": "chem-comp-instance-update",
+        "module": "wwpdb.utils.wf.plugins.ChemCompUtils",
+        "method": "chemCompInstanceUpdateOp",
         "next": "TP8",
         "timeout": "01:05:20",
         "inputs": [
@@ -1248,7 +1313,8 @@
       {
         "id": "TP8",
         "name": "copyModelToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "T9",
         "timeout": "00:05:20",
         "inputs": [
@@ -1277,7 +1343,8 @@
       {
         "id": "TP1",
         "name": "Monitor",
-        "action": "monitorDB",
+        "module": "",
+        "method": "",
         "next": "TP9",
         "timeout": "00:00:00",
         "inputs": [],
@@ -1326,7 +1393,8 @@
       {
         "id": "TP2",
         "name": "MakeDirectory",
-        "action": "mkdir",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "makeDirOp",
         "next": "TP3",
         "timeout": "00:01:20",
         "inputs": [
@@ -1337,7 +1405,8 @@
       {
         "id": "TP3",
         "name": "ImportConvertCIF",
-        "action": "rcsb-cifeps2pdbx",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "rcsb2pdbxOp",
         "next": "TP1",
         "timeout": "00:11:20",
         "inputs": [
@@ -1350,7 +1419,8 @@
       {
         "id": "TP4",
         "name": "ImportConvertPDB",
-        "action": "pdb2pdbx",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "pdb2pdbxOp",
         "next": "TP1",
         "timeout": "00:01:20",
         "inputs": [
@@ -1363,7 +1433,8 @@
       {
         "id": "TP1",
         "name": "Populate",
-        "action": "initDB",
+        "module": "",
+        "method": "",
         "next": "TP8",
         "timeout": "00:01:20",
         "inputs": [
@@ -1374,7 +1445,8 @@
       {
         "id": "TP8",
         "name": "resetDB",
-        "action": "resetStatus",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:01:20",
         "inputs": [
@@ -1419,7 +1491,8 @@
       {
         "id": "TP2",
         "name": "MakeDirectory",
-        "action": "mkdir",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "makeDirOp",
         "next": "TP3",
         "timeout": "00:01:20",
         "inputs": [
@@ -1430,7 +1503,8 @@
       {
         "id": "TP3",
         "name": "ImportConvertCIF",
-        "action": "pdb2pdbx",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "pdb2pdbxOp",
         "next": "TP1",
         "timeout": "00:05:20",
         "inputs": [
@@ -1443,7 +1517,8 @@
       {
         "id": "TP4",
         "name": "ImportConvertPDB",
-        "action": "pdb2pdbx",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "pdb2pdbxOp",
         "next": "TP1",
         "timeout": "00:01:20",
         "inputs": [
@@ -1456,7 +1531,8 @@
       {
         "id": "TP1",
         "name": "Populate",
-        "action": "initDB",
+        "module": "",
+        "method": "",
         "next": "TP8",
         "timeout": "00:01:20",
         "inputs": [
@@ -1467,7 +1543,8 @@
       {
         "id": "TP8",
         "name": "resetDB",
-        "action": "resetStatus",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:01:20",
         "inputs": [
@@ -1602,7 +1679,8 @@
       {
         "id": "TP3",
         "name": "pdbx-dict-check",
-        "action": "pdbx-dict-check-first",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "dictCheckFirstOp",
         "next": "TP3A",
         "timeout": "00:30:20",
         "inputs": [
@@ -1615,7 +1693,8 @@
       {
         "id": "TP3A",
         "name": "pdbx-xml-check",
-        "action": "pdbx-xml-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "xmlCheckOp",
         "next": "TP4",
         "timeout": "00:30:20",
         "inputs": [
@@ -1628,7 +1707,8 @@
       {
         "id": "TP4",
         "name": "pdbx-format-check",
-        "action": "pdbx-format-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "formatCheckPdbxOp",
         "next": "TP5",
         "timeout": "00:30:20",
         "inputs": [
@@ -1641,7 +1721,8 @@
       {
         "id": "TP5",
         "name": "misc-check-report",
-        "action": "misc-check-report",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "miscCheckReportOp",
         "next": "TP6",
         "timeout": "00:30:20",
         "inputs": [
@@ -1654,7 +1735,8 @@
       {
         "id": "TP6",
         "name": "dcc-report",
-        "action": "dcc-report",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "dccCheckReportOp",
         "next": "TP8",
         "timeout": "00:59:20",
         "inputs": [
@@ -1669,7 +1751,8 @@
       {
         "id": "TP8",
         "name": "pdbx-geometry-check",
-        "action": "pdbx-geometry-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "geometryCheckOp",
         "next": "TP9",
         "timeout": "00:30:20",
         "inputs": [
@@ -1682,7 +1765,8 @@
       {
         "id": "TP9",
         "name": "special-position-check",
-        "action": "special-position-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "specialPositionCheckOp",
         "next": "TP10",
         "timeout": "00:30:20",
         "inputs": [
@@ -1695,7 +1779,8 @@
       {
         "id": "TP10",
         "name": "pdbx2pdb",
-        "action": "pdbx2pdb",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "pdbx2pdbOp",
         "next": "TP11",
         "timeout": "00:02:20",
         "inputs": [
@@ -1708,7 +1793,8 @@
       {
         "id": "TP11",
         "name": "emd-xmlheader-check",
-        "action": "emd-xml-header-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "emdXmlHeaderCheckOp",
         "next": "TP11M",
         "timeout": "00:30:20",
         "inputs": [
@@ -1721,7 +1807,8 @@
       {
         "id": "TP11M",
         "name": "em-map-check",
-        "action": "em-map-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "emMapCheckOp",
         "next": "TP12",
         "timeout": "00:30:20",
         "inputs": [
@@ -1734,7 +1821,8 @@
       {
         "id": "TP12",
         "name": "em-volume-bcif-conversion",
-        "action": "em-volume-bcif-conversion",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "emVolumeBcifConversionOp",
         "next": "TP13",
         "timeout": "00:30:20",
         "inputs": [
@@ -1745,7 +1833,8 @@
       {
         "id": "TP13",
         "name": "xray-bcif-conversion",
-        "action": "xray-bcif-conversion",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "xrayBcifConversionOp",
         "next": "T10",
         "timeout": "00:30:20",
         "inputs": [
@@ -1884,7 +1973,8 @@
       {
         "id": "TP3",
         "name": "pdbx-dict-check",
-        "action": "pdbx-dict-check-first",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "dictCheckFirstOp",
         "next": "TP3A",
         "timeout": "00:30:20",
         "inputs": [
@@ -1897,7 +1987,8 @@
       {
         "id": "TP3A",
         "name": "pdbx-xml-check",
-        "action": "pdbx-xml-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "xmlCheckOp",
         "next": "TP4",
         "timeout": "00:30:20",
         "inputs": [
@@ -1910,7 +2001,8 @@
       {
         "id": "TP4",
         "name": "pdbx-format-check",
-        "action": "pdbx-format-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "formatCheckPdbxOp",
         "next": "TP5",
         "timeout": "00:30:20",
         "inputs": [
@@ -1923,7 +2015,8 @@
       {
         "id": "TP5",
         "name": "misc-check-report",
-        "action": "misc-check-report",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "miscCheckReportOp",
         "next": "TP6",
         "timeout": "00:30:20",
         "inputs": [
@@ -1936,7 +2029,8 @@
       {
         "id": "TP6",
         "name": "dcc-report",
-        "action": "dcc-report",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "dccCheckReportOp",
         "next": "TP8",
         "timeout": "00:59:20",
         "inputs": [
@@ -1951,7 +2045,8 @@
       {
         "id": "TP8",
         "name": "pdbx-geometry-check",
-        "action": "pdbx-geometry-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "geometryCheckOp",
         "next": "TP9",
         "timeout": "00:30:20",
         "inputs": [
@@ -1964,7 +2059,8 @@
       {
         "id": "TP9",
         "name": "special-position-check",
-        "action": "special-position-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "specialPositionCheckOp",
         "next": "TP10",
         "timeout": "00:30:20",
         "inputs": [
@@ -1977,7 +2073,8 @@
       {
         "id": "TP10",
         "name": "pdbx2pdb",
-        "action": "pdbx2pdb",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "pdbx2pdbOp",
         "next": "TP11",
         "timeout": "00:02:20",
         "inputs": [
@@ -1990,7 +2087,8 @@
       {
         "id": "TP11",
         "name": "emd-xmlheader-check",
-        "action": "emd-xml-header-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "emdXmlHeaderCheckOp",
         "next": "TP11M",
         "timeout": "00:30:20",
         "inputs": [
@@ -2003,7 +2101,8 @@
       {
         "id": "TP11M",
         "name": "em-map-check",
-        "action": "em-map-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "emMapCheckOp",
         "next": "TP12",
         "timeout": "00:30:20",
         "inputs": [
@@ -2016,7 +2115,8 @@
       {
         "id": "TP12",
         "name": "em-volume-bcif-conversion",
-        "action": "em-volume-bcif-conversion",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "emVolumeBcifConversionOp",
         "next": "TP13",
         "timeout": "00:30:20",
         "inputs": [
@@ -2027,7 +2127,8 @@
       {
         "id": "TP13",
         "name": "xray-bcif-conversion",
-        "action": "xray-bcif-conversion",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "xrayBcifConversionOp",
         "next": "T10",
         "timeout": "00:30:20",
         "inputs": [
@@ -2118,7 +2219,8 @@
       {
         "id": "TP3",
         "name": "pdbx-dict-check",
-        "action": "pdbx-dict-check-first",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "dictCheckFirstOp",
         "next": "TP4",
         "timeout": "00:30:20",
         "inputs": [
@@ -2131,7 +2233,8 @@
       {
         "id": "TP4",
         "name": "pdbx-format-check",
-        "action": "pdbx-format-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "formatCheckPdbxOp",
         "next": "TP5",
         "timeout": "00:30:20",
         "inputs": [
@@ -2144,7 +2247,8 @@
       {
         "id": "TP5",
         "name": "misc-check-report",
-        "action": "misc-check-report",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "miscCheckReportOp",
         "next": "TP6",
         "timeout": "00:30:20",
         "inputs": [
@@ -2157,7 +2261,8 @@
       {
         "id": "TP6",
         "name": "dcc-report",
-        "action": "dcc-report",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "dccCheckReportOp",
         "next": "TP8",
         "timeout": "00:59:20",
         "inputs": [
@@ -2172,7 +2277,8 @@
       {
         "id": "TP8",
         "name": "pdbx-geometry-check",
-        "action": "pdbx-geometry-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "geometryCheckOp",
         "next": "TP9",
         "timeout": "00:30:20",
         "inputs": [
@@ -2185,7 +2291,8 @@
       {
         "id": "TP9",
         "name": "special-position-check",
-        "action": "special-position-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "specialPositionCheckOp",
         "next": "TP10",
         "timeout": "00:30:20",
         "inputs": [
@@ -2198,7 +2305,8 @@
       {
         "id": "TP10",
         "name": "pdbx2pdb",
-        "action": "pdbx2pdb",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "pdbx2pdbOp",
         "next": "T10",
         "timeout": "00:00:20",
         "inputs": [
@@ -2263,7 +2371,8 @@
       {
         "id": "TP1",
         "name": "MakeDirectory",
-        "action": "mkdir",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "makeDirOp",
         "next": "TP2",
         "timeout": "00:01:20",
         "inputs": [
@@ -2274,7 +2383,8 @@
       {
         "id": "TP2",
         "name": "copyArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP3A",
         "timeout": "00:01:01",
         "inputs": [
@@ -2287,7 +2397,8 @@
       {
         "id": "TP3A",
         "name": "update-geometry-validation",
-        "action": "update-geometry-validation",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "updateGeometryValidationOp",
         "next": "TP3B",
         "timeout": "00:55:20",
         "inputs": [
@@ -2300,9 +2411,10 @@
       {
         "id": "TP3B",
         "name": "Prepare Alignment for UI",
-        "action": "match-all-auto",
+        "module": "wwpdb.utils.wf.plugins.SeqdbUtils",
+        "method": "matchAllAutoOp",
         "next": "TP31",
-        "timeout": "15:55:20",
+        "timeout": "30:55:20",
         "inputs": [
           "D3"
         ],
@@ -2313,7 +2425,8 @@
       {
         "id": "TP31",
         "name": "assignExist",
-        "action": "fileExist",
+        "module": "",
+        "method": "",
         "next": "TA32",
         "timeout": "00:01:01",
         "inputs": [
@@ -2326,7 +2439,8 @@
       {
         "id": "TA32",
         "name": "testFile",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -2335,7 +2449,8 @@
       {
         "id": "TA5",
         "name": "autoSeqUpdate",
-        "action": "seq-assign-update",
+        "module": "wwpdb.utils.wf.plugins.SeqdbUtils",
+        "method": "updateModelWithSeqAssignmentOp",
         "next": "T9",
         "timeout": "00:15:20",
         "inputs": [
@@ -2349,7 +2464,8 @@
       {
         "id": "TM6",
         "name": "TestInteface",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -2398,7 +2514,8 @@
       {
         "id": "TP1",
         "name": "MakeDirectory",
-        "action": "mkdir",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "makeDirOp",
         "next": "TP2",
         "timeout": "00:01:20",
         "inputs": [
@@ -2409,7 +2526,8 @@
       {
         "id": "TP2",
         "name": "copyArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP3A",
         "timeout": "00:01:01",
         "inputs": [
@@ -2422,7 +2540,8 @@
       {
         "id": "TP3A",
         "name": "update-geometry-validation",
-        "action": "update-geometry-validation",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "updateGeometryValidationOp",
         "next": "TP3B",
         "timeout": "00:55:20",
         "inputs": [
@@ -2435,9 +2554,10 @@
       {
         "id": "TP3B",
         "name": "Prepare Alignment for UI",
-        "action": "match-all",
+        "module": "wwpdb.utils.wf.plugins.SeqdbUtils",
+        "method": "matchAllOp",
         "next": "TM6",
-        "timeout": "15:55:20",
+        "timeout": "30:55:20",
         "inputs": [
           "D3"
         ],
@@ -2448,7 +2568,8 @@
       {
         "id": "TM6",
         "name": "TestInteface",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -2473,7 +2594,8 @@
       {
         "id": "TP88",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -2498,7 +2620,8 @@
       {
         "id": "TP88",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -2571,7 +2694,8 @@
       {
         "id": "TP1",
         "name": "MakeDirectory",
-        "action": "mkdir",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "makeDirOp",
         "next": "TP2",
         "timeout": "00:01:20",
         "inputs": [
@@ -2582,7 +2706,8 @@
       {
         "id": "TP2",
         "name": "copyArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP3",
         "timeout": "00:01:01",
         "inputs": [
@@ -2595,7 +2720,8 @@
       {
         "id": "TP3",
         "name": "PrdSearch",
-        "action": "prd-search",
+        "module": "wwpdb.utils.wf.plugins.PrdSearchUtils",
+        "method": "PrdSearchOp",
         "next": "TP31",
         "timeout": "01:15:20",
         "inputs": [
@@ -2608,7 +2734,8 @@
       {
         "id": "TP31",
         "name": "prdExist",
-        "action": "fileExist",
+        "module": "",
+        "method": "",
         "next": "TA32",
         "timeout": "00:01:01",
         "inputs": [
@@ -2621,7 +2748,8 @@
       {
         "id": "TA32",
         "name": "testFile",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -2630,7 +2758,8 @@
       {
         "id": "TP5",
         "name": "PrdSearchFetch",
-        "action": "fetch-summary",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TA6",
         "timeout": "00:05:20",
         "inputs": [
@@ -2643,7 +2772,8 @@
       {
         "id": "TA6",
         "name": "TransModOK",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -2652,7 +2782,8 @@
       {
         "id": "TM6",
         "name": "TransformerUI",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP8",
         "timeout": "",
         "inputs": [],
@@ -2661,7 +2792,8 @@
       {
         "id": "TP8",
         "name": "copyModelToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "T9",
         "timeout": "00:05:20",
         "inputs": [
@@ -2732,7 +2864,8 @@
       {
         "id": "TP1",
         "name": "MakeDirectory",
-        "action": "mkdir",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "makeDirOp",
         "next": "TP2",
         "timeout": "00:01:20",
         "inputs": [
@@ -2743,7 +2876,8 @@
       {
         "id": "TP2",
         "name": "copyArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP3",
         "timeout": "00:01:01",
         "inputs": [
@@ -2756,7 +2890,8 @@
       {
         "id": "TP3",
         "name": "PrdSearch",
-        "action": "prd-search",
+        "module": "wwpdb.utils.wf.plugins.PrdSearchUtils",
+        "method": "PrdSearchOp",
         "next": "TM6",
         "timeout": "01:15:20",
         "inputs": [
@@ -2769,7 +2904,8 @@
       {
         "id": "TM6",
         "name": "TransformerUI",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP8",
         "timeout": "",
         "inputs": [],
@@ -2778,7 +2914,8 @@
       {
         "id": "TP8",
         "name": "copyModelToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "T9",
         "timeout": "00:05:20",
         "inputs": [
@@ -2807,7 +2944,8 @@
       {
         "id": "TP1",
         "name": "Watch",
-        "action": "watchDB",
+        "module": "",
+        "method": "",
         "next": "TP9",
         "timeout": "00:00:00",
         "inputs": [],
@@ -2898,7 +3036,8 @@
       {
         "id": "TP1",
         "name": "wait",
-        "action": "wait",
+        "module": "",
+        "method": "",
         "next": "TP88",
         "timeout": "00:00:20",
         "inputs": [],
@@ -2907,7 +3046,8 @@
       {
         "id": "TP3",
         "name": "pdbx-dict-check",
-        "action": "pdbx-dict-check-first",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "dictCheckFirstOp",
         "next": "TP4",
         "timeout": "00:05:20",
         "inputs": [
@@ -2920,7 +3060,8 @@
       {
         "id": "TP4",
         "name": "pdbx-format-check",
-        "action": "pdbx-format-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "formatCheckPdbxOp",
         "next": "TP5",
         "timeout": "00:05:20",
         "inputs": [
@@ -2933,7 +3074,8 @@
       {
         "id": "TP5",
         "name": "misc-check-report",
-        "action": "misc-check-report",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "miscCheckReportOp",
         "next": "TP6",
         "timeout": "00:05:20",
         "inputs": [
@@ -2946,7 +3088,8 @@
       {
         "id": "TP6",
         "name": "dcc-report",
-        "action": "dcc-report",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "dccCheckReportOp",
         "next": "TP7",
         "timeout": "00:15:20",
         "inputs": [
@@ -2961,7 +3104,8 @@
       {
         "id": "TP7",
         "name": "pdbx-dict-r4-check",
-        "action": "pdbx-dict-r4-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "dictR4CheckOp",
         "next": "TP8",
         "timeout": "00:30:20",
         "inputs": [
@@ -2974,7 +3118,8 @@
       {
         "id": "TP8",
         "name": "pdbx-geometry-check",
-        "action": "pdbx-geometry-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "geometryCheckOp",
         "next": "TP9",
         "timeout": "00:30:20",
         "inputs": [
@@ -2987,7 +3132,8 @@
       {
         "id": "TP9",
         "name": "special-position-check",
-        "action": "special-position-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "specialPositionCheckOp",
         "next": "TP10",
         "timeout": "00:30:20",
         "inputs": [
@@ -3000,7 +3146,8 @@
       {
         "id": "TP10",
         "name": "pdbx2pdb",
-        "action": "pdbx2pdb",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "pdbx2pdbOp",
         "next": "TP11",
         "timeout": "00:00:20",
         "inputs": [
@@ -3013,7 +3160,8 @@
       {
         "id": "TP11",
         "name": "StatusLoad",
-        "action": "pdbx-status-load",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "statusLoadOp",
         "next": "TP88",
         "timeout": "00:05:20",
         "inputs": [
@@ -3024,7 +3172,8 @@
       {
         "id": "TP88",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -3049,7 +3198,8 @@
       {
         "id": "T2",
         "name": "mapfixop",
-        "action": "additional-mapfix-in-place-cfg",
+        "module": "wwpdb.utils.wf.plugins.EmUtils",
+        "method": "mapFixInPlaceCfgOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -3060,7 +3210,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -3085,7 +3236,8 @@
       {
         "id": "T2",
         "name": "mapfixop",
-        "action": "additional-mapfix-in-place-cfg",
+        "module": "wwpdb.utils.wf.plugins.EmUtils",
+        "method": "mapFixInPlaceCfgOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -3096,7 +3248,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -3373,7 +3526,8 @@
       {
         "id": "TP1",
         "name": "MakeDirectory",
-        "action": "mkdir",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "makeDirOp",
         "next": "TE1",
         "timeout": "00:01:20",
         "inputs": [
@@ -3384,7 +3538,8 @@
       {
         "id": "TE1",
         "name": "pre-fetch-accession-attributes",
-        "action": "fetch",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TE2",
         "timeout": "00:02:01",
         "inputs": [
@@ -3397,7 +3552,8 @@
       {
         "id": "TE2",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -3406,7 +3562,8 @@
       {
         "id": "TE3",
         "name": "auto-mapfix",
-        "action": "auto-mapfix",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "em3dAutoMapFixOp",
         "next": "TE4",
         "timeout": "01:55:20",
         "inputs": [
@@ -3420,7 +3577,8 @@
       {
         "id": "TE4",
         "name": "auto-em-map-versions",
-        "action": "auto-em-map-versions-archive",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "em3dAutoEmMapFixVersOp",
         "next": "TP2",
         "timeout": "01:55:20",
         "inputs": [
@@ -3434,7 +3592,8 @@
       {
         "id": "TP2",
         "name": "copyArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "TE5",
         "timeout": "00:01:01",
         "inputs": [
@@ -3447,7 +3606,8 @@
       {
         "id": "TE5",
         "name": "pre-fetch-accession-attributes",
-        "action": "fetch",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TE6",
         "timeout": "00:02:01",
         "inputs": [
@@ -3460,7 +3620,8 @@
       {
         "id": "TE6",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -3469,7 +3630,8 @@
       {
         "id": "TP2SF",
         "name": "updateSF",
-        "action": "update-sf-wavelength",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "updateSFWavelengthOp",
         "next": "TP2A",
         "timeout": "00:05:01",
         "inputs": [
@@ -3483,7 +3645,8 @@
       {
         "id": "TP2A",
         "name": "copyShiftsArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "TP2N",
         "timeout": "00:01:01",
         "inputs": [
@@ -3496,7 +3659,8 @@
       {
         "id": "TP2N",
         "name": "copyNefArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "TP2B",
         "timeout": "00:01:01",
         "inputs": [
@@ -3509,7 +3673,8 @@
       {
         "id": "TP2B",
         "name": "shiftExist",
-        "action": "fileExist",
+        "module": "",
+        "method": "",
         "next": "TA2C",
         "timeout": "00:01:01",
         "inputs": [
@@ -3522,7 +3687,8 @@
       {
         "id": "TA2C",
         "name": "testFile",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -3531,7 +3697,8 @@
       {
         "id": "TP2D",
         "name": "nmr-cs-processing",
-        "action": "nmr-cs-processing",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "autoChemShiftProcessOp",
         "next": "TP2H",
         "timeout": "06:15:20",
         "inputs": [
@@ -3552,7 +3719,8 @@
       {
         "id": "TP2H",
         "name": "pdbx-dict-check",
-        "action": "pdbx-dict-check-first",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "dictCheckFirstOp",
         "next": "TT1",
         "timeout": "02:55:20",
         "inputs": [
@@ -3565,7 +3733,8 @@
       {
         "id": "TT1",
         "name": "fetch-accession-attributes",
-        "action": "fetch",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TD1",
         "timeout": "00:01:01",
         "inputs": [
@@ -3578,7 +3747,8 @@
       {
         "id": "TD1",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -3587,7 +3757,8 @@
       {
         "id": "TP3",
         "name": "solvent-position-add-derived",
-        "action": "solvent-position-add-derived",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "solventPositionAddDerivedOp",
         "next": "TP4",
         "timeout": "00:55:20",
         "inputs": [
@@ -3600,7 +3771,8 @@
       {
         "id": "TP4",
         "name": "nucleic-acid-geometry",
-        "action": "nucleic-acid-geometry",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "nucleicAcidGeometryOp",
         "next": "TP5",
         "timeout": "01:20:20",
         "inputs": [
@@ -3613,9 +3785,10 @@
       {
         "id": "TP5",
         "name": "linkages",
-        "action": "linkages-ptm",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "linkPtmOp",
         "next": "TP6",
-        "timeout": "01:55:20",
+        "timeout": "15:55:20",
         "inputs": [
           "D19"
         ],
@@ -3627,7 +3800,8 @@
       {
         "id": "TP6",
         "name": "cis-peptide",
-        "action": "cis-peptide",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "cisPeptideOp",
         "next": "TP7",
         "timeout": "01:55:20",
         "inputs": [
@@ -3640,7 +3814,8 @@
       {
         "id": "TP7",
         "name": "secondary-structure",
-        "action": "secondary-structure",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "secondaryStructureOp",
         "next": "TP2E",
         "timeout": "01:55:20",
         "inputs": [
@@ -3653,7 +3828,8 @@
       {
         "id": "TP2E",
         "name": "nefExist",
-        "action": "fileExist",
+        "module": "",
+        "method": "",
         "next": "TA2F",
         "timeout": "00:01:01",
         "inputs": [
@@ -3666,7 +3842,8 @@
       {
         "id": "TA2F",
         "name": "testFile",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -3675,7 +3852,8 @@
       {
         "id": "TP2G",
         "name": "nmr-nef-processing",
-        "action": "nmr-nef-processing",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "autoNmrNefProcessOp",
         "next": "TM1",
         "timeout": "01:15:20",
         "inputs": [
@@ -3690,7 +3868,8 @@
       {
         "id": "TP8",
         "name": "site-environment",
-        "action": "site-environment",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "siteEnvironmentOp",
         "next": "TP10",
         "timeout": "01:55:20",
         "inputs": [
@@ -3703,7 +3882,8 @@
       {
         "id": "TM1",
         "name": "fetch-exptl-methods-attributes",
-        "action": "fetch",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TM2",
         "timeout": "00:01:01",
         "inputs": [
@@ -3716,7 +3896,8 @@
       {
         "id": "TM2",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TM3",
         "timeout": "",
         "inputs": [],
@@ -3725,7 +3906,8 @@
       {
         "id": "TM3",
         "name": "generate-complexity",
-        "action": "generate-complexity",
+        "module": "wwpdb.utils.wf.plugins.DpUtils",
+        "method": "generateComplexityOp",
         "next": "TM3A",
         "timeout": "05:55:20",
         "inputs": [
@@ -3738,7 +3920,8 @@
       {
         "id": "TM3A",
         "name": "fetch-accession-attributes",
-        "action": "fetch-complexity",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TM3B",
         "timeout": "00:01:01",
         "inputs": [
@@ -3751,7 +3934,8 @@
       {
         "id": "TM3B",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP10",
         "timeout": "",
         "inputs": [],
@@ -3760,7 +3944,8 @@
       {
         "id": "TP10",
         "name": "assembly-report-and-models",
-        "action": "assembly-report-and-models",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "assemblyReportAndModelsOp",
         "next": "TP11",
         "timeout": "12:55:20",
         "inputs": [
@@ -3774,9 +3959,10 @@
       {
         "id": "TP11",
         "name": "update-geometry",
-        "action": "update-geometry-validation",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "updateGeometryValidationOp",
         "next": "TP12",
-        "timeout": "01:55:20",
+        "timeout": "10:55:20",
         "inputs": [
           "D19"
         ],
@@ -3787,7 +3973,8 @@
       {
         "id": "TP12",
         "name": "database-related",
-        "action": "update-database-related",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "updatePdbxDatabaseRelatedOp",
         "next": "TP3E",
         "timeout": "01:55:20",
         "inputs": [
@@ -3800,7 +3987,8 @@
       {
         "id": "TP3E",
         "name": "pcmExist",
-        "action": "fileExist",
+        "module": "",
+        "method": "",
         "next": "TA3F",
         "timeout": "00:01:01",
         "inputs": [
@@ -3813,7 +4001,8 @@
       {
         "id": "TA3F",
         "name": "testFile",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -3822,7 +4011,8 @@
       {
         "id": "TT2",
         "name": "fetch-pcm-missing-data",
-        "action": "fetch-pcm-missing-data",
+        "module": "wwpdb.utils.wf.plugins.PcmCsvUtils",
+        "method": "missingPcmDataOp",
         "next": "TDP",
         "timeout": "00:01:01",
         "inputs": [
@@ -3835,7 +4025,8 @@
       {
         "id": "TDP",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -3844,7 +4035,8 @@
       {
         "id": "TT3",
         "name": "fetch-accession-attributes",
-        "action": "fetch-ann-auto",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchAnnAutoOp",
         "next": "TD2",
         "timeout": "00:01:01",
         "inputs": [
@@ -3859,7 +4051,8 @@
       {
         "id": "TD2",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -3868,7 +4061,8 @@
       {
         "id": "TD3",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -3877,7 +4071,8 @@
       {
         "id": "TD4",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -3886,7 +4081,8 @@
       {
         "id": "TD5",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -3895,7 +4091,8 @@
       {
         "id": "TM6",
         "name": "AnnotationInteface",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TL1",
         "timeout": "",
         "inputs": [],
@@ -3904,7 +4101,8 @@
       {
         "id": "TP88",
         "name": "wait",
-        "action": "wait",
+        "module": "",
+        "method": "",
         "next": "TL1",
         "timeout": "00:00:20",
         "inputs": [],
@@ -3913,7 +4111,8 @@
       {
         "id": "TL1",
         "name": "Loop",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP31",
         "timeout": "",
         "inputs": [],
@@ -3922,7 +4121,8 @@
       {
         "id": "TP31",
         "name": "copyPisaDataToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TL1",
         "timeout": "00:10:20",
         "inputs": [
@@ -3935,7 +4135,8 @@
       {
         "id": "TP20",
         "name": "copyModelToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP29",
         "timeout": "00:10:20",
         "inputs": [
@@ -3948,7 +4149,8 @@
       {
         "id": "TP29",
         "name": "copyLetterToArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "TP19",
         "timeout": "00:05:20",
         "inputs": [
@@ -3961,7 +4163,8 @@
       {
         "id": "TP19",
         "name": "copyPDBToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP21",
         "timeout": "00:05:20",
         "inputs": [
@@ -3974,7 +4177,8 @@
       {
         "id": "TP21",
         "name": "copyReportToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "T9",
         "timeout": "00:05:20",
         "inputs": [
@@ -4027,7 +4231,8 @@
       {
         "id": "TP7",
         "name": "ReportMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TT4",
         "timeout": "",
         "inputs": [],
@@ -4036,7 +4241,8 @@
       {
         "id": "TT4",
         "name": "fetch-accession-attributes",
-        "action": "fetch",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TD4",
         "timeout": "00:01:01",
         "inputs": [
@@ -4049,7 +4255,8 @@
       {
         "id": "TD4",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -4058,7 +4265,8 @@
       {
         "id": "TP8",
         "name": "TransMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP10",
         "timeout": "",
         "inputs": [],
@@ -4067,7 +4275,8 @@
       {
         "id": "TP10",
         "name": "LigMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP11",
         "timeout": "",
         "inputs": [],
@@ -4076,7 +4285,8 @@
       {
         "id": "TP11",
         "name": "SeqMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP12",
         "timeout": "",
         "inputs": [],
@@ -4085,7 +4295,8 @@
       {
         "id": "TP12",
         "name": "AnnMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP18",
         "timeout": "",
         "inputs": [],
@@ -4094,7 +4305,8 @@
       {
         "id": "TT5",
         "name": "fetch-accession-attributes",
-        "action": "fetch",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TD5",
         "timeout": "00:01:01",
         "inputs": [
@@ -4107,7 +4319,8 @@
       {
         "id": "TD5",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -4116,7 +4329,8 @@
       {
         "id": "TP18",
         "name": "ValMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP21",
         "timeout": "",
         "inputs": [],
@@ -4125,7 +4339,8 @@
       {
         "id": "TP21",
         "name": "ReportMod2",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP20",
         "timeout": "",
         "inputs": [],
@@ -4134,7 +4349,8 @@
       {
         "id": "TP20",
         "name": "StatMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -4165,7 +4381,8 @@
       {
         "id": "TP7",
         "name": "ReportMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP8",
         "timeout": "",
         "inputs": [],
@@ -4174,7 +4391,8 @@
       {
         "id": "TP8",
         "name": "TransMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP10",
         "timeout": "",
         "inputs": [],
@@ -4183,7 +4401,8 @@
       {
         "id": "TP10",
         "name": "LigMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP11",
         "timeout": "",
         "inputs": [],
@@ -4192,7 +4411,8 @@
       {
         "id": "TP11",
         "name": "SeqMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP12",
         "timeout": "",
         "inputs": [],
@@ -4201,7 +4421,8 @@
       {
         "id": "TP12",
         "name": "AnnMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP18",
         "timeout": "",
         "inputs": [],
@@ -4210,7 +4431,8 @@
       {
         "id": "TP18",
         "name": "ValMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP20",
         "timeout": "",
         "inputs": [],
@@ -4219,7 +4441,8 @@
       {
         "id": "TP20",
         "name": "StatMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -4250,7 +4473,8 @@
       {
         "id": "T2",
         "name": "assembly_auth_depinfo",
-        "action": "assembly-auth-depinfo",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "assemblyUpdateDepInfoOp",
         "next": "T3",
         "timeout": "00:05:20",
         "inputs": [
@@ -4263,7 +4487,8 @@
       {
         "id": "T3",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T4",
         "timeout": "00:00:20",
         "inputs": [],
@@ -4294,7 +4519,8 @@
       {
         "id": "T2",
         "name": "centre_of_mass",
-        "action": "center-of-mass",
+        "module": "wwpdb.utils.wf.plugins.DpUtils",
+        "method": "centreOfMassCalculation",
         "next": "T3",
         "timeout": "00:05:20",
         "inputs": [
@@ -4307,7 +4533,8 @@
       {
         "id": "T3",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T4",
         "timeout": "00:00:20",
         "inputs": [],
@@ -4350,7 +4577,8 @@
       {
         "id": "T2",
         "name": "csnamecheck",
-        "action": "cs-atom-name-check-alt",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "atomNameCheckCsXyzAltOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -4365,7 +4593,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -4408,7 +4637,8 @@
       {
         "id": "T2",
         "name": "csnamecheck",
-        "action": "cs-atom-name-check-alt",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "atomNameCheckCsXyzAltOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -4423,7 +4653,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -4466,7 +4697,8 @@
       {
         "id": "T2",
         "name": "csuploadcheck",
-        "action": "cs-upload-check-alt",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "uploadChemicalShiftAltOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -4481,7 +4713,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -4524,7 +4757,8 @@
       {
         "id": "T2",
         "name": "csuploadcheck",
-        "action": "cs-upload-check-alt",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "uploadChemicalShiftAltOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -4539,7 +4773,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -4570,9 +4805,10 @@
       {
         "id": "T2",
         "name": "batch_copy",
-        "action": "deposit-to-archive-batch-copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "batchCopyOp",
         "next": "T3",
-        "timeout": "00:05:20",
+        "timeout": "01:05:20",
         "inputs": [
           "D1"
         ],
@@ -4581,7 +4817,8 @@
       {
         "id": "T3",
         "name": "SyncToDeposit",
-        "action": "sync-to-deposit",
+        "module": "wwpdb.utils.wf.plugins.DepositUtils",
+        "method": "syncToDepositOp",
         "next": "T8",
         "timeout": "00:20:00",
         "inputs": [
@@ -4592,7 +4829,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -4623,7 +4861,8 @@
       {
         "id": "T2",
         "name": "em2emd",
-        "action": "cnv-em2emd",
+        "module": "wwpdb.utils.wf.plugins.DictUtils",
+        "method": "em2emdOp",
         "next": "T8",
         "timeout": "00:05:20",
         "inputs": [
@@ -4636,7 +4875,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -4667,7 +4907,8 @@
       {
         "id": "T2",
         "name": "em2emd",
-        "action": "cnv-em2emd",
+        "module": "wwpdb.utils.wf.plugins.DictUtils",
+        "method": "em2emdOp",
         "next": "T8",
         "timeout": "00:05:20",
         "inputs": [
@@ -4680,7 +4921,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -4711,7 +4953,8 @@
       {
         "id": "T2",
         "name": "emd2em",
-        "action": "cnv-emd2em",
+        "module": "wwpdb.utils.wf.plugins.DictUtils",
+        "method": "emd2emOp",
         "next": "T8",
         "timeout": "00:05:20",
         "inputs": [
@@ -4724,7 +4967,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -4755,7 +4999,8 @@
       {
         "id": "T2",
         "name": "emd2em",
-        "action": "cnv-emd2em",
+        "module": "wwpdb.utils.wf.plugins.DictUtils",
+        "method": "emd2emOp",
         "next": "T8",
         "timeout": "00:05:20",
         "inputs": [
@@ -4768,7 +5013,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -4799,7 +5045,8 @@
       {
         "id": "T2",
         "name": "emmapcheck",
-        "action": "emmapcheck",
+        "module": "wwpdb.utils.wf.plugins.EmUtils",
+        "method": "emmapcheck",
         "next": "T3",
         "timeout": "00:15:20",
         "inputs": [
@@ -4812,7 +5059,8 @@
       {
         "id": "T3",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T4",
         "timeout": "00:00:20",
         "inputs": [],
@@ -4867,7 +5115,8 @@
       {
         "id": "T2",
         "name": "emmtzsf2pdbx",
-        "action": "emmtzsf2pdbx",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "mtz2pdbxOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -4884,7 +5133,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -4939,7 +5189,8 @@
       {
         "id": "T2",
         "name": "emmtzsf2pdbx",
-        "action": "emmtzsf2pdbx",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "mtz2pdbxOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -4956,7 +5207,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5011,7 +5263,8 @@
       {
         "id": "T2",
         "name": "empdbxsf2pdbx",
-        "action": "empdbxsf2pdbx",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "mtz2pdbxOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5028,7 +5281,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5083,7 +5337,8 @@
       {
         "id": "T2",
         "name": "empdbxsf2pdbx",
-        "action": "empdbxsf2pdbx",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "mtz2pdbxOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5100,7 +5355,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5137,7 +5393,8 @@
       {
         "id": "T2",
         "name": "fsc-depositop",
-        "action": "fsc-deposit",
+        "module": "wwpdb.utils.wf.plugins.EmUtils",
+        "method": "fsc_check_options",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5151,7 +5408,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5188,7 +5446,8 @@
       {
         "id": "T2",
         "name": "fsc-depositop",
-        "action": "fsc-deposit",
+        "module": "wwpdb.utils.wf.plugins.EmUtils",
+        "method": "fsc_check_options",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5202,7 +5461,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5227,7 +5487,8 @@
       {
         "id": "T2",
         "name": "mapfixop",
-        "action": "half-mapfix-in-place-cfg",
+        "module": "wwpdb.utils.wf.plugins.EmUtils",
+        "method": "mapFixInPlaceCfgOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5238,7 +5499,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5263,7 +5525,8 @@
       {
         "id": "T2",
         "name": "mapfixop",
-        "action": "half-mapfix-in-place-cfg",
+        "module": "wwpdb.utils.wf.plugins.EmUtils",
+        "method": "mapFixInPlaceCfgOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5274,7 +5537,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5311,7 +5575,8 @@
       {
         "id": "T2",
         "name": "imgconvertop",
-        "action": "img-convert",
+        "module": "wwpdb.utils.wf.plugins.EmUtils",
+        "method": "imageMagickOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5325,7 +5590,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5362,7 +5628,8 @@
       {
         "id": "T2",
         "name": "imgconvertop",
-        "action": "img-convert",
+        "module": "wwpdb.utils.wf.plugins.EmUtils",
+        "method": "imageMagickOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5376,7 +5643,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5437,7 +5705,8 @@
       {
         "id": "TP3",
         "name": "ChemCompLinkCalc",
-        "action": "chem-comp-link",
+        "module": "wwpdb.utils.wf.plugins.ChemCompUtils",
+        "method": "chemCompLinkOp",
         "next": "TP31",
         "timeout": "12:05:20",
         "inputs": [
@@ -5450,7 +5719,8 @@
       {
         "id": "TP31",
         "name": "linkExist",
-        "action": "fileExist",
+        "module": "",
+        "method": "",
         "next": "TA32",
         "timeout": "03:01:01",
         "inputs": [
@@ -5463,7 +5733,8 @@
       {
         "id": "TA32",
         "name": "testFile",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP88",
         "timeout": "",
         "inputs": [],
@@ -5472,7 +5743,8 @@
       {
         "id": "TP4",
         "name": "ChemCompAssign",
-        "action": "chem-comp-assign-exact",
+        "module": "wwpdb.utils.wf.plugins.ChemCompUtils",
+        "method": "chemCompAssignExactOp",
         "next": "TP6",
         "timeout": "12:55:20",
         "inputs": [
@@ -5486,7 +5758,8 @@
       {
         "id": "TP5",
         "name": "ChemCompAssignNL",
-        "action": "chem-comp-assign-exact-nl",
+        "module": "wwpdb.utils.wf.plugins.ChemCompUtils",
+        "method": "chemCompAssignExactNLOp",
         "next": "TP6",
         "timeout": "12:55:20",
         "inputs": [
@@ -5499,7 +5772,8 @@
       {
         "id": "TP6",
         "name": "ChemCompReport",
-        "action": "chem-comp-report",
+        "module": "wwpdb.apps.ccmodule.utils.ChemCompWFInterface",
+        "method": "chemCompReportOp",
         "next": "TP88",
         "timeout": "06:55:20",
         "inputs": [
@@ -5510,7 +5784,8 @@
       {
         "id": "TP88",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5535,7 +5810,8 @@
       {
         "id": "T2",
         "name": "mapfixop",
-        "action": "mask-mapfix-in-place-cfg",
+        "module": "wwpdb.utils.wf.plugins.EmUtils",
+        "method": "mapFixInPlaceCfgOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5546,7 +5822,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5571,7 +5848,8 @@
       {
         "id": "T2",
         "name": "mapfixop",
-        "action": "mask-mapfix-in-place-cfg",
+        "module": "wwpdb.utils.wf.plugins.EmUtils",
+        "method": "mapFixInPlaceCfgOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5582,7 +5860,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5631,7 +5910,8 @@
       {
         "id": "T2",
         "name": "mrgpdbdep",
-        "action": "merge-pdb-xyz-dep",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "mergeXyzOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5647,7 +5927,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5696,7 +5977,8 @@
       {
         "id": "T2",
         "name": "mrgpdbdep",
-        "action": "merge-pdb-xyz-dep",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "mergeXyzOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5712,7 +5994,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5761,7 +6044,8 @@
       {
         "id": "T2",
         "name": "mrgpdbxdep",
-        "action": "merge-pdbx-xyz-dep",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "mergeXyzOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5777,7 +6061,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5826,7 +6111,8 @@
       {
         "id": "T2",
         "name": "mrgpdbxdep",
-        "action": "merge-pdbx-xyz-dep",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "mergeXyzOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5842,7 +6128,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5897,7 +6184,8 @@
       {
         "id": "T2",
         "name": "mtzsf2pdbx",
-        "action": "mtz2pdbx-alt",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "mtz2pdbxOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5914,7 +6202,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -5969,7 +6258,8 @@
       {
         "id": "T2",
         "name": "mtzsf2pdbx",
-        "action": "mtz2pdbx-alt",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "mtz2pdbxOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -5986,7 +6276,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -6035,7 +6326,8 @@
       {
         "id": "T2",
         "name": "nmr-cs-str-consistency-check",
-        "action": "nmr-cs-str-consistency-check",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "csStrConsistencyCheckOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -6051,7 +6343,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -6100,7 +6393,8 @@
       {
         "id": "T2",
         "name": "nmr-cs-str-consistency-check",
-        "action": "nmr-cs-str-consistency-check",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "csStrConsistencyCheckOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -6116,7 +6410,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -6165,7 +6460,8 @@
       {
         "id": "T2",
         "name": "nmr-if-merge-deposit",
-        "action": "nmr-if-merge-deposit",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "nmrIfMergeDepositOp",
         "next": "T8",
         "timeout": "00:45:20",
         "inputs": [
@@ -6181,7 +6477,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -6302,7 +6599,8 @@
       {
         "id": "T2",
         "name": "nmr-cs-mr-merge",
-        "action": "nmr-cs-mr-merge",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "csMrMergeOp",
         "next": "T6",
         "timeout": "00:30:20",
         "inputs": [
@@ -6321,7 +6619,8 @@
       {
         "id": "T6",
         "name": "nmr-mrg-consistency-check",
-        "action": "nmr-mrg-consistency-check",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "mrgConsistencyCheckOp",
         "next": "T7",
         "timeout": "00:15:20",
         "inputs": [
@@ -6338,7 +6637,8 @@
       {
         "id": "T7",
         "name": "nmr-str2cif-deposit",
-        "action": "nmr-str2cif-deposit",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "str2cifDepositOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -6359,7 +6659,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -6480,7 +6781,8 @@
       {
         "id": "T2",
         "name": "nmr-cs-mr-merge",
-        "action": "nmr-cs-mr-merge",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "csMrMergeOp",
         "next": "T6",
         "timeout": "00:30:20",
         "inputs": [
@@ -6499,7 +6801,8 @@
       {
         "id": "T6",
         "name": "nmr-mrg-consistency-check",
-        "action": "nmr-mrg-consistency-check",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "mrgConsistencyCheckOp",
         "next": "T7",
         "timeout": "00:15:20",
         "inputs": [
@@ -6516,7 +6819,8 @@
       {
         "id": "T7",
         "name": "nmr-str2cif-deposit",
-        "action": "nmr-str2cif-deposit",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "str2cifDepositOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -6537,7 +6841,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -6628,7 +6933,8 @@
       {
         "id": "T2",
         "name": "nmr-nef-consistency-check",
-        "action": "nmr-nef-consistency-check",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "nefConsistencyCheckOp",
         "next": "T7",
         "timeout": "00:15:20",
         "inputs": [
@@ -6644,7 +6950,8 @@
       {
         "id": "T7",
         "name": "nmr-nef2cif-deposit",
-        "action": "nmr-nef2cif-deposit",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "nef2cifDepositOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -6667,7 +6974,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -6764,7 +7072,8 @@
       {
         "id": "T2",
         "name": "nmr-nef-consistency-check",
-        "action": "nmr-nef-consistency-check",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "nefConsistencyCheckOp",
         "next": "T7",
         "timeout": "00:15:20",
         "inputs": [
@@ -6780,7 +7089,8 @@
       {
         "id": "T7",
         "name": "nmr-nef2cif-deposit",
-        "action": "nmr-nef2cif-deposit",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "nef2cifDepositOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -6803,7 +7113,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -6876,7 +7187,8 @@
       {
         "id": "T2",
         "name": "nmr-nef-consistency-check",
-        "action": "nmr-nef-consistency-check",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "nefConsistencyCheckOp",
         "next": "T7",
         "timeout": "00:15:20",
         "inputs": [
@@ -6892,7 +7204,8 @@
       {
         "id": "T7",
         "name": "nmr-nef2str-deposit",
-        "action": "nmr-nef2str-deposit",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "nef2strDepositOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -6912,7 +7225,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -6991,7 +7305,8 @@
       {
         "id": "T2",
         "name": "nmr-nef-consistency-check",
-        "action": "nmr-nef-consistency-check",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "nefConsistencyCheckOp",
         "next": "T7",
         "timeout": "00:15:20",
         "inputs": [
@@ -7007,7 +7322,8 @@
       {
         "id": "T7",
         "name": "nmr-nef2str-deposit",
-        "action": "nmr-nef2str-deposit",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "nef2strDepositOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -7027,7 +7343,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -7106,7 +7423,8 @@
       {
         "id": "T2",
         "name": "nmr-str-consistency-check",
-        "action": "nmr-str-consistency-check",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "strConsistencyCheckOp",
         "next": "T7",
         "timeout": "00:15:20",
         "inputs": [
@@ -7122,7 +7440,8 @@
       {
         "id": "T7",
         "name": "nmr-str2cif-deposit",
-        "action": "nmr-str2cif-deposit",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "str2cifDepositOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -7143,7 +7462,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -7228,7 +7548,8 @@
       {
         "id": "T2",
         "name": "nmr-str-consistency-check",
-        "action": "nmr-str-consistency-check",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "strConsistencyCheckOp",
         "next": "T7",
         "timeout": "00:15:20",
         "inputs": [
@@ -7244,7 +7565,8 @@
       {
         "id": "T7",
         "name": "nmr-str2cif-deposit",
-        "action": "nmr-str2cif-deposit",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "str2cifDepositOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -7265,7 +7587,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -7308,7 +7631,8 @@
       {
         "id": "T2",
         "name": "strnamecheck",
-        "action": "nmr-str2cif-namechk",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "atomNameCheckCsXyzAltOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -7323,7 +7647,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -7366,7 +7691,8 @@
       {
         "id": "T2",
         "name": "strnamecheck",
-        "action": "nmr-str2cif-namechk",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "atomNameCheckCsXyzAltOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -7381,7 +7707,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -7424,7 +7751,8 @@
       {
         "id": "T2",
         "name": "struploadcheck",
-        "action": "nmr-str2cif-uplchk",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "uploadChemicalShiftAltOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -7439,7 +7767,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -7482,7 +7811,8 @@
       {
         "id": "T2",
         "name": "struploadcheck",
-        "action": "nmr-str2cif-uplchk",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "uploadChemicalShiftAltOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -7497,7 +7827,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -7558,7 +7889,8 @@
       {
         "id": "T2",
         "name": "nmr-str2nef-release",
-        "action": "nmr-str2nef-release",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "str2nefReleaseOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -7576,7 +7908,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -7637,7 +7970,8 @@
       {
         "id": "T2",
         "name": "nmr-str-consistency-check",
-        "action": "nmr-str-consistency-check",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "strConsistencyCheckOp",
         "next": "T7",
         "timeout": "00:15:20",
         "inputs": [
@@ -7653,7 +7987,8 @@
       {
         "id": "T7",
         "name": "nmr-str2str-deposit",
-        "action": "nmr-str2str-deposit",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "str2strDepositOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -7671,7 +8006,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -7738,7 +8074,8 @@
       {
         "id": "T2",
         "name": "nmr-str-consistency-check",
-        "action": "nmr-str-consistency-check",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "strConsistencyCheckOp",
         "next": "T7",
         "timeout": "00:15:20",
         "inputs": [
@@ -7754,7 +8091,8 @@
       {
         "id": "T7",
         "name": "nmr-str2str-deposit",
-        "action": "nmr-str2str-deposit",
+        "module": "wwpdb.utils.wf.plugins.NmrUtils",
+        "method": "str2strDepositOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -7772,7 +8110,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -7803,7 +8142,8 @@
       {
         "id": "T2",
         "name": "pdb2pdbx",
-        "action": "pdb2pdbx-deposit",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "pdb2pdbxDepositOp",
         "next": "T8",
         "timeout": "00:05:20",
         "inputs": [
@@ -7816,7 +8156,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -7853,7 +8194,8 @@
       {
         "id": "T2",
         "name": "pdb2pdbx",
-        "action": "pdb2pdbx-deposit",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "pdb2pdbxDepositOp",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -7866,7 +8208,8 @@
       {
         "id": "T6",
         "name": "validate",
-        "action": "update-geometry-validation",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "updateGeometryValidationOp",
         "next": "T7",
         "timeout": "00:15:20",
         "inputs": [
@@ -7879,7 +8222,8 @@
       {
         "id": "T7",
         "name": "solventAnalysis",
-        "action": "solvent-position-analysis",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "solventPositionAnalysis",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -7892,7 +8236,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -7923,7 +8268,8 @@
       {
         "id": "T2",
         "name": "pdbformatchecktask",
-        "action": "pdb-format-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "formatCheckPdbOp",
         "next": "T8",
         "timeout": "00:05:20",
         "inputs": [
@@ -7936,7 +8282,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -7967,7 +8314,8 @@
       {
         "id": "T2",
         "name": "pdbformatchecktask",
-        "action": "pdb-format-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "formatCheckPdbOp",
         "next": "T8",
         "timeout": "00:05:20",
         "inputs": [
@@ -7980,7 +8328,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -8011,7 +8360,8 @@
       {
         "id": "T2",
         "name": "pdbformatchecktask",
-        "action": "pdb-format-check-nmr",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "formatCheckPdbOp",
         "next": "T8",
         "timeout": "00:05:20",
         "inputs": [
@@ -8024,7 +8374,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -8055,7 +8406,8 @@
       {
         "id": "T2",
         "name": "pdbformatchecktask",
-        "action": "pdb-format-check-nmr",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "formatCheckPdbOp",
         "next": "T8",
         "timeout": "00:05:20",
         "inputs": [
@@ -8068,7 +8420,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -8099,7 +8452,8 @@
       {
         "id": "T2",
         "name": "pdbx2pdbx",
-        "action": "pdbx2pdbx-deposit",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "pdbx2pdbxDepositOp",
         "next": "T8",
         "timeout": "01:05:20",
         "inputs": [
@@ -8112,7 +8466,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -8143,7 +8498,8 @@
       {
         "id": "T2",
         "name": "pdbx2pdbx",
-        "action": "pdbx2pdbx-deposit",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "pdbx2pdbxDepositOp",
         "next": "T8",
         "timeout": "01:15:20",
         "inputs": [
@@ -8156,7 +8512,8 @@
       {
         "id": "T6",
         "name": "validate",
-        "action": "update-geometry-validation",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "updateGeometryValidationOp",
         "next": "T7",
         "timeout": "00:15:20",
         "inputs": [
@@ -8169,7 +8526,8 @@
       {
         "id": "T7",
         "name": "solventAnalysis",
-        "action": "solvent-position-analysis",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "solventPositionAnalysis",
         "next": "T8",
         "timeout": "00:15:20",
         "inputs": [
@@ -8182,7 +8540,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -8213,7 +8572,8 @@
       {
         "id": "T2",
         "name": "pdbxformatchecktask",
-        "action": "pdbx-format-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "formatCheckPdbxOp",
         "next": "T8",
         "timeout": "00:29:00",
         "inputs": [
@@ -8226,7 +8586,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -8257,7 +8618,8 @@
       {
         "id": "T2",
         "name": "pdbxformatchecktask",
-        "action": "pdbx-format-check",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "formatCheckPdbxOp",
         "next": "T8",
         "timeout": "00:29:00",
         "inputs": [
@@ -8270,7 +8632,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -8301,7 +8664,8 @@
       {
         "id": "T2",
         "name": "pdbxformatchecktask",
-        "action": "pdbx-format-check-nmr",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "formatCheckPdbxOp",
         "next": "T8",
         "timeout": "00:10:20",
         "inputs": [
@@ -8314,7 +8678,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -8345,7 +8710,8 @@
       {
         "id": "T2",
         "name": "pdbxformatchecktask",
-        "action": "pdbx-format-check-nmr",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "formatCheckPdbxOp",
         "next": "T8",
         "timeout": "00:10:20",
         "inputs": [
@@ -8358,7 +8724,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -8413,7 +8780,8 @@
       {
         "id": "T2",
         "name": "pdbxsf2pdbx",
-        "action": "pdbxsf2pdbx-alt",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "mtz2pdbxOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -8430,7 +8798,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -8485,7 +8854,8 @@
       {
         "id": "T2",
         "name": "pdbxsf2pdbx",
-        "action": "pdbxsf2pdbx-alt",
+        "module": "wwpdb.utils.wf.plugins.FormatUtils",
+        "method": "mtz2pdbxOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -8502,7 +8872,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -8534,6 +8905,12 @@
         "id": "D3",
         "filetype": "model.pdbx",
         "location": "deposit-ui",
+        "version": "latest"
+      },
+      {
+        "id": "D31",
+        "filetype": "model.pdbx",
+        "location": "archive",
         "version": "latest"
       },
       {
@@ -8577,16 +8954,30 @@
       {
         "id": "TP1",
         "name": "wait",
-        "action": "wait",
+        "module": "",
+        "method": "",
         "next": "TP88",
         "timeout": "00:00:20",
         "inputs": [],
         "outputs": []
       },
       {
+        "id": "TP2",
+        "name": "MakeDirectory",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "makeDirOp",
+        "next": "TP3",
+        "timeout": "00:01:20",
+        "inputs": [
+          "D31"
+        ],
+        "outputs": []
+      },
+      {
         "id": "TP3",
         "name": "ChemCompLinkCalc",
-        "action": "chem-comp-link",
+        "module": "wwpdb.utils.wf.plugins.ChemCompUtils",
+        "method": "chemCompLinkOp",
         "next": "TP31",
         "timeout": "12:05:20",
         "inputs": [
@@ -8599,7 +8990,8 @@
       {
         "id": "TP31",
         "name": "linkExist",
-        "action": "fileExist",
+        "module": "",
+        "method": "",
         "next": "TA32",
         "timeout": "01:01:01",
         "inputs": [
@@ -8612,7 +9004,8 @@
       {
         "id": "TA32",
         "name": "testFile",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP88",
         "timeout": "",
         "inputs": [],
@@ -8621,7 +9014,8 @@
       {
         "id": "TP4",
         "name": "ChemCompAssign",
-        "action": "chem-comp-assign-exact",
+        "module": "wwpdb.utils.wf.plugins.ChemCompUtils",
+        "method": "chemCompAssignExactOp",
         "next": "TP6",
         "timeout": "12:55:20",
         "inputs": [
@@ -8635,7 +9029,8 @@
       {
         "id": "TP5",
         "name": "ChemCompAssignNL",
-        "action": "chem-comp-assign-exact-nl",
+        "module": "wwpdb.utils.wf.plugins.ChemCompUtils",
+        "method": "chemCompAssignExactNLOp",
         "next": "TP6",
         "timeout": "12:55:20",
         "inputs": [
@@ -8648,7 +9043,8 @@
       {
         "id": "TP6",
         "name": "ChemCompReport",
-        "action": "chem-comp-report",
+        "module": "wwpdb.apps.ccmodule.utils.ChemCompWFInterface",
+        "method": "chemCompReportOp",
         "next": "TP10",
         "timeout": "12:55:20",
         "inputs": [
@@ -8659,7 +9055,8 @@
       {
         "id": "TP7",
         "name": "StatusLoad",
-        "action": "pdbx-status-load",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "statusLoadOp",
         "next": "TP10",
         "timeout": "00:05:20",
         "inputs": [
@@ -8670,7 +9067,8 @@
       {
         "id": "TP10",
         "name": "ValMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP11",
         "timeout": "",
         "inputs": [],
@@ -8679,7 +9077,8 @@
       {
         "id": "TP11",
         "name": "SyncToDeposit",
-        "action": "sync-to-deposit",
+        "module": "wwpdb.utils.wf.plugins.DepositUtils",
+        "method": "syncToDepositOp",
         "next": "TP88",
         "timeout": "00:20:00",
         "inputs": [
@@ -8690,7 +9089,8 @@
       {
         "id": "TP88",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -8715,7 +9115,8 @@
       {
         "id": "TP10",
         "name": "ValMod",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP88",
         "timeout": "",
         "inputs": [],
@@ -8724,7 +9125,8 @@
       {
         "id": "TP88",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -9013,7 +9415,8 @@
       {
         "id": "TP1",
         "name": "MakeDirectory",
-        "action": "mkdir",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "makeDirOp",
         "next": "TE1",
         "timeout": "00:01:20",
         "inputs": [
@@ -9024,7 +9427,8 @@
       {
         "id": "TE1",
         "name": "pre-fetch-accession-attributes",
-        "action": "fetch",
+        "module": "wwpdb.utils.wf.plugins.PdbxUtils",
+        "method": "fetchOp",
         "next": "TE2",
         "timeout": "00:02:01",
         "inputs": [
@@ -9037,7 +9441,8 @@
       {
         "id": "TE2",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -9046,7 +9451,8 @@
       {
         "id": "TE4",
         "name": "auto-em-map-versions",
-        "action": "auto-em-map-versions-archive",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "em3dAutoEmMapFixVersOp",
         "next": "TP2",
         "timeout": "01:55:20",
         "inputs": [
@@ -9060,7 +9466,8 @@
       {
         "id": "TP2",
         "name": "copyArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "TP3",
         "timeout": "00:01:01",
         "inputs": [
@@ -9073,7 +9480,8 @@
       {
         "id": "TP3",
         "name": "copySFArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "TP3A",
         "timeout": "00:03:01",
         "inputs": [
@@ -9086,7 +9494,8 @@
       {
         "id": "TP3A",
         "name": "copyShiftsArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "TP4",
         "timeout": "00:01:01",
         "inputs": [
@@ -9099,7 +9508,8 @@
       {
         "id": "TP4",
         "name": "copyNmrDataArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "TP7",
         "timeout": "00:01:01",
         "inputs": [
@@ -9112,7 +9522,8 @@
       {
         "id": "TP7",
         "name": "val-report-all-ann",
-        "action": "val-report-all-ann-v3",
+        "module": "wwpdb.utils.wf.plugins.ValidationUtils",
+        "method": "validationReportAllOpV3",
         "next": "TM7",
         "timeout": "83:55:20",
         "inputs": [
@@ -9138,7 +9549,8 @@
       {
         "id": "TM7",
         "name": "string-compare",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TM6",
         "timeout": "",
         "inputs": [],
@@ -9147,7 +9559,8 @@
       {
         "id": "TM6",
         "name": "ValidationInteface",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "TP8",
         "timeout": "",
         "inputs": [],
@@ -9156,7 +9569,8 @@
       {
         "id": "TM5",
         "name": "CreateCorrespondLetter",
-        "action": "val-generate-correspond-letter",
+        "module": "wwpdb.utils.wf.plugins.ValidationUtils",
+        "method": "validationGetCorrespondLetterOp",
         "next": "TP88",
         "timeout": "00:15:20",
         "inputs": [
@@ -9170,7 +9584,8 @@
       {
         "id": "TP88",
         "name": "wait",
-        "action": "wait",
+        "module": "",
+        "method": "",
         "next": "TP8",
         "timeout": "00:00:20",
         "inputs": [],
@@ -9179,7 +9594,8 @@
       {
         "id": "TP8",
         "name": "copyPDFDataToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP29",
         "timeout": "00:05:20",
         "inputs": [
@@ -9192,7 +9608,8 @@
       {
         "id": "TP29",
         "name": "copyLetterToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP9",
         "timeout": "00:05:20",
         "inputs": [
@@ -9205,7 +9622,8 @@
       {
         "id": "TP9",
         "name": "copyXMLToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP91",
         "timeout": "00:05:20",
         "inputs": [
@@ -9218,7 +9636,8 @@
       {
         "id": "TP91",
         "name": "copyPDFFullToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP93",
         "timeout": "00:05:20",
         "inputs": [
@@ -9231,7 +9650,8 @@
       {
         "id": "TP93",
         "name": "copySVGToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP94",
         "timeout": "00:05:20",
         "inputs": [
@@ -9244,7 +9664,8 @@
       {
         "id": "TP94",
         "name": "copyPNGToArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP95",
         "timeout": "00:05:20",
         "inputs": [
@@ -9257,7 +9678,8 @@
       {
         "id": "TP95",
         "name": "copyFoMapToArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "TP96",
         "timeout": "00:05:20",
         "inputs": [
@@ -9270,7 +9692,8 @@
       {
         "id": "TP96",
         "name": "copy2FoMapToArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "TP97",
         "timeout": "00:05:20",
         "inputs": [
@@ -9283,7 +9706,8 @@
       {
         "id": "TP97",
         "name": "copy2FoMapToArchive",
-        "action": "copy-if-exists",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyIfExistsOp",
         "next": "T9",
         "timeout": "00:05:20",
         "inputs": [
@@ -9420,7 +9844,8 @@
       {
         "id": "TP1",
         "name": "MakeDirectory",
-        "action": "mkdir",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "makeDirOp",
         "next": "TP2",
         "timeout": "00:01:20",
         "inputs": [
@@ -9431,7 +9856,8 @@
       {
         "id": "TP2",
         "name": "copyArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP61",
         "timeout": "00:01:01",
         "inputs": [
@@ -9444,7 +9870,8 @@
       {
         "id": "TP61",
         "name": "linkages",
-        "action": "linkages",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "linkOp",
         "next": "T5",
         "timeout": "01:55:20",
         "inputs": [
@@ -9457,7 +9884,8 @@
       {
         "id": "T5",
         "name": "corresinfo",
-        "action": "get-corres-info",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "getCorresInfoOp",
         "next": "TP6",
         "timeout": "00:15:20",
         "inputs": [
@@ -9470,7 +9898,8 @@
       {
         "id": "TP6",
         "name": "val-report-all-dep",
-        "action": "val-report-all-dep-v3",
+        "module": "wwpdb.utils.wf.plugins.ValidationUtils",
+        "method": "validationReportAllOpV3",
         "next": "TP31",
         "timeout": "03:30:00",
         "inputs": [
@@ -9495,7 +9924,8 @@
       {
         "id": "TP31",
         "name": "pdfExist",
-        "action": "fileExist",
+        "module": "",
+        "method": "",
         "next": "TA32",
         "timeout": "00:01:01",
         "inputs": [
@@ -9508,7 +9938,8 @@
       {
         "id": "TA32",
         "name": "testFile",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -9517,7 +9948,8 @@
       {
         "id": "TP5",
         "name": "Email",
-        "action": "sendDepEmail",
+        "module": "",
+        "method": "",
         "next": "TP88",
         "timeout": "00:00:20",
         "inputs": [],
@@ -9526,7 +9958,8 @@
       {
         "id": "TP9",
         "name": "Email",
-        "action": "sendDepEmail",
+        "module": "",
+        "method": "",
         "next": "EX1",
         "timeout": "00:00:20",
         "inputs": [],
@@ -9535,7 +9968,8 @@
       {
         "id": "TP8",
         "name": "Email",
-        "action": "sendDepEmail",
+        "module": "",
+        "method": "",
         "next": "EX1",
         "timeout": "00:00:20",
         "inputs": [],
@@ -9544,7 +9978,8 @@
       {
         "id": "TP88",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -9671,7 +10106,8 @@
       {
         "id": "TP1",
         "name": "MakeDirectory",
-        "action": "mkdir",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "makeDirOp",
         "next": "TP2",
         "timeout": "00:01:20",
         "inputs": [
@@ -9682,7 +10118,8 @@
       {
         "id": "TP2",
         "name": "copyArchive",
-        "action": "copy",
+        "module": "wwpdb.utils.wf.plugins.FileUtils",
+        "method": "copyOp",
         "next": "TP61",
         "timeout": "00:01:01",
         "inputs": [
@@ -9695,7 +10132,8 @@
       {
         "id": "TP61",
         "name": "linkages",
-        "action": "linkages",
+        "module": "wwpdb.utils.wf.plugins.AnnotationUtils",
+        "method": "linkOp",
         "next": "TP6",
         "timeout": "01:55:20",
         "inputs": [
@@ -9708,7 +10146,8 @@
       {
         "id": "TP6",
         "name": "val-report-all-srv",
-        "action": "val-report-all-srv-v3",
+        "module": "wwpdb.utils.wf.plugins.ValidationUtils",
+        "method": "validationReportAllOpV3",
         "next": "TP31",
         "timeout": "03:30:00",
         "inputs": [
@@ -9733,7 +10172,8 @@
       {
         "id": "TP31",
         "name": "pdfExist",
-        "action": "fileExist",
+        "module": "",
+        "method": "",
         "next": "TA32",
         "timeout": "00:01:01",
         "inputs": [
@@ -9746,7 +10186,8 @@
       {
         "id": "TA32",
         "name": "testFile",
-        "action": "",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "",
         "inputs": [],
@@ -9755,7 +10196,8 @@
       {
         "id": "TP5",
         "name": "Email",
-        "action": "sendDepEmail",
+        "module": "",
+        "method": "",
         "next": "TP88",
         "timeout": "00:00:20",
         "inputs": [],
@@ -9764,7 +10206,8 @@
       {
         "id": "TP9",
         "name": "Email",
-        "action": "sendDepEmail",
+        "module": "",
+        "method": "",
         "next": "EX1",
         "timeout": "00:00:20",
         "inputs": [],
@@ -9773,7 +10216,8 @@
       {
         "id": "TP8",
         "name": "Email",
-        "action": "sendDepEmail",
+        "module": "",
+        "method": "",
         "next": "EX1",
         "timeout": "00:00:20",
         "inputs": [],
@@ -9782,7 +10226,8 @@
       {
         "id": "TP88",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -9807,7 +10252,8 @@
       {
         "id": "T2",
         "name": "mapfixop",
-        "action": "mapfix-in-place-cfg",
+        "module": "wwpdb.utils.wf.plugins.EmUtils",
+        "method": "mapFixInPlaceCfgOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -9818,7 +10264,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
@@ -9843,7 +10290,8 @@
       {
         "id": "T2",
         "name": "mapfixop",
-        "action": "mapfix-in-place-cfg",
+        "module": "wwpdb.utils.wf.plugins.EmUtils",
+        "method": "mapFixInPlaceCfgOp",
         "next": "T8",
         "timeout": "00:30:00",
         "inputs": [
@@ -9854,7 +10302,8 @@
       {
         "id": "T8",
         "name": "Finish",
-        "action": "finished",
+        "module": "",
+        "method": "",
         "next": "T9",
         "timeout": "00:00:20",
         "inputs": [],
