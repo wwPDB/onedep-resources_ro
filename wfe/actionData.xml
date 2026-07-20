@@ -12,7 +12,8 @@
                                      cs-atom-name-check-alt, and cs-upload-check-alt
                31-Aug-2015  jdw  add mapfix-in-place-alt mask-mapfix-in-place-alt half-mapfix-in-place-alt
                                   additional-mapfix-in-place-alt
-               15-Sep-2015  jdw  add replace validation-report-test with vavalidation-report-all to provide support for all supported methods
+               15-Sep-2015  jdw  add replace validation-report-test with vavalidation-report-all to provide support for all
+                                     supported methods
                 2-Oct-2015  jdw  add [additonal,half,mask]-mapfix-in-place-cfg workflow actions
                14-Jul-2016  jdw  add definition for new standalone validation server "val-report-all-srv"
                19-Oct-2016  ep   add empdbxsf2pdbx for EC SF file conversion
@@ -30,6 +31,9 @@
                26-Aug-2024  zf   add linkages-ptm
                04-Oct-2024  zf   add fetch-pcm-missing-data
                19-Dec-2024  my   add nmr-if-merge-deposit
+               06-Jul-2026  zf   add chem-comp-assign-ui, chem-comp-assign-nl-ui, linkages-ptm-mcc, linkages-ptm-mcc-with-check,
+                                     calculate-metal-coordination, and calculate-metal-coordination-large-timeout, for metal
+                                     containing ligands
   -->
 <actionList version="0.01">
   <action name="copy">
@@ -902,7 +906,6 @@
      <methodName>chemCompLinkOp</methodName>
   </action>
 
-
   <action name="chem-comp-assign">
      <inputList>
          <wfDataObject name="src1">
@@ -936,6 +939,41 @@
      </internalParameters>
      <moduleName>wwpdb.utils.wf.plugins.ChemCompUtils</moduleName>
      <methodName>chemCompAssignOp</methodName>
+  </action>
+
+  <action name="chem-comp-assign-ui">
+     <inputList>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>chem-comp-link</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>chem-comp-assign</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.ChemCompUtils</moduleName>
+     <methodName>chemCompAssignUIOp</methodName>
   </action>
 
    <action name="chem-comp-report">
@@ -982,6 +1020,34 @@
      </internalParameters>
      <moduleName>wwpdb.utils.wf.plugins.ChemCompUtils</moduleName>
      <methodName>chemCompAssignNLOp</methodName>
+  </action>
+
+  <action name="chem-comp-assign-nl-ui">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+
+     <outputList>
+         <wfDataObject name="dst">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>chem-comp-assign</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.ChemCompUtils</moduleName>
+     <methodName>chemCompAssignNLUIOp</methodName>
   </action>
 
   <action name="chem-comp-assign-exact">
@@ -1447,6 +1513,170 @@
      </internalParameters>
      <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
      <methodName>linkPtmOp</methodName>
+  </action>
+
+  <action name="linkages-ptm-mcc">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>pcm-missing-data</contentType>
+            <fileFormat>csv</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>metal-containing-data</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
+     <methodName>linkPtmMccOp</methodName>
+  </action>
+
+  <action name="linkages-ptm-mcc-with-check">
+     <inputList>
+         <wfDataObject name="src">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>pcm-missing-data</contentType>
+            <fileFormat>csv</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst3">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>metal-containing-data</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
+     <methodName>linkPtmMccWithSkipOp</methodName>
+  </action>
+
+  <action name="calculate-metal-coordination">
+     <inputList>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>metal-containing-data</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>missing-metal-coordination-data</contentType>
+            <fileFormat>csv</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
+     <methodName>metalCoordinationOp</methodName>
+  </action>
+
+  <action name="calculate-metal-coordination-large-timeout">
+     <inputList>
+         <wfDataObject name="src1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="src2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>metal-containing-data</contentType>
+            <fileFormat>txt</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </inputList>
+     <outputList>
+         <wfDataObject name="dst1">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>model</contentType>
+            <fileFormat>pdbx</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+         <wfDataObject name="dst2">
+            <dataReferenceType>file</dataReferenceType>
+            <contentType>missing-metal-coordination-data</contentType>
+            <fileFormat>csv</fileFormat>
+            <containerType></containerType>
+            <selectorType></selectorType>
+         </wfDataObject>
+     </outputList>
+     <userParameters>
+     </userParameters>
+     <internalParameters>
+     </internalParameters>
+     <moduleName>wwpdb.utils.wf.plugins.AnnotationUtils</moduleName>
+     <methodName>metalCoordinationWithLargeTimeoutOp</methodName>
   </action>
 
   <action name="fetch-pcm-missing-data">

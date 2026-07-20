@@ -132,10 +132,10 @@
                     </wf:decision>
                 </wf:task>
 
-                <wf:task taskID="TP4" name="ChemCompAssign" nextTask="TP5" breakpoint="false" exceptionID="EX0" reference="chem-comp-assign">
+                <wf:task taskID="TP4" name="ChemCompAssign" nextTask="TP5" breakpoint="false" exceptionID="EX0" reference="chem-comp-assign-ui">
                     <wf:description>Get the Chemical assignment from dictionary</wf:description>
                     <wf:process runTime="00:00:10" failTime="04:55:20">
-                        <wf:detail name="ChemCompAssign" action="chem-comp-assign" where="api"/>
+                        <wf:detail name="ChemCompAssign" action="chem-comp-assign-ui" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input1"/>
                             <wf:location dataID="D5" type="input2"/>
@@ -144,10 +144,10 @@
                     </wf:process>
                 </wf:task>
 
-                <wf:task taskID="TP44" name="ChemCompAssignNL" nextTask="TP5" breakpoint="false" exceptionID="EX0" reference="chem-comp-assign-nl">
+                <wf:task taskID="TP44" name="ChemCompAssignNL" nextTask="TP5" breakpoint="false" exceptionID="EX0" reference="chem-comp-assign-nl-ui">
                     <wf:description>Get the Chemical assignment from dictionary without linkage</wf:description>
                     <wf:process runTime="00:00:10" failTime="04:55:20">
-                        <wf:detail name="ChemCompAssignNL" action="chem-comp-assign-nl" where="api"/>
+                        <wf:detail name="ChemCompAssignNL" action="chem-comp-assign-nl-ui" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D3" type="input"/>
                             <wf:location dataID="D6" type="output"/>
