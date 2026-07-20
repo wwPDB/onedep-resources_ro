@@ -438,7 +438,7 @@
 
                 <wf:task taskID="TP2H" name="pdbx-dict-check" nextTask="TT1" breakpoint="true" exceptionID="EX0" reference="pdbx-dict-check">
                     <wf:description>Dictionary Check</wf:description>
-                        <wf:process runTime="00:00:10" failTime="02:55:20">
+                        <wf:process runTime="00:00:10" failTime="12:55:20">
                         <wf:detail name="pdbx-dict-check" action="pdbx-dict-check-first" where="api"/>
                         <wf:dataObjectsLocation>
                                <wf:location dataID="D19" type="input"/>
@@ -478,7 +478,7 @@
 
                 <wf:task taskID="TP3" name="solvent-position-add-derived" nextTask="TP4" breakpoint="true" exceptionID="EX0" reference="solvent-position-add-derived">
                     <wf:description>Re position the waters</wf:description>
-                    <wf:process runTime="00:00:10" failTime="00:55:20">
+                    <wf:process runTime="00:00:10" failTime="10:55:20">
                         <wf:detail name="SolventPosition" action="solvent-position-add-derived" where="api"/>
                         <wf:dataObjectsLocation>
                                <wf:location dataID="D19" type="input"/>
@@ -489,7 +489,7 @@
 
                 <wf:task taskID="TP4" name="nucleic-acid-geometry" nextTask="TP5" breakpoint="true" exceptionID="EX0" reference="nucleic-acid-geometry">
                     <wf:description>Calculate and annotate nucleic acid geometry</wf:description>
-                    <wf:process runTime="00:00:10" failTime="01:20:20">
+                    <wf:process runTime="00:00:10" failTime="03:20:20">
                         <wf:detail name="nucleicAcidGeometry" action="nucleic-acid-geometry" where="api"/>
                         <wf:dataObjectsLocation>
                                <wf:location dataID="D19" type="input"/>
@@ -556,7 +556,7 @@
 
                 <wf:task taskID="TP6" name="cis-peptide" nextTask="TP7" breakpoint="true" exceptionID="EX0" reference="cis-peptide">
                     <wf:description>Detect the cis peptides</wf:description>
-                    <wf:process runTime="00:00:10" failTime="01:55:20">
+                    <wf:process runTime="00:00:10" failTime="04:55:20">
                         <wf:detail name="CisPeptideeptide" action="cis-peptide" where="api"/>
                         <wf:dataObjectsLocation>
                                <wf:location dataID="D19" type="input"/>
@@ -567,7 +567,7 @@
 
                 <wf:task taskID="TP7" name="secondary-structure" nextTask="TP2E" breakpoint="true" exceptionID="EX0" reference="secondary-structure">
                     <wf:description>Calculate Secondary structure</wf:description>
-                    <wf:process runTime="00:00:10" failTime="01:55:20">
+                    <wf:process runTime="00:00:10" failTime="04:55:20">
                         <wf:detail name="SecondaryStructure" action="secondary-structure" where="api"/>
                         <wf:dataObjectsLocation>
                                <wf:location dataID="D19" type="input"/>
@@ -632,7 +632,7 @@
                 <!--If EM or NMR, skip PISA -->
                 <wf:task taskID="TM1" name="fetch-exptl-methods-attributes" nextTask="TM2" breakpoint="false" exceptionID="EX0" reference="fetch attribute">
                     <wf:description>Fetch accessions </wf:description>
-                    <wf:process runTime="00:00:04" failTime="00:01:01">
+                    <wf:process runTime="00:00:04" failTime="00:10:01">
                         <wf:detail name="fetch" action="fetch" where="api"/>
                         <wf:dataObjectsLocation>
                             <wf:location dataID="D19D" type="input"/>
