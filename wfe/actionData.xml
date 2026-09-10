@@ -34,6 +34,7 @@
                06-Jul-2026  zf   add chem-comp-assign-ui, chem-comp-assign-nl-ui, linkages-ptm-mcc, linkages-ptm-mcc-with-check,
                                      calculate-metal-coordination, and calculate-metal-coordination-large-timeout, for metal
                                      containing ligands
+               10-Sep-2026  ep   add firstblockdiags parameter to mtz2pdbx-alt and pdbxsf2pdbx-alt
   -->
 <actionList version="0.01">
   <action name="copy">
@@ -5196,6 +5197,7 @@
      </outputList>
      <userParameters>
            <parameter name="timeout">0</parameter>
+           <parameter name="firstblockdiags">Y</parameter>
      </userParameters>
      <internalParameters>
      </internalParameters>
@@ -5322,6 +5324,7 @@
      </outputList>
      <userParameters>
            <parameter name="timeout">0</parameter>
+           <parameter name="firstblockdiags">Y</parameter>
      </userParameters>
      <internalParameters>
      </internalParameters>
